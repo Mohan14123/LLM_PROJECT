@@ -1,0 +1,38 @@
+IRDAI GUIDELINES ON TELEMEDICINE IN HEALTH INSURANCE
+Circular No.: IRDAI/HLT/MISC/CIR/237/03/2020 (as updated by Master Circular 2024)
+Reference: IRDAI/HLT/CIR/MISC/116/05/2024, Chapter X, Section 55
+Date: 29-May-2024
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — RECOGNITION OF TELEMEDICINE CONSULTATIONS
+1.1 As per the Telemedicine Practice Guidelines (2020) issued by the Board
+of Governors in supersession of the Medical Council of India, telemedicine
+consultations are recognized as valid medical consultations.
+
+1.2 A prescription issued through a telemedicine consultation by a Registered
+Medical Practitioner (RMP) shall be considered equivalent to a physical
+consultation for the purpose of health insurance claims.
+
+1.3 Pre-hospitalisation expenses incurred through telemedicine (teleconsultation
+fees, diagnostics ordered via teleconsultation) are admissible under the
+pre-hospitalisation coverage period (typically 30-60 days prior to admission).
+
+SECTION 2 — COVERAGE OF TELEMEDICINE IN PRE-AUTHORISATION
+2.1 Telemedicine consultations used to diagnose or recommend hospitalization
+are valid for pre-authorisation purposes.
+2.2 The telemedicine prescription/referral must include:
+    a) Name and registration number of the treating doctor
+    b) Date and mode of consultation (video/audio/chat)
+    c) Diagnosis and recommendation for hospitalization
+    d) Unique teleconsultation ID (as per NMC guidelines)
+
+2.3 Insurers cannot deny pre-authorisation solely on the basis that the
+initial consultation was conducted via telemedicine.
+
+SECTION 3 — LIMITATIONS
+3.1 Telemedicine consultation fees for routine OPD management (not leading
+to hospitalization) are NOT covered under standard indemnity plans.
+3.2 Post-discharge teleconsultation follow-ups are admissible under the
+post-hospitalisation expense coverage period (typically 60-90 days).
+3.3 Mental health teleconsultation: Admissible if leading to documented
+psychiatric hospitalization meeting the 24-hour inpatient requirement.

@@ -1,0 +1,28 @@
+INSURER POLICY SCHEDULE: STAR HEALTH & ALLIED INSURANCE
+Insurer: Star Health & Allied Insurance Co. Ltd.
+IRDAI Registration No.: 129 (Standalone Health Insurance)
+TPA: In-house claims processing (no external TPA)
+
+PRODUCT PORTFOLIO:
+1. Star Comprehensive Insurance Policy
+   - Plan Type: Individual / Family Floater
+   - Sum Insured Options: Rs. 5,00,000 / Rs. 10,00,000 / Rs. 15,00,000 / Rs. 25,00,000
+   - Room Rent: No sub-limit for SI >= Rs. 10,00,000. For lower SI: 1% of SI/day.
+   - Co-payment: Nil for ages below 60. 20% for ages 60+.
+   - Ambulance: Rs. 2,500 per hospitalization.
+
+2. Star Health Senior Citizens Red Carpet Policy
+   - Entry Age: 60-75 years (renewable lifelong)
+   - Sum Insured: Rs. 1,00,000 / Rs. 2,00,000 / Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Mandatory Co-payment: 30% for SI up to Rs. 3,00,000; 20% for higher SI.
+   - Room Rent: Rs. 4,000/day for SI up to Rs. 3L; Rs. 6,000/day for higher SI.
+   - Cataract Sub-limit: Rs. 40,000 per eye.
+
+3. Star Cardiac Care Insurance Policy
+   - Specialized cardiac-only plan
+   - Covers STEMI, CABG, angioplasty, valve replacement
+   - No waiting period for cardiac emergencies
+   - Stent cap: NPPA ceiling (Rs. 30,000 DES / Rs. 7,000 BMS)
+
+NETWORK: 14,000+ network hospitals across India.
+Cashless Pre-Auth TAT: 30 minutes for emergencies, 2 hours for planned.

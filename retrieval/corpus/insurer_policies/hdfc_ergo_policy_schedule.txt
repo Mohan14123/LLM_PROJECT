@@ -1,0 +1,30 @@
+INSURER POLICY SCHEDULE: HDFC ERGO GENERAL INSURANCE
+Insurer: HDFC ERGO General Insurance Co. Ltd.
+IRDAI Registration No.: 146 (General Insurance)
+TPA: Medi Assist Insurance TPA Pvt. Ltd. / In-house
+
+PRODUCT PORTFOLIO:
+1. Optima Restore
+   - Plan Type: Individual / Family Floater
+   - Sum Insured Options: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000 / Rs. 15,00,000 / Rs. 25,00,000 / Rs. 50,00,000
+   - Restore Benefit: 100% Sum Insured restored if fully utilized (for unrelated illness).
+   - Room Rent: No sub-limit for SI >= Rs. 10,00,000. For lower SI: 1% of SI/day.
+   - Co-payment: Nil for ages below 55. 10% for 55-64. 20% for 65+.
+   - No Claim Bonus: 50% cumulative bonus for each claim-free year (max 100%).
+
+2. Optima Senior
+   - Entry Age: 60-75 years
+   - Sum Insured: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Mandatory Co-payment: 20% (non-waivable).
+   - Room Rent: Rs. 5,000/day for SI up to Rs. 5L. No limit for higher SI.
+   - Domiciliary Hospitalization: Covered up to Rs. 50,000/year for SI >= Rs. 5L.
+
+3. HDFC ERGO My:Health Suraksha
+   - Plan Type: Individual
+   - Sum Insured: Rs. 3,00,000 to Rs. 75,00,000
+   - Silver / Gold / Platinum tiers with varying sub-limits
+   - Gold & Platinum: No room rent sub-limit, no co-pay
+   - Modern Treatment Coverage: Robotic surgery, stem cell therapy covered under Platinum
+
+NETWORK: 12,000+ network hospitals.
+Cashless Pre-Auth TAT: Target 1 hour (IRDAI compliant).

@@ -1,0 +1,57 @@
+IRDAI GUIDELINES ON FRAUD MONITORING AND PREVENTION IN HEALTH INSURANCE
+Circular No.: IRDAI/HLT/CIR/FRD/189/08/2022 (as updated by Master Circular 2024)
+Reference: IRDAI/HLT/CIR/MISC/116/05/2024, Chapter XII, Sections 63-68
+Date: 29-May-2024
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — FRAUD CATEGORIES
+1.1 Policyholder/Insured Fraud:
+    a) Non-disclosure or misrepresentation of pre-existing diseases
+    b) Fabricated or exaggerated claims
+    c) Impersonation (claiming under another person's policy)
+    d) Staged accidents or self-inflicted injuries presented as accidental
+
+1.2 Hospital/Provider Fraud:
+    a) Billing for services or procedures not rendered (phantom billing)
+    b) Upcoding — billing for a more expensive procedure than performed
+    c) Unbundling — separately billing components of a bundled procedure
+    d) Unnecessary hospitalization (patient admitted for conditions treatable
+       on OPD basis solely to generate insurance claims)
+    e) Inflated room charges, consumable charges, or investigation charges
+
+1.3 Intermediary/TPA Fraud:
+    a) Manipulation of claim documents or pre-authorisation recommendations
+    b) Collusion with hospitals for claim inflation
+
+SECTION 2 — RED FLAGS FOR AUTOMATED DETECTION
+2.1 Cost outliers: Claim amount exceeds 2x the median cost for the same
+procedure and hospital category in the same city.
+2.2 Frequency outliers: More than 3 claims from the same policy in a
+12-month period (excluding chronic/maintenance treatments).
+2.3 Temporal anomalies: Admission within 48 hours of policy issuance/renewal.
+2.4 Diagnosis-procedure mismatch: Procedure code does not clinically
+correspond to the ICD-10 diagnosis code.
+2.5 Multiple policies: Same patient claiming for the same treatment under
+multiple active policies from different insurers.
+
+SECTION 3 — INVESTIGATION PROTOCOL
+3.1 Claims flagged for fraud must be investigated by the insurer's in-house
+investigation team or empanelled investigation agency within 30 days.
+3.2 The insured must be given a fair hearing and opportunity to present
+evidence before a final fraud determination.
+3.3 The insurer cannot deny a claim solely based on automated fraud scores —
+human review is mandatory (Guardrail #1: recommend-only for automated systems).
+
+SECTION 4 — CONSEQUENCES
+4.1 Proven policyholder fraud: Policy voidable ab initio with forfeiture
+of all premiums paid. Criminal prosecution under Section 420 IPC.
+4.2 Proven provider fraud: De-empanelment from the insurer's network,
+reporting to IIB and IRDAI, and potential criminal prosecution.
+4.3 Fraud data must be reported to the Insurance Information Bureau (IIB)
+for industry-wide sharing and pattern detection.
+
+SECTION 5 — GUARDRAILS FOR AUTOMATED SYSTEMS
+5.1 Automated fraud detection systems must operate in "flag-and-refer" mode.
+5.2 No claim shall be auto-denied based solely on automated fraud scores.
+5.3 The fraud investigation findings must be documented with evidence trail
+and communicated to the insured in writing within 45 days.

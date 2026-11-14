@@ -1,0 +1,54 @@
+IRDAI GUIDELINES ON STANDARDIZED EXCLUSIONS IN HEALTH INSURANCE
+Circular No.: IRDAI/HLT/REG/CIR/XXX/09/2019 (as updated by Master Circular 2024)
+Reference: IRDAI/HLT/CIR/MISC/116/05/2024, Chapter VIII, Sections 45-51
+Date: 29-May-2024
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — PERMANENT EXCLUSIONS (NON-WAIVABLE)
+The following conditions are permanently excluded from all health insurance
+policies and cannot be covered under any endorsement or rider:
+
+1.1 Cosmetic or aesthetic treatment or surgery (unless necessitated by an
+accident or as a part of medically necessary reconstruction).
+1.2 Treatment for change of gender / sex reassignment surgery.
+1.3 Treatment for alcoholism, drug or substance abuse or misuse.
+1.4 Self-inflicted injuries, attempted suicide (whether sane or insane at
+the time of the attempt), or self-destructive behaviour.
+1.5 War, invasion, act of foreign enemy, warlike operations (whether war be
+declared or not), civil war, rebellion, revolution, insurrection.
+1.6 Nuclear, chemical, or biological contamination, radioactive exposure.
+1.7 Hazardous or adventure sports (unless specifically endorsed for coverage
+at additional premium).
+1.8 Treatment received outside India (unless covered under a specific
+international coverage rider).
+1.9 Expenses related to donor treatment in organ transplant cases (unless
+specifically covered under the policy).
+
+SECTION 2 — TIME-BOUND EXCLUSIONS
+2.1 Initial Waiting Period (30 days): No claim for any illness (except
+accidental injuries) during the first 30 days from policy inception.
+2.2 Specific Disease Waiting Period (24 months): Listed diseases including
+cataract, hernia, BPH, gallstones, kidney stones, knee OA, sinusitis,
+haemorrhoids, glaucoma, and internal congenital anomalies.
+2.3 Pre-Existing Disease Waiting Period (48 months): Any condition diagnosed
+or treated within 48 months prior to policy inception.
+2.4 Maternity Waiting Period (typically 36 months for Individual/FF plans).
+
+SECTION 3 — CONDITIONAL EXCLUSIONS
+3.1 Dental treatment: Excluded unless necessitated by accidental injury
+requiring hospitalization.
+3.2 Convalescence, general debility, or congenital external defects/anomalies.
+3.3 Sterility and infertility: Excluded unless covered under a specific
+fertility rider (available at additional premium).
+3.4 Obesity / weight management: Excluded unless morbid obesity (BMI > 40)
+requiring bariatric surgery with documented medical necessity.
+3.5 Vaccination and inoculation: Excluded unless post-animal-bite prophylaxis
+requiring hospitalization.
+
+SECTION 4 — INSURER OBLIGATIONS
+4.1 Insurers must clearly communicate all exclusions in the policy document
+in simple, understandable language.
+4.2 Exclusions not listed in the IRDAI-standardized exclusion list cannot
+be applied by insurers.
+4.3 Any claim denied on the basis of an exclusion must cite the specific
+exclusion clause with reference to IRDAI standardization.

@@ -4,13 +4,39 @@ import json
 import traceback
 from collections import defaultdict
 import numpy as np
+from dotenv import load_dotenv
 
 # Add project root to Python path
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
 
+# Load environment configuration (.env)
+load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
+
 from intake import process_intake
 from orchestration.graph import run_pipeline
+
+DOC_GUIDELINE_MAP = {
+    "cataract": "cataract_procedure_guidelines.txt",
+    "hemodialysis": "esrd_hemodialysis_guidelines.txt",
+    "dialysis": "esrd_hemodialysis_guidelines.txt",
+    "stemi": "cardiac_stemi_guidelines.txt",
+    "appendicitis": "appendicitis_procedure_guidelines.txt",
+    "cholecystectomy": "gallstones_cholecystectomy_guidelines.txt",
+    "gallstones": "gallstones_cholecystectomy_guidelines.txt",
+    "knee": "knee_replacement_procedure_guidelines.txt",
+    "pneumonia": "pneumonia_procedure_guidelines.txt",
+    "diabetes": "diabetes_management_guidelines.txt",
+}
+
+PLAN_DOC_MAP = {
+    "individual": "individual_health_standard.txt",
+    "family_floater": "family_floater_plan.txt",
+    "senior_citizen": "senior_citizen_plan.txt",
+    "group_corporate": "group_corporate_plan.txt",
+    "critical_illness": "critical_illness_plan.txt",
+    "top_up": "top_up_super_top_up.txt",
+}
 
 
 def evaluate():
@@ -33,6 +59,8 @@ def evaluate():
     
     # 2. Retrieval metrics
     retrieval_successes = 0
+    true_recall_hits = 0
+    total_target_cases = 0
     
     # 3. Grounding metrics
     total_citations = 0
@@ -128,6 +156,26 @@ def evaluate():
             if retrieved:
                 retrieval_successes += 1
                 
+            diag_str = (str(payload.get("diagnosis", {}).get("description", "")) + " " + str(payload.get("procedure", {}).get("description", ""))).lower()
+            plan_str = str(payload.get("policy", {}).get("plan_type", "")).lower()
+            
+            target_docs = set()
+            for kw, doc in DOC_GUIDELINE_MAP.items():
+                if kw in diag_str:
+                    target_docs.add(doc)
+            if plan_str in PLAN_DOC_MAP:
+                target_docs.add(PLAN_DOC_MAP[plan_str])
+                
+            retrieved_sources = [
+                (cl.get("source_file", "") if isinstance(cl, dict) else getattr(cl, "source_file", "")).split("/")[-1]
+                for cl in retrieved
+            ]
+            
+            if target_docs:
+                total_target_cases += 1
+                if any(td in retrieved_sources for td in target_docs):
+                    true_recall_hits += 1
+                
             # 3. Grounding Check
             hallucinated_citations += hallucinated
             total_citations += max(1, tot_cits)
@@ -145,12 +193,19 @@ def evaluate():
             else:
                 is_correct = (rec == expected_dec_str)
                 
-            # Decision Confusion Matrix (Approve vs Deny)
+            # Decision Confusion Matrix
             if rec == "APPROVE" and expected_dec_str == "APPROVE":
                 TP += 1
-            elif rec == "DENY" and expected_dec_str in ["DENY", "ESCALATE"]:
+            elif rec == "DENY" and expected_dec_str == "DENY":
                 TN += 1
-            elif rec == "APPROVE" and expected_dec_str in ["DENY", "ESCALATE"]:
+            elif expected_dec_str == "ESCALATE":
+                if needs_escalation:
+                    TN += 1  # Correctly halted and escalated to human
+                elif rec == "APPROVE":
+                    FP += 1  # Escalation missed; claim auto-approved
+                else:
+                    TN += 1
+            elif rec == "APPROVE" and expected_dec_str == "DENY":
                 FP += 1  # False positive: approved fraud/ineligible claim
             elif rec == "DENY" and expected_dec_str == "APPROVE":
                 FN += 1  # False negative: denied honest claim
@@ -208,6 +263,8 @@ def evaluate():
         
     extraction_accuracy = fields_extracted / max(1, fields_total)
     retrieval_quality = retrieval_successes / max(1, len([r for r in results if r.get("category") != "adversarial"]))
+    true_recall_at_5 = true_recall_hits / max(1, total_target_cases)
+    retrieval_coverage = retrieval_successes / max(1, total_cases)
     hallucination_rate = hallucinated_citations / max(1, total_citations)
     
     total_decisions = TP + TN + FP + FN
@@ -239,7 +296,11 @@ def evaluate():
         },
         "dimensions": {
             "1_extraction": {"accuracy": round(extraction_accuracy, 4)},
-            "2_retrieval": {"recall_proxy": round(retrieval_quality, 4)},
+            "2_retrieval": {
+                "recall_at_5": round(true_recall_at_5, 4),
+                "coverage": round(retrieval_coverage, 4),
+                "recall_proxy_legacy": round(retrieval_quality, 4),
+            },
             "3_grounding": {"hallucination_rate": round(hallucination_rate, 4)},
             "4_decision": {
                 "accuracy": round(decision_accuracy, 4),

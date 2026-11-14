@@ -13,10 +13,14 @@ from pydantic import BaseModel, Field
 from typing import Any, Dict
 import tempfile
 import os
+import json
+import logging
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 from intake import process_intake
 from orchestration import run_pipeline
@@ -27,6 +31,57 @@ app = FastAPI(
     description="API for evaluating health insurance pre-authorisation requests via LangGraph rules engine.",
     version="1.0.0",
 )
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+HISTORY_FILE = os.path.join(os.path.dirname(__file__), "data", "claim_history.json")
+
+
+def _load_history() -> list[dict]:
+    if not os.path.exists(HISTORY_FILE):
+        return []
+    try:
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data if isinstance(data, list) else []
+    except Exception as e:
+        logger.error("Failed to load history: %s", e)
+        return []
+
+
+def _save_to_history(record: dict) -> None:
+    try:
+        history = _load_history()
+        req_id = record.get("request_id") or record.get("extracted_request", {}).get("request_id")
+        if not req_id and record.get("adjudication_metrics"):
+            req_id = record["adjudication_metrics"].get("request_id")
+
+        record["request_id"] = req_id
+
+        # Deduplicate: replace previous entry with same id, or insert at head
+        history = [h for h in history if (h.get("request_id") or h.get("extracted_request", {}).get("request_id")) != req_id]
+        history.insert(0, record)
+        history = history[:60]
+
+        os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(history, f, indent=2, default=str)
+    except Exception as e:
+        logger.error("Failed to save history record: %s", e)
+
+
+@app.get("/api/v1/preauth/history", summary="Get Processed Claim History")
+async def get_preauth_history():
+    """Returns all historically processed claims in reverse chronological order."""
+    return {"status": "success", "history": _load_history()}
 
 class PreAuthPayload(BaseModel):
     """
@@ -136,17 +191,25 @@ async def process_preauth_request(payload: Dict[str, Any] = Body(
         final_state = run_pipeline(intake_dict)
 
         # 3. Format response
-        return {
+        resp = {
             "status": "success",
+            "request_id": final_state.get("pre_auth_request", {}).get("request_id") or intake_dict.get("request", {}).get("request_id"),
+            "extracted_request": intake_dict.get("request"),
             "pipeline_status": final_state.get("pipeline_status"),
             "recommendation": final_state.get("recommendation"),
             "confidence": final_state.get("confidence"),
+            "consensus_status": final_state.get("consensus_status", "AGREED"),
+            "discrepancy_report": final_state.get("discrepancy_report"),
+            "rules_recommendation": final_state.get("adjudication_result", {}).get("recommendation"),
+            "llm_recommendation": final_state.get("llm_recommendation"),
             "needs_escalation": final_state.get("needs_escalation"),
             "escalation_triggers": final_state.get("escalation_triggers", []),
             "reasoning": final_state.get("reasoning_narrative"),
             "adjudication_metrics": final_state.get("adjudication_result", {}),
             "latencies": final_state.get("node_latencies", {}),
         }
+        _save_to_history(resp)
+        return resp
 
     except Exception as e:
         import traceback
@@ -184,13 +247,25 @@ async def process_text_request(request: Request):
         intake_dict = intake_result.model_dump() if hasattr(intake_result, "model_dump") else intake_result.__dict__
         final_state = run_pipeline(intake_dict)
 
-        return {
+        resp = {
             "status": "success",
+            "request_id": intake_dict.get("request", {}).get("request_id"),
             "extracted_request": intake_dict.get("request"),
             "pipeline_status": final_state.get("pipeline_status"),
             "recommendation": final_state.get("recommendation"),
+            "confidence": final_state.get("confidence"),
+            "consensus_status": final_state.get("consensus_status", "AGREED"),
+            "discrepancy_report": final_state.get("discrepancy_report"),
+            "rules_recommendation": final_state.get("adjudication_result", {}).get("recommendation"),
+            "llm_recommendation": final_state.get("llm_recommendation"),
+            "needs_escalation": final_state.get("needs_escalation"),
+            "escalation_triggers": final_state.get("escalation_triggers", []),
             "reasoning": final_state.get("reasoning_narrative"),
+            "adjudication_metrics": final_state.get("adjudication_result", {}),
+            "latencies": final_state.get("node_latencies", {}),
         }
+        _save_to_history(resp)
+        return resp
     except Exception as e:
         import traceback
         return {"status": "error", "message": str(e), "traceback": traceback.format_exc()}
@@ -223,13 +298,25 @@ async def process_file_upload(file: UploadFile = File(...)):
             intake_dict = intake_result.model_dump() if hasattr(intake_result, "model_dump") else intake_result.__dict__
             final_state = run_pipeline(intake_dict)
 
-            return {
+            resp = {
                 "status": "success",
+                "request_id": intake_dict.get("request", {}).get("request_id"),
                 "extracted_request": intake_dict.get("request"),
                 "pipeline_status": final_state.get("pipeline_status"),
                 "recommendation": final_state.get("recommendation"),
+                "confidence": final_state.get("confidence"),
+                "consensus_status": final_state.get("consensus_status", "AGREED"),
+                "discrepancy_report": final_state.get("discrepancy_report"),
+                "rules_recommendation": final_state.get("adjudication_result", {}).get("recommendation"),
+                "llm_recommendation": final_state.get("llm_recommendation"),
+                "needs_escalation": final_state.get("needs_escalation"),
+                "escalation_triggers": final_state.get("escalation_triggers", []),
                 "reasoning": final_state.get("reasoning_narrative"),
+                "adjudication_metrics": final_state.get("adjudication_result", {}),
+                "latencies": final_state.get("node_latencies", {}),
             }
+            _save_to_history(resp)
+            return resp
         finally:
             os.unlink(tmp_path)
     except Exception as e:

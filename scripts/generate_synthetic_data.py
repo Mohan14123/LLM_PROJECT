@@ -356,7 +356,8 @@ def generate_single_request(index: int, category: str) -> tuple[dict[str, Any], 
         start_date = sub_date - timedelta(days=random.randint(750, 1800))
         sum_insured_amt = Decimal(random.choice([500000, 1000000, 1500000]))
     else:
-        start_date = sub_date - timedelta(days=random.randint(60, 1000))
+        # Default policy start date: 2 to 4 years old so clean edge-cases clear specific disease periods
+        start_date = sub_date - timedelta(days=random.randint(750, 1500))
         sum_insured_amt = Decimal(random.choice([300000, 500000, 1000000]))
         
     co_pay = Decimal("0.00")
@@ -370,15 +371,18 @@ def generate_single_request(index: int, category: str) -> tuple[dict[str, Any], 
         if edge_type == "non_network":
             # Tests cashless denial / reimbursement workflow redirect when hospital is out-of-network
             network_tier = NetworkTier.NON_NETWORK
+            is_ped = False
         elif edge_type == "high_copay":
             # Tests policy co-pay deduction calculation (e.g., senior citizen co-payment clause)
             co_pay = Decimal("20.00")
+            is_ped = False
         elif edge_type == "ped_flagged":
             # Tests pre-existing disease clause verification against policy inception date & waiting periods
             is_ped = True
         elif edge_type == "near_sum_insured":
             # Tests balance capping when estimated charges approach or exceed the available sum insured
             sum_insured_amt = Decimal("100000.00") # low sum insured relative to cost
+            is_ped = False
             
     # Generate costs
     cost_min, cost_max = diag_info["cost_range"]
@@ -520,6 +524,7 @@ def generate_single_request(index: int, category: str) -> tuple[dict[str, Any], 
             reason = "Adversarial: cost exactly at high boundary (500001.00)"
         elif adv_type == "threshold_boundary_low":
             is_valid_schema = True
+            payload["diagnosis"]["is_pre_existing"] = False
             target_boundary = 499999
             line_items_new, total_cost_new = generate_cost_breakdown(target_boundary)
             payload["cost_estimate"]["line_items"] = [

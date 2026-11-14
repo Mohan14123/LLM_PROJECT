@@ -1,0 +1,43 @@
+PROCEDURE GUIDELINES: APPENDICITIS (ICD-10: K35, K36, K37)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Acute appendicitis (K35.80, K35.20, K35.30) is covered as an Emergency
+hospitalization. Pre-authorisation request must be submitted within 24 hours
+of admission for cashless facility.
+1.2 Procedures covered: Laparoscopic appendectomy (CPT-44970), open
+appendectomy (CPT-44950), interval appendectomy for recurrent appendicitis.
+1.3 Chronic / recurrent appendicitis (K36) is classified as a Planned
+admission and requires pre-authorisation at least 48 hours prior.
+
+2. SUB-LIMITS
+2.1 No disease-specific sub-limit for appendicitis — covered under the
+overall Sum Insured.
+2.2 Room Rent: Standard plan-level room rent sub-limits apply (reference:
+room_rent_schedule.txt).
+2.3 Surgeon Fee: Covered as per the plan's normal admissible limits. No
+separate surgeon fee cap for appendectomy.
+2.4 Anaesthesia: General anaesthesia charges covered. Epidural/regional
+anaesthesia for laparoscopic approach also covered.
+
+3. WAITING PERIOD
+3.1 No specific disease waiting period for appendicitis (not listed in the
+24-month waiting period schedule per IRDAI standardised definitions).
+3.2 Initial 30-day waiting period applies (except for emergency admissions
+arising from acute appendicitis, which are exempt from initial waiting period).
+3.3 PED provisions: Appendicitis is not typically a pre-existing disease.
+If a patient has documented history of recurrent appendicitis prior to
+policy inception, PED waiting period of 48 months applies.
+
+4. NON-PAYABLE ITEMS
+4.1 Abdominal binder / belt post-surgery — non-payable (List I consumable).
+4.2 Take-home medications beyond the discharge prescription — non-payable.
+4.3 Drain tubes (if used for complicated appendicitis) — payable as a
+procedure-integral consumable.
+
+5. SPECIAL CONDITIONS
+5.1 Gangrenous / perforated appendicitis (K35.20, K35.30): These complicated
+presentations may require extended ICU stay and IV antibiotics. ICU charges
+are subject to plan ICU sub-limits.
+5.2 Incidental appendectomy performed during another surgical procedure is
+NOT separately payable — it is included in the primary surgical claim.

@@ -1,0 +1,48 @@
+PROCEDURE GUIDELINES: END STAGE RENAL DISEASE — HEMODIALYSIS (ICD-10: N18.5, N18.6)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Maintenance hemodialysis for End Stage Renal Disease (ESRD) is covered
+as a Day Care Procedure (Annexure A, Item 32). No 24-hour hospitalization
+requirement.
+1.2 Procedures covered: Hemodialysis session (CPT-90935), hemofiltration,
+hemodiafiltration, peritoneal dialysis initiation.
+1.3 AV fistula creation (CPT-36825) for permanent vascular access is a
+separately payable inpatient/daycare surgical procedure.
+1.4 Temporary dialysis catheter insertion is covered as part of the dialysis
+session charges.
+
+2. SUB-LIMITS
+2.1 Individual and Family Floater Plans: Maximum Rs. 2,000 per dialysis
+session (inclusive of dialyzer, bloodlines, heparin, saline).
+2.2 Annual Session Limit: Maximum 24 sessions per policy year for Individual/
+FF/SC plans. Group plans may cover unlimited sessions subject to Sum Insured.
+2.3 Senior Citizen Plans: Rs. 2,000 per session, 24 sessions/year.
+2.4 Group Plans: Per-session limit may be waived for groups with 500+ lives.
+2.5 EPO (Erythropoietin) injections: Covered up to Rs. 1,500 per injection,
+maximum 12 injections per policy year.
+
+3. WAITING PERIOD
+3.1 ESRD and chronic kidney disease (CKD Stage 3-5) are considered
+pre-existing diseases if diagnosed prior to policy inception. Standard
+48-month PED waiting period applies.
+3.2 If CKD progresses to ESRD during the policy period (i.e., first
+diagnosed with CKD after policy inception), the specific disease waiting
+period of 24 months applies from the date of CKD diagnosis.
+3.3 Group Plans (500+ lives): PED waiting period reduced to 12 months.
+3.4 Moratorium: After 8 continuous policy years, PED is no longer contestable.
+
+4. NON-PAYABLE ITEMS
+4.1 Home hemodialysis machine and supplies — non-payable under standard plans.
+4.2 Dietary supplements (renal vitamins, phosphate binders taken at home) — non-payable.
+4.3 Transportation to/from dialysis centre — non-payable.
+4.4 Dialyzer reuse charges (if the centre reprocesses dialyzers) — non-payable.
+
+5. SPECIAL CONDITIONS
+5.1 Kidney Transplant: If the patient undergoes a kidney transplant, the
+transplant surgery itself is covered under the overall Sum Insured (subject
+to plan limits). Post-transplant immunosuppressant medications are covered
+for the duration of hospitalization only; outpatient immunosuppressants are
+NOT covered under standard indemnity plans.
+5.2 AV Fistula complications (thrombosis, stenosis requiring balloon
+angioplasty or surgical revision) — covered as a separate daycare claim.

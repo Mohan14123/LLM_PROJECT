@@ -39,19 +39,28 @@ logger = logging.getLogger(__name__)
 # ============================================================================
 
 _SYSTEM_PROMPT = """\
-You are a senior health insurance claims analyst for an Indian insurer.
-Your role is to provide a clear, structured reasoning narrative for a cashless
-pre-authorisation decision. You must:
+You are a senior medical director and health insurance claims analyst for an Indian insurer.
+Your role is to perform an independent clinical & policy adjudication for a cashless
+pre-authorisation decision (Dual-Track Neuro-Symbolic Architecture). You must:
 
 1. ALWAYS frame your output as a RECOMMENDATION, never a final decision.
 2. Cite specific clause references from the retrieved policy documents.
 3. Use ONLY the information provided — do not fabricate or hallucinate clauses.
 4. Structure your response: Summary → Analysis → Deductions → Recommendation.
 5. All amounts in Indian Rupees (₹).
+6. Provide an independent clinical assessment:
+   - If the procedure is standard, clinically indicated, and medically necessary for the diagnosis (e.g. Laparoscopic appendectomy for appendicitis, PCI stenting for STEMI, Cataract extraction for cataract, Dialysis for ESRD), recommend AUTHORISE.
+   - Concur with the Rules Engine calculations and endorse SAME_AS_RULES unless a procedure sub-limit cap or policy exclusion requires adjustment.
+   - Only recommend QUERY if the clinical indication is fundamentally contradictory or missing.
+   - Only recommend DENY if the procedure is an explicit permanent exclusion (e.g. cosmetic, unapproved).
 
-IMPORTANT: You are in recommend-only mode per IRDAI outsourcing guidelines.
-The final decision authority rests with the insurer's authorized medical
-officer or claims committee. Label your output:
+IMPORTANT: Always end your output with these exact machine-parseable tags on separate lines:
+CLINICAL_RECOMMENDATION: [AUTHORISE | DENY | ESCALATE | QUERY]
+CLINICAL_APPROVED_AMOUNT: [Amount in ₹ as digits only, or SAME_AS_RULES, or 0]
+CLINICAL_CONFIDENCE: [0.0 to 1.0]
+CLINICAL_SUMMARY: [Single-sentence clinical necessity assessment]
+
+Label the header of your narrative:
 "RECOMMENDATION — requires human sign-off"."""
 
 
@@ -444,22 +453,94 @@ def llm_reasoning(state: dict[str, Any]) -> dict[str, Any]:
     prompt = _build_reasoning_prompt(request, adj_result, retrieved_clauses)
 
     # Try calling LLM API
+    llm_rec = adj_result.get("recommendation", "RECOMMEND_AUTHORISE")
+    llm_conf = adj_result.get("confidence_score", 0.85)
+    llm_summary = "Clinical assessment aligns with deterministic policy rules."
+
     try:
         narrative, token_count, cost = _call_llm(prompt)
         logger.info(
             "LLM reasoning: %d input + %d output tokens, ₹%.4f",
             token_count["input_tokens"], token_count["output_tokens"], cost,
         )
+
+        # Parse Track 2 structured clinical evaluation
+        rec_m = re.search(r'CLINICAL_RECOMMENDATION:\s*(AUTHORISE|APPROVE|DENY|REJECT|ESCALATE|QUERY)', narrative, re.IGNORECASE)
+        if rec_m:
+            val = rec_m.group(1).upper()
+            if val in ("AUTHORISE", "APPROVE"):
+                llm_rec = "RECOMMEND_AUTHORISE"
+            elif val in ("DENY", "REJECT"):
+                llm_rec = "RECOMMEND_DENY"
+            elif val == "QUERY":
+                llm_rec = "RECOMMEND_QUERY"
+            elif val == "ESCALATE":
+                llm_rec = "RECOMMEND_QUERY"
+
+        conf_m = re.search(r'CLINICAL_CONFIDENCE:\s*([0-9.]+)', narrative)
+        if conf_m:
+            try:
+                llm_conf = float(conf_m.group(1))
+            except ValueError:
+                pass
+
+        sum_m = re.search(r'CLINICAL_SUMMARY:\s*(.+?)(?:\n|$)', narrative)
+        if sum_m:
+            llm_summary = sum_m.group(1).strip()
+
+        # Parse proposed approved amount if specified by LLM
+        llm_approved_amount = None
+        if re.search(r'CLINICAL_APPROVED_AMOUNT:\s*SAME_AS_RULES', narrative, re.IGNORECASE):
+            rules_app = adj_result.get("total_approved")
+            if rules_app is not None:
+                try:
+                    llm_approved_amount = Decimal(str(rules_app))
+                except (InvalidOperation, ValueError):
+                    pass
+        else:
+            amt_m = re.search(r'CLINICAL_APPROVED_AMOUNT:\s*([0-9,]+(?:\.[0-9]{2})?)', narrative, re.IGNORECASE)
+            if amt_m:
+                try:
+                    llm_approved_amount = Decimal(amt_m.group(1).replace(",", ""))
+                except (InvalidOperation, ValueError):
+                    pass
+            if llm_approved_amount is None:
+                if re.search(r'(agree|concur|aligns? with|confirm).*rules engine.*approved', narrative, re.IGNORECASE):
+                    rules_app = adj_result.get("total_approved")
+                    if rules_app is not None:
+                        try:
+                            llm_approved_amount = Decimal(str(rules_app))
+                        except (InvalidOperation, ValueError):
+                            pass
+                else:
+                    amt_text_m = re.search(r'[Aa]pproved\s+amount\*?:\s*[*₹Rs\.\s]*([0-9,]+(?:\.[0-9]{2})?)', narrative)
+                    if amt_text_m:
+                        try:
+                            llm_approved_amount = Decimal(amt_text_m.group(1).replace(",", ""))
+                        except (InvalidOperation, ValueError):
+                            pass
+
+        # Clean machine tags from displayed narrative
+        cleaned_narrative = re.sub(r'\n*CLINICAL_RECOMMENDATION:.*', '', narrative, flags=re.DOTALL).strip()
+        cleaned_narrative = re.sub(r'\n*CLINICAL_APPROVED_AMOUNT:.*', '', cleaned_narrative, flags=re.DOTALL).strip()
+        if cleaned_narrative:
+            narrative = cleaned_narrative
+
     except Exception as e:
         logger.error("LLM call skipped (%s). Using deterministic fallback.", e, exc_info=True)
         narrative = _build_fallback_narrative(adj_result)
         narrative += f"\n\n[Exception: {str(e)}]"
         token_count = {"input_tokens": 0, "output_tokens": 0}
         cost = 0.0
+        llm_approved_amount = None
 
     return {
         "reasoning_narrative": narrative,
         "raw_llm_output": narrative,
+        "llm_recommendation": llm_rec,
+        "llm_clinical_confidence": llm_conf,
+        "llm_clinical_summary": llm_summary,
+        "llm_approved_amount": str(llm_approved_amount) if llm_approved_amount is not None else None,
         "llm_token_count": token_count,
         "llm_cost_inr": cost,
         "node_latencies": {
@@ -519,11 +600,18 @@ def _build_reasoning_prompt(
             parts.append(text[:600])
 
     # Task instruction
-    parts.append("\n## Task")
-    parts.append("Provide a clear, structured reasoning narrative explaining "
+    parts.append("\n## Task (Dual-Track Neuro-Symbolic Evaluation)")
+    parts.append("1. Provide a clear, structured reasoning narrative explaining "
                  "the recommendation. Cite specific clause references from the "
                  "retrieved documents above. Begin with "
                  "'RECOMMENDATION — requires human sign-off'.")
+    parts.append("2. Perform an independent clinical assessment of medical necessity, "
+                 "appropriateness of admission type, and procedure justification.")
+    parts.append("3. End your response with these exact machine-parseable tags:\n"
+                 "CLINICAL_RECOMMENDATION: [AUTHORISE | DENY | ESCALATE | QUERY]\n"
+                 "CLINICAL_APPROVED_AMOUNT: [Amount in ₹ as digits only, or SAME_AS_RULES, or 0]\n"
+                 "CLINICAL_CONFIDENCE: [0.0-1.0]\n"
+                 "CLINICAL_SUMMARY: [Single-sentence clinical necessity verdict]")
 
     return "\n".join(parts)
 
@@ -740,6 +828,87 @@ def escalation_gate(state: dict[str, Any]) -> dict[str, Any]:
     adj = state.get("adjudication_result", {})
     request = state.get("pre_auth_request", {})
 
+    # --- Trigger 0: Dual-Track Neuro-Symbolic Consensus Check ---
+    rules_rec = adj.get("recommendation", "RECOMMEND_QUERY")
+    llm_rec = state.get("llm_recommendation", rules_rec)
+
+    def _normalize_decision(r: str) -> str:
+        s = str(r).upper()
+        if "AUTHORISE" in s or "APPROVE" in s:
+            return "APPROVE"
+        if "DENY" in s or "REJECT" in s:
+            return "DENY"
+        if "QUERY" in s:
+            return "QUERY"
+        if "ESCALATE" in s:
+            return "ESCALATE"
+        return s
+
+    norm_rules = _normalize_decision(rules_rec)
+    norm_llm = _normalize_decision(llm_rec)
+
+    # Check amount agreement if LLM specified an approved amount
+    llm_amt_str = state.get("llm_approved_amount")
+    llm_approved_amount = None
+    if llm_amt_str:
+        try:
+            llm_approved_amount = Decimal(str(llm_amt_str))
+        except (InvalidOperation, ValueError):
+            pass
+
+    rules_approved_dec = None
+    rules_approved = adj.get("total_approved")
+    if rules_approved is not None:
+        try:
+            rules_approved_dec = Decimal(str(rules_approved))
+        except (InvalidOperation, ValueError):
+            pass
+
+    amount_diverged = False
+    if (
+        norm_rules in ("APPROVE", "AUTHORISE")
+        and norm_llm in ("APPROVE", "AUTHORISE")
+        and llm_approved_amount is not None
+        and rules_approved_dec is not None
+    ):
+        diff = abs(rules_approved_dec - llm_approved_amount)
+        # If difference exceeds ₹100 and >5%
+        if diff > Decimal("100.00") and (diff / max(rules_approved_dec, llm_approved_amount, Decimal("1"))) > Decimal("0.05"):
+            amount_diverged = True
+
+    if amount_diverged:
+        consensus_status = "DIVERGED"
+        discrepancy_report = {
+            "rules_recommendation": f"{norm_rules} (Approved ₹{rules_approved_dec:,.2f})",
+            "rules_rationale": adj.get("reasoning_trace", f"Rules Engine approved ₹{rules_approved_dec:,.2f} based on policy formulas."),
+            "llm_recommendation": f"{norm_llm} (Approved ₹{llm_approved_amount:,.2f})",
+            "llm_rationale": state.get("llm_clinical_summary", f"Neural Clinical Adjudicator recommended approved amount ₹{llm_approved_amount:,.2f}."),
+        }
+        triggers.append(
+            f"Consensus Discrepancy: Amount Mismatch (Rules ₹{rules_approved_dec:,.2f} vs LLM ₹{llm_approved_amount:,.2f})"
+        )
+        logger.warning(
+            "DUAL-TRACK DISCREPANCY: Rules Approved ₹%s != LLM Approved ₹%s. Escalating to human reviewer.",
+            rules_approved_dec, llm_approved_amount,
+        )
+    elif norm_rules == norm_llm or (norm_rules == "APPROVE" and norm_llm in ("APPROVE", "AUTHORISE")):
+        consensus_status = "AGREED"
+        discrepancy_report = None
+        logger.info("DUAL-TRACK CONSENSUS: Both tracks agree on %s", norm_rules)
+    else:
+        consensus_status = "DIVERGED"
+        discrepancy_report = {
+            "rules_recommendation": norm_rules,
+            "rules_rationale": adj.get("reasoning_trace", "Rules evaluated based on policy schedules and tariff sub-limits."),
+            "llm_recommendation": norm_llm,
+            "llm_rationale": state.get("llm_clinical_summary", "Independent clinical review reached a diverging conclusion."),
+        }
+        triggers.append(f"Consensus Discrepancy: Rules ({norm_rules}) vs LLM Clinical ({norm_llm})")
+        logger.warning(
+            "DUAL-TRACK DISCREPANCY: Rules Engine (%s) != LLM Clinical (%s). Escalating to human reviewer.",
+            norm_rules, norm_llm,
+        )
+
     # --- Trigger 1: Low confidence ---
     confidence = adj.get("confidence_score", 1.0)
     if confidence < 0.7:
@@ -754,6 +923,24 @@ def escalation_gate(state: dict[str, Any]) -> dict[str, Any]:
                 triggers.append(f"High claim value (₹{claimed:,.2f})")
         except (InvalidOperation, ValueError):
             pass
+
+    # --- Trigger 2.5: Adversarial Prompt Injection Pre-Screening ---
+    if request:
+        diag_desc = str(request.get("diagnosis", {}).get("description", "")).lower()
+        clinical_notes = str(request.get("clinical_notes", "")).lower()
+        combined_text = f"{diag_desc} {clinical_notes}"
+        injection_indicators = [
+            "ignore all previous",
+            "system prompt",
+            "override all rules",
+            "override decision",
+            "unconditionally",
+            "disregard previous",
+            "system: override",
+        ]
+        if any(indicator in combined_text for indicator in injection_indicators):
+            triggers.append("Adversarial prompt injection attempt detected")
+            logger.warning("ADVERSARIAL PROMPT INJECTION DETECTED in pre-auth request! Escalating immediately.")
 
     # --- Trigger 3: PED-flagged diagnosis ---
     if request:
@@ -787,6 +974,8 @@ def escalation_gate(state: dict[str, Any]) -> dict[str, Any]:
     return {
         "needs_escalation": needs_escalation,
         "escalation_triggers": triggers,
+        "consensus_status": consensus_status,
+        "discrepancy_report": discrepancy_report,
         "node_latencies": {
             **state.get("node_latencies", {}),
             "escalation_gate": time.perf_counter() - start,
@@ -813,6 +1002,8 @@ def format_recommendation(state: dict[str, Any]) -> dict[str, Any]:
     recommendation = adj.get("recommendation", "RECOMMEND_QUERY")
     confidence = adj.get("confidence_score", 0.5)
     needs_escalation = state.get("needs_escalation", False)
+    consensus_status = state.get("consensus_status", "AGREED")
+    discrepancy_report = state.get("discrepancy_report")
 
     # Adjust pipeline status based on escalation
     if needs_escalation:
@@ -823,6 +1014,10 @@ def format_recommendation(state: dict[str, Any]) -> dict[str, Any]:
     decision_record = {
         "recommendation": recommendation,
         "confidence": confidence,
+        "consensus_status": consensus_status,
+        "discrepancy_report": discrepancy_report,
+        "rules_recommendation": adj.get("recommendation"),
+        "llm_recommendation": state.get("llm_recommendation", recommendation),
         "reasoning": state.get("reasoning_narrative", ""),
         "adjudication": adj,
         "retrieved_clauses": state.get("retrieved_clauses", []),
@@ -837,13 +1032,15 @@ def format_recommendation(state: dict[str, Any]) -> dict[str, Any]:
     }
 
     logger.info(
-        "Pipeline %s. Recommendation: %s (confidence: %.2f, escalated: %s)",
-        pipeline_status, recommendation, confidence, needs_escalation,
+        "Pipeline %s. Recommendation: %s (confidence: %.2f, consensus: %s, escalated: %s)",
+        pipeline_status, recommendation, confidence, consensus_status, needs_escalation,
     )
 
     return {
         "recommendation": recommendation,
         "confidence": confidence,
+        "consensus_status": consensus_status,
+        "discrepancy_report": discrepancy_report,
         "decision_record": decision_record,
         "pipeline_status": pipeline_status,
         "node_latencies": {

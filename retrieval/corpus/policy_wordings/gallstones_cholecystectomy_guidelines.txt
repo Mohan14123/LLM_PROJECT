@@ -1,0 +1,48 @@
+PROCEDURE GUIDELINES: GALLSTONES — CHOLECYSTECTOMY (ICD-10: K80)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Cholelithiasis (gallstones) requiring surgical intervention is covered
+as a Planned hospitalization. Pre-authorisation required 48-72 hours prior.
+1.2 Procedures covered: Laparoscopic cholecystectomy (CPT-47562), open
+cholecystectomy (CPT-47600), ERCP with stone extraction (CPT-43264) for
+choledocholithiasis (common bile duct stones).
+1.3 Acute cholecystitis (K81.0) with emergency presentation is covered as
+Emergency hospitalization — pre-authorisation within 24 hours.
+1.4 ERCP as a standalone daycare procedure (for CBD stone extraction without
+cholecystectomy) is covered under Day Care Procedures (Annexure A).
+
+2. SUB-LIMITS
+2.1 No disease-specific sub-limit for cholecystectomy — covered under
+overall Sum Insured for all plan types.
+2.2 Room Rent: Standard plan-level room rent sub-limits apply.
+2.3 Surgical consumables (trocars, harmonic scalpel/LigaSure, clip
+appliers): Covered as procedure-integral items.
+2.4 Intraoperative cholangiogram (if performed): Covered as part of the
+surgical procedure charges.
+
+3. WAITING PERIOD
+3.1 Cholelithiasis (K80) is a LISTED condition subject to the 24-month
+Specific Disease Waiting Period from first policy inception.
+3.2 If gallstones are documented prior to policy inception, the 48-month
+PED waiting period applies.
+3.3 Emergency cholecystectomy for acute cholecystitis: The specific disease
+waiting period still applies even for emergency presentation, UNLESS
+the condition was first diagnosed after policy inception AND 24 months have
+elapsed since inception.
+3.4 Group Plans with 100+ lives: Specific disease waiting period waived.
+Group Plans with 500+ lives: PED waiting period reduced to 12 months.
+
+4. NON-PAYABLE ITEMS
+4.1 Abdominal binder post-surgery — non-payable (List I consumable).
+4.2 Ursodeoxycholic acid (UDCA) prescribed for home use post-discharge — non-payable.
+4.3 Drain bags (if surgical drain placed) — payable if used during
+hospitalization; non-payable for home drain care supplies.
+
+5. SPECIAL CONDITIONS
+5.1 Incidental gallstones: If gallstones are discovered incidentally during
+imaging for another condition and cholecystectomy is performed electively,
+the claim is subject to the 24-month waiting period.
+5.2 Combined procedures (e.g., cholecystectomy with hernia repair): Payable
+as a single composite claim. The higher of the two procedure charges applies
+for surgeon fee computation.

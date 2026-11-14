@@ -1,0 +1,34 @@
+INSURER POLICY SCHEDULE: NEW INDIA ASSURANCE
+Insurer: The New India Assurance Co. Ltd. (Public Sector)
+IRDAI Registration No.: 190 (General Insurance — Government)
+TPA: TPA India / Medi Assist / Paramount Health Services
+
+PRODUCT PORTFOLIO:
+1. New India Cashless Mediclaim Policy (2012)
+   - Plan Type: Individual / Family
+   - Sum Insured: Rs. 1,00,000 / Rs. 2,00,000 / Rs. 3,00,000 / Rs. 5,00,000
+   - Room Rent: 1% of SI per day
+   - ICU: 2% of SI per day
+   - Co-payment: Nil below 60. 10% for 60-70. 20% for 70-80.
+   - Ambulance: Rs. 1,000 per hospitalization
+   - Pre-hospitalization: 30 days; Post-hospitalization: 60 days
+
+2. New India Senior Citizens Mediclaim Policy
+   - Entry Age: 60-80 years (renewable lifelong up to 90)
+   - Sum Insured: Rs. 1,00,000 / Rs. 1,50,000 / Rs. 2,00,000 / Rs. 3,00,000
+   - Co-payment: 10% for ages 60-70. 20% for 70-80.
+   - Room Rent: Rs. 3,000/day for SI up to Rs. 2L; Rs. 4,000/day for higher SI.
+   - Cataract: Rs. 30,000 per eye
+   - PED: Covered from inception with 50% co-pay for first 4 years.
+
+3. New India Group Mediclaim Policy
+   - Plan Type: Group (Government / PSU / Corporate)
+   - Sum Insured: As per scheme (typically Rs. 3,00,000 - Rs. 7,50,000)
+   - Waiting period: All waived
+   - Room Rent: As per employer scheme (typically General/Semi-Private ward)
+   - Co-payment: Nil for government employees. 10% for others.
+
+NETWORK: 8,000+ network hospitals (extensive coverage in Tier 2/3 cities).
+Cashless Pre-Auth TAT: 2-4 hours (government insurer TAT tends to be slower).
+NOTE: As a public sector insurer, New India Assurance follows government-mandated
+claim settlement guidelines with emphasis on social coverage.

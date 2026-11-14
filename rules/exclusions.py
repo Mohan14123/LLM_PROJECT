@@ -53,7 +53,7 @@ PERMANENT_EXCLUSION_KEYWORDS = {
     "cosmetic", "aesthetic", "self-inflicted", "self inflicted",
     "substance abuse", "alcohol", "drug abuse",
     "hazardous sport", "adventure sport",
-    "war", "terrorism", "nuclear",
+    "war", "terrorism", "nuclear radiation", "nuclear weapon", "nuclear war", "nuclear contamination",
 }
 
 

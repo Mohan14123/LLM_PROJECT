@@ -435,6 +435,25 @@ class TestSubLimits:
                      if d.category == DeductionCategory.PROPORTIONATE_DEDUCTION]
         assert len(prop_deds) >= 1
 
+    def test_dialysis_sub_limit_capping(self):
+        from rules.sub_limits import apply_sub_limits
+
+        request = _make_request(
+            icd10_code="N18.6",
+            diagnosis_desc="End stage renal disease",
+            procedure_desc="Maintenance hemodialysis session",
+            line_items=[
+                CostLineItem(item="Hemodialysis Session", amount=Decimal("29921.00"), category=CostCategory.OTHER)
+            ],
+            total_amount=Decimal("29921.00"),
+        )
+        result = apply_sub_limits(request, _make_clauses())
+        sub_deds = [d for d in result["deductions"] if d.category == DeductionCategory.SUB_LIMIT_CAPPING]
+        assert len(sub_deds) == 1
+        assert sub_deds[0].allowed_amount == Decimal("2000.00")
+        assert sub_deds[0].deducted_amount == Decimal("27921.00")
+        assert "Clause 2.1" in sub_deds[0].clause_citation or "Dialysis" in sub_deds[0].clause_citation
+
 
 # ============================================================================
 # Tests: Co-pay

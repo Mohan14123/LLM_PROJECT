@@ -1,0 +1,51 @@
+IRDAI GUIDELINES ON HEALTH INSURANCE PORTABILITY
+Circular No.: IRDAI/HLT/REG/CIR/222/11/2020 (as updated by Master Circular 2024)
+Date: 01-November-2020 (last updated 29-May-2024)
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — PORTABILITY FRAMEWORK
+1.1 Definition: Portability means the right accorded to an individual health
+insurance policyholder (including family floater) to transfer the credit
+gained for pre-existing conditions and time-bound exclusions from one insurer
+to another insurer or from one plan to another plan of the same insurer.
+
+1.2 Eligibility: The policyholder must apply for portability at least 45 days
+before and not later than the date of premium renewal.
+
+1.3 Data Exchange: The previous insurer must provide the portability data
+(claims history, waiting period credits, policy tenure) through the
+Insurance Information Bureau (IIB) within 7 working days of receiving
+the porting request.
+
+SECTION 2 — WAITING PERIOD CREDITS
+2.1 The new insurer shall give credit for the waiting periods already served
+under the previous policy, provided there is continuous coverage without
+a break.
+
+2.2 Specific Disease Waiting Period Credit: If the insured has completed
+18 months under the previous insurer, the remaining 6 months of the
+24-month specific disease waiting period shall be carried forward.
+
+2.3 PED Waiting Period Credit: If the insured has completed 36 months of the
+48-month PED waiting period, only 12 months remain under the new insurer.
+
+2.4 If the insured has completed the full waiting period under the previous
+insurer (e.g., 48 months for PED), the new insurer CANNOT reimpose any
+waiting period for the same condition.
+
+SECTION 3 — RESTRICTIONS
+3.1 Portability credit is limited to the Sum Insured of the previous policy.
+Any enhancement in Sum Insured under the new policy is subject to fresh
+underwriting and waiting periods on the incremental amount.
+
+3.2 Portability is not available for group health insurance policies
+transitioning to individual policies (different product category).
+
+3.3 The new insurer cannot deny portability on the grounds of claims history
+or pre-existing conditions of the insured.
+
+SECTION 4 — COMPLIANCE
+4.1 Insurers must honour portability requests within 15 days of receipt
+of complete documentation from the previous insurer via IIB.
+4.2 Failure to process portability within the stipulated timeline may attract
+regulatory action under Section 102 of the Insurance Act, 1938.

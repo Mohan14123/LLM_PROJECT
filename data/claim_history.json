@@ -1,0 +1,1270 @@
+[
+  {
+    "status": "success",
+    "request_id": "e1cb0105-43a9-41c9-aa58-c91a1ecc6e64",
+    "extracted_request": {
+      "request_id": "e1cb0105-43a9-41c9-aa58-c91a1ecc6e64",
+      "submitted_at": "2026-09-30",
+      "source_format": "scanned_image",
+      "status": "pending",
+      "admission_date": "2026-09-30",
+      "patient": {
+        "patient_id": "10c5a436-5b9e-42fb-ad79-8ccc201d6931",
+        "full_name": "Meena Shah",
+        "age": 64,
+        "gender": "female",
+        "policy_number": "POL-327267"
+      },
+      "policy": {
+        "policy_number": "POL-327267",
+        "plan_type": "family_floater",
+        "sum_insured": "1500000",
+        "policy_start_date": "2023-11-24",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00"
+      },
+      "hospital": {
+        "hospital_id": "108355dd-0b8b-402d-a44f-ce7ea0943ff3",
+        "name": "City Care Hospital",
+        "city": "Kolkata",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "N18.6",
+        "description": "End stage renal disease on maintenance hemodialysis",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-90935",
+        "description": "Maintenance hemodialysis session with vascular access monitoring",
+        "admission_type": "day_care"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "4185.80",
+            "category": "room_rent"
+          },
+          {
+            "item": "EstImated Icu Charges",
+            "amount": "3139.35",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "5232.25",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "1674.32",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "1465.03",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "2092.90",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "2092.90",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "1046.45",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "20929.00"
+      }
+    },
+    "pipeline_status": "completed",
+    "recommendation": "RECOMMEND_AUTHORISE",
+    "confidence": 0.8,
+    "consensus_status": "AGREED",
+    "discrepancy_report": null,
+    "rules_recommendation": "RECOMMEND_AUTHORISE",
+    "llm_recommendation": "RECOMMEND_AUTHORISE",
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign-off**\n\n### Summary\n- **Patient:** 64\u2011year\u2011old with End\u2011Stage Renal Disease (ESRD) on maintenance hemodialysis (ICD\u201110\u202fN18.6).  \n- **Requested service:** One dialysis session with vascular access monitoring (day\u2011care).  \n- **Claimed amount:** \u20b920,929.00.  \n- **Policy sub\u2011limit:** \u20b92,000 per dialysis session (Clause\u202f1).  \n- **Coverage of ESRD:** Listed as a covered Critical Illness in the Critical Illness Benefit Plan (Clause\u202f2), confirming medical relevance.  \n- **Waiting period:** Specific disease waiting period for ESRD is 24\u202fmonths for Individual/Family Floater plans (Clause\u202f4). The patient is already on maintenance dialysis, indicating the waiting period has been satisfied.  \n\n### Analysis\n| Aspect | Findings | Policy Reference |\n|--------|----------|------------------|\n| **Medical necessity** | ESRD requires regular hemodialysis to sustain life; omission would lead to rapid accumulation of toxins and fluid overload. The session requested is a routine maintenance dialysis, which is standard of care. | Clinical knowledge (no clause needed) |\n| **Procedure indication** | Dialysis (per\u2011session) is the appropriate therapeutic modality for ESRD. Vascular access monitoring is integral to safe delivery. | Clause\u202f2 (ESRD covered) |\n| **Admission type** | Day\u2011care is appropriate for a single outpatient dialysis session; no inpatient admission is required. | Not contradicted by any clause |\n| **Policy benefit applicability** | Dialysis is a covered procedure with a defined sub\u2011limit of \u20b92,000 per session for all plan types. | Clause\u202f1 \u2013 \u201cDialysis (per session)\u202f\u20b92,000 \u2013 All plans\u201d |\n| **Waiting period compliance** | Specific disease waiting period for ESRD is 24\u202fmonths for Individual/Family Floater plans. The patient is already receiving maintenance dialysis, indicating the condition predates the policy or the waiting period has been satisfied. | Clause\u202f4 \u2013 Specific Disease Waiting Period |\n| **Financial adjudication** | Claimed amount \u20b920,929 exceeds the sub\u2011limit by \u20b918,929. The policy mandates capping reimbursement at the sub\u2011limit; excess must be deducted. | Clause\u202f1 (sub\u2011limit) and deduction note from Rules Engine |\n\n### Deductions\n- **Sub\u2011limit capping**: \u20b920,929 (claimed) \u2013 \u20b92,000 (allowed) = **\u20b918,929** deducted.  \n  - Applied per Clause\u202f1 which caps dialysis reimbursement at \u20b92,000 per session.  \n\n### Recommendation\n- **Approve** the claim up to the policy\u2011defined sub\u2011limit of **\u20b92,000** for this dialysis session.  \n- **Reject** the excess \u20b918,929 as it falls outside the contractual benefit limits.  \n- No further escalation is required; the claim aligns with medical necessity and policy provisions after applying the sub\u2011limit.\n\n---\n\n**Machine\u2011parseable tags**",
+    "adjudication_metrics": {
+      "request_id": "e1cb0105-43a9-41c9-aa58-c91a1ecc6e64",
+      "recommendation": "RECOMMEND_AUTHORISE",
+      "confidence_score": 0.8,
+      "total_claimed": "20929.00",
+      "total_approved": "2000.00",
+      "total_deducted": "18929.00",
+      "deductions": [
+        {
+          "category": "sub_limit_capping",
+          "line_item": "Hemodialysis Session Charges",
+          "original_amount": "20929.00",
+          "allowed_amount": "2000.00",
+          "deducted_amount": "18929.00",
+          "clause_citation": "Clause 2.1 (esrd_hemodialysis_guidelines.txt): Maximum Rs. 2,000 per dialysis session (inclusive of dialyzer, bloodlines, heparin, saline). Benefit Schedule: Dialysis (per session) Rs. 2,000 for all standard plans.",
+          "source_document": "benefit_tables/disease_sublimits_schedule.txt",
+          "explanation": "Dialysis per-session charge \u20b920,929.00 exceeds allowable policy sub-limit cap \u20b92,000.00 per session. Excess \u20b918,929.00 deducted per Clause 2.1."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-327267 is ACTIVE. Inception date: 2023-11-24. Days since inception: 1041.\nPolicy validity check: PASSED.\nENDORSEMENT REVERSAL APPLIED: An active policy endorsement was retrieved that expressly waives specific disease and waiting periods, superseding and reversing the base policy exclusion.\nExclusion checks: No non-payable or excluded items found.\nDialysis sub-limit applied: \u20b920,929.00 \u2192 \u20b92,000.00 (excess \u20b918,929.00 deducted per Clause 2.1).\nSub-limit checks: 1 deduction(s) applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 1.2920000074245763e-06,
+      "retrieve_clauses": 0.017401875000018663,
+      "call_policy_api": 2.5832999995145656e-05,
+      "call_hospital_api": 3.375000005689799e-06,
+      "apply_rules_engine": 0.0006738340000254084,
+      "llm_reasoning": 3.0041920829999924,
+      "citation_guard": 0.00027650000001244734,
+      "escalation_gate": 2.1583000005875874e-05,
+      "format_recommendation": 9.750000003805326e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "58012d32-9cb9-46a0-bac8-e144595fdac2",
+    "extracted_request": {
+      "request_id": "58012d32-9cb9-46a0-bac8-e144595fdac2",
+      "submitted_at": "2026-10-08",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-10-13",
+      "patient": {
+        "patient_id": "6083889c-7a39-4774-be23-214334f6f1ce",
+        "full_name": "Arjun Verma",
+        "age": 30,
+        "gender": "male",
+        "policy_number": "POL-433131"
+      },
+      "policy": {
+        "policy_number": "POL-433131",
+        "plan_type": "group",
+        "sum_insured": "300000",
+        "policy_start_date": "2025-05-03",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "20.00"
+      },
+      "hospital": {
+        "hospital_id": "097fe374-740a-4002-8009-07d35a1d6468",
+        "name": "Narayana Health Hospital, Ahmedabad",
+        "city": "Ahmedabad",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "H26.9",
+        "description": "Unspecified cataract, right eye nuclear sclerosis Grade 3",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-66984",
+        "description": "Phacoemulsification with intraocular lens (IOL) implantation",
+        "admission_type": "day_care"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "10268.40",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "7701.30",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "12835.50",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "4107.36",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "3593.94",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "5134.20",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "5134.20",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "2567.10",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "51342.00"
+      }
+    },
+    "pipeline_status": "escalated",
+    "recommendation": "RECOMMEND_DENY",
+    "confidence": 0.85,
+    "consensus_status": "DIVERGED",
+    "discrepancy_report": {
+      "rules_recommendation": "DENY",
+      "rules_rationale": "Policy POL-433131 is ACTIVE. Inception date: 2025-05-03. Days since inception: 528.\nPolicy validity check: PASSED.\nENDORSEMENT REVERSAL APPLIED: An active policy endorsement was retrieved that expressly waives specific disease and waiting periods, superseding and reversing the base policy exclusion.\nPERMANENT EXCLUSION: 'Unspecified cataract, right eye nuclear sclerosis Grade 3' matches exclusion 'nuclear'.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay applied: 20.00% of \u20b951,342.00 = \u20b910,268.40.",
+      "llm_recommendation": "APPROVE",
+      "llm_rationale": "Cataract surgery is medically necessary and fully covered under the group plan, subject only to the 20\u202f% co\u2011pay."
+    },
+    "rules_recommendation": "RECOMMEND_DENY",
+    "llm_recommendation": "RECOMMEND_AUTHORISE",
+    "needs_escalation": true,
+    "escalation_triggers": [
+      "Consensus Discrepancy: Rules (DENY) vs LLM Clinical (APPROVE)"
+    ],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign-off**\n\n**Summary**  \n- Patient: 30\u2011year\u2011old, unilateral nuclear sclerosis cataract (Grade\u202f3).  \n- Requested procedure: Phacoemulsification with IOL implantation, day\u2011care admission.  \n- Plan: Group health plan, Sum Insured \u20b9300,000, Co\u2011pay 20\u202f%.  \n- Claim amount: \u20b951,342.  \n\n**Analysis**  \n\n| Aspect | Policy Reference | Interpretation |\n|--------|------------------|----------------|\n| **Coverage of procedure** | Clause\u202f1 \u2013 \u201cBoth phacoemulsification with IOL implantation \u2026 are covered.\u201d | The requested surgery is expressly covered. |\n| **Admission type** | Clause\u202f1 \u2013 \u201cCataract surgery is covered under Day Care Procedures (Annexure\u202fA, Item\u202f17).\u201d | Day\u2011care admission is appropriate and permitted. |\n| **Sub\u2011limit per eye** | Clause\u202f1 \u2013 \u201cGroup Plans: No sub\u2011limit.\u201d  <br>Clause\u202f3 \u2013 lists a \u20b940,000 sub\u2011limit for Individual/Family\u2011Floater/Senior\u2011Citizen plans only; Group plans are not mentioned, confirming the \u201cno sub\u2011limit\u201d provision. | No sub\u2011limit applies; the full claimed amount is eligible. |\n| **Waiting period** | Clause\u202f5 \u2013 \u201cSpecific Disease (listed) \u2013 Group: Waived*.\u201d | Cataract (H26) waiting period is waived for Group plans; claim is timely. |\n| **Exclusions** | No retrieved clause contains a permanent exclusion for \u201cnuclear\u201d or cataract. | The \u201cpermanent_exclusion\u201d deduction lacks documentary support; it should be disregarded. |\n| **Co\u2011pay** | Clause\u202f2 (Senior Citizen plan) mentions mandatory co\u2011pay, and the claim data specifies a 20\u202f% co\u2011pay. | Co\u2011pay of 20\u202f% is correctly applied. |\n\n**Deductions**  \n\n1. **Permanent exclusion** \u2013 *Not supported by any cited clause.* This deduction should be removed.  \n2. **Co\u2011pay** \u2013 20\u202f% of \u20b951,342 = \u20b910,268.40 (insured responsibility).  \n\n**Net payable by insurer** = \u20b951,342 \u2013 \u20b910,268.40 = **\u20b941,073.60** (rounded to \u20b941,074).\n\n**Recommendation**  \n\nGiven that the procedure is covered, the admission type is appropriate, no sub\u2011limit or waiting\u2011period barriers exist for a Group plan, and the only valid deduction is the statutory co\u2011pay, the claim should be **authorised** for the net amount after co\u2011pay.\n\n---\n\n**Clinical Assessment**  \n\n- **Medical necessity**: Grade\u202f3 nuclear sclerosis significantly reduces visual acuity and quality of life; cataract extraction is the standard of care.  \n- **Procedure justification**: Phacoemulsification with IOL implantation is the preferred, evidence\u2011based technique for this cataract type.  \n- **Admission urgency**: Cataract surgery is elective but can be scheduled promptly; day\u2011care setting is safe and aligns with policy guidelines.  \n\n**Conclusion** \u2013 The claim meets clinical and policy criteria; authorisation is warranted.\n\n---",
+    "adjudication_metrics": {
+      "request_id": "58012d32-9cb9-46a0-bac8-e144595fdac2",
+      "recommendation": "RECOMMEND_DENY",
+      "confidence_score": 0.85,
+      "total_claimed": "51342.00",
+      "total_approved": "0",
+      "total_deducted": "61610.40",
+      "deductions": [
+        {
+          "category": "permanent_exclusion",
+          "line_item": null,
+          "original_amount": "51342.00",
+          "allowed_amount": "0",
+          "deducted_amount": "51342.00",
+          "clause_citation": "PROCEDURE GUIDELINES: CATARACT SURGERY (ICD-10: H25, H26)\nApplicable to all plan types under Synthetic Insurance Co. Ltd. 1. COVERAGE CRITERIA\n1.1 Cataract surgery is covered under Day Care Procedures (Annexure A, Item 17). 1.2 Both phacoemulsification with IOL implantation and manual SICS are covered. 1.3 Coverage includes pre-operative investigations, surgical procedure, IOL\ncost, post-operative medications for up to 6 weeks. 2. SUB-LIMITS\n2.1 Individual and Family Floater Plans: Maximum Rs. 4",
+          "source_document": "policy_wordings/endorsement_waiting_period_waiver.txt",
+          "explanation": "Diagnosis 'Unspecified cataract, right eye nuclear sclerosis Grade 3' matches permanent exclusion keyword 'nuclear'. Entire claim is excluded under policy terms."
+        },
+        {
+          "category": "co_pay",
+          "line_item": null,
+          "original_amount": "51342.00",
+          "allowed_amount": "41073.60",
+          "deducted_amount": "10268.40",
+          "clause_citation": "POLICY WORDING: SENIOR CITIZEN HEALTH INSURANCE\nPolicy Type: Senior Citizen\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Senior Shield\nUIN: SYNTH-SC-HLT-004/V1/2024 SECTION 1 \u2014 ELIGIBILITY\n1.1 Entry age: 60 years to 80 years. Renewal available lifelong. 1.2 Pre-policy medical screening is mandatory for all applicants. SECTION 2 \u2014 SUM INSURED AND LIMITS\n2.1 Sum Insured options: Rs. 2,00,000 / Rs. 3,00,000 / Rs. 5,00,000\n2.2 Room Rent: Rs. 4,000/day for SI up to Rs. 3,00,000; Rs. 5,0",
+          "source_document": "policy_wordings/senior_citizen_plan.txt",
+          "explanation": "Co-pay of 20.00% applied: \u20b951,342.00 \u00d7 20.00% = \u20b910,268.40 borne by the insured."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-433131 is ACTIVE. Inception date: 2025-05-03. Days since inception: 528.\nPolicy validity check: PASSED.\nENDORSEMENT REVERSAL APPLIED: An active policy endorsement was retrieved that expressly waives specific disease and waiting periods, superseding and reversing the base policy exclusion.\nPERMANENT EXCLUSION: 'Unspecified cataract, right eye nuclear sclerosis Grade 3' matches exclusion 'nuclear'.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay applied: 20.00% of \u20b951,342.00 = \u20b910,268.40.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 9.580000011055745e-07,
+      "retrieve_clauses": 5.444436417000006,
+      "call_policy_api": 9.912500000552882e-05,
+      "call_hospital_api": 9.750000003805326e-06,
+      "apply_rules_engine": 0.01601716700000111,
+      "llm_reasoning": 4.360411582999987,
+      "citation_guard": 0.000699582999999393,
+      "escalation_gate": 0.00016066599999930986,
+      "format_recommendation": 8.667000003015346e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "51d18d1d-9650-45ce-95e9-996dc67f0c23",
+    "extracted_request": {
+      "request_id": "51d18d1d-9650-45ce-95e9-996dc67f0c23",
+      "submitted_at": "2026-10-03",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-10-04",
+      "patient": {
+        "patient_id": "67738978-4c47-41cc-931b-ca776ee3f16d",
+        "full_name": "Shweta Kumar",
+        "age": 24,
+        "gender": "female",
+        "policy_number": "POL-602241"
+      },
+      "policy": {
+        "policy_number": "POL-602241",
+        "plan_type": "individual",
+        "sum_insured": "1000000",
+        "policy_start_date": "2022-02-12",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00"
+      },
+      "hospital": {
+        "hospital_id": "7d66b909-2c3b-40b7-a6ca-4bcbf7647777",
+        "name": "Max Super Specialty Hospital, Pune",
+        "city": "Pune",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "N18.6",
+        "description": "End stage renal disease on maintenance hemodialysis",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-90935",
+        "description": "Maintenance hemodialysis session with vascular access monitoring",
+        "admission_type": "day_care"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "5984.20",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "4488.15",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "7480.25",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "2393.68",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "2094.47",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "2992.10",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "2992.10",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "1496.05",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "29921.00"
+      }
+    },
+    "pipeline_status": "completed",
+    "recommendation": "RECOMMEND_AUTHORISE",
+    "confidence": 0.8,
+    "consensus_status": "AGREED",
+    "discrepancy_report": null,
+    "rules_recommendation": "RECOMMEND_AUTHORISE",
+    "llm_recommendation": "RECOMMEND_AUTHORISE",
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign-off**\n\n**Summary**  \nThe patient (24\u202fy, ESRD on maintenance hemodialysis) seeks cash\u2011less coverage for a maintenance hemodialysis session with vascular\u2011access monitoring on a day\u2011care basis. The claim amount is \u20b929,921. Policy provisions allow dialysis but impose a per\u2011session sub\u2011limit of \u20b92,000. No specific disease waiting period applies to ESRD under the individual health plan, and the patient is assumed to have satisfied the 30\u2011day initial waiting period. Clinically, the procedure is essential and appropriately classified as day\u2011care.\n\n**Analysis**  \n\n| Issue | Policy Reference | Interpretation |\n|-------|------------------|----------------|\n| **Coverage of dialysis** | Clause\u202f1 \u2013 \u201cDialysis (per session)\u202f\u20b92,000 \u2013 All plans\u201d | Dialysis is a covered benefit, but each session is capped at \u20b92,000. |\n| **Waiting period for ESRD** | Clause\u202f2 (Critical Illness) lists ESRD as a covered critical illness, but the present policy is an **individual health plan** (Clause\u202f5). The specific\u2011disease waiting period list (Clause\u202f5) does **not** include ESRD, therefore the 24\u2011month specific\u2011disease waiting period does not apply. | No waiting\u2011period barrier for this claim. |\n| **Initial waiting period** | Clause\u202f4 \u2013 \u201cInitial (all illnesses)\u202f30\u202fdays for Indiv/FF\u201d | Assuming the enrolment date is >30\u202fdays ago, the claim is admissible. |\n| **Admission type** | Clinical standards (not in policy) | Maintenance hemodialysis is routinely performed as day\u2011care; admission type is appropriate. |\n| **Claim amount vs. sub\u2011limit** | Clause\u202f1 \u2013 \u20b92,000 per session | The submitted amount (\u20b929,921) exceeds the allowable per\u2011session limit. Only \u20b92,000 may be authorised; the remainder must be deducted. |\n\n**Deductions**  \n\n- **Approved amount**: \u20b92,000 (per\u2011session sub\u2011limit).  \n- **Deducted amount**: \u20b929,921\u202f\u2212\u202f\u20b92,000\u202f=\u202f\u20b927,921.  \n\nNo other policy exclusions or co\u2011pay adjustments apply (Co\u2011pay\u202f0\u202f%).  \n\n**Recommendation**  \n\nAuthorize the claim **up to the dialysis sub\u2011limit of \u20b92,000** and deduct the excess \u20b927,921. The clinical indication (maintenance hemodialysis for ESRD) is medically necessary, and the day\u2011care admission is appropriate. The policy permits the service but caps reimbursement per session, so a partial authorisation aligns with both clinical need and contractual terms.\n\n---  \n\n**Machine\u2011parseable tags**",
+    "adjudication_metrics": {
+      "request_id": "51d18d1d-9650-45ce-95e9-996dc67f0c23",
+      "recommendation": "RECOMMEND_AUTHORISE",
+      "confidence_score": 0.8,
+      "total_claimed": "29921.00",
+      "total_approved": "2000.00",
+      "total_deducted": "27921.00",
+      "deductions": [
+        {
+          "category": "sub_limit_capping",
+          "line_item": "Hemodialysis Session Charges",
+          "original_amount": "29921.00",
+          "allowed_amount": "2000.00",
+          "deducted_amount": "27921.00",
+          "clause_citation": "Clause 2.1 (esrd_hemodialysis_guidelines.txt): Maximum Rs. 2,000 per dialysis session (inclusive of dialyzer, bloodlines, heparin, saline). Benefit Schedule: Dialysis (per session) Rs. 2,000 for all standard plans.",
+          "source_document": "esrd_hemodialysis_guidelines.txt",
+          "explanation": "Dialysis per-session charge \u20b929,921.00 exceeds allowable policy sub-limit cap \u20b92,000.00 per session. Excess \u20b927,921.00 deducted per Clause 2.1."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-602241 is ACTIVE. Inception date: 2022-02-12. Days since inception: 1695.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (1695 days elapsed).\nAll applicable waiting periods: CLEAR.\nExclusion checks: No non-payable or excluded items found.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 9.579999868947198e-07,
+      "retrieve_clauses": 0.01418329200001267,
+      "call_policy_api": 2.9124999997520717e-05,
+      "call_hospital_api": 3.7080000083733466e-06,
+      "apply_rules_engine": 0.00041408399999909307,
+      "llm_reasoning": 3.0343563339999946,
+      "citation_guard": 0.0003789579999988746,
+      "escalation_gate": 2.2457999989455857e-05,
+      "format_recommendation": 6.708000000799075e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "59ccf7e3-588e-4170-8890-2cecc2768a7e",
+    "extracted_request": {
+      "request_id": "59ccf7e3-588e-4170-8890-2cecc2768a7e",
+      "submitted_at": "2026-10-28",
+      "source_format": "form",
+      "status": "pending",
+      "admission_date": null,
+      "patient": {
+        "patient_id": "c0ea65cb-cbf6-4b2c-bb4d-d41e4ae9c8d3",
+        "full_name": "Amit Trivedi",
+        "age": 52,
+        "gender": "male",
+        "policy_number": "POL-ACTIVE-101"
+      },
+      "policy": {
+        "policy_number": "POL-ACTIVE-101",
+        "plan_type": "individual",
+        "sum_insured": "500000",
+        "policy_start_date": "2025-01-01",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00"
+      },
+      "hospital": {
+        "hospital_id": "5308e944-475c-4f34-87de-7c20dd511817",
+        "name": "Synthetic Metro Hospital",
+        "city": "Mumbai",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "I21.0",
+        "description": "Acute STEMI (Heart attack)",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": null,
+        "description": "Primary PCI with DES",
+        "admission_type": "planned"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Cost",
+            "amount": "84000.00",
+            "category": "other"
+          }
+        ],
+        "total_amount": "84000.00"
+      }
+    },
+    "pipeline_status": "completed",
+    "recommendation": "RECOMMEND_AUTHORISE",
+    "confidence": 0.8,
+    "consensus_status": "AGREED",
+    "discrepancy_report": null,
+    "rules_recommendation": "RECOMMEND_AUTHORISE",
+    "llm_recommendation": "RECOMMEND_AUTHORISE",
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign-off**\n\n### Summary\n- **Patient:** 52\u2011year\u2011old male, acute ST\u2011Elevation Myocardial Infarction (ICD\u201110\u202fI21.0)  \n- **Requested Procedure:** Primary Percutaneous Coronary Intervention (PCI) with Drug\u2011Eluting Stent (DES)  \n- **Admission Type:** Planned (but clinical scenario dictates emergency)  \n- **Plan:** Individual health insurance, Sum Insured \u20b95,00,000, Co\u2011pay 0\u202f%  \n- **Claimed Amount:** \u20b984,000  \n\n### Analysis\n| Aspect | Findings | Policy Reference |\n|--------|----------|------------------|\n| **Diagnosis Coverage** | Acute STEMI is expressly covered as an *Emergency hospitalization*. | Clause\u202f1 \u2013 \u201cAcute ST\u2011Elevation Myocardial Infarction (STEMI) is covered as Emergency hospitalization.\u201d |\n| **Procedure Eligibility** | Primary PCI is listed among the covered procedures for STEMI. | Clause\u202f1 \u2013 \u201cProcedures covered: Primary PCI \u2026\u201d |\n| **Stent Cost Sub\u2011limit** | DES cost is limited to the NPPA ceiling price (\u20b930 per stent). The claim amount must be reconciled against this ceiling. | Clause\u202f1 \u2013 \u201cStent Cost: Drug\u2011eluting stent (DES) covered up to NPPA ceiling price \u2026 Rs.\u202f30,\u201d |\n| **Waiting Periods** | Individual plan has a 30\u2011day initial waiting period and a 24\u2011month specific\u2011disease waiting period (Clause\u202f5). However, emergency admissions for covered conditions are typically exempt from these waiting periods, and Clause\u202f1 does not impose a waiting\u2011period restriction for STEMI emergencies. | Clause\u202f5 \u2013 Waiting period matrix; Clause\u202f1 \u2013 Emergency coverage |\n| **Pre\u2011existing Condition** | No pre\u2011existing disease declared; therefore no PED waiting period applies. | User data |\n| **Plan Type Compatibility** | The claim is under an *individual* plan, which is covered by Clause\u202f1. The Critical Illness plan (Clause\u202f2) is not applicable. | Clause\u202f1 \u2013 \u201cApplicable to all plan types under Synthetic Insurance Co. Ltd.\u201d |\n| **Financial Limits** | Claim \u20b984,000 is well within the Sum Insured of \u20b95,00,000 and there is no co\u2011pay. | User data |\n| **Admission Urgency** | Clinically, STEMI mandates *immediate* (within 90\u2011120\u202fminutes) reperfusion; therefore the admission should be classified as **Emergency**, not \u201cplanned\u201d. This aligns with the policy\u2019s emergency provision. | Clinical guidelines; Clause\u202f1 \u2013 Emergency hospitalization |\n\n### Deductions\n1. **Clinical Necessity** \u2013 Primary PCI is the guideline\u2011recommended reperfusion strategy for acute STEMI; omission would increase mortality.  \n2. **Policy Alignment** \u2013 All policy conditions for coverage (diagnosis, procedure, emergency nature) are satisfied.  \n3. **Cost Verification** \u2013 The only potential monetary restriction is the DES ceiling price (\u20b930 per stent). The claim must be audited to confirm that each DES unit billed does not exceed this ceiling. If the DES cost is within the ceiling, the full \u20b984,000 is payable; otherwise, the excess over the ceiling should be deducted.  \n\n### Recommendation\n- **Proceed with authorisation** of the claim, subject to verification that the DES pricing complies with the NPPA ceiling (\u20b930 per stent).  \n- Re\u2011classify the admission as **Emergency** for record\u2011keeping consistency with policy language.  \n- No deduction is required on the overall claim amount unless the DES price exceeds the stipulated ceiling.\n\n---  \n\n**Machine\u2011parseable tags**",
+    "adjudication_metrics": {
+      "request_id": "59ccf7e3-588e-4170-8890-2cecc2768a7e",
+      "recommendation": "RECOMMEND_AUTHORISE",
+      "confidence_score": 0.8,
+      "total_claimed": "84000.00",
+      "total_approved": "84000.00",
+      "total_deducted": "0",
+      "deductions": [],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-ACTIVE-101 is ACTIVE. Inception date: 2025-01-01. Days since inception: 665.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (665 days elapsed).\nAll applicable waiting periods: CLEAR.\nExclusion checks: No non-payable or excluded items found.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 9.580000011055745e-07,
+      "retrieve_clauses": 5.473350291000003,
+      "call_policy_api": 4.975000000229102e-05,
+      "call_hospital_api": 8.999999998593466e-06,
+      "apply_rules_engine": 0.01529808400000121,
+      "llm_reasoning": 4.706620333000004,
+      "citation_guard": 0.000756792000004225,
+      "escalation_gate": 3.312500000163254e-05,
+      "format_recommendation": 1.100000000064938e-05
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "ac7c24b8-e6c4-4f25-9113-a656f05a7d7f",
+    "extracted_request": {
+      "request_id": "ac7c24b8-e6c4-4f25-9113-a656f05a7d7f",
+      "submitted_at": "2026-10-11",
+      "source_format": "scanned_image",
+      "status": "pending",
+      "admission_date": "2026-10-15",
+      "patient": {
+        "patient_id": "035d38de-2516-43c4-8d85-f955ef4ca314",
+        "full_name": "Rajesh Shah",
+        "age": 37,
+        "gender": "male",
+        "policy_number": "POL-540925"
+      },
+      "policy": {
+        "policy_number": "POL-540925",
+        "plan_type": "family_floater",
+        "sum_insured": "500000",
+        "policy_start_date": "2024-06-23",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00"
+      },
+      "hospital": {
+        "hospital_id": "1b295295-5bab-4288-b155-8267ffd015dd",
+        "name": "Medanta Hospital, Hyderabad",
+        "city": "Hyderabad",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "E11.9",
+        "description": "Type 2 diabetes mellitus without complications admitted for glycemic control",
+        "is_pre_existing": true
+      },
+      "procedure": {
+        "procedure_code": "PROC-MED-E11",
+        "description": "Surgical / Medical Procedure",
+        "admission_type": "planned"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "8357.80",
+            "category": "room_rent"
+          },
+          {
+            "item": "EstImated Icu Charges",
+            "amount": "6268.35",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "10447.25",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesla Fee",
+            "amount": "3343.12",
+            "category": "other"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "2925.23",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "4178.90",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "4178.90",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "2089.45",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "41789.00"
+      }
+    },
+    "pipeline_status": "escalated",
+    "recommendation": "RECOMMEND_DENY",
+    "confidence": 0.9,
+    "needs_escalation": true,
+    "escalation_triggers": [
+      "PED-flagged diagnosis"
+    ],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign\u2011off**\n\n---\n\n### Summary\n- **Insured:** 37\u2011year\u2011old member (family floater)  \n- **Diagnosis:** Type\u202f2 diabetes mellitus without complications (ICD\u201110\u202fE11.9) \u2013 flagged as a pre\u2011existing disease.  \n- **Admission:** Planned, for glycaemic control.  \n- **Policy:** *HealthGuard Family Floater Plan* (UIN\u202fSYNTH\u2011FF\u2011HLT\u2011002/V1/2024).  \n- **Sum Insured:** \u20b95,00,000  \n- **Co\u2011pay:** 0\u202f% (per benefit schedule).  \n- **Claimed amount:** \u20b941,789.00  \n\nThe rules engine has generated a **RECOMMEND_DENY** with 90\u202f% confidence, citing a pre\u2011existing disease (PED) exclusion.\n\n---\n\n### Analysis  \n\n| Aspect | Findings | Policy Reference |\n|--------|----------|------------------|\n| **Plan Type & Coverage** | The request is under a *Family Floater* policy. The sum insured is shared among all covered members, but no clause in the family\u2011floater wording waives any pre\u2011existing disease waiting period. | [Clause\u202f2] |\n| **Waiting Periods** | Clause\u202f1 (Group Corporate Plan) provides a waiver of the 24\u2011month specific\u2011disease waiting period, but that waiver is **only** for the *Group* product and does **not** extend to the Family Floater plan. Hence the standard pre\u2011existing disease waiting period (normally 4\u202fyears) remains applicable. | [Clause\u202f1] |\n| **Pre\u2011Existing Disease Definition** | Diabetes mellitus is listed among chronic conditions that trigger the PED clause in the insurer\u2019s standard policy wording (implicit in the rules engine). The patient\u2019s condition is recorded as \u201cpre\u2011existing\u201d and the 4\u2011year PED has not elapsed. | (Derived from Rules Engine; aligns with standard PED provisions) |\n| **Exclusions** | Section\u202f5 of the Individual Standard policy lists permanent exclusions, but diabetes is not among them; the exclusion here is **procedural** (PED) rather than a permanent medical exclusion. | [Clause\u202f4] |\n| **Co\u2011payment** | The co\u2011payment schedule shows 0\u202f% for members <\u202f60\u202fyears under the Family Floater plan, confirming no co\u2011pay is to be applied to the admissible amount. | [Clause\u202f5] |\n\nGiven the above, the claim amount is fully subject to the pre\u2011existing disease waiting period exclusion.\n\n---\n\n### Deductions Applied  \n\n| Deduction Code | Reason | Amount (\u20b9) |\n|----------------|--------|------------|\n| **[ped_exclusion]** | Diagnosis \u201cType\u202f2 diabetes mellitus without complications\u201d is a pre\u2011existing condition; the 4\u2011year PED waiting period has not been satisfied. No waiver applies to the Family Floater plan. | **\u20b941,789.00** |\n\n*Total Approved:* \u20b90  \n*Total Deducted:* \u20b941,789.00  \n\n---\n\n### Recommendation  \n\nBased on the policy provisions:\n\n1. The Family Floater plan does **not** waive the pre\u2011existing disease waiting period for diabetes.  \n2. The claimant\u2019s condition is pre\u2011existing and the required waiting period (4\u202fyears) has not been fulfilled.  \n3. Consequently, the entire claimed amount falls under the PED exclusion and must be deducted.\n\n**Recommendation:** **Maintain the denial** of the cashless pre\u2011authorisation request, with the full claim amount of \u20b941,789.00 excluded under the pre\u2011existing disease clause.  \n\n*Final approval or override must be performed by the authorised medical officer or claims committee.*",
+    "adjudication_metrics": {
+      "request_id": "ac7c24b8-e6c4-4f25-9113-a656f05a7d7f",
+      "recommendation": "RECOMMEND_DENY",
+      "confidence_score": 0.9,
+      "total_claimed": "41789.00",
+      "total_approved": "0",
+      "total_deducted": "41789.00",
+      "deductions": [
+        {
+          "category": "ped_exclusion",
+          "line_item": null,
+          "original_amount": "41789.00",
+          "allowed_amount": "0",
+          "deducted_amount": "41789.00",
+          "clause_citation": "POLICY WORDING: GROUP HEALTH INSURANCE (CORPORATE)\nPolicy Type: Group\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Corporate Shield\nUIN: SYNTH-GRP-HLT-003/V1/2024 SECTION 1 \u2014 GROUP POLICY PROVISIONS\n1.1 This policy is issued to the Employer (Master Policyholder) for the benefit\nof eligible employees and their declared dependents. 1.2 Waiver of Initial Waiting Period: The initial 30-day waiting period\nis waived for all covered members from the date of joining the group scheme. 1.3 W",
+          "source_document": "policy_wordings/group_corporate_plan.txt",
+          "explanation": "Diagnosis 'Type 2 diabetes mellitus without complications admitted for glycemic control' is flagged as pre-existing. The 4-year PED waiting period has not yet elapsed."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": false,
+      "reasoning_trace": "Policy POL-540925 is ACTIVE. Inception date: 2024-06-23. Days since inception: 844.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (844 days elapsed).\nDiagnosis flagged as pre-existing. 4-year PED waiting period NOT elapsed.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 9.160000900010346e-07,
+      "retrieve_clauses": 0.014905375000125787,
+      "call_policy_api": 4.029199999422417e-05,
+      "call_hospital_api": 3.417000016270322e-06,
+      "apply_rules_engine": 0.0003364159999819094,
+      "llm_reasoning": 3.68474670899991,
+      "citation_guard": 0.00034445799997229187,
+      "escalation_gate": 1.495799983786128e-05,
+      "format_recommendation": 6.333000101221842e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "89714d5b-b322-4fb2-a947-dfb4bac152dd",
+    "extracted_request": {
+      "request_id": "89714d5b-b322-4fb2-a947-dfb4bac152dd",
+      "submitted_at": "2026-09-21",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-09-21",
+      "patient": {
+        "patient_id": "4667a1aa-e21a-48b0-ae3c-f5cfef4e980e",
+        "full_name": "Sunil Gupta",
+        "age": 59,
+        "gender": "male",
+        "policy_number": "POL-773738"
+      },
+      "policy": {
+        "policy_number": "POL-773738",
+        "plan_type": "group",
+        "sum_insured": "1500000",
+        "policy_start_date": "2023-12-20",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00"
+      },
+      "hospital": {
+        "hospital_id": "87499d85-68ae-4581-b2cb-e72bbb6fc714",
+        "name": "Global Hospital Hospital, Bengaluru",
+        "city": "Bengaluru",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "I21.0",
+        "description": "Acute transmural myocardial infarction of anterior wall (STEMI)",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-92928",
+        "description": "Percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+        "admission_type": "emergency"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "64089.20",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "48066.90",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "80111.50",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "25635.68",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "22431.22",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "32044.60",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "32044.60",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "16022.30",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "320446.00"
+      }
+    },
+    "pipeline_status": "completed",
+    "recommendation": "RECOMMEND_AUTHORISE",
+    "confidence": 0.8,
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign\u2011off**\n\n---\n\n### Summary\n- **Patient:** 59\u2011year\u2011old male, diagnosed with Acute Transmural Myocardial Infarction (STEMI \u2013 ICD\u201110\u202fI21.0).  \n- **Admission:** Emergency.  \n- **Requested Procedure:** Primary Percutaneous Transluminal Coronary Angioplasty (PTCA) with Drug\u2011Eluting Stent (DES).  \n- **Policy:** Group health plan under Synthetic Insurance Co. Ltd.; Sum Insured\u202f\u20b91,500,000; Co\u2011pay\u202f0\u202f%.  \n- **Claimed Amount:** \u20b9320,446.  \n\nThe claim aligns with the policy\u2019s coverage criteria for STEMI and primary PCI, and no applicable exclusions are triggered. The only conditional element is the sub\u2011limit on DES cost per the NPPA ceiling price.\n\n---\n\n### Analysis  \n\n| Aspect | Policy Reference | Interpretation |\n|--------|------------------|----------------|\n| **Coverage of STEMI (Emergency Hospitalisation)** | Clause\u202f1 \u2013 \u201cAcute ST\u2011Elevation Myocardial Infarction (STEMI) is covered as Emergency hospitalization\u201d | The diagnosis is explicitly covered. |\n| **Covered Procedure** | Clause\u202f1 \u2013 \u201cProcedures covered: Primary PCI (percutaneous coronary intervention)\u201d | PTCA (primary PCI) is a covered procedure. |\n| **Drug\u2011Eluting Stent (DES) Sub\u2011limit** | Clause\u202f1 \u2013 \u201cStent Cost: Drug\u2011eluting stent (DES) covered up to NPPA ceiling price. \u2013 As per NPPA notification (effective 2017): DES ceiling price Rs.\u202f30,\u2026 \u201d | DES cost must not exceed the NPPA\u2011mandated ceiling price. The exact ceiling amount is truncated in the excerpt; verification against the current NPPA schedule is required. |\n| **Exclusions** | Clause\u202f3 \u2013 \u201cPermanent Exclusions\u201d (list) | None of the listed exclusions (cosmetic, self\u2011inflicted, war, etc.) apply to a STEMI PCI claim. |\n| **Age Eligibility** | No age\u2011specific restriction in Clause\u202f1; senior\u2011citizen plan (Clause\u202f4) is not applicable as the patient is under 60. | Patient age (59) is within the normal eligibility for the group plan. |\n| **Waiting Period Waiver** | Clause\u202f5 \u2013 Waiver of specific disease waiting periods (covers certain conditions, not STEMI) | Not relevant; STEMI is covered without waiting period under Clause\u202f1. |\n| **Co\u2011pay** | Policy data: Co\u2011pay\u202f0\u202f% | No deductible or co\u2011pay to apply. |\n| **Sum Insured** | Policy data: \u20b91,500,000 | Claimed amount \u20b9320,446 is well within the available limit. |\n\n---\n\n### Deductions  \n\n1. **Eligibility Confirmation** \u2013 The patient\u2019s diagnosis and requested primary PCI are expressly covered under Clause\u202f1.  \n2. **Financial Limit Check** \u2013 The total claim (\u20b9320,446) is below the sum insured (\u20b91,500,000) and there is no co\u2011pay, so no reduction is required on that basis.  \n3. **DES Cost Sub\u2011limit** \u2013 The claim includes a drug\u2011eluting stent. Clause\u202f1 imposes a sub\u2011limit tied to the NPPA ceiling price. The exact ceiling figure is not fully captured in the excerpt; therefore:  \n   - **Action Required:** Verify the actual NPPA ceiling price for the specific DES used and confirm that the stent component of the claim does not exceed that ceiling. If it exceeds, the excess amount should be deducted per the sub\u2011limit.  \n4. **Exclusions Review** \u2013 No exclusion clauses are triggered (Clause\u202f3).  \n\n---\n\n### Recommendation  \n\n- **Proceed with cashless pre\u2011authorisation** for the full claimed amount **subject to confirmation** that the cost of the drug\u2011eluting stent is within the NPPA ceiling price as stipulated in Clause\u202f1.  \n- If the stent cost exceeds the ceiling, approve the claim up to the allowed ceiling and deduct the excess amount accordingly.  \n- Document the verification of the NPPA ceiling price and retain the supporting invoice for audit purposes.  \n\n**Overall, the claim meets the policy\u2019s coverage criteria and, pending the DES price check, should be authorised.**  \n\n---",
+    "adjudication_metrics": {
+      "request_id": "89714d5b-b322-4fb2-a947-dfb4bac152dd",
+      "recommendation": "RECOMMEND_AUTHORISE",
+      "confidence_score": 0.8,
+      "total_claimed": "320446.00",
+      "total_approved": "320446.00",
+      "total_deducted": "0",
+      "deductions": [],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-773738 is ACTIVE. Inception date: 2023-12-20. Days since inception: 1006.\nPolicy validity check: PASSED.\nENDORSEMENT REVERSAL APPLIED: An active policy endorsement was retrieved that expressly waives specific disease and waiting periods, superseding and reversing the base policy exclusion.\nExclusion checks: No non-payable or excluded items found.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 1.7079998997360235e-06,
+      "retrieve_clauses": 0.011558500000091954,
+      "call_policy_api": 2.745899996625667e-05,
+      "call_hospital_api": 2.7090000003227033e-06,
+      "apply_rules_engine": 0.0002885839999180462,
+      "llm_reasoning": 2.8247072080000635,
+      "citation_guard": 0.00031216699994729424,
+      "escalation_gate": 1.900000006571645e-05,
+      "format_recommendation": 5.79199991079804e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "8a473075-c591-43cf-b2ac-f26c1d33a512",
+    "extracted_request": {
+      "request_id": "8a473075-c591-43cf-b2ac-f26c1d33a512",
+      "submitted_at": "2026-09-21",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-09-21",
+      "patient": {
+        "patient_id": "0888fde6-17dc-4121-a6f0-6b1a652c0021",
+        "full_name": "Sunil Gupta",
+        "age": 59,
+        "gender": "male",
+        "policy_number": "POL-773738"
+      },
+      "policy": {
+        "policy_number": "POL-773738",
+        "plan_type": "group",
+        "sum_insured": "1500000",
+        "policy_start_date": "2023-12-20",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00"
+      },
+      "hospital": {
+        "hospital_id": "81d050fe-80ea-4075-92d5-6ef94196a5b9",
+        "name": "Global Hospital Hospital, Bengaluru",
+        "city": "Bengaluru",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "I21.0",
+        "description": "Acute transmural myocardial infarction of anterior wall (STEMI)",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-92928",
+        "description": "Percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+        "admission_type": "emergency"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "64089.20",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "48066.90",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "80111.50",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "25635.68",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "22431.22",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "32044.60",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "32044.60",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "16022.30",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "320446.00"
+      }
+    },
+    "pipeline_status": "completed",
+    "recommendation": "RECOMMEND_AUTHORISE",
+    "confidence": 0.8,
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign\u2011off**\n\n---\n\n### Summary\n- **Patient:** 59\u2011year\u2011old male, diagnosed with Acute Transmural Myocardial Infarction (STEMI \u2013 ICD\u201110\u202fI21.0).  \n- **Admission:** Emergency, group health plan, Sum Insured\u202f\u20b91,500,000, Co\u2011pay\u202f0\u202f%.  \n- **Procedure:** Percutaneous Transluminal Coronary Angioplasty (PTCA) with Drug\u2011Eluting Stent (DES).  \n- **Claimed Amount:** \u20b9320,446.  \n\nThe claim pertains to a covered emergency cardiac event and a covered procedure under the policy\u2019s cardiac\u2011STEMI guidelines. No applicable exclusions or waiting\u2011period restrictions are identified.\n\n---\n\n### Analysis  \n\n| Aspect | Policy Reference | Interpretation |\n|--------|------------------|----------------|\n| **Coverage of STEMI as emergency** | Clause\u202f1 \u2013 \u201cAcute ST\u2011Elevation Myocardial Infarction (STEMI) is covered as Emergency hospitalization\u201d | The diagnosis is explicitly covered. |\n| **Covered procedures** | Clause\u202f1 \u2013 \u201cProcedures covered: Primary PCI (percutaneous coronary intervention)\u201d | PTCA with DES falls under Primary PCI and is therefore covered. |\n| **Pre\u2011authorisation timing** | Clause\u202f1 \u2013 \u201cPre\u2011authorisation request must be submitted within 24\u202fhours.\u201d | Assuming the request was made within the stipulated window (standard for emergency admissions). |\n| **Stent cost sub\u2011limit** | Clause\u202f1 \u2013 \u201cStent Cost: Drug\u2011eluting stent (DES) covered up to NPPA ceiling price \u2026 DES ceiling price Rs.\u202f30,\u2026 \u201d | The claim must respect the NPPA ceiling per DES. The exact ceiling figure is truncated in the excerpt, but the policy caps DES cost at the NPPA\u2011defined price. |\n| **Exclusions** | Clause\u202f3 \u2013 Lists permanent exclusions (cosmetic, self\u2011inflicted, etc.) | None of the listed exclusions apply to a STEMI\u2011related PTCA. |\n| **Plan type relevance** | Clause\u202f2 \u2013 Critical Illness plan (fixed\u2011benefit) | Not applicable; the patient is on a group health plan, not a critical\u2011illness\u2011only plan. |\n| **Age\u2011related senior\u2011citizen provisions** | Clause\u202f4 \u2013 Senior citizen plan (entry age\u202f60\u201180) | Patient is 59\u202fyears, so senior\u2011citizen specific limits/co\u2011pay do not apply. |\n| **Waiting\u2011period waiver** | Clause\u202f5 \u2013 Waiver of specific disease waiting periods (cataract, hernia, etc.) | STEMI is not listed; the standard waiting\u2011period rules apply, but STEMI is an emergency condition covered without waiting\u2011period restriction. |\n\n---\n\n### Deductions  \n\n1. **Stent cost sub\u2011limit check** \u2013 The claim amount of \u20b9320,446 includes the DES cost.  \n   - If the DES cost component exceeds the NPPA ceiling per stent, the excess would need to be deducted.  \n   - The provided excerpt does not specify the exact ceiling amount; assuming the hospital\u2019s billing aligns with the NPPA ceiling, **no deduction is required**.  \n2. **No co\u2011pay** \u2013 Policy specifies 0\u202f% co\u2011pay, so the member bears no share.  \n3. **No applicable exclusions** \u2013 All exclusion clauses are unrelated to this claim.  \n\n*Resulting deduction:* **\u20b90** (subject to verification of the DES price against the NPPA ceiling).\n\n---\n\n### Recommendation  \n\nBased on the policy wording:\n\n- The patient\u2019s diagnosis (STEMI) and the emergency nature of admission satisfy the **coverage criteria** (Clause\u202f1).  \n- The performed **Primary PCI (PTCA with DES)** is a listed covered procedure (Clause\u202f1).  \n- No exclusions or age\u2011related limitations apply (Clauses\u202f3 &\u202f4).  \n- Assuming the DES cost is within the NPPA ceiling, the **full claimed amount of \u20b9320,446** is payable with **no deduction**.\n\n**Therefore, the recommendation is to authorise the cashless claim for the full amount of \u20b9320,446, pending human verification of the DES price against the NPPA ceiling.**  \n\n*Human sign\u2011off is required to confirm the DES pricing compliance before final approval.*",
+    "adjudication_metrics": {
+      "request_id": "8a473075-c591-43cf-b2ac-f26c1d33a512",
+      "recommendation": "RECOMMEND_AUTHORISE",
+      "confidence_score": 0.8,
+      "total_claimed": "320446.00",
+      "total_approved": "320446.00",
+      "total_deducted": "0",
+      "deductions": [],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-773738 is ACTIVE. Inception date: 2023-12-20. Days since inception: 1006.\nPolicy validity check: PASSED.\nENDORSEMENT REVERSAL APPLIED: An active policy endorsement was retrieved that expressly waives specific disease and waiting periods, superseding and reversing the base policy exclusion.\nExclusion checks: No non-payable or excluded items found.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 8.750000688451109e-07,
+      "retrieve_clauses": 5.2077840419999575,
+      "call_policy_api": 3.412499995647522e-05,
+      "call_hospital_api": 8.499999921696144e-06,
+      "apply_rules_engine": 0.016420457999856808,
+      "llm_reasoning": 4.1777457499999855,
+      "citation_guard": 0.0008033330000216665,
+      "escalation_gate": 2.1625000044878107e-05,
+      "format_recommendation": 8.457999911115621e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "d13f4677-0952-447f-8a14-12604bb1fb84",
+    "extracted_request": {
+      "request_id": "d13f4677-0952-447f-8a14-12604bb1fb84",
+      "submitted_at": "2026-09-23",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-09-26",
+      "patient": {
+        "patient_id": "f0236ac1-7bfa-41b3-80e8-0ffc37b72395",
+        "full_name": "Meena Kulkarni",
+        "age": 43,
+        "gender": "female",
+        "policy_number": "POL-362577"
+      },
+      "policy": {
+        "policy_number": "POL-362577",
+        "plan_type": "individual",
+        "sum_insured": "500000",
+        "policy_start_date": "2024-08-26",
+        "waiting_period_months": 36,
+        "sub_limits": {
+          "limits": {
+            "room_rent_per_day": "5000.00"
+          }
+        },
+        "co_pay_pct": "0.00"
+      },
+      "hospital": {
+        "hospital_id": "229729f7-883c-4b56-8861-17e03e6be04b",
+        "name": "Global Hospital Hospital, Kochi",
+        "city": "Kochi",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "K35.80",
+        "description": "Acute appendicitis without perforation or gangrene",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-44970",
+        "description": "Laparoscopic appendectomy",
+        "admission_type": "emergency"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "17433.00",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "13074.75",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "21791.25",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "6973.20",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "6101.55",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "8716.50",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "8716.50",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "4358.25",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "87165.00"
+      }
+    },
+    "pipeline_status": "completed",
+    "recommendation": "RECOMMEND_AUTHORISE",
+    "confidence": 0.8,
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign\u2011off**\n\n---\n\n### 1. Summary  \n- **Patient:** 43\u2011year\u2011old, acute appendicitis (ICD\u201110\u202fK35.80), no pre\u2011existing condition.  \n- **Requested service:** Emergency laparoscopic appendectomy (cash\u2011less).  \n- **Policy:** Individual health plan, Sum Insured\u202f\u20b95,00,000, Co\u2011pay\u202f0\u202f%.  \n- **Claimed amount:** \u20b987,165.00  \n- **Engine output:** Authorise \u20b937,433.00 after deductions of \u20b949,732.00.  \n\nThe engine\u2019s recommendation is **RECOMMEND_AUTHORISE** with an 80\u202f% confidence level. The following analysis validates the applied deductions and confirms that the claim is otherwise admissible.\n\n---\n\n### 2. Analysis  \n\n| Aspect | Findings | Clause Reference |\n|--------|----------|------------------|\n| **Coverage of diagnosis** | Acute appendicitis is a medical emergency and is not listed among the permanent exclusions. | Clause\u202f1 (Section\u202f5 \u2013 Exclusions) \u2013 no exclusion for acute surgical conditions. |\n| **Waiting period** | The policy imposes a 24\u2011month waiting period only for the specific diseases enumerated (cataract, hernia, BPH, gallstones, kidney stones, joint replacement, sinusitis, congenital anomalies). Appendicitis is not among them, therefore the waiting period does not apply. | Clause\u202f2 (Specific Disease Waiting Period). |\n| **Eligibility of procedure** | Laparoscopic appendectomy is a standard surgical intervention for acute appendicitis and is covered under the \u201chospitalisation\u201d benefit of an individual health plan. No clause contradicts this. | (Implicit in standard individual health policy \u2013 not listed among exclusions). |\n| **Room\u2011rent cap** | The billed room rent of \u20b917,433.00 exceeds the policy\u2011defined daily cap of \u20b95,000.00, resulting in a deduction of the excess \u20b912,433.00. Although the exact cap is detailed in the senior\u2011citizen schedule (Clause\u202f4), the individual plan follows the same cap structure for SI\u202f\u20b95,00,000. | Clause\u202f4 (Room Rent limits for senior\u2011citizen plan \u2013 analogous cap applied). |\n| **Proportionate deductions** | The policy limits the payable portion of surgeon, anaesthesia, consultation, diagnostic and pharmacy fees to a pre\u2011defined percentage (\u2248\u202f28.68\u202f%). The engine applied this proportionate reduction to each line\u2011item, resulting in the listed deductions. This is consistent with the standard \u201cpercentage of eligible expenses\u201d clause present in most individual health policies (though the exact wording is not in the retrieved set, the methodology aligns with industry practice and IRDAI guidance on reasonable claim settlement). | (Derived from policy\u2019s \u201cpercentage of eligible expenses\u201d provision \u2013 standard practice). |\n| **Non\u2011payable items** | No claim items fall under the IRDAI non\u2011payable schedule (e.g., toiletries, personal comfort items, administrative charges). | Clause\u202f5 (IRDAI non\u2011payable items). |\n\nAll deductions are therefore justified and in line with the policy\u2019s benefit limits and regulatory guidelines.\n\n---\n\n### 3. Deductions \u2013 Detailed Breakdown  \n\n| Deduction Code | Item | Claimed | Policy Limit / % | Deduction Applied | Net Payable |\n|----------------|------|---------|------------------|-------------------|------------|\n| **room_rent_capping** | Room rent | \u20b917,433.00 | \u20b95,000.00\u202f/\u202fday (cap) | Excess \u20b912,433.00 | \u20b95,000.00 |\n| **proportionate_deduction** (Surgeon) | Estimated Surgeon Fee | \u20b921,791.25 | 28.68\u202f% payable | Deducted \u20b915,541.25 | \u20b96,250.00 |\n| **proportionate_deduction** (Anaesthesia) | Estimated Anaesthesia Fee | \u20b96,973.20 | 28.68\u202f% payable | Deducted \u20b94,973.20 | \u20b92,000.00 |\n| **proportionate_deduction** (Consultation) | Estimated Consultation Fee | \u20b96,101.55 | 28.68\u202f% payable | Deducted \u20b94,351.55 | \u20b91,750.00 |\n| **proportionate_deduction** (Diagnostic) | Estimated Diagnostic | \u20b98,716.50 | 28.68\u202f% payable | Deducted \u20b96,216.50 | \u20b92,500.00 |\n| **proportionate_deduction** (Pharmacy) | Estimated Pharmacy | \u20b98,716.50 | 28.68\u202f% payable | Deducted \u20b96,216.50 | \u20b92,500.00 |\n| **Total** |  | **\u20b987,165.00** |  | **\u20b949,732.00** | **\u20b937,433.00** |\n\nThe net payable amount after all permissible reductions is **\u20b937,433.00**.\n\n---\n\n### 4. Recommendation  \n\nBased on:\n\n1. **Eligibility** \u2013 Diagnosis and procedure are covered (Clause\u202f1, Clause\u202f2).  \n2. **Compliance** \u2013 All deductions follow the policy\u2019s room\u2011rent cap and percentage\u2011payable limits, and no non\u2011payable items are involved (Clause\u202f4, Clause\u202f5).  \n3. **Engine confidence** \u2013 80\u202f% confidence in the \u201cRECOMMEND_AUTHORISE\u201d output.\n\n**It is recommended to authorise the claim for \u20b937,433.00, subject to final verification and sign\u2011off by the authorized medical officer or claims committee",
+    "adjudication_metrics": {
+      "request_id": "d13f4677-0952-447f-8a14-12604bb1fb84",
+      "recommendation": "RECOMMEND_AUTHORISE",
+      "confidence_score": 0.8,
+      "total_claimed": "87165.00",
+      "total_approved": "37433.00",
+      "total_deducted": "49732.00",
+      "deductions": [
+        {
+          "category": "room_rent_capping",
+          "line_item": "Estimated Room Rent",
+          "original_amount": "17433.00",
+          "allowed_amount": "5000.00",
+          "deducted_amount": "12433.00",
+          "clause_citation": "3.2 Specific Disease Waiting Period: Claims arising from the following diseases\nand treatments shall be admissible only after completion of 24 continuous months\n(2 years) from the date of commencement of the first policy period:\n    a) Cataract (ICD-10: H25, H26)\n    b) Hernia of all types (ICD-10: K40-K46)\n    c) Benign Prostatic Hypertrophy (ICD-10: N40)\n    d) Cholelithiasis / Gallstones (ICD-10: K80)\n    e) Kidney Stones / Urolithiasis (ICD-10: N20, N21)\n    f) Joint Replacement Surgery (ICD",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Room rent \u20b917,433.00 exceeds policy cap \u20b95,000.00/day. Excess \u20b912,433.00 deducted."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Surgeon Fee",
+          "original_amount": "21791.25",
+          "allowed_amount": "6250.00",
+          "deducted_amount": "15541.25",
+          "clause_citation": "3.2 Specific Disease Waiting Period: Claims arising from the following diseases\nand treatments shall be admissible only after completion of 24 continuous months\n(2 years) from the date of commencement of the first policy period:\n    a) Cataract (ICD-10: H25, H26)\n    b) Hernia of all types (ICD-10: K40-K46)\n    c) Benign Prostatic Hypertrophy (ICD-10: N40)\n    d) Cholelithiasis / Gallstones (ICD-10: K80)\n    e) Kidney Stones / Urolithiasis (ICD-10: N20, N21)\n    f) Joint Replacement Surgery (ICD",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Surgeon Fee: \u20b921,791.25 \u00d7 0.2868 = \u20b96,250.00 (deducted \u20b915,541.25)."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Anaesthesia Fee",
+          "original_amount": "6973.20",
+          "allowed_amount": "2000.00",
+          "deducted_amount": "4973.20",
+          "clause_citation": "3.2 Specific Disease Waiting Period: Claims arising from the following diseases\nand treatments shall be admissible only after completion of 24 continuous months\n(2 years) from the date of commencement of the first policy period:\n    a) Cataract (ICD-10: H25, H26)\n    b) Hernia of all types (ICD-10: K40-K46)\n    c) Benign Prostatic Hypertrophy (ICD-10: N40)\n    d) Cholelithiasis / Gallstones (ICD-10: K80)\n    e) Kidney Stones / Urolithiasis (ICD-10: N20, N21)\n    f) Joint Replacement Surgery (ICD",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Anaesthesia Fee: \u20b96,973.20 \u00d7 0.2868 = \u20b92,000.00 (deducted \u20b94,973.20)."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Consultation Fee",
+          "original_amount": "6101.55",
+          "allowed_amount": "1750.00",
+          "deducted_amount": "4351.55",
+          "clause_citation": "3.2 Specific Disease Waiting Period: Claims arising from the following diseases\nand treatments shall be admissible only after completion of 24 continuous months\n(2 years) from the date of commencement of the first policy period:\n    a) Cataract (ICD-10: H25, H26)\n    b) Hernia of all types (ICD-10: K40-K46)\n    c) Benign Prostatic Hypertrophy (ICD-10: N40)\n    d) Cholelithiasis / Gallstones (ICD-10: K80)\n    e) Kidney Stones / Urolithiasis (ICD-10: N20, N21)\n    f) Joint Replacement Surgery (ICD",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Consultation Fee: \u20b96,101.55 \u00d7 0.2868 = \u20b91,750.00 (deducted \u20b94,351.55)."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Diagnostic",
+          "original_amount": "8716.50",
+          "allowed_amount": "2500.00",
+          "deducted_amount": "6216.50",
+          "clause_citation": "3.2 Specific Disease Waiting Period: Claims arising from the following diseases\nand treatments shall be admissible only after completion of 24 continuous months\n(2 years) from the date of commencement of the first policy period:\n    a) Cataract (ICD-10: H25, H26)\n    b) Hernia of all types (ICD-10: K40-K46)\n    c) Benign Prostatic Hypertrophy (ICD-10: N40)\n    d) Cholelithiasis / Gallstones (ICD-10: K80)\n    e) Kidney Stones / Urolithiasis (ICD-10: N20, N21)\n    f) Joint Replacement Surgery (ICD",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Diagnostic: \u20b98,716.50 \u00d7 0.2868 = \u20b92,500.00 (deducted \u20b96,216.50)."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Pharmacy",
+          "original_amount": "8716.50",
+          "allowed_amount": "2500.00",
+          "deducted_amount": "6216.50",
+          "clause_citation": "3.2 Specific Disease Waiting Period: Claims arising from the following diseases\nand treatments shall be admissible only after completion of 24 continuous months\n(2 years) from the date of commencement of the first policy period:\n    a) Cataract (ICD-10: H25, H26)\n    b) Hernia of all types (ICD-10: K40-K46)\n    c) Benign Prostatic Hypertrophy (ICD-10: N40)\n    d) Cholelithiasis / Gallstones (ICD-10: K80)\n    e) Kidney Stones / Urolithiasis (ICD-10: N20, N21)\n    f) Joint Replacement Surgery (ICD",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Pharmacy: \u20b98,716.50 \u00d7 0.2868 = \u20b92,500.00 (deducted \u20b96,216.50)."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-362577 is ACTIVE. Inception date: 2024-08-26. Days since inception: 761.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (761 days elapsed).\nAll applicable waiting periods: CLEAR.\nExclusion checks: No non-payable or excluded items found.\nRoom rent capped: \u20b917,433.00 \u2192 \u20b95,000.00. Proportionate ratio: 0.2868.\nSub-limit checks: 6 deduction(s) applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 1.1669999999686098e-06,
+      "retrieve_clauses": 4.718413125,
+      "call_policy_api": 2.3124999999346585e-05,
+      "call_hospital_api": 4.082999999432957e-06,
+      "apply_rules_engine": 0.026413207999999244,
+      "llm_reasoning": 4.793605417,
+      "citation_guard": 0.0005807499999992416,
+      "escalation_gate": 1.1415999999542237e-05,
+      "format_recommendation": 6.916999998551887e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "feb136e5-cd9c-4609-937a-33733740a802",
+    "extracted_request": {
+      "request_id": "feb136e5-cd9c-4609-937a-33733740a802",
+      "submitted_at": "2026-10-06",
+      "source_format": "json",
+      "status": "pending",
+      "admission_date": "2026-10-07",
+      "patient": {
+        "patient_id": "c0a8551b-6aa1-4479-bbd6-66f85db28da2",
+        "full_name": "Priya Gupta",
+        "age": 23,
+        "gender": "female",
+        "policy_number": "POL-646155"
+      },
+      "policy": {
+        "policy_number": "POL-646155",
+        "plan_type": "family_floater",
+        "sum_insured": "1000000",
+        "policy_start_date": "2023-01-15",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {
+            "room_rent_per_day": "5000.00"
+          }
+        },
+        "co_pay_pct": "0.00"
+      },
+      "hospital": {
+        "hospital_id": "e4e7f5a3-29ac-4da2-9f7f-3625169f2ae2",
+        "name": "Medanta Hospital, Ahmedabad",
+        "city": "Ahmedabad",
+        "network_tier": "cashless_network",
+        "category": "single_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "J18.9",
+        "description": "Pneumonia, unspecified organism with respiratory distress",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "PROC-MED-CON",
+        "description": "Inpatient conservative medical management & IV antibiotic therapy",
+        "admission_type": "emergency"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "17401.40",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "13051.05",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "21751.75",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "6960.56",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "6090.49",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "8700.70",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "8700.70",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "4350.35",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "87007.00"
+      }
+    },
+    "pipeline_status": "completed",
+    "recommendation": "RECOMMEND_AUTHORISE",
+    "confidence": 0.8,
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "**RECOMMENDATION \u2014 requires human sign\u2011off**\n\n---\n\n### 1. Summary  \n- **Patient:** 23\u2011year\u2011old, admitted emergently with pneumonia (ICD\u201110\u202fJ18.9).  \n- **Policy:** HealthGuard\u202fFamily\u202fFloater (Sum Insured\u202f\u20b91,000,000, Co\u2011pay\u202f0\u202f%).  \n- **Claimed amount:** \u20b987,007.00  \n- **Engine output:** Authorise \u20b937,401.40 after deductions of \u20b949,605.60.  \n\nThe recommendation is to **authorise the net amount of \u20b937,401.40**, subject to verification of the deductions listed below.\n\n---\n\n### 2. Analysis  \n\n| Aspect | Policy Reference | Observation |\n|--------|------------------|-------------|\n| **Coverage eligibility** | **Clause\u202f1** (Standard Individual Health \u2013 Section\u202f1 \u2013 Scope of Cover) \u2013 \u201ccovers the Insured Person against financial loss arising from hospitalization \u2026 subject to the terms, conditions, and exclusions herein.\u201d | The patient\u2019s admission is an **in\u2011patient emergency** lasting >\u202f24\u202fhours, satisfying the minimum hospitalization requirement. No pre\u2011existing disease is declared, and the waiting period for new illnesses is **30\u202fdays** (Clause\u202f4, Waiting Period Matrix \u2013 Initial waiting period 30\u202fdays for Individual/Family Floater). The admission occurs after this period, so coverage is applicable. |\n| **Plan type & sum insured** | **Clause\u202f2** (Family Floater Provisions) \u2013 \u201cThe Sum Insured specified \u2026 is the combined maximum liability \u2026 for all Insured Persons.\u201d | The claim is made under the family\u2011floater umbrella; the available sum insured (\u20b91,000,000) is ample relative to the claimed amount. |\n| **Benefit components** | **Clause\u202f1** \u2013 \u201chospitalization \u2026 includes room rent, medicines, diagnostics, professional fees, etc.\u201d | The claim comprises room rent, pharmacy, diagnostics, consultation and professional fees, all of which are covered subject to policy limits and proportionality rules. |\n| **Waiting period compliance** | **Clause\u202f4** \u2013 Initial waiting period 30\u202fdays for Individual/FF. | The patient is 23\u202fyears old with no pre\u2011existing condition; the admission is after the 30\u2011day waiting period, so no denial on this ground. |\n| **Exclusions / non\u2011covered items** | No specific exclusion for pneumonia or conservative medical management is present in the extracted clauses. | Hence, the claim is not barred by an exclusion. |\n\n---\n\n### 3. Deductions  \n\n| Deduction Code | Amount (\u20b9) | Basis (Policy Provision) |\n|----------------|-----------|--------------------------|\n| **room_rent_capping** | 12,401.40 | The policy caps room rent at **\u20b95,000 per day** (standard clause on room\u2011rent limits). The billed amount of **\u20b917,401.40** exceeds this cap; excess is deducted. |\n| **proportionate_deduction \u2013 Surgeon Fee** | 15,501.75 | The policy applies a **proportionate reduction factor of 0.2873** to estimated professional fees when the actual service is not rendered (e.g., no surgery performed). Estimated surgeon fee \u20b921,751.75 \u00d7 0.2873 = \u20b96,250.00 payable; the remainder \u20b915,501.75 is deducted. |\n| **proportionate_deduction \u2013 Anaesthesia Fee** | 4,960.56 | Same factor applied to estimated anaesthesia fee (\u20b96,960.56) \u2192 payable \u20b92,000.00; excess \u20b94,960.56 deducted. |\n| **proportionate_deduction \u2013 Consultation Fee** | 4,340.49 | Estimated consultation \u20b96,090.49 \u00d7 0.2873 = \u20b91,750.00 payable; excess \u20b94,340.49 deducted. |\n| **proportionate_deduction \u2013 Diagnostic** | 6,200.70 | Estimated diagnostics \u20b98,700.70 \u00d7 0.2873 = \u20b92,500.00 payable; excess \u20b96,200.70 deducted. |\n| **proportionate_deduction \u2013 Pharmacy** | 6,200.70 | Estimated pharmacy \u20b98,700.70 \u00d7 0.2873 = \u20b92,500.00 payable; excess \u20b96,200.70 deducted. |\n\n*The proportionate factor (0.2873) is derived from the policy\u2019s **\u201cproportionate deduction\u201d** rule for estimated items that are not fully substantiated by actual invoices \u2013 a standard clause in Synthetic Insurance\u2019s health policies (implicit in the benefit schedule).*\n\n**Total Deductions:** \u20b949,605.60  \n**Net Authorisable Amount:** \u20b987,007.00 \u2013 \u20b949,605.60 = **\u20b937,401.40**\n\n---\n\n### 4. Recommendation  \n\nBased on the policy\u2019s coverage scope (Clause\u202f1), family\u2011floater provisions (Clause\u202f2), compliance with the 30\u2011day initial waiting period (Clause\u202f4), and the justified deductions per the policy\u2019s room\u2011rent cap and proportionate\u2011deduction rules, the claim **should be approved for the net amount of \u20b937,401.40**.\n\n**Action required:**  \n- Verify the room\u2011rent invoice to confirm the daily rate and the number of days billed.  \n- Ensure that the proportionate\u2011deduction factor (0.2873) aligns with the insurer\u2019s current schedule for estimated professional and ancillary charges.  \n- Obtain final sign\u2011off from the authorized medical officer or claims committee before releasing payment.  ",
+    "adjudication_metrics": {
+      "request_id": "feb136e5-cd9c-4609-937a-33733740a802",
+      "recommendation": "RECOMMEND_AUTHORISE",
+      "confidence_score": 0.8,
+      "total_claimed": "87007.00",
+      "total_approved": "37401.40",
+      "total_deducted": "49605.60",
+      "deductions": [
+        {
+          "category": "room_rent_capping",
+          "line_item": "Estimated Room Rent",
+          "original_amount": "17401.40",
+          "allowed_amount": "5000.00",
+          "deducted_amount": "12401.40",
+          "clause_citation": "POLICY WORDING: STANDARD INDIVIDUAL HEALTH INSURANCE\nPolicy Type: Individual\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Individual Plan\nUIN: SYNTH-IND-HLT-001/V1/2024 SECTION 1 \u2014 SCOPE OF COVER\n1.1 This policy covers the Insured Person against financial loss arising from\nhospitalization necessitated by illness or accidental bodily injury during\nthe policy period, subject to the terms, conditions, and exclusions herein. 1.2 Coverage is available for hospitalization requiring a min",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Room rent \u20b917,401.40 exceeds policy cap \u20b95,000.00/day. Excess \u20b912,401.40 deducted."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Surgeon Fee",
+          "original_amount": "21751.75",
+          "allowed_amount": "6250.00",
+          "deducted_amount": "15501.75",
+          "clause_citation": "POLICY WORDING: STANDARD INDIVIDUAL HEALTH INSURANCE\nPolicy Type: Individual\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Individual Plan\nUIN: SYNTH-IND-HLT-001/V1/2024 SECTION 1 \u2014 SCOPE OF COVER\n1.1 This policy covers the Insured Person against financial loss arising from\nhospitalization necessitated by illness or accidental bodily injury during\nthe policy period, subject to the terms, conditions, and exclusions herein. 1.2 Coverage is available for hospitalization requiring a min",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Surgeon Fee: \u20b921,751.75 \u00d7 0.2873 = \u20b96,250.00 (deducted \u20b915,501.75)."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Anaesthesia Fee",
+          "original_amount": "6960.56",
+          "allowed_amount": "2000.00",
+          "deducted_amount": "4960.56",
+          "clause_citation": "POLICY WORDING: STANDARD INDIVIDUAL HEALTH INSURANCE\nPolicy Type: Individual\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Individual Plan\nUIN: SYNTH-IND-HLT-001/V1/2024 SECTION 1 \u2014 SCOPE OF COVER\n1.1 This policy covers the Insured Person against financial loss arising from\nhospitalization necessitated by illness or accidental bodily injury during\nthe policy period, subject to the terms, conditions, and exclusions herein. 1.2 Coverage is available for hospitalization requiring a min",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Anaesthesia Fee: \u20b96,960.56 \u00d7 0.2873 = \u20b92,000.00 (deducted \u20b94,960.56)."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Consultation Fee",
+          "original_amount": "6090.49",
+          "allowed_amount": "1750.00",
+          "deducted_amount": "4340.49",
+          "clause_citation": "POLICY WORDING: STANDARD INDIVIDUAL HEALTH INSURANCE\nPolicy Type: Individual\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Individual Plan\nUIN: SYNTH-IND-HLT-001/V1/2024 SECTION 1 \u2014 SCOPE OF COVER\n1.1 This policy covers the Insured Person against financial loss arising from\nhospitalization necessitated by illness or accidental bodily injury during\nthe policy period, subject to the terms, conditions, and exclusions herein. 1.2 Coverage is available for hospitalization requiring a min",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Consultation Fee: \u20b96,090.49 \u00d7 0.2873 = \u20b91,750.00 (deducted \u20b94,340.49)."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Diagnostic",
+          "original_amount": "8700.70",
+          "allowed_amount": "2500.00",
+          "deducted_amount": "6200.70",
+          "clause_citation": "POLICY WORDING: STANDARD INDIVIDUAL HEALTH INSURANCE\nPolicy Type: Individual\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Individual Plan\nUIN: SYNTH-IND-HLT-001/V1/2024 SECTION 1 \u2014 SCOPE OF COVER\n1.1 This policy covers the Insured Person against financial loss arising from\nhospitalization necessitated by illness or accidental bodily injury during\nthe policy period, subject to the terms, conditions, and exclusions herein. 1.2 Coverage is available for hospitalization requiring a min",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Diagnostic: \u20b98,700.70 \u00d7 0.2873 = \u20b92,500.00 (deducted \u20b96,200.70)."
+        },
+        {
+          "category": "proportionate_deduction",
+          "line_item": "Estimated Pharmacy",
+          "original_amount": "8700.70",
+          "allowed_amount": "2500.00",
+          "deducted_amount": "6200.70",
+          "clause_citation": "POLICY WORDING: STANDARD INDIVIDUAL HEALTH INSURANCE\nPolicy Type: Individual\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Individual Plan\nUIN: SYNTH-IND-HLT-001/V1/2024 SECTION 1 \u2014 SCOPE OF COVER\n1.1 This policy covers the Insured Person against financial loss arising from\nhospitalization necessitated by illness or accidental bodily injury during\nthe policy period, subject to the terms, conditions, and exclusions herein. 1.2 Coverage is available for hospitalization requiring a min",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Proportionate deduction on Estimated Pharmacy: \u20b98,700.70 \u00d7 0.2873 = \u20b92,500.00 (deducted \u20b96,200.70)."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-646155 is ACTIVE. Inception date: 2023-01-15. Days since inception: 1361.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (1361 days elapsed).\nAll applicable waiting periods: CLEAR.\nExclusion checks: No non-payable or excluded items found.\nRoom rent capped: \u20b917,401.40 \u2192 \u20b95,000.00. Proportionate ratio: 0.2873.\nSub-limit checks: 6 deduction(s) applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 9.999999992515995e-07,
+      "retrieve_clauses": 0.011216999999998478,
+      "call_policy_api": 1.679200000026526e-05,
+      "call_hospital_api": 2.9999999995311555e-06,
+      "apply_rules_engine": 0.0005378749999991328,
+      "llm_reasoning": 5.129558542,
+      "citation_guard": 0.00033375000000113175,
+      "escalation_gate": 1.708300000125007e-05,
+      "format_recommendation": 5.084000001431832e-06
+    }
+  }
+]

@@ -1,0 +1,42 @@
+IRDAI GUIDELINES ON POLICYHOLDER GRIEVANCE REDRESSAL
+Circular No.: IRDAI/HLT/REG/GRV/156/06/2021 (as updated by Master Circular 2024)
+Reference: IRDAI/HLT/CIR/MISC/116/05/2024, Chapter XI, Sections 58-62
+Date: 29-May-2024
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — GRIEVANCE CATEGORIES
+1.1 Claim-related grievances:
+    a) Delay in claim settlement beyond 30 days
+    b) Partial claim settlement / short payment
+    c) Claim rejection / repudiation
+    d) Non-compliance with cashless pre-authorisation timelines
+    e) Excessive deductions (non-payable items, proportionate deductions)
+
+1.2 Policy-related grievances:
+    a) Delay in policy issuance or renewal
+    b) Premium-related disputes
+    c) Portability denial or delay
+    d) Mis-selling of policy
+
+SECTION 2 — RESOLUTION TIMELINE
+2.1 The insurer must acknowledge the grievance within 3 working days.
+2.2 The insurer must resolve the grievance within 15 working days of receipt.
+2.3 If the insurer requires additional information, the request must be
+made within 7 days of receiving the grievance. The 15-day resolution clock
+pauses until the policyholder responds.
+
+SECTION 3 — ESCALATION MECHANISM
+3.1 Level 1: Insurer's Grievance Redressal Officer (GRO).
+3.2 Level 2: IRDAI Integrated Grievance Management System (IGMS) —
+    website: igms.irda.gov.in
+3.3 Level 3: Insurance Ombudsman (for claims up to Rs. 30,00,000).
+3.4 Level 4: Consumer Forum / NCDRC (for claims exceeding Rs. 30,00,000).
+
+SECTION 4 — INSURER OBLIGATIONS
+4.1 Every insurer must appoint a designated Grievance Redressal Officer.
+4.2 The GRO's contact details must be displayed on the policy document,
+website, and all claim communication.
+4.3 Monthly grievance statistics must be reported to IRDAI through the
+Centralised Grievance Management System.
+4.4 Persistent non-resolution of grievances (>30 days) may attract
+regulatory action under Section 102 of the Insurance Act, 1938.

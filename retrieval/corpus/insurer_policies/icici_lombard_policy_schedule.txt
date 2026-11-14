@@ -1,0 +1,30 @@
+INSURER POLICY SCHEDULE: ICICI LOMBARD GENERAL INSURANCE
+Insurer: ICICI Lombard General Insurance Co. Ltd.
+IRDAI Registration No.: 115 (General Insurance)
+TPA: In-house (IL TakeCare)
+
+PRODUCT PORTFOLIO:
+1. ICICI Lombard Complete Health Insurance (CHI)
+   - Plan Type: Individual / Family Floater
+   - Sum Insured Options: Rs. 2,50,000 / Rs. 5,00,000 / Rs. 10,00,000 / Rs. 15,00,000 / Rs. 25,00,000 / Rs. 50,00,000
+   - Room Rent: Single Private AC Room for SI >= Rs. 10,00,000. For lower SI: 1% of SI/day.
+   - Co-payment: Nil for Individual (ages < 60). 10% mandatory for Senior (60+).
+   - Ambulance: Rs. 3,000 per hospitalization.
+   - Pre/Post Hospitalization: 60 days pre / 90 days post.
+
+2. ICICI Lombard Health Booster (Top-Up)
+   - Deductible Options: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Sum Insured: Rs. 10,00,000 / Rs. 25,00,000 / Rs. 50,00,000
+   - No room rent sub-limit. No co-payment.
+   - Waiting periods start fresh (not ported from base plan).
+
+3. ICICI Lombard Group Health Insurance
+   - Plan Type: Group (Corporate)
+   - Sum Insured: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000 per employee
+   - Initial waiting period: Waived
+   - PED waiting period: Waived for groups with 250+ lives
+   - Room Rent: Single occupancy room (no sub-limit) for SI >= Rs. 5L
+   - Maternity: Optional add-on, Rs. 50,000 normal / Rs. 75,000 C-section
+
+NETWORK: 10,500+ network hospitals.
+Cashless Pre-Auth TAT: 45 minutes for emergencies, 4 hours for planned.

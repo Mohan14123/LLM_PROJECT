@@ -1,0 +1,51 @@
+PROCEDURE GUIDELINES: TYPE 2 DIABETES MELLITUS — INPATIENT MANAGEMENT (ICD-10: E11)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Inpatient admission for diabetes is covered ONLY when the patient
+requires hospitalization for acute glycemic emergencies or complications:
+    a) Diabetic ketoacidosis (DKA) — ICD-10: E11.10
+    b) Hyperosmolar hyperglycemic state (HHS) — ICD-10: E11.00
+    c) Severe hypoglycemia requiring IV dextrose — ICD-10: E11.649
+    d) Diabetic foot with infection requiring IV antibiotics — ICD-10: E11.621
+    e) Glycemic stabilization requiring continuous insulin infusion monitoring
+1.2 Routine diabetes management (OPD consultations, HbA1c monitoring,
+oral hypoglycemics) is NOT covered under indemnity hospitalization plans.
+1.3 Procedure code: PROC-MED-E11 (inpatient diabetic stabilization and
+multidisciplinary monitoring).
+
+2. SUB-LIMITS
+2.1 No disease-specific sub-limit for diabetic emergency admission —
+covered under overall Sum Insured.
+2.2 ICU charges (for DKA/HHS requiring critical care): Subject to plan ICU
+sub-limits (2% of Sum Insured per day).
+2.3 Insulin and injectable medications during hospitalization: Fully covered.
+2.4 Continuous Glucose Monitoring (CGM) device during hospital stay: Covered
+as an inpatient consumable. CGM sensors for home use — NOT covered.
+
+3. WAITING PERIOD
+3.1 Type 2 Diabetes Mellitus (E11) is almost always a Pre-Existing Disease
+if diagnosed prior to policy inception. Standard 48-month PED waiting
+period applies.
+3.2 If diabetes is first diagnosed DURING the policy period (new onset),
+the initial 30-day waiting period applies (waived for emergency DKA/HHS).
+3.3 Diabetic complications (retinopathy, nephropathy, neuropathy) arising
+from pre-existing diabetes are subject to PED waiting period even if the
+complication itself manifests after policy inception.
+3.4 Group Plans: PED waiting period may be reduced to 12 months (500+ lives).
+3.5 Moratorium: After 8 continuous policy years, diabetes as PED cannot be
+contested except for proven fraud.
+
+4. NON-PAYABLE ITEMS
+4.1 Glucometer and test strips for home use — non-payable (DME).
+4.2 Insulin pens, insulin pump supplies for home use — non-payable.
+4.3 Diabetic footwear and orthotics — non-payable.
+4.4 Dietary counselling / diabetic diet consultation (outpatient) — non-payable.
+4.5 HbA1c and routine blood sugar tests done on OPD basis — non-payable.
+
+5. SPECIAL CONDITIONS
+5.1 Diabetic Retinopathy Treatment: Covered as a daycare procedure (laser
+photocoagulation / anti-VEGF injection). Subject to Cataract-equivalent
+sub-limits if combined with cataract surgery.
+5.2 Diabetic Nephropathy progressing to ESRD: Falls under ESRD/hemodialysis
+guidelines (reference: esrd_hemodialysis_guidelines.txt).

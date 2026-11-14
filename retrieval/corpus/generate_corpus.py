@@ -1,8 +1,8 @@
 """
 retrieval/corpus/generate_corpus.py
 ------------------------------------
-Generates synthetic policy wordings, benefit tables, and IRDAI circular
-excerpts for the retrieval pipeline.
+Generates synthetic policy wordings, benefit tables, IRDAI circular excerpts,
+and insurer-specific policy documents for the retrieval pipeline.
 
 This script creates the knowledge base that the FAISS vector store indexes.
 All documents are synthetic — no real policyholder data (Guardrail #3).
@@ -10,9 +10,10 @@ Every IRDAI reference includes circular number + date (Guardrail #6).
 
 Corpus Structure:
     retrieval/corpus/
-    ├── policy_wordings/     → 8 policy wording docs (one per clinical scenario)
+    ├── policy_wordings/     → 14 policy wording docs (plan types + procedure guidelines)
     ├── benefit_tables/      → 4 benefit schedule documents
-    └── irdai_circulars/     → 3 IRDAI regulatory excerpts
+    ├── irdai_circulars/     → 8 IRDAI regulatory excerpts
+    └── insurer_policies/    → 8 insurer-specific policy schedule documents
 
 Usage:
     python -m retrieval.corpus.generate_corpus
@@ -360,6 +361,288 @@ ischaemic heart disease prior to policy inception (4-year exclusion).
 4.1 External cardiac monitoring devices post-discharge — non-payable.
 4.2 Cardiac rehabilitation program fees — non-payable under standard plans.
 """,
+
+    "appendicitis_procedure_guidelines.txt": """PROCEDURE GUIDELINES: APPENDICITIS (ICD-10: K35, K36, K37)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Acute appendicitis (K35.80, K35.20, K35.30) is covered as an Emergency
+hospitalization. Pre-authorisation request must be submitted within 24 hours
+of admission for cashless facility.
+1.2 Procedures covered: Laparoscopic appendectomy (CPT-44970), open
+appendectomy (CPT-44950), interval appendectomy for recurrent appendicitis.
+1.3 Chronic / recurrent appendicitis (K36) is classified as a Planned
+admission and requires pre-authorisation at least 48 hours prior.
+
+2. SUB-LIMITS
+2.1 No disease-specific sub-limit for appendicitis — covered under the
+overall Sum Insured.
+2.2 Room Rent: Standard plan-level room rent sub-limits apply (reference:
+room_rent_schedule.txt).
+2.3 Surgeon Fee: Covered as per the plan's normal admissible limits. No
+separate surgeon fee cap for appendectomy.
+2.4 Anaesthesia: General anaesthesia charges covered. Epidural/regional
+anaesthesia for laparoscopic approach also covered.
+
+3. WAITING PERIOD
+3.1 No specific disease waiting period for appendicitis (not listed in the
+24-month waiting period schedule per IRDAI standardised definitions).
+3.2 Initial 30-day waiting period applies (except for emergency admissions
+arising from acute appendicitis, which are exempt from initial waiting period).
+3.3 PED provisions: Appendicitis is not typically a pre-existing disease.
+If a patient has documented history of recurrent appendicitis prior to
+policy inception, PED waiting period of 48 months applies.
+
+4. NON-PAYABLE ITEMS
+4.1 Abdominal binder / belt post-surgery — non-payable (List I consumable).
+4.2 Take-home medications beyond the discharge prescription — non-payable.
+4.3 Drain tubes (if used for complicated appendicitis) — payable as a
+procedure-integral consumable.
+
+5. SPECIAL CONDITIONS
+5.1 Gangrenous / perforated appendicitis (K35.20, K35.30): These complicated
+presentations may require extended ICU stay and IV antibiotics. ICU charges
+are subject to plan ICU sub-limits.
+5.2 Incidental appendectomy performed during another surgical procedure is
+NOT separately payable — it is included in the primary surgical claim.
+""",
+
+    "knee_replacement_procedure_guidelines.txt": """PROCEDURE GUIDELINES: KNEE REPLACEMENT — OSTEOARTHRITIS (ICD-10: M17)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Total Knee Arthroplasty (TKA) and Unicompartmental Knee Arthroplasty
+(UKA) are covered as Planned hospitalization procedures.
+1.2 Pre-authorisation must be submitted at least 72 hours prior to admission.
+1.3 Procedures covered: Total knee replacement (CPT-27447), partial/
+unicompartmental knee replacement (CPT-27446), revision knee replacement
+(CPT-27487).
+1.4 Bilateral TKA in a single sitting is covered as a single claim event.
+The total payable shall not exceed 1.5x the sub-limit for a single knee.
+
+2. SUB-LIMITS
+2.1 Individual and Family Floater Plans: Maximum Rs. 1,50,000 per knee.
+2.2 Senior Citizen Plans: Maximum Rs. 1,50,000 per knee.
+2.3 Group Plans (100+ lives): No sub-limit — covered under overall Sum Insured.
+2.4 Implant Cost (knee prosthesis): Capped at NPPA ceiling price of
+Rs. 54,720 per total knee replacement implant. Any charge by the hospital
+exceeding the NPPA cap is borne by the insured.
+2.5 Physiotherapy: Post-operative inpatient physiotherapy is covered for the
+duration of hospitalization. Outpatient physiotherapy post-discharge is
+NOT covered under standard plans.
+
+3. WAITING PERIOD
+3.1 Subject to 24-month Specific Disease Waiting Period from first policy
+inception (Gonarthrosis M17 is a listed condition).
+3.2 Pre-Existing Disease: If the patient has documented osteoarthritis prior
+to policy inception, the 48-month PED waiting period applies.
+3.3 Moratorium: After 8 continuous years, no PED contestability applies.
+3.4 Group Plans with 100+ lives: Specific disease waiting period waived.
+Group Plans with 500+ lives: PED waiting period reduced to 12 months.
+
+4. NON-PAYABLE ITEMS
+4.1 Knee brace / immobilizer post-surgery — non-payable (external DME).
+4.2 Walking aids (walker, crutches) — non-payable unless specifically
+covered under the policy endorsement.
+4.3 Compression stockings (DVT prophylaxis) — non-payable (List III).
+4.4 CPM (Continuous Passive Motion) machine rental — non-payable under
+standard plans, may be covered under enhanced / corporate plans.
+""",
+
+    "pneumonia_procedure_guidelines.txt": """PROCEDURE GUIDELINES: PNEUMONIA — INPATIENT MANAGEMENT (ICD-10: J12-J18)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Pneumonia requiring inpatient hospitalization (minimum 24 hours) is
+covered. Community-acquired pneumonia (J18.9), bacterial pneumonia (J15),
+viral pneumonia (J12), and aspiration pneumonia (J69) are all covered.
+1.2 This is a medical (non-surgical) admission — classified as Emergency
+for acute respiratory distress or Planned for step-down management.
+1.3 No specific procedure code — coded as PROC-MED-CON (inpatient
+conservative medical management).
+1.4 Treatment components covered: IV antibiotics, oxygen therapy, nebulization,
+chest physiotherapy, diagnostic imaging (chest X-ray, CT thorax), blood
+cultures, sputum analysis, ABG analysis.
+
+2. SUB-LIMITS
+2.1 No disease-specific sub-limit — covered under overall Sum Insured.
+2.2 Room Rent: Standard plan-level room rent sub-limits apply.
+2.3 ICU Charges: If the patient requires ICU/MICU admission (e.g., for
+mechanical ventilation, non-invasive ventilation, or severe hypoxia),
+ICU charges are subject to plan-level ICU sub-limits (typically 2% of
+Sum Insured per day).
+2.4 Ventilator charges (mechanical ventilation): Covered during ICU stay
+as part of ICU bundled charges.
+
+3. WAITING PERIOD
+3.1 No specific disease waiting period for pneumonia — it is an acute
+infectious condition, not a listed specific disease.
+3.2 Initial 30-day waiting period applies, EXCEPT for emergency admissions
+(acute pneumonia with respiratory distress qualifies as emergency).
+3.3 PED provisions: If the patient has a documented chronic lung condition
+(COPD, asthma, ILD) that predisposed them to recurrent pneumonia, the
+insurer may invoke PED waiting period on the underlying chronic condition.
+
+4. NON-PAYABLE ITEMS
+4.1 Pulse oximeter for home monitoring post-discharge — non-payable (DME).
+4.2 Incentive spirometer for home use — non-payable.
+4.3 Nebulizer machine for home use — non-payable (DME).
+4.4 Take-home oxygen concentrator or cylinder — non-payable under standard
+plans. May be covered under critical illness rider if applicable.
+""",
+
+    "esrd_hemodialysis_guidelines.txt": """PROCEDURE GUIDELINES: END STAGE RENAL DISEASE — HEMODIALYSIS (ICD-10: N18.5, N18.6)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Maintenance hemodialysis for End Stage Renal Disease (ESRD) is covered
+as a Day Care Procedure (Annexure A, Item 32). No 24-hour hospitalization
+requirement.
+1.2 Procedures covered: Hemodialysis session (CPT-90935), hemofiltration,
+hemodiafiltration, peritoneal dialysis initiation.
+1.3 AV fistula creation (CPT-36825) for permanent vascular access is a
+separately payable inpatient/daycare surgical procedure.
+1.4 Temporary dialysis catheter insertion is covered as part of the dialysis
+session charges.
+
+2. SUB-LIMITS
+2.1 Individual and Family Floater Plans: Maximum Rs. 2,000 per dialysis
+session (inclusive of dialyzer, bloodlines, heparin, saline).
+2.2 Annual Session Limit: Maximum 24 sessions per policy year for Individual/
+FF/SC plans. Group plans may cover unlimited sessions subject to Sum Insured.
+2.3 Senior Citizen Plans: Rs. 2,000 per session, 24 sessions/year.
+2.4 Group Plans: Per-session limit may be waived for groups with 500+ lives.
+2.5 EPO (Erythropoietin) injections: Covered up to Rs. 1,500 per injection,
+maximum 12 injections per policy year.
+
+3. WAITING PERIOD
+3.1 ESRD and chronic kidney disease (CKD Stage 3-5) are considered
+pre-existing diseases if diagnosed prior to policy inception. Standard
+48-month PED waiting period applies.
+3.2 If CKD progresses to ESRD during the policy period (i.e., first
+diagnosed with CKD after policy inception), the specific disease waiting
+period of 24 months applies from the date of CKD diagnosis.
+3.3 Group Plans (500+ lives): PED waiting period reduced to 12 months.
+3.4 Moratorium: After 8 continuous policy years, PED is no longer contestable.
+
+4. NON-PAYABLE ITEMS
+4.1 Home hemodialysis machine and supplies — non-payable under standard plans.
+4.2 Dietary supplements (renal vitamins, phosphate binders taken at home) — non-payable.
+4.3 Transportation to/from dialysis centre — non-payable.
+4.4 Dialyzer reuse charges (if the centre reprocesses dialyzers) — non-payable.
+
+5. SPECIAL CONDITIONS
+5.1 Kidney Transplant: If the patient undergoes a kidney transplant, the
+transplant surgery itself is covered under the overall Sum Insured (subject
+to plan limits). Post-transplant immunosuppressant medications are covered
+for the duration of hospitalization only; outpatient immunosuppressants are
+NOT covered under standard indemnity plans.
+5.2 AV Fistula complications (thrombosis, stenosis requiring balloon
+angioplasty or surgical revision) — covered as a separate daycare claim.
+""",
+
+    "diabetes_management_guidelines.txt": """PROCEDURE GUIDELINES: TYPE 2 DIABETES MELLITUS — INPATIENT MANAGEMENT (ICD-10: E11)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Inpatient admission for diabetes is covered ONLY when the patient
+requires hospitalization for acute glycemic emergencies or complications:
+    a) Diabetic ketoacidosis (DKA) — ICD-10: E11.10
+    b) Hyperosmolar hyperglycemic state (HHS) — ICD-10: E11.00
+    c) Severe hypoglycemia requiring IV dextrose — ICD-10: E11.649
+    d) Diabetic foot with infection requiring IV antibiotics — ICD-10: E11.621
+    e) Glycemic stabilization requiring continuous insulin infusion monitoring
+1.2 Routine diabetes management (OPD consultations, HbA1c monitoring,
+oral hypoglycemics) is NOT covered under indemnity hospitalization plans.
+1.3 Procedure code: PROC-MED-E11 (inpatient diabetic stabilization and
+multidisciplinary monitoring).
+
+2. SUB-LIMITS
+2.1 No disease-specific sub-limit for diabetic emergency admission —
+covered under overall Sum Insured.
+2.2 ICU charges (for DKA/HHS requiring critical care): Subject to plan ICU
+sub-limits (2% of Sum Insured per day).
+2.3 Insulin and injectable medications during hospitalization: Fully covered.
+2.4 Continuous Glucose Monitoring (CGM) device during hospital stay: Covered
+as an inpatient consumable. CGM sensors for home use — NOT covered.
+
+3. WAITING PERIOD
+3.1 Type 2 Diabetes Mellitus (E11) is almost always a Pre-Existing Disease
+if diagnosed prior to policy inception. Standard 48-month PED waiting
+period applies.
+3.2 If diabetes is first diagnosed DURING the policy period (new onset),
+the initial 30-day waiting period applies (waived for emergency DKA/HHS).
+3.3 Diabetic complications (retinopathy, nephropathy, neuropathy) arising
+from pre-existing diabetes are subject to PED waiting period even if the
+complication itself manifests after policy inception.
+3.4 Group Plans: PED waiting period may be reduced to 12 months (500+ lives).
+3.5 Moratorium: After 8 continuous policy years, diabetes as PED cannot be
+contested except for proven fraud.
+
+4. NON-PAYABLE ITEMS
+4.1 Glucometer and test strips for home use — non-payable (DME).
+4.2 Insulin pens, insulin pump supplies for home use — non-payable.
+4.3 Diabetic footwear and orthotics — non-payable.
+4.4 Dietary counselling / diabetic diet consultation (outpatient) — non-payable.
+4.5 HbA1c and routine blood sugar tests done on OPD basis — non-payable.
+
+5. SPECIAL CONDITIONS
+5.1 Diabetic Retinopathy Treatment: Covered as a daycare procedure (laser
+photocoagulation / anti-VEGF injection). Subject to Cataract-equivalent
+sub-limits if combined with cataract surgery.
+5.2 Diabetic Nephropathy progressing to ESRD: Falls under ESRD/hemodialysis
+guidelines (reference: esrd_hemodialysis_guidelines.txt).
+""",
+
+    "gallstones_cholecystectomy_guidelines.txt": """PROCEDURE GUIDELINES: GALLSTONES — CHOLECYSTECTOMY (ICD-10: K80)
+Applicable to all plan types under Synthetic Insurance Co. Ltd.
+
+1. COVERAGE CRITERIA
+1.1 Cholelithiasis (gallstones) requiring surgical intervention is covered
+as a Planned hospitalization. Pre-authorisation required 48-72 hours prior.
+1.2 Procedures covered: Laparoscopic cholecystectomy (CPT-47562), open
+cholecystectomy (CPT-47600), ERCP with stone extraction (CPT-43264) for
+choledocholithiasis (common bile duct stones).
+1.3 Acute cholecystitis (K81.0) with emergency presentation is covered as
+Emergency hospitalization — pre-authorisation within 24 hours.
+1.4 ERCP as a standalone daycare procedure (for CBD stone extraction without
+cholecystectomy) is covered under Day Care Procedures (Annexure A).
+
+2. SUB-LIMITS
+2.1 No disease-specific sub-limit for cholecystectomy — covered under
+overall Sum Insured for all plan types.
+2.2 Room Rent: Standard plan-level room rent sub-limits apply.
+2.3 Surgical consumables (trocars, harmonic scalpel/LigaSure, clip
+appliers): Covered as procedure-integral items.
+2.4 Intraoperative cholangiogram (if performed): Covered as part of the
+surgical procedure charges.
+
+3. WAITING PERIOD
+3.1 Cholelithiasis (K80) is a LISTED condition subject to the 24-month
+Specific Disease Waiting Period from first policy inception.
+3.2 If gallstones are documented prior to policy inception, the 48-month
+PED waiting period applies.
+3.3 Emergency cholecystectomy for acute cholecystitis: The specific disease
+waiting period still applies even for emergency presentation, UNLESS
+the condition was first diagnosed after policy inception AND 24 months have
+elapsed since inception.
+3.4 Group Plans with 100+ lives: Specific disease waiting period waived.
+Group Plans with 500+ lives: PED waiting period reduced to 12 months.
+
+4. NON-PAYABLE ITEMS
+4.1 Abdominal binder post-surgery — non-payable (List I consumable).
+4.2 Ursodeoxycholic acid (UDCA) prescribed for home use post-discharge — non-payable.
+4.3 Drain bags (if surgical drain placed) — payable if used during
+hospitalization; non-payable for home drain care supplies.
+
+5. SPECIAL CONDITIONS
+5.1 Incidental gallstones: If gallstones are discovered incidentally during
+imaging for another condition and cholecystectomy is performed electively,
+the claim is subject to the 24-month waiting period.
+5.2 Combined procedures (e.g., cholecystectomy with hernia repair): Payable
+as a single composite claim. The higher of the two procedure charges applies
+for surgeon fee computation.
+""",
 }
 
 # ============================================================================
@@ -652,17 +935,552 @@ REGULATORY COMPLIANCE REQUIREMENTS:
    rests with the insurer's authorized medical officer or claims
    team. Automated systems shall not auto-approve or auto-deny claims.
 """,
+
+    "irdai_portability_guidelines.txt": """IRDAI GUIDELINES ON HEALTH INSURANCE PORTABILITY
+Circular No.: IRDAI/HLT/REG/CIR/222/11/2020 (as updated by Master Circular 2024)
+Date: 01-November-2020 (last updated 29-May-2024)
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — PORTABILITY FRAMEWORK
+1.1 Definition: Portability means the right accorded to an individual health
+insurance policyholder (including family floater) to transfer the credit
+gained for pre-existing conditions and time-bound exclusions from one insurer
+to another insurer or from one plan to another plan of the same insurer.
+
+1.2 Eligibility: The policyholder must apply for portability at least 45 days
+before and not later than the date of premium renewal.
+
+1.3 Data Exchange: The previous insurer must provide the portability data
+(claims history, waiting period credits, policy tenure) through the
+Insurance Information Bureau (IIB) within 7 working days of receiving
+the porting request.
+
+SECTION 2 — WAITING PERIOD CREDITS
+2.1 The new insurer shall give credit for the waiting periods already served
+under the previous policy, provided there is continuous coverage without
+a break.
+
+2.2 Specific Disease Waiting Period Credit: If the insured has completed
+18 months under the previous insurer, the remaining 6 months of the
+24-month specific disease waiting period shall be carried forward.
+
+2.3 PED Waiting Period Credit: If the insured has completed 36 months of the
+48-month PED waiting period, only 12 months remain under the new insurer.
+
+2.4 If the insured has completed the full waiting period under the previous
+insurer (e.g., 48 months for PED), the new insurer CANNOT reimpose any
+waiting period for the same condition.
+
+SECTION 3 — RESTRICTIONS
+3.1 Portability credit is limited to the Sum Insured of the previous policy.
+Any enhancement in Sum Insured under the new policy is subject to fresh
+underwriting and waiting periods on the incremental amount.
+
+3.2 Portability is not available for group health insurance policies
+transitioning to individual policies (different product category).
+
+3.3 The new insurer cannot deny portability on the grounds of claims history
+or pre-existing conditions of the insured.
+
+SECTION 4 — COMPLIANCE
+4.1 Insurers must honour portability requests within 15 days of receipt
+of complete documentation from the previous insurer via IIB.
+4.2 Failure to process portability within the stipulated timeline may attract
+regulatory action under Section 102 of the Insurance Act, 1938.
+""",
+
+    "irdai_standardized_exclusions.txt": """IRDAI GUIDELINES ON STANDARDIZED EXCLUSIONS IN HEALTH INSURANCE
+Circular No.: IRDAI/HLT/REG/CIR/XXX/09/2019 (as updated by Master Circular 2024)
+Reference: IRDAI/HLT/CIR/MISC/116/05/2024, Chapter VIII, Sections 45-51
+Date: 29-May-2024
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — PERMANENT EXCLUSIONS (NON-WAIVABLE)
+The following conditions are permanently excluded from all health insurance
+policies and cannot be covered under any endorsement or rider:
+
+1.1 Cosmetic or aesthetic treatment or surgery (unless necessitated by an
+accident or as a part of medically necessary reconstruction).
+1.2 Treatment for change of gender / sex reassignment surgery.
+1.3 Treatment for alcoholism, drug or substance abuse or misuse.
+1.4 Self-inflicted injuries, attempted suicide (whether sane or insane at
+the time of the attempt), or self-destructive behaviour.
+1.5 War, invasion, act of foreign enemy, warlike operations (whether war be
+declared or not), civil war, rebellion, revolution, insurrection.
+1.6 Nuclear, chemical, or biological contamination, radioactive exposure.
+1.7 Hazardous or adventure sports (unless specifically endorsed for coverage
+at additional premium).
+1.8 Treatment received outside India (unless covered under a specific
+international coverage rider).
+1.9 Expenses related to donor treatment in organ transplant cases (unless
+specifically covered under the policy).
+
+SECTION 2 — TIME-BOUND EXCLUSIONS
+2.1 Initial Waiting Period (30 days): No claim for any illness (except
+accidental injuries) during the first 30 days from policy inception.
+2.2 Specific Disease Waiting Period (24 months): Listed diseases including
+cataract, hernia, BPH, gallstones, kidney stones, knee OA, sinusitis,
+haemorrhoids, glaucoma, and internal congenital anomalies.
+2.3 Pre-Existing Disease Waiting Period (48 months): Any condition diagnosed
+or treated within 48 months prior to policy inception.
+2.4 Maternity Waiting Period (typically 36 months for Individual/FF plans).
+
+SECTION 3 — CONDITIONAL EXCLUSIONS
+3.1 Dental treatment: Excluded unless necessitated by accidental injury
+requiring hospitalization.
+3.2 Convalescence, general debility, or congenital external defects/anomalies.
+3.3 Sterility and infertility: Excluded unless covered under a specific
+fertility rider (available at additional premium).
+3.4 Obesity / weight management: Excluded unless morbid obesity (BMI > 40)
+requiring bariatric surgery with documented medical necessity.
+3.5 Vaccination and inoculation: Excluded unless post-animal-bite prophylaxis
+requiring hospitalization.
+
+SECTION 4 — INSURER OBLIGATIONS
+4.1 Insurers must clearly communicate all exclusions in the policy document
+in simple, understandable language.
+4.2 Exclusions not listed in the IRDAI-standardized exclusion list cannot
+be applied by insurers.
+4.3 Any claim denied on the basis of an exclusion must cite the specific
+exclusion clause with reference to IRDAI standardization.
+""",
+
+    "irdai_telemedicine_guidelines.txt": """IRDAI GUIDELINES ON TELEMEDICINE IN HEALTH INSURANCE
+Circular No.: IRDAI/HLT/MISC/CIR/237/03/2020 (as updated by Master Circular 2024)
+Reference: IRDAI/HLT/CIR/MISC/116/05/2024, Chapter X, Section 55
+Date: 29-May-2024
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — RECOGNITION OF TELEMEDICINE CONSULTATIONS
+1.1 As per the Telemedicine Practice Guidelines (2020) issued by the Board
+of Governors in supersession of the Medical Council of India, telemedicine
+consultations are recognized as valid medical consultations.
+
+1.2 A prescription issued through a telemedicine consultation by a Registered
+Medical Practitioner (RMP) shall be considered equivalent to a physical
+consultation for the purpose of health insurance claims.
+
+1.3 Pre-hospitalisation expenses incurred through telemedicine (teleconsultation
+fees, diagnostics ordered via teleconsultation) are admissible under the
+pre-hospitalisation coverage period (typically 30-60 days prior to admission).
+
+SECTION 2 — COVERAGE OF TELEMEDICINE IN PRE-AUTHORISATION
+2.1 Telemedicine consultations used to diagnose or recommend hospitalization
+are valid for pre-authorisation purposes.
+2.2 The telemedicine prescription/referral must include:
+    a) Name and registration number of the treating doctor
+    b) Date and mode of consultation (video/audio/chat)
+    c) Diagnosis and recommendation for hospitalization
+    d) Unique teleconsultation ID (as per NMC guidelines)
+
+2.3 Insurers cannot deny pre-authorisation solely on the basis that the
+initial consultation was conducted via telemedicine.
+
+SECTION 3 — LIMITATIONS
+3.1 Telemedicine consultation fees for routine OPD management (not leading
+to hospitalization) are NOT covered under standard indemnity plans.
+3.2 Post-discharge teleconsultation follow-ups are admissible under the
+post-hospitalisation expense coverage period (typically 60-90 days).
+3.3 Mental health teleconsultation: Admissible if leading to documented
+psychiatric hospitalization meeting the 24-hour inpatient requirement.
+""",
+
+    "irdai_grievance_redressal.txt": """IRDAI GUIDELINES ON POLICYHOLDER GRIEVANCE REDRESSAL
+Circular No.: IRDAI/HLT/REG/GRV/156/06/2021 (as updated by Master Circular 2024)
+Reference: IRDAI/HLT/CIR/MISC/116/05/2024, Chapter XI, Sections 58-62
+Date: 29-May-2024
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — GRIEVANCE CATEGORIES
+1.1 Claim-related grievances:
+    a) Delay in claim settlement beyond 30 days
+    b) Partial claim settlement / short payment
+    c) Claim rejection / repudiation
+    d) Non-compliance with cashless pre-authorisation timelines
+    e) Excessive deductions (non-payable items, proportionate deductions)
+
+1.2 Policy-related grievances:
+    a) Delay in policy issuance or renewal
+    b) Premium-related disputes
+    c) Portability denial or delay
+    d) Mis-selling of policy
+
+SECTION 2 — RESOLUTION TIMELINE
+2.1 The insurer must acknowledge the grievance within 3 working days.
+2.2 The insurer must resolve the grievance within 15 working days of receipt.
+2.3 If the insurer requires additional information, the request must be
+made within 7 days of receiving the grievance. The 15-day resolution clock
+pauses until the policyholder responds.
+
+SECTION 3 — ESCALATION MECHANISM
+3.1 Level 1: Insurer's Grievance Redressal Officer (GRO).
+3.2 Level 2: IRDAI Integrated Grievance Management System (IGMS) —
+    website: igms.irda.gov.in
+3.3 Level 3: Insurance Ombudsman (for claims up to Rs. 30,00,000).
+3.4 Level 4: Consumer Forum / NCDRC (for claims exceeding Rs. 30,00,000).
+
+SECTION 4 — INSURER OBLIGATIONS
+4.1 Every insurer must appoint a designated Grievance Redressal Officer.
+4.2 The GRO's contact details must be displayed on the policy document,
+website, and all claim communication.
+4.3 Monthly grievance statistics must be reported to IRDAI through the
+Centralised Grievance Management System.
+4.4 Persistent non-resolution of grievances (>30 days) may attract
+regulatory action under Section 102 of the Insurance Act, 1938.
+""",
+
+    "irdai_fraud_prevention_guidelines.txt": """IRDAI GUIDELINES ON FRAUD MONITORING AND PREVENTION IN HEALTH INSURANCE
+Circular No.: IRDAI/HLT/CIR/FRD/189/08/2022 (as updated by Master Circular 2024)
+Reference: IRDAI/HLT/CIR/MISC/116/05/2024, Chapter XII, Sections 63-68
+Date: 29-May-2024
+Source: Insurance Regulatory and Development Authority of India (IRDAI)
+
+SECTION 1 — FRAUD CATEGORIES
+1.1 Policyholder/Insured Fraud:
+    a) Non-disclosure or misrepresentation of pre-existing diseases
+    b) Fabricated or exaggerated claims
+    c) Impersonation (claiming under another person's policy)
+    d) Staged accidents or self-inflicted injuries presented as accidental
+
+1.2 Hospital/Provider Fraud:
+    a) Billing for services or procedures not rendered (phantom billing)
+    b) Upcoding — billing for a more expensive procedure than performed
+    c) Unbundling — separately billing components of a bundled procedure
+    d) Unnecessary hospitalization (patient admitted for conditions treatable
+       on OPD basis solely to generate insurance claims)
+    e) Inflated room charges, consumable charges, or investigation charges
+
+1.3 Intermediary/TPA Fraud:
+    a) Manipulation of claim documents or pre-authorisation recommendations
+    b) Collusion with hospitals for claim inflation
+
+SECTION 2 — RED FLAGS FOR AUTOMATED DETECTION
+2.1 Cost outliers: Claim amount exceeds 2x the median cost for the same
+procedure and hospital category in the same city.
+2.2 Frequency outliers: More than 3 claims from the same policy in a
+12-month period (excluding chronic/maintenance treatments).
+2.3 Temporal anomalies: Admission within 48 hours of policy issuance/renewal.
+2.4 Diagnosis-procedure mismatch: Procedure code does not clinically
+correspond to the ICD-10 diagnosis code.
+2.5 Multiple policies: Same patient claiming for the same treatment under
+multiple active policies from different insurers.
+
+SECTION 3 — INVESTIGATION PROTOCOL
+3.1 Claims flagged for fraud must be investigated by the insurer's in-house
+investigation team or empanelled investigation agency within 30 days.
+3.2 The insured must be given a fair hearing and opportunity to present
+evidence before a final fraud determination.
+3.3 The insurer cannot deny a claim solely based on automated fraud scores —
+human review is mandatory (Guardrail #1: recommend-only for automated systems).
+
+SECTION 4 — CONSEQUENCES
+4.1 Proven policyholder fraud: Policy voidable ab initio with forfeiture
+of all premiums paid. Criminal prosecution under Section 420 IPC.
+4.2 Proven provider fraud: De-empanelment from the insurer's network,
+reporting to IIB and IRDAI, and potential criminal prosecution.
+4.3 Fraud data must be reported to the Insurance Information Bureau (IIB)
+for industry-wide sharing and pattern detection.
+
+SECTION 5 — GUARDRAILS FOR AUTOMATED SYSTEMS
+5.1 Automated fraud detection systems must operate in "flag-and-refer" mode.
+5.2 No claim shall be auto-denied based solely on automated fraud scores.
+5.3 The fraud investigation findings must be documented with evidence trail
+and communicated to the insured in writing within 45 days.
+""",
+}
+
+# ============================================================================
+# Insurer-Specific Policy Schedules
+# ============================================================================
+
+INSURER_POLICIES = {
+    "star_health_policy_schedule.txt": """INSURER POLICY SCHEDULE: STAR HEALTH & ALLIED INSURANCE
+Insurer: Star Health & Allied Insurance Co. Ltd.
+IRDAI Registration No.: 129 (Standalone Health Insurance)
+TPA: In-house claims processing (no external TPA)
+
+PRODUCT PORTFOLIO:
+1. Star Comprehensive Insurance Policy
+   - Plan Type: Individual / Family Floater
+   - Sum Insured Options: Rs. 5,00,000 / Rs. 10,00,000 / Rs. 15,00,000 / Rs. 25,00,000
+   - Room Rent: No sub-limit for SI >= Rs. 10,00,000. For lower SI: 1% of SI/day.
+   - Co-payment: Nil for ages below 60. 20% for ages 60+.
+   - Ambulance: Rs. 2,500 per hospitalization.
+
+2. Star Health Senior Citizens Red Carpet Policy
+   - Entry Age: 60-75 years (renewable lifelong)
+   - Sum Insured: Rs. 1,00,000 / Rs. 2,00,000 / Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Mandatory Co-payment: 30% for SI up to Rs. 3,00,000; 20% for higher SI.
+   - Room Rent: Rs. 4,000/day for SI up to Rs. 3L; Rs. 6,000/day for higher SI.
+   - Cataract Sub-limit: Rs. 40,000 per eye.
+
+3. Star Cardiac Care Insurance Policy
+   - Specialized cardiac-only plan
+   - Covers STEMI, CABG, angioplasty, valve replacement
+   - No waiting period for cardiac emergencies
+   - Stent cap: NPPA ceiling (Rs. 30,000 DES / Rs. 7,000 BMS)
+
+NETWORK: 14,000+ network hospitals across India.
+Cashless Pre-Auth TAT: 30 minutes for emergencies, 2 hours for planned.
+""",
+
+    "hdfc_ergo_policy_schedule.txt": """INSURER POLICY SCHEDULE: HDFC ERGO GENERAL INSURANCE
+Insurer: HDFC ERGO General Insurance Co. Ltd.
+IRDAI Registration No.: 146 (General Insurance)
+TPA: Medi Assist Insurance TPA Pvt. Ltd. / In-house
+
+PRODUCT PORTFOLIO:
+1. Optima Restore
+   - Plan Type: Individual / Family Floater
+   - Sum Insured Options: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000 / Rs. 15,00,000 / Rs. 25,00,000 / Rs. 50,00,000
+   - Restore Benefit: 100% Sum Insured restored if fully utilized (for unrelated illness).
+   - Room Rent: No sub-limit for SI >= Rs. 10,00,000. For lower SI: 1% of SI/day.
+   - Co-payment: Nil for ages below 55. 10% for 55-64. 20% for 65+.
+   - No Claim Bonus: 50% cumulative bonus for each claim-free year (max 100%).
+
+2. Optima Senior
+   - Entry Age: 60-75 years
+   - Sum Insured: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Mandatory Co-payment: 20% (non-waivable).
+   - Room Rent: Rs. 5,000/day for SI up to Rs. 5L. No limit for higher SI.
+   - Domiciliary Hospitalization: Covered up to Rs. 50,000/year for SI >= Rs. 5L.
+
+3. HDFC ERGO My:Health Suraksha
+   - Plan Type: Individual
+   - Sum Insured: Rs. 3,00,000 to Rs. 75,00,000
+   - Silver / Gold / Platinum tiers with varying sub-limits
+   - Gold & Platinum: No room rent sub-limit, no co-pay
+   - Modern Treatment Coverage: Robotic surgery, stem cell therapy covered under Platinum
+
+NETWORK: 12,000+ network hospitals.
+Cashless Pre-Auth TAT: Target 1 hour (IRDAI compliant).
+""",
+
+    "icici_lombard_policy_schedule.txt": """INSURER POLICY SCHEDULE: ICICI LOMBARD GENERAL INSURANCE
+Insurer: ICICI Lombard General Insurance Co. Ltd.
+IRDAI Registration No.: 115 (General Insurance)
+TPA: In-house (IL TakeCare)
+
+PRODUCT PORTFOLIO:
+1. ICICI Lombard Complete Health Insurance (CHI)
+   - Plan Type: Individual / Family Floater
+   - Sum Insured Options: Rs. 2,50,000 / Rs. 5,00,000 / Rs. 10,00,000 / Rs. 15,00,000 / Rs. 25,00,000 / Rs. 50,00,000
+   - Room Rent: Single Private AC Room for SI >= Rs. 10,00,000. For lower SI: 1% of SI/day.
+   - Co-payment: Nil for Individual (ages < 60). 10% mandatory for Senior (60+).
+   - Ambulance: Rs. 3,000 per hospitalization.
+   - Pre/Post Hospitalization: 60 days pre / 90 days post.
+
+2. ICICI Lombard Health Booster (Top-Up)
+   - Deductible Options: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Sum Insured: Rs. 10,00,000 / Rs. 25,00,000 / Rs. 50,00,000
+   - No room rent sub-limit. No co-payment.
+   - Waiting periods start fresh (not ported from base plan).
+
+3. ICICI Lombard Group Health Insurance
+   - Plan Type: Group (Corporate)
+   - Sum Insured: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000 per employee
+   - Initial waiting period: Waived
+   - PED waiting period: Waived for groups with 250+ lives
+   - Room Rent: Single occupancy room (no sub-limit) for SI >= Rs. 5L
+   - Maternity: Optional add-on, Rs. 50,000 normal / Rs. 75,000 C-section
+
+NETWORK: 10,500+ network hospitals.
+Cashless Pre-Auth TAT: 45 minutes for emergencies, 4 hours for planned.
+""",
+
+    "niva_bupa_policy_schedule.txt": """INSURER POLICY SCHEDULE: NIVA BUPA HEALTH INSURANCE
+Insurer: Niva Bupa Health Insurance Co. Ltd. (formerly Max Bupa)
+IRDAI Registration No.: 145 (Standalone Health Insurance)
+TPA: In-house claims processing
+
+PRODUCT PORTFOLIO:
+1. Niva Bupa ReAssure 2.0
+   - Plan Type: Individual / Family Floater
+   - Sum Insured Options: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000 / Rs. 20,00,000 / Rs. 50,00,000 / Rs. 1,00,00,000
+   - Room Rent: No sub-limit for any Sum Insured tier.
+   - Co-payment: Nil (no mandatory co-pay for any age group).
+   - No Claim Bonus: 20% increase per claim-free year (max 100%).
+   - Modern Treatment: Covers robotic surgery, HIFU, immunotherapy.
+
+2. Niva Bupa Health Companion
+   - Plan Type: Individual / Family Floater (base plan)
+   - Sum Insured: Rs. 2,00,000 / Rs. 3,00,000 / Rs. 5,00,000
+   - Room Rent: Rs. 5,000/day for SI up to Rs. 3L. 1% of SI for Rs. 5L.
+   - Co-payment: Nil below 60. 20% for 60+.
+   - Cataract: Rs. 40,000/eye sub-limit.
+   - Dialysis: Rs. 2,000/session, max 24 sessions/year.
+
+3. Niva Bupa Senior First
+   - Entry Age: 61-75 (renewable lifelong)
+   - Sum Insured: Rs. 2,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Co-payment: 20% mandatory
+   - PED covered after 36 months (reduced from standard 48)
+   - Annual Health Check-up: Included
+
+NETWORK: 8,500+ network hospitals.
+Cashless Pre-Auth TAT: 1 hour for all cases.
+SPECIAL: No sub-limit on room rent across all ReAssure plans — unique selling point.
+""",
+
+    "care_health_policy_schedule.txt": """INSURER POLICY SCHEDULE: CARE HEALTH INSURANCE
+Insurer: Care Health Insurance Ltd. (formerly Religare Health Insurance)
+IRDAI Registration No.: 148 (Standalone Health Insurance)
+TPA: In-house
+
+PRODUCT PORTFOLIO:
+1. Care Supreme
+   - Plan Type: Individual / Family Floater
+   - Sum Insured: Rs. 5,00,000 / Rs. 10,00,000 / Rs. 20,00,000 / Rs. 50,00,000 / Rs. 1,00,00,000 / Rs. 3,00,00,000 / Rs. 6,00,00,000
+   - Room Rent: No sub-limit for all SI tiers.
+   - Co-payment: Nil.
+   - Unlimited Restoration: Sum Insured restored unlimited times for unrelated illness.
+   - Maternity Cover: Rs. 30,000 normal / Rs. 50,000 C-section (after 36-month wait).
+
+2. Care Advantage
+   - Plan Type: Individual / Family Floater (affordable tier)
+   - Sum Insured: Rs. 3,00,000 / Rs. 4,00,000 / Rs. 5,00,000
+   - Room Rent: 1% of SI per day
+   - Co-payment: 5% mandatory for all age groups
+   - Ambulance: Rs. 2,000 per event
+   - Cataract: Rs. 40,000/eye, Knee: Rs. 1,50,000/knee
+
+3. Care Freedom (Senior Plan)
+   - Entry Age: 55-80 years
+   - Sum Insured: Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Co-payment: 25% mandatory
+   - Pre-policy medical screening: Mandatory
+   - PED: Covered after 48 months (standard), waived with 20% loading
+
+NETWORK: 9,000+ network hospitals.
+Cashless Pre-Auth TAT: Within 1 hour.
+""",
+
+    "bajaj_allianz_policy_schedule.txt": """INSURER POLICY SCHEDULE: BAJAJ ALLIANZ GENERAL INSURANCE
+Insurer: Bajaj Allianz General Insurance Co. Ltd.
+IRDAI Registration No.: 113 (General Insurance)
+TPA: Health India Insurance TPA / In-house
+
+PRODUCT PORTFOLIO:
+1. Bajaj Allianz Health Guard
+   - Plan Type: Individual / Family Floater
+   - Sum Insured: Rs. 2,00,000 / Rs. 3,50,000 / Rs. 5,00,000 / Rs. 10,00,000 / Rs. 15,00,000 / Rs. 50,00,000
+   - Silver / Gold / Platinum variants
+   - Room Rent: Silver: Rs. 4,000/day; Gold: 1% of SI; Platinum: No sub-limit
+   - Co-payment: Nil for Gold/Platinum. Silver: 10% for ages 46-55, 20% for 56+.
+   - Organ Donor Cover: Expenses for organ donor's hospitalization up to Rs. 1,00,000.
+
+2. Bajaj Allianz Star Package Policy
+   - Plan Type: Individual (value plan)
+   - Sum Insured: Rs. 1,00,000 / Rs. 2,00,000 / Rs. 3,00,000
+   - Room Rent: Rs. 3,000/day
+   - Mandatory 20% co-payment
+   - Cataract: Rs. 25,000/eye
+   - Ambulance: Rs. 1,500/event
+
+3. Bajaj Allianz Group Health Insurance
+   - Plan Type: Group (Corporate)
+   - Sum Insured: Customizable per client (typical Rs. 3L-10L)
+   - No waiting period (initial, specific disease, PED all waived)
+   - Room Rent: Single occupancy (no sub-limit)
+   - Co-payment: Nil for network. 20% for non-network.
+   - Maternity: Optional, Rs. 40,000-75,000 based on group size
+   - Domiciliary Treatment: Covered for groups with 500+ lives
+
+NETWORK: 11,000+ network hospitals.
+Cashless Pre-Auth TAT: 2 hours for planned, 1 hour for emergency.
+""",
+
+    "new_india_assurance_policy_schedule.txt": """INSURER POLICY SCHEDULE: NEW INDIA ASSURANCE
+Insurer: The New India Assurance Co. Ltd. (Public Sector)
+IRDAI Registration No.: 190 (General Insurance — Government)
+TPA: TPA India / Medi Assist / Paramount Health Services
+
+PRODUCT PORTFOLIO:
+1. New India Cashless Mediclaim Policy (2012)
+   - Plan Type: Individual / Family
+   - Sum Insured: Rs. 1,00,000 / Rs. 2,00,000 / Rs. 3,00,000 / Rs. 5,00,000
+   - Room Rent: 1% of SI per day
+   - ICU: 2% of SI per day
+   - Co-payment: Nil below 60. 10% for 60-70. 20% for 70-80.
+   - Ambulance: Rs. 1,000 per hospitalization
+   - Pre-hospitalization: 30 days; Post-hospitalization: 60 days
+
+2. New India Senior Citizens Mediclaim Policy
+   - Entry Age: 60-80 years (renewable lifelong up to 90)
+   - Sum Insured: Rs. 1,00,000 / Rs. 1,50,000 / Rs. 2,00,000 / Rs. 3,00,000
+   - Co-payment: 10% for ages 60-70. 20% for 70-80.
+   - Room Rent: Rs. 3,000/day for SI up to Rs. 2L; Rs. 4,000/day for higher SI.
+   - Cataract: Rs. 30,000 per eye
+   - PED: Covered from inception with 50% co-pay for first 4 years.
+
+3. New India Group Mediclaim Policy
+   - Plan Type: Group (Government / PSU / Corporate)
+   - Sum Insured: As per scheme (typically Rs. 3,00,000 - Rs. 7,50,000)
+   - Waiting period: All waived
+   - Room Rent: As per employer scheme (typically General/Semi-Private ward)
+   - Co-payment: Nil for government employees. 10% for others.
+
+NETWORK: 8,000+ network hospitals (extensive coverage in Tier 2/3 cities).
+Cashless Pre-Auth TAT: 2-4 hours (government insurer TAT tends to be slower).
+NOTE: As a public sector insurer, New India Assurance follows government-mandated
+claim settlement guidelines with emphasis on social coverage.
+""",
+
+    "united_india_insurance_policy_schedule.txt": """INSURER POLICY SCHEDULE: UNITED INDIA INSURANCE
+Insurer: United India Insurance Co. Ltd. (Public Sector)
+IRDAI Registration No.: 191 (General Insurance — Government)
+TPA: MDIndia Health Insurance TPA / Heritage Health TPA
+
+PRODUCT PORTFOLIO:
+1. United India Individual Mediclaim Policy
+   - Plan Type: Individual / Family
+   - Sum Insured: Rs. 1,00,000 / Rs. 2,00,000 / Rs. 3,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Room Rent: 1% of SI per day (minimum Rs. 1,000)
+   - ICU: 2% of SI per day
+   - Co-payment: Nil for ages below 60. 10% for 60-70. 20% for 70+.
+   - Ambulance: Rs. 1,500 per hospitalization
+   - Day Care: 140+ listed day care procedures covered
+
+2. United India Senior Citizens Policy
+   - Entry Age: 61-80 years
+   - Sum Insured: Rs. 1,00,000 / Rs. 2,00,000 / Rs. 3,00,000
+   - Co-payment: 20% mandatory (non-waivable)
+   - Room Rent: Rs. 3,000/day
+   - Cataract: Rs. 30,000/eye
+   - Knee Replacement: Rs. 1,30,000/knee (lower than IRDAI standard sub-limit)
+
+3. United India Group Insurance Scheme
+   - Plan Type: Group (Government employees, PSU, Corporate)
+   - Sum Insured: Scheme-dependent (Rs. 2,00,000 - Rs. 5,00,000 typical)
+   - All waiting periods waived
+   - Room Rent: General ward / semi-private (scheme-dependent)
+   - Co-payment: Per scheme rules
+   - Government Schemes: Covers CGHS, ECHS, State Government Health Schemes
+
+4. United India Critical Illness Policy
+   - Covers 34 listed critical illnesses
+   - Lump sum payment on first diagnosis
+   - Sum Insured: Rs. 2,00,000 / Rs. 5,00,000 / Rs. 10,00,000
+   - Survival period: 30 days post-diagnosis
+
+NETWORK: 7,500+ network hospitals.
+Cashless Pre-Auth TAT: 2-4 hours.
+NOTE: Strong presence in Southern India (Tamil Nadu, Karnataka, Kerala).
+Extensive coverage under government health schemes.
+""",
 }
 
 
 def generate_corpus() -> dict[str, int]:
     """Generate the complete synthetic corpus.
 
-    Creates all policy wording, benefit table, and IRDAI circular documents
-    in the appropriate subdirectories under retrieval/corpus/.
+    Creates all policy wording, benefit table, IRDAI circular, and
+    insurer-specific policy documents in the appropriate subdirectories
+    under retrieval/corpus/.
 
     Returns:
-        Dict with counts: {"policy_wordings": N, "benefit_tables": N, "irdai_circulars": N}
+        Dict with counts: {"policy_wordings": N, "benefit_tables": N,
+                          "irdai_circulars": N, "insurer_policies": N}
     """
     counts = {}
 
@@ -696,6 +1514,16 @@ def generate_corpus() -> dict[str, int]:
     counts["irdai_circulars"] = len(IRDAI_CIRCULARS)
     logger.info("Generated %d IRDAI circular documents.", counts["irdai_circulars"])
 
+    # Insurer-Specific Policy Schedules
+    insurer_dir = os.path.join(CORPUS_DIR, "insurer_policies")
+    os.makedirs(insurer_dir, exist_ok=True)
+    for filename, content in INSURER_POLICIES.items():
+        filepath = os.path.join(insurer_dir, filename)
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(content.strip() + "\n")
+    counts["insurer_policies"] = len(INSURER_POLICIES)
+    logger.info("Generated %d insurer policy documents.", counts["insurer_policies"])
+
     total = sum(counts.values())
     logger.info("Corpus generation complete: %d total documents.", total)
 
@@ -706,7 +1534,8 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     result = generate_corpus()
     print(f"\n✅ Corpus generated successfully!")
-    print(f"   Policy wordings: {result['policy_wordings']}")
-    print(f"   Benefit tables:  {result['benefit_tables']}")
-    print(f"   IRDAI circulars: {result['irdai_circulars']}")
-    print(f"   Total documents: {sum(result.values())}")
+    print(f"   Policy wordings:    {result['policy_wordings']}")
+    print(f"   Benefit tables:     {result['benefit_tables']}")
+    print(f"   IRDAI circulars:    {result['irdai_circulars']}")
+    print(f"   Insurer policies:   {result['insurer_policies']}")
+    print(f"   Total documents:    {sum(result.values())}")
