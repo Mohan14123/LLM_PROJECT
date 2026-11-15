@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 scripts/run_ablation_study.py
 -----------------------------
@@ -266,6 +267,8 @@ def evaluate_single_configuration(
 
 def generate_ablation_graphs(results: list[dict[str, Any]]):
     """Generates 4 publication-quality figures for the ablation study."""
+    import matplotlib
+    matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     import numpy as np
 

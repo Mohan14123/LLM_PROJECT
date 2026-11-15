@@ -1,3 +1,4 @@
+from __future__ import annotations
 import sys
 import os
 import json
@@ -39,10 +40,49 @@ PLAN_DOC_MAP = {
 }
 
 
-def evaluate():
+def _compute_field_extraction(payload: dict, extracted: dict | None) -> tuple[int, int]:
+    """Compute true field-level extraction accuracy across 10 core fields."""
+    if not extracted:
+        return 0, 10
+
+    fields = [
+        ("patient", "full_name"),
+        ("patient", "age"),
+        ("patient", "gender"),
+        ("policy", "policy_number"),
+        ("policy", "plan_type"),
+        ("diagnosis", "description"),
+        ("procedure", "description"),
+        ("procedure", "admission_type"),
+        ("cost_estimate", "total_amount"),
+        ("hospital", "name"),
+    ]
+    
+    def _norm(v: Any) -> str | None:
+        if v is None:
+            return None
+        if hasattr(v, "value"):
+            return str(v.value).strip().lower()
+        return str(v).strip().lower()
+
+    matched = 0
+    for sec, k in fields:
+        exp_v = _norm(payload.get(sec, {}).get(k))
+        act_v = _norm(extracted.get(sec, {}).get(k))
+        if exp_v is not None and act_v is not None:
+            if exp_v == act_v:
+                matched += 1
+        elif exp_v is None and act_v is None:
+            matched += 1
+    return matched, len(fields)
+
+
+def evaluate(manifest_path: str | None = None, results_path: str | None = None, benchmark_name: str = "Development Set (210 cases)"):
     """Runs automated evaluation across all 9 dimensions defined in Metrics.md."""
-    manifest_path = os.path.join(PROJECT_ROOT, "data", "synthetic", "manifest.json")
-    results_path = os.path.join(PROJECT_ROOT, "data", "evaluation_results.json")
+    if manifest_path is None:
+        manifest_path = os.path.join(PROJECT_ROOT, "data", "synthetic", "manifest.json")
+    if results_path is None:
+        results_path = os.path.join(PROJECT_ROOT, "data", "evaluation_results.json")
     
     if not os.path.exists(manifest_path):
         print(f"Manifest file not found: {manifest_path}")
@@ -53,7 +93,7 @@ def evaluate():
         
     results = []
     
-    # 1. Extraction metrics
+    # 1. Extraction metrics (true field-level)
     fields_extracted = 0
     fields_total = 0
     
@@ -83,7 +123,7 @@ def evaluate():
     robustness_metrics = defaultdict(lambda: {"correct": 0, "total": 0})
     category_metrics = defaultdict(lambda: {"correct": 0, "total": 0})
     
-    print(f"[*] Starting evaluation on {len(manifest)} test cases...")
+    print(f"[*] Starting evaluation for '{benchmark_name}' on {len(manifest)} test cases...")
     
     for case in manifest:
         case_id = case.get("id", case.get("request_id", "unknown"))
@@ -100,20 +140,21 @@ def evaluate():
             payload = json.load(f)
             
         try:
-            # 1. Intake Processing
-            intake_res = process_intake(payload, format_override="json")
+            # 1. Intake Processing (respect format from payload or path if present)
+            source_fmt = payload.get("source_format", "json")
+            intake_res = process_intake(payload, format_override=source_fmt if source_fmt in ("1", "json") else "json")
             
-            if payload:
-                # Count major schema sections
-                fields_total += len(payload)
-                if intake_res.is_success:
-                    fields_extracted += len(payload)
-                else:
-                    fields_extracted += max(0, len(payload) - len(intake_res.validation_errors))
+            # Compute field-level extraction accuracy
+            f_matched, f_tot = _compute_field_extraction(
+                payload,
+                intake_res.request.model_dump() if intake_res.is_success and intake_res.request else None
+            )
+            fields_extracted += f_matched
+            fields_total += f_tot
             
             if not intake_res.is_success:
                 # Payload was rejected at intake validation gate
-                rec = "DENY"
+                rec = "QUERY"  # Pipeline queries missing/invalid data at intake
                 needs_escalation = False
                 latency = 0.005
                 cost = 0.0
@@ -121,7 +162,7 @@ def evaluate():
                 hallucinated = 0
                 tot_cits = 0
                 result_dict = {
-                    "recommendation": "RECOMMEND_DENY",
+                    "recommendation": "RECOMMEND_QUERY",
                     "needs_escalation": False,
                     "validation_errors": intake_res.validation_errors,
                 }
@@ -184,33 +225,38 @@ def evaluate():
             # 4. Decision Correctness Check
             expected_dec_str = str(expected_decision).upper()
             
-            if expected_dec_str == "ESCALATE":
+            if not intake_res.is_success:
+                # Halted safely at schema intake gate (e.g. missing fields, invalid format)
+                is_correct = (expected_dec_str in ("DENY", "QUERY"))
+                if is_correct:
+                    TN += 1
+                else:
+                    FN += 1
+            elif expected_dec_str == "ESCALATE":
                 # For cases expected to escalate (e.g. non-network hospital, high-value, PED)
                 is_correct = needs_escalation
-            elif expected_dec_str == "APPROVE":
-                is_correct = (rec == "APPROVE")
-            elif expected_dec_str == "DENY":
-                is_correct = (rec == "DENY")
-            else:
-                is_correct = (rec == expected_dec_str)
-                
-            # Decision Confusion Matrix
-            # Track both (A) Recommendation FPR and (B) Unsafe Auto-Approval FPR (leakage)
-            if rec == "APPROVE" and expected_dec_str == "APPROVE":
-                TP += 1
-            elif rec == "DENY" and expected_dec_str == "DENY":
-                TN += 1
-            elif expected_dec_str == "ESCALATE":
                 if needs_escalation:
                     TN += 1  # Correctly halted and escalated to human
                 elif rec == "APPROVE":
                     FP += 1  # Escalation missed; claim auto-approved
                 else:
                     TN += 1
-            elif rec == "APPROVE" and expected_dec_str == "DENY":
-                FP += 1  # False positive recommendation
-            elif rec == "DENY" and expected_dec_str == "APPROVE":
-                FN += 1  # False negative: denied honest claim
+            elif expected_dec_str == "APPROVE":
+                is_correct = (rec == "APPROVE")
+                if rec == "APPROVE":
+                    TP += 1
+                else:
+                    FN += 1  # False negative: denied legitimate claim
+            elif expected_dec_str == "DENY":
+                is_correct = (rec == "DENY")
+                if rec == "DENY":
+                    TN += 1
+                elif rec == "APPROVE":
+                    FP += 1  # False positive: approved ineligible claim
+                else:
+                    TN += 1
+            else:
+                is_correct = (rec == expected_dec_str)
                 
             # Unsafe auto-approval: approved without escalation when expected was non-APPROVE
             if rec == "APPROVE" and not needs_escalation and expected_dec_str in ("DENY", "ESCALATE"):

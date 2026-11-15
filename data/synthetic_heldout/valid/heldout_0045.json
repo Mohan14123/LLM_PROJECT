@@ -1,0 +1,74 @@
+{
+  "request_id": "f9ebbaad-44db-4d0b-b9af-750bd37f70b8",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "4883a8dc-156a-4af7-946e-80c00cadf072",
+    "full_name": "Aarav Sharma",
+    "age": 44,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100045"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100045",
+    "plan_type": "individual",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2026-03-10",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "e7f815e1-f437-47e0-9ba6-e617f84f630a",
+    "name": "Manipal Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "I21.0",
+    "description": "Acute STEMI",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "PCI-001",
+    "description": "Primary PCI with Drug Eluting Stent",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "60000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Stent Implant",
+        "amount": "85000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "17000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "185000.00"
+  }
+}

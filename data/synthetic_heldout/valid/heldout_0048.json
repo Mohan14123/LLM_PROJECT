@@ -1,0 +1,59 @@
+{
+  "request_id": "e0a3d39b-d896-4c0f-aa30-3d24e7180669",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "239bf559-84b7-4494-8f7f-3f45ed5cb60f",
+    "full_name": "Suresh Patel",
+    "age": 61,
+    "gender": "male",
+    "policy_number": "POL-LAPSED-48"
+  },
+  "policy": {
+    "policy_number": "POL-LAPSED-48",
+    "plan_type": "group",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "4660155f-52f4-4c85-9aa7-1d3b495ad087",
+    "name": "Manipal Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "N18.6",
+    "description": "End stage renal disease on maintenance hemodialysis",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-90935",
+    "description": "Maintenance hemodialysis session",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Dialysis Fee",
+        "amount": "18000.00",
+        "category": "sub_limit_capping"
+      },
+      {
+        "item": "Consumables & Dialyzer",
+        "amount": "4000.00",
+        "category": "consumables"
+      }
+    ],
+    "total_amount": "22000.00"
+  }
+}

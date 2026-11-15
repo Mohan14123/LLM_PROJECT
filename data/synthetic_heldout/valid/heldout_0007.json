@@ -1,0 +1,74 @@
+{
+  "request_id": "78f9b64b-7934-486c-ab46-56fa2802c9ac",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "d5490693-ad09-42c2-9e42-266757bbf17e",
+    "full_name": "Gurpreet Singh",
+    "age": 45,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100007"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100007",
+    "plan_type": "family_floater",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "af10d12b-3ec3-4b01-94cb-83b864306553",
+    "name": "Apollo Specialty Hospital",
+    "city": "Chennai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "K80.20",
+    "description": "Calculus of gallbladder (Gallstones)",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-47562",
+    "description": "Elective Laparoscopic Cholecystectomy",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "45000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "15000.00",
+        "category": "other"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "10000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "10000.00",
+        "category": "diagnostic"
+      }
+    ],
+    "total_amount": "88000.00"
+  }
+}

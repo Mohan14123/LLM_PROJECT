@@ -2,72 +2,93 @@
 main.py
 -------
 FastAPI entry point for the A1 Cashless Pre-Auth Pipeline.
-Provides endpoints to process pre-auth requests and view swagger docs.
+Provides endpoints to process pre-auth requests, human reviewer actions,
+audit chain verification, and interactive API documentation.
 
 Usage:
     uvicorn main:app --reload --port 8000
 """
 
-from fastapi import FastAPI, HTTPException, Body, UploadFile, File
-from pydantic import BaseModel, Field
-from typing import Any, Dict
-import tempfile
-import os
+from __future__ import annotations
+
 import json
 import logging
-from dotenv import load_dotenv
+import os
+import tempfile
+from decimal import Decimal
+from typing import Any, Dict, Optional
 
-# Load environment variables from .env file
+from dotenv import load_dotenv
+from fastapi import Body, FastAPI, File, HTTPException, Request, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
+
+# Load environment configuration (.env)
 load_dotenv()
 
 logger = logging.getLogger(__name__)
 
 from intake import process_intake
 from orchestration import run_pipeline
+from persistence import ClaimRepository
 from schemas import SourceFormat
 
 app = FastAPI(
     title="A1 Cashless Pre-Auth API",
-    description="API for evaluating health insurance pre-authorisation requests via LangGraph rules engine.",
-    version="1.0.0",
+    description="Enterprise API for cashless health insurance pre-authorisation with neuro-symbolic adjudication and cryptographic audit trail.",
+    version="2.0.0",
 )
 
-from fastapi.middleware.cors import CORSMiddleware
+# ----------------------------------------------------------------------------
+# CORS Security Hardening
+# ----------------------------------------------------------------------------
+allowed_origins_env = os.environ.get("ALLOWED_ORIGINS")
+if allowed_origins_env:
+    allowed_origins = [orig.strip() for orig in allowed_origins_env.split(",") if orig.strip()]
+else:
+    allowed_origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
+# ----------------------------------------------------------------------------
+# Persistence Layer
+# ----------------------------------------------------------------------------
+repository = ClaimRepository()
 HISTORY_FILE = os.path.join(os.path.dirname(__file__), "data", "claim_history.json")
 
 
-def _load_history() -> list[dict]:
-    if not os.path.exists(HISTORY_FILE):
-        return []
+def _save_record(record: dict, raw_payload: Any = None, source_format: str = "json") -> None:
+    """Save record both to SQLite transactional repository and legacy JSON file."""
     try:
-        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            return data if isinstance(data, list) else []
+        req = record.get("extracted_request") or record.get("pre_auth_request")
+        req_id = record.get("request_id")
+        if req:
+            repository.save_request(req, raw_payload=raw_payload, source_format=source_format)
+            if "recommendation" in record:
+                repository.save_decision(req_id, record)
     except Exception as e:
-        logger.error("Failed to load history: %s", e)
-        return []
+        logger.error("Failed to save claim to SQLite repository: %s", e)
 
-
-def _save_to_history(record: dict) -> None:
+    # Legacy JSON file persistence for UI compatibility
     try:
-        history = _load_history()
-        req_id = record.get("request_id") or record.get("extracted_request", {}).get("request_id")
-        if not req_id and record.get("adjudication_metrics"):
-            req_id = record["adjudication_metrics"].get("request_id")
+        history = []
+        if os.path.exists(HISTORY_FILE):
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                history = json.load(f)
 
-        record["request_id"] = req_id
-
-        # Deduplicate: replace previous entry with same id, or insert at head
-        history = [h for h in history if (h.get("request_id") or h.get("extracted_request", {}).get("request_id")) != req_id]
+        req_id = record.get("request_id")
+        history = [h for h in history if h.get("request_id") != req_id]
         history.insert(0, record)
         history = history[:60]
 
@@ -75,125 +96,68 @@ def _save_to_history(record: dict) -> None:
         with open(HISTORY_FILE, "w", encoding="utf-8") as f:
             json.dump(history, f, indent=2, default=str)
     except Exception as e:
-        logger.error("Failed to save history record: %s", e)
+        logger.error("Failed to write legacy JSON history: %s", e)
 
 
+# ----------------------------------------------------------------------------
+# Request Models
+# ----------------------------------------------------------------------------
+class ReviewerActionPayload(BaseModel):
+    reviewer_id: str = Field(..., description="ID or username of the medical reviewer.")
+    approved_amount: Optional[float] = Field(default=None, description="Approved amount if approving or overriding.")
+    notes: Optional[str] = Field(default="", description="Clinical reasoning or justification for the action.")
+
+
+# ----------------------------------------------------------------------------
+# API Endpoints
+# ----------------------------------------------------------------------------
 @app.get("/api/v1/preauth/history", summary="Get Processed Claim History")
-async def get_preauth_history():
-    """Returns all historically processed claims in reverse chronological order."""
-    return {"status": "success", "history": _load_history()}
+async def get_preauth_history(limit: int = 50):
+    """Returns historically processed claims in reverse chronological order from SQLite."""
+    try:
+        history = repository.get_history(limit=limit)
+        return {"status": "success", "count": len(history), "history": history}
+    except Exception as e:
+        logger.error("Error fetching history from repository: %s", e)
+        # Fallback to JSON history
+        if os.path.exists(HISTORY_FILE):
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                return {"status": "success", "history": json.load(f)}
+        return {"status": "success", "history": []}
 
-class PreAuthPayload(BaseModel):
-    """
-    Standard JSON payload representing a hospital's pre-auth request.
-    This structure should match the schema expected by the JSON intake handler.
-    """
-    request_id: str = Field(..., description="Unique ID for the request")
-    submitted_at: str = Field(..., description="Submission date (YYYY-MM-DD)")
-    source_format: str = Field(default="json")
-    status: str = Field(default="pending")
-    admission_date: str = Field(..., description="Expected admission date")
-    patient: Dict[str, Any]
-    policy: Dict[str, Any]
-    hospital: Dict[str, Any]
-    diagnosis: Dict[str, Any]
-    procedure: Dict[str, Any]
-    cost_estimate: Dict[str, Any]
+
+@app.get("/api/v1/preauth/audit/verify", summary="Verify SHA-256 Cryptographic Audit Chain")
+async def verify_audit_trail():
+    """Validates the complete SHA-256 hash chain from the Genesis block to the tip."""
+    is_valid, record_count, error = repository.verify_integrity()
+    return {
+        "status": "success" if is_valid else "compromised",
+        "is_tamper_free": is_valid,
+        "verified_blocks": record_count,
+        "error_detail": error,
+    }
 
 
 @app.post("/api/v1/preauth/process", summary="Process a Pre-Auth Request")
-async def process_preauth_request(payload: Dict[str, Any] = Body(
-    ...,
-    openapi_examples={
-        "standard_stemi": {
-            "summary": "Standard STEMI Emergency",
-            "value": {
-                "request_id": "123e4567-e89b-12d3-a456-426614174000",
-                "submitted_at": "2025-06-01",
-                "source_format": "json",
-                "status": "pending",
-                "admission_date": "2025-06-01",
-                "patient": {
-                    "patient_id": "123e4567-e89b-12d3-a456-426614174001",
-                    "full_name": "Rajesh Kumar",
-                    "age": 45,
-                    "gender": "male",
-                    "policy_number": "POL-ACTIVE-101"
-                },
-                "policy": {
-                    "policy_number": "POL-ACTIVE-101",
-                    "plan_type": "individual",
-                    "sum_insured": "500000.00",
-                    "policy_start_date": "2023-01-01",
-                    "waiting_period_months": 0,
-                    "sub_limits": {"limits": {"room_rent_per_day": "5000.00"}},
-                    "co_pay_pct": "0.00"
-                },
-                "hospital": {
-                    "hospital_id": "123e4567-e89b-12d3-a456-426614174002",
-                    "name": "Synthetic Metro Hospital",
-                    "city": "Mumbai",
-                    "network_tier": "cashless_network",
-                    "category": "multi_specialty"
-                },
-                "diagnosis": {
-                    "icd10_code": "I21.0",
-                    "description": "Acute STEMI",
-                    "is_pre_existing": False
-                },
-                "procedure": {
-                    "procedure_code": "PCI-001",
-                    "description": "Primary PCI with DES",
-                    "admission_type": "emergency"
-                },
-                "cost_estimate": {
-                    "line_items": [
-                        {"item": "Room Rent", "amount": "4000.00", "category": "room_rent"},
-                        {"item": "Surgeon Fee", "amount": "80000.00", "category": "surgeon_fee"}
-                    ],
-                    "total_amount": "84000.00"
-                }
-            }
-        }
-    }
-)):
-    """
-    Submit a JSON payload representing a hospital pre-authorization request.
-    
-    The payload runs through:
-    1. Intake validation (Track 1)
-    2. LangGraph state machine & rules engine (Track 2 & 3)
-    
-    Returns the final adjudication recommendation and reasoning narrative.
-    """
+async def process_preauth_request(payload: Dict[str, Any] = Body(...)):
+    """Process a structured JSON pre-authorization request through the dual-track pipeline."""
     try:
-        # 1. Process intake
-        # The detect_format logic in process_intake will correctly handle dicts as JSON ("1")
         intake_result = process_intake(payload, format_override="1")
-        
         if not intake_result.is_success:
             return {
                 "status": "error",
                 "message": "Intake validation failed.",
                 "validation_errors": intake_result.validation_errors,
             }
-            
-        # We need to serialize the intake result into a dict to pass into the graph
-        # Since IntakeResult is a Pydantic model (or dataclass), we use model_dump
-        if hasattr(intake_result, "model_dump"):
-            intake_dict = intake_result.model_dump()
-        elif hasattr(intake_result, "dict"):
-            intake_dict = intake_result.dict()
-        else:
-            intake_dict = intake_result.__dict__
 
-        # 2. Run LangGraph pipeline
+        intake_dict = intake_result.model_dump()
         final_state = run_pipeline(intake_dict)
 
-        # 3. Format response
+        req_id = final_state.get("pre_auth_request", {}).get("request_id") or intake_dict.get("request", {}).get("request_id")
+
         resp = {
             "status": "success",
-            "request_id": final_state.get("pre_auth_request", {}).get("request_id") or intake_dict.get("request", {}).get("request_id"),
+            "request_id": str(req_id),
             "extracted_request": intake_dict.get("request"),
             "pipeline_status": final_state.get("pipeline_status"),
             "recommendation": final_state.get("recommendation"),
@@ -205,51 +169,45 @@ async def process_preauth_request(payload: Dict[str, Any] = Body(
             "needs_escalation": final_state.get("needs_escalation"),
             "escalation_triggers": final_state.get("escalation_triggers", []),
             "reasoning": final_state.get("reasoning_narrative"),
-            "adjudication_metrics": final_state.get("adjudication_result", {}),
+            "adjudication_result": final_state.get("adjudication_result", {}),
             "latencies": final_state.get("node_latencies", {}),
+            "total_latency": final_state.get("total_latency", 0.0),
+            "llm_cost_inr": final_state.get("llm_cost_inr", 0.0),
         }
-        _save_to_history(resp)
+        _save_record(resp, raw_payload=payload, source_format="json")
         return resp
 
     except Exception as e:
         import traceback
-        return {
-            "status": "error",
-            "message": str(e),
-            "traceback": traceback.format_exc(),
-        }
+        logger.error("Processing failed: %s\n%s", e, traceback.format_exc())
+        return {"status": "error", "message": str(e), "traceback": traceback.format_exc()}
 
-
-from fastapi import Request
 
 @app.post("/api/v1/preauth/text", summary="Process Free-Text Request")
 async def process_text_request(request: Request):
-    """
-    Submit raw text (e.g., doctor's clinical notes) for pre-authorization.
-    The system will use LLM extraction to populate the structured schema before running rules.
-    """
+    """Process unstructured clinical text narrative through NLP extraction and dual-track pipeline."""
     try:
         body_bytes = await request.body()
-        text_content = body_bytes.decode('utf-8').strip()
-        
+        text_content = body_bytes.decode("utf-8").strip()
+
         if not text_content:
-            return {"status": "error", "message": "Text payload cannot be empty."}
+            raise HTTPException(status_code=400, detail="Text payload cannot be empty.")
 
         intake_result = process_intake(text_content, format_override="6")
-        
         if not intake_result.is_success:
             return {
                 "status": "error",
-                "message": "Text extraction failed.",
+                "message": "Clinical text extraction failed.",
                 "validation_errors": getattr(intake_result, "validation_errors", [])
             }
 
-        intake_dict = intake_result.model_dump() if hasattr(intake_result, "model_dump") else intake_result.__dict__
+        intake_dict = intake_result.model_dump()
         final_state = run_pipeline(intake_dict)
 
+        req_id = intake_dict.get("request", {}).get("request_id")
         resp = {
             "status": "success",
-            "request_id": intake_dict.get("request", {}).get("request_id"),
+            "request_id": str(req_id),
             "extracted_request": intake_dict.get("request"),
             "pipeline_status": final_state.get("pipeline_status"),
             "recommendation": final_state.get("recommendation"),
@@ -261,73 +219,194 @@ async def process_text_request(request: Request):
             "needs_escalation": final_state.get("needs_escalation"),
             "escalation_triggers": final_state.get("escalation_triggers", []),
             "reasoning": final_state.get("reasoning_narrative"),
-            "adjudication_metrics": final_state.get("adjudication_result", {}),
+            "adjudication_result": final_state.get("adjudication_result", {}),
             "latencies": final_state.get("node_latencies", {}),
         }
-        _save_to_history(resp)
+        _save_record(resp, raw_payload=text_content, source_format="text")
         return resp
     except Exception as e:
         import traceback
+        logger.error("Text processing failed: %s\n%s", e, traceback.format_exc())
         return {"status": "error", "message": str(e), "traceback": traceback.format_exc()}
 
 
 @app.post("/api/v1/preauth/upload", summary="Process File Upload (PDF/Image/DOCX)")
 async def process_file_upload(file: UploadFile = File(...)):
-    """
-    Upload a document (e.g., scanned PDF, image, DOCX) for pre-authorization processing.
-    The system will auto-detect the format and run the correct extraction pipeline.
-    """
+    """Upload and process document with magic-byte security checks and file size limits."""
+    MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB limit
+    content = await file.read()
+
+    if len(content) > MAX_FILE_SIZE:
+        raise HTTPException(
+            status_code=413,
+            detail=f"File exceeds maximum allowable size of {MAX_FILE_SIZE // (1024 * 1024)} MB."
+        )
+
+    # Magic byte validation
+    filename_lower = (file.filename or "").lower()
+    is_valid_format = False
+
+    if content.startswith(b"%PDF-"):
+        is_valid_format = True
+    elif content.startswith(b"\x89PNG\r\n\x1a\n"):
+        is_valid_format = True
+    elif content.startswith(b"\xff\xd8\xff"):
+        is_valid_format = True
+    elif content.startswith(b"PK\x03\x04") and filename_lower.endswith(".docx"):
+        is_valid_format = True
+
+    if not is_valid_format:
+        raise HTTPException(
+            status_code=400,
+            detail="File content does not match allowed types (PDF, JPEG, PNG, DOCX)."
+        )
+
+    suffix = os.path.splitext(file.filename)[1]
+    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+        tmp.write(content)
+        tmp_path = tmp.name
+
     try:
-        # Save file to a temporary location for the intake processor
-        suffix = os.path.splitext(file.filename)[1]
-        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-            content = await file.read()
-            tmp.write(content)
-            tmp_path = tmp.name
-
-        try:
-            intake_result = process_intake(tmp_path, original_filename=file.filename)
-            
-            if not intake_result.is_success:
-                return {
-                    "status": "error",
-                    "message": f"Extraction failed for file {file.filename}.",
-                    "validation_errors": getattr(intake_result, "validation_errors", [])
-                }
-
-            intake_dict = intake_result.model_dump() if hasattr(intake_result, "model_dump") else intake_result.__dict__
-            final_state = run_pipeline(intake_dict)
-
-            resp = {
-                "status": "success",
-                "request_id": intake_dict.get("request", {}).get("request_id"),
-                "extracted_request": intake_dict.get("request"),
-                "pipeline_status": final_state.get("pipeline_status"),
-                "recommendation": final_state.get("recommendation"),
-                "confidence": final_state.get("confidence"),
-                "consensus_status": final_state.get("consensus_status", "AGREED"),
-                "discrepancy_report": final_state.get("discrepancy_report"),
-                "rules_recommendation": final_state.get("adjudication_result", {}).get("recommendation"),
-                "llm_recommendation": final_state.get("llm_recommendation"),
-                "needs_escalation": final_state.get("needs_escalation"),
-                "escalation_triggers": final_state.get("escalation_triggers", []),
-                "reasoning": final_state.get("reasoning_narrative"),
-                "adjudication_metrics": final_state.get("adjudication_result", {}),
-                "latencies": final_state.get("node_latencies", {}),
+        intake_result = process_intake(tmp_path, original_filename=file.filename)
+        if not intake_result.is_success:
+            return {
+                "status": "error",
+                "message": f"Extraction failed for file {file.filename}.",
+                "validation_errors": getattr(intake_result, "validation_errors", [])
             }
-            _save_to_history(resp)
-            return resp
-        finally:
+
+        intake_dict = intake_result.model_dump()
+        final_state = run_pipeline(intake_dict)
+
+        req_id = intake_dict.get("request", {}).get("request_id")
+        resp = {
+            "status": "success",
+            "request_id": str(req_id),
+            "extracted_request": intake_dict.get("request"),
+            "pipeline_status": final_state.get("pipeline_status"),
+            "recommendation": final_state.get("recommendation"),
+            "confidence": final_state.get("confidence"),
+            "consensus_status": final_state.get("consensus_status", "AGREED"),
+            "discrepancy_report": final_state.get("discrepancy_report"),
+            "rules_recommendation": final_state.get("adjudication_result", {}).get("recommendation"),
+            "llm_recommendation": final_state.get("llm_recommendation"),
+            "needs_escalation": final_state.get("needs_escalation"),
+            "escalation_triggers": final_state.get("escalation_triggers", []),
+            "reasoning": final_state.get("reasoning_narrative"),
+            "adjudication_result": final_state.get("adjudication_result", {}),
+            "latencies": final_state.get("node_latencies", {}),
+        }
+        _save_record(resp, raw_payload=f"File: {file.filename} ({len(content)} bytes)", source_format=suffix.lstrip("."))
+        return resp
+    finally:
+        if os.path.exists(tmp_path):
             os.unlink(tmp_path)
-    except Exception as e:
-        import traceback
-        return {"status": "error", "message": str(e), "traceback": traceback.format_exc()}
+
+
+# ----------------------------------------------------------------------------
+# Reviewer Action Endpoints (Sign-Off, Reject, Override, Query)
+# ----------------------------------------------------------------------------
+@app.post("/api/v1/preauth/{request_id}/review/approve", summary="Human Reviewer Approval Sign-off")
+async def review_approve(request_id: str, payload: ReviewerActionPayload):
+    """Medical reviewer grants formal approval sign-off for a pre-auth recommendation."""
+    if not repository.get_request(request_id):
+        # Insert minimal placeholder if request was processed before DB schema
+        repository.save_request({"request_id": request_id, "submitted_at": "UNKNOWN", "cost_estimate": {"total_amount": 0}})
+
+    action_id = repository.record_reviewer_action(
+        request_id=request_id,
+        reviewer_id=payload.reviewer_id,
+        action="APPROVE",
+        approved_amount=payload.approved_amount,
+        notes=payload.notes,
+    )
+    return {
+        "status": "success",
+        "action_id": action_id,
+        "request_id": request_id,
+        "action": "APPROVE",
+        "message": f"Pre-authorisation {request_id} signed off by reviewer {payload.reviewer_id}."
+    }
+
+
+@app.post("/api/v1/preauth/{request_id}/review/reject", summary="Human Reviewer Rejection")
+async def review_reject(request_id: str, payload: ReviewerActionPayload):
+    """Medical reviewer issues formal rejection for a pre-auth recommendation."""
+    if not repository.get_request(request_id):
+        repository.save_request({"request_id": request_id, "submitted_at": "UNKNOWN", "cost_estimate": {"total_amount": 0}})
+
+    action_id = repository.record_reviewer_action(
+        request_id=request_id,
+        reviewer_id=payload.reviewer_id,
+        action="REJECT",
+        approved_amount=0.0,
+        notes=payload.notes,
+    )
+    return {
+        "status": "success",
+        "action_id": action_id,
+        "request_id": request_id,
+        "action": "REJECT",
+        "message": f"Pre-authorisation {request_id} rejected by reviewer {payload.reviewer_id}."
+    }
+
+
+@app.post("/api/v1/preauth/{request_id}/review/override", summary="Human Reviewer Override")
+async def review_override(request_id: str, payload: ReviewerActionPayload):
+    """Medical reviewer overrides the automated pipeline recommendation."""
+    if payload.approved_amount is None:
+        raise HTTPException(status_code=400, detail="Approved amount is required when overriding.")
+
+    if not repository.get_request(request_id):
+        repository.save_request({"request_id": request_id, "submitted_at": "UNKNOWN", "cost_estimate": {"total_amount": 0}})
+
+    action_id = repository.record_reviewer_action(
+        request_id=request_id,
+        reviewer_id=payload.reviewer_id,
+        action="OVERRIDE",
+        approved_amount=payload.approved_amount,
+        notes=payload.notes,
+    )
+    return {
+        "status": "success",
+        "action_id": action_id,
+        "request_id": request_id,
+        "action": "OVERRIDE",
+        "message": f"Pre-authorisation {request_id} overridden by reviewer {payload.reviewer_id}."
+    }
+
+
+@app.post("/api/v1/preauth/{request_id}/review/request-docs", summary="Request Additional Medical Documents")
+async def review_request_docs(request_id: str, payload: ReviewerActionPayload):
+    """Medical reviewer places pre-authorisation in queried state requesting further documentation."""
+    if not repository.get_request(request_id):
+        repository.save_request({"request_id": request_id, "submitted_at": "UNKNOWN", "cost_estimate": {"total_amount": 0}})
+
+    action_id = repository.record_reviewer_action(
+        request_id=request_id,
+        reviewer_id=payload.reviewer_id,
+        action="REQUEST_DOCS",
+        notes=payload.notes,
+    )
+    return {
+        "status": "success",
+        "action_id": action_id,
+        "request_id": request_id,
+        "action": "REQUEST_DOCS",
+        "message": f"Clarifications/documentation requested for {request_id}."
+    }
 
 
 @app.get("/health")
 async def health_check():
-    """Simple health check endpoint."""
-    return {"status": "healthy"}
+    """Liveness probe with database and LLM status."""
+    is_valid, count, _ = repository.verify_integrity()
+    return {
+        "status": "healthy",
+        "audit_chain_valid": is_valid,
+        "audit_blocks_count": count,
+    }
+
 
 if __name__ == "__main__":
     import uvicorn

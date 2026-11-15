@@ -1,0 +1,74 @@
+{
+  "request_id": "87c7077f-c14c-44e1-aad2-55eebc4c8ce7",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "44c63f4d-f310-4166-9f66-e3ee6eee96fa",
+    "full_name": "Sunita Meena",
+    "age": 44,
+    "gender": "female",
+    "policy_number": "POL-LAPSED-50"
+  },
+  "policy": {
+    "policy_number": "POL-LAPSED-50",
+    "plan_type": "group",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "3de53bf9-3a18-4b68-8f24-4659b4ccb05d",
+    "name": "Fortis Escorts Heart Institute",
+    "city": "Delhi",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "I21.0",
+    "description": "Acute STEMI",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "PCI-001",
+    "description": "Primary PCI with Drug Eluting Stent",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "60000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Stent Implant",
+        "amount": "85000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "17000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "185000.00"
+  }
+}

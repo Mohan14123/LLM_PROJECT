@@ -142,7 +142,12 @@ def apply_rules(
     # ---------------------------------------------------------------
     # Step 5: Co-pay and deductible
     # ---------------------------------------------------------------
-    copay_result = apply_copay_deductible(request, clauses)
+    # Calculate admissible amount post non-payable and sub-limit capping.
+    # Co-pay is applied strictly to admissible/payable amounts, preventing
+    # deductions from exceeding the total claimed amount.
+    prior_deductions_sum = sum(d.deducted_amount for d in deductions)
+    admissible_amount = max(Decimal("0.00"), total_claimed - prior_deductions_sum)
+    copay_result = apply_copay_deductible(request, clauses, admissible_amount=admissible_amount)
     deductions.extend(copay_result.get("deductions", []))
     reasoning_steps.append(copay_result.get("reasoning", ""))
 

@@ -1,0 +1,74 @@
+{
+  "request_id": "331380fb-ffed-4550-b966-af27fce4e710",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "24184b58-3cb6-45eb-97bd-ca21b2d03268",
+    "full_name": "Harpreet Kaur",
+    "age": 62,
+    "gender": "female",
+    "policy_number": "EXPIRED-46"
+  },
+  "policy": {
+    "policy_number": "EXPIRED-46",
+    "plan_type": "family_floater",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "e2a19c48-77b9-4245-a307-cfabea145e94",
+    "name": "Medanta - The Medicity",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "M17.11",
+    "description": "Primary osteoarthritis of right knee",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-27447",
+    "description": "Total Knee Arthroplasty (TKR)",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "70000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Knee Prosthesis",
+        "amount": "95000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "210000.00"
+  }
+}

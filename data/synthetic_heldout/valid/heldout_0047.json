@@ -1,0 +1,74 @@
+{
+  "request_id": "8397d56b-e333-4828-a037-74f59a8087ef",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "19adccfc-12c6-43fd-8657-08b8d61146cf",
+    "full_name": "Ravi Shankar",
+    "age": 68,
+    "gender": "male",
+    "policy_number": "EXPIRED-47"
+  },
+  "policy": {
+    "policy_number": "EXPIRED-47",
+    "plan_type": "group",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "94f16e0c-d3ea-44b2-9faf-7cfa12aac9c2",
+    "name": "Manipal Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "M17.11",
+    "description": "Primary osteoarthritis of right knee",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-27447",
+    "description": "Total Knee Arthroplasty (TKR)",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "70000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Knee Prosthesis",
+        "amount": "95000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "210000.00"
+  }
+}

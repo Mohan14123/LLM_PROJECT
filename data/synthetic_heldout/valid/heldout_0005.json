@@ -1,0 +1,74 @@
+{
+  "request_id": "d85f4667-2881-4e42-8a28-0df3885d2801",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "b292ffcf-9188-49ea-a001-332c5b68b9ce",
+    "full_name": "Amitabh Sen",
+    "age": 68,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100005"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100005",
+    "plan_type": "group",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "ff306022-91a5-42e7-b3e7-e90dedee9aa6",
+    "name": "St. Johns Medical Center",
+    "city": "Bengaluru",
+    "network_tier": "non_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "K35.8",
+    "description": "Acute Appendicitis",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-44970",
+    "description": "Emergency Laparoscopic Appendectomy",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "5000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "35000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "15000.00",
+        "category": "other"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "10000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "10000.00",
+        "category": "diagnostic"
+      }
+    ],
+    "total_amount": "75000.00"
+  }
+}

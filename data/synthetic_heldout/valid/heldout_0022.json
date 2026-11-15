@@ -1,0 +1,64 @@
+{
+  "request_id": "eb2eb97b-578c-499c-a512-b6869d3e046f",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "e2c1580e-2891-41c1-89eb-8991ae727478",
+    "full_name": "Gurpreet Singh",
+    "age": 43,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100022"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100022",
+    "plan_type": "family_floater",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "5362e960-3221-480d-be4a-cf23fc4fb08e",
+    "name": "Fortis Escorts Heart Institute",
+    "city": "Delhi",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "H26.1",
+    "description": "Senile nuclear cataract, bilateral",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-66984",
+    "description": "Phacoemulsification with Foldable IOL",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Surgeon Fee",
+        "amount": "20000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Foldable IOL",
+        "amount": "12000.00",
+        "category": "implants"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "6000.00",
+        "category": "other"
+      }
+    ],
+    "total_amount": "38000.00"
+  }
+}

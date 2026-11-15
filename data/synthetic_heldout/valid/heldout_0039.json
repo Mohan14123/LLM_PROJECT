@@ -1,0 +1,74 @@
+{
+  "request_id": "16956089-1f52-4f19-acf5-50cea6936b0d",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "eb1a61e5-6bb4-4efb-81df-ee344042a092",
+    "full_name": "Amitabh Sen",
+    "age": 61,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100039"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100039",
+    "plan_type": "individual",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "29fcff86-7689-4531-ae64-530ccdb546d8",
+    "name": "Medanta - The Medicity",
+    "city": "Gurugram",
+    "network_tier": "non_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "I21.0",
+    "description": "Acute STEMI",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "PCI-001",
+    "description": "Primary PCI with Drug Eluting Stent",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "60000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Stent Implant",
+        "amount": "85000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "17000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "185000.00"
+  }
+}

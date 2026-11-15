@@ -30,16 +30,21 @@ logger = logging.getLogger(__name__)
 def apply_copay_deductible(
     request: "PreAuthRequest",
     clauses: list["RetrievedClause"],
+    admissible_amount: Optional[Decimal] = None,
 ) -> dict:
     """Apply co-pay percentage and deductible to the claim.
 
     Logic:
-        1. If policy.co_pay_pct > 0, compute co-pay on total claimed amount.
+        1. If policy.co_pay_pct > 0, compute co-pay on the admissible claim amount
+           (after prior exclusions and sub-limit deductions), ensuring deductions
+           do not double-count against capped or excluded heads.
         2. If plan_type is TOP_UP or SUPER_TOP_UP, apply threshold deductible.
 
     Args:
         request: The PreAuthRequest to evaluate.
         clauses: Retrieved clauses for citation.
+        admissible_amount: Admissible amount after prior deductions. Defaults
+            to total_claimed if not provided.
 
     Returns:
         Dict with "deductions" and "reasoning".
@@ -48,11 +53,13 @@ def apply_copay_deductible(
     reasoning_parts: list[str] = []
 
     total_claimed = request.cost_estimate.total_amount
+    base_amount = admissible_amount if admissible_amount is not None else total_claimed
+    base_amount = max(Decimal("0.00"), base_amount)
     co_pay_pct = request.policy.co_pay_pct
 
     # --- Co-pay ---
-    if co_pay_pct > Decimal("0"):
-        co_pay_amount = (total_claimed * co_pay_pct / Decimal("100")).quantize(
+    if co_pay_pct > Decimal("0") and base_amount > Decimal("0"):
+        co_pay_amount = (base_amount * co_pay_pct / Decimal("100")).quantize(
             Decimal("0.01"), rounding=ROUND_HALF_UP
         )
 
@@ -61,22 +68,26 @@ def apply_copay_deductible(
         deductions.append(
             Deduction(
                 category=DeductionCategory.CO_PAY,
-                original_amount=total_claimed,
-                allowed_amount=total_claimed - co_pay_amount,
+                original_amount=base_amount,
+                allowed_amount=base_amount - co_pay_amount,
                 deducted_amount=co_pay_amount,
                 clause_citation=citation,
                 source_document=_find_source(clauses, "co-pay", "copay"),
                 explanation=(
-                    f"Co-pay of {co_pay_pct}% applied: "
-                    f"₹{total_claimed:,.2f} × {co_pay_pct}% = ₹{co_pay_amount:,.2f} "
+                    f"Co-pay of {co_pay_pct}% applied on admissible amount ₹{base_amount:,.2f}: "
+                    f"₹{base_amount:,.2f} × {co_pay_pct}% = ₹{co_pay_amount:,.2f} "
                     "borne by the insured."
                 ),
             )
         )
 
         reasoning_parts.append(
-            f"Co-pay applied: {co_pay_pct}% of ₹{total_claimed:,.2f} = "
+            f"Co-pay applied: {co_pay_pct}% of admissible amount ₹{base_amount:,.2f} = "
             f"₹{co_pay_amount:,.2f}."
+        )
+    elif co_pay_pct > Decimal("0") and base_amount <= Decimal("0"):
+        reasoning_parts.append(
+            f"Co-pay of {co_pay_pct}% applicable, but admissible amount is ₹0.00 — no co-pay deducted."
         )
     else:
         reasoning_parts.append("Co-pay: 0% — no co-pay applicable.")

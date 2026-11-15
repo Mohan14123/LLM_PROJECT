@@ -1,0 +1,74 @@
+{
+  "request_id": "ff8f2fbe-c236-4880-ac35-d1f2a90e008a",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "0586e42d-8940-499e-aff1-bd1d1f2b7639",
+    "full_name": "Mohammed Tariq",
+    "age": 47,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100025"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100025",
+    "plan_type": "individual",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "017e8bd4-5fbe-48d5-b780-b12317deea14",
+    "name": "City Clinic & Day Care",
+    "city": "Kolkata",
+    "network_tier": "non_network",
+    "category": "day_care_center"
+  },
+  "diagnosis": {
+    "icd10_code": "M17.11",
+    "description": "Primary osteoarthritis of right knee",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-27447",
+    "description": "Total Knee Arthroplasty (TKR)",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "70000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Knee Prosthesis",
+        "amount": "95000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "210000.00"
+  }
+}

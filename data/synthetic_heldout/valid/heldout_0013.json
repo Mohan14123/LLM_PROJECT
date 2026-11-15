@@ -1,0 +1,74 @@
+{
+  "request_id": "5c931245-8da3-4b7f-99a5-28559191ff7c",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "a6c74e26-3387-4dd3-a902-5b921abd6054",
+    "full_name": "Suresh Patel",
+    "age": 64,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100013"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100013",
+    "plan_type": "group",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "059fc777-7d60-4f3a-9d08-871f5f271eca",
+    "name": "Apollo Specialty Hospital",
+    "city": "Chennai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "K35.8",
+    "description": "Acute Appendicitis",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-44970",
+    "description": "Emergency Laparoscopic Appendectomy",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "5000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "35000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "15000.00",
+        "category": "other"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "10000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "10000.00",
+        "category": "diagnostic"
+      }
+    ],
+    "total_amount": "75000.00"
+  }
+}

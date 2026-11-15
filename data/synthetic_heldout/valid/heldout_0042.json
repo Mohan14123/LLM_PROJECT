@@ -1,0 +1,74 @@
+{
+  "request_id": "8d6b47ad-9cf2-4906-b00e-fe8af5914dd3",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "654bb5ac-bcca-4438-a658-d19c7590973b",
+    "full_name": "Harpreet Kaur",
+    "age": 66,
+    "gender": "female",
+    "policy_number": "POL-LAPSED-42"
+  },
+  "policy": {
+    "policy_number": "POL-LAPSED-42",
+    "plan_type": "senior_citizen",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "957635cb-4ae1-45cd-84d0-cfa75318ccfd",
+    "name": "City Clinic & Day Care",
+    "city": "Kolkata",
+    "network_tier": "non_network",
+    "category": "day_care_center"
+  },
+  "diagnosis": {
+    "icd10_code": "I21.0",
+    "description": "Acute STEMI",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "PCI-001",
+    "description": "Primary PCI with Drug Eluting Stent",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "60000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Stent Implant",
+        "amount": "85000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "17000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "185000.00"
+  }
+}

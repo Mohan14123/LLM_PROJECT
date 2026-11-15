@@ -35,28 +35,27 @@ logger = logging.getLogger(__name__)
 
 
 # ============================================================================
-# LLM System Prompt (Guardrail #1: recommend-only)
+# LLM System Prompt (Guardrail #1: recommend-only, Decoupled Independent Review)
 # ============================================================================
 
 _SYSTEM_PROMPT = """\
-You are a senior medical director and health insurance claims analyst for an Indian insurer.
-Your role is to perform an independent clinical & policy adjudication for a cashless
-pre-authorisation decision (Dual-Track Neuro-Symbolic Architecture). You must:
+You are a senior medical director and health insurance claims clinical analyst for an Indian insurer.
+Your role is to perform an independent clinical assessment for a cashless
+pre-authorisation request (Dual-Track Neuro-Symbolic Architecture). You must:
 
 1. ALWAYS frame your output as a RECOMMENDATION, never a final decision.
-2. Cite specific clause references from the retrieved policy documents.
+2. Cite specific clause references or clinical guidelines from the retrieved documents.
 3. Use ONLY the information provided — do not fabricate or hallucinate clauses.
-4. Structure your response: Summary → Analysis → Deductions → Recommendation.
+4. Structure your response: Summary → Clinical Analysis → Recommendation.
 5. All amounts in Indian Rupees (₹).
 6. Provide an independent clinical assessment:
    - If the procedure is standard, clinically indicated, and medically necessary for the diagnosis (e.g. Laparoscopic appendectomy for appendicitis, PCI stenting for STEMI, Cataract extraction for cataract, Dialysis for ESRD), recommend AUTHORISE.
-   - Concur with the Rules Engine calculations and endorse SAME_AS_RULES unless a procedure sub-limit cap or policy exclusion requires adjustment.
-   - Only recommend QUERY if the clinical indication is fundamentally contradictory or missing.
-   - Only recommend DENY if the procedure is an explicit permanent exclusion (e.g. cosmetic, unapproved).
+   - Only recommend QUERY if the clinical indication is fundamentally contradictory, unclear, or missing essential investigation reports.
+   - Only recommend DENY if the procedure is an explicit permanent exclusion (e.g. cosmetic, unapproved, non-medical admission).
 
 IMPORTANT: Always end your output with these exact machine-parseable tags on separate lines:
 CLINICAL_RECOMMENDATION: [AUTHORISE | DENY | ESCALATE | QUERY]
-CLINICAL_APPROVED_AMOUNT: [Amount in ₹ as digits only, or SAME_AS_RULES, or 0]
+CLINICAL_APPROVED_AMOUNT: [Recommended amount in ₹ as digits only, or 0]
 CLINICAL_CONFIDENCE: [0.0 to 1.0]
 CLINICAL_SUMMARY: [Single-sentence clinical necessity assessment]
 
@@ -428,21 +427,17 @@ def apply_rules_engine(state: dict[str, Any]) -> dict[str, Any]:
 # ============================================================================
 
 def llm_reasoning(state: dict[str, Any]) -> dict[str, Any]:
-    """Generate natural-language reasoning using an LLM.
+    """Generate independent natural-language clinical reasoning using Track 2 LLM.
 
-    Takes the adjudication result + retrieved clauses and asks the LLM
-    to produce a human-readable reasoning narrative with clause citations.
+    Performs an independent clinical assessment of medical necessity and guideline
+    grounding, completely decoupled from Track 1's symbolic tariff calculations.
 
-    Falls back to a deterministic narrative if no LLM API key is set or
-    the API call fails.
-
-    Environment Variables:
-        OPENAI_API_KEY: API key for OpenAI-compatible endpoint.
-        OPENAI_BASE_URL: Optional base URL (for Grok, Claude, etc.).
-        LLM_MODEL: Model name (default: gpt-4o-mini).
+    Falls back to a deterministic narrative if the LLM provider fails or is
+    configured in FALLBACK_ONLY mode.
 
     Returns:
-        Updated state with reasoning_narrative, raw_llm_output, and cost.
+        Updated state with reasoning_narrative, raw_llm_output, Track 2 recommendation,
+        and telemetry tracking.
     """
     start = time.perf_counter()
 
@@ -450,90 +445,41 @@ def llm_reasoning(state: dict[str, Any]) -> dict[str, Any]:
     retrieved_clauses = state.get("retrieved_clauses", [])
     request = state.get("pre_auth_request", {})
 
-    # Build prompt
-    prompt = _build_reasoning_prompt(request, adj_result, retrieved_clauses)
+    # Build decoupled Track 2 prompt (clinical request + retrieved clauses only)
+    prompt = _build_reasoning_prompt(request, retrieved_clauses)
 
-    # Try calling LLM API
     llm_rec = adj_result.get("recommendation", "RECOMMEND_AUTHORISE")
     llm_conf = adj_result.get("confidence_score", 0.85)
-    llm_summary = "Clinical assessment aligns with deterministic policy rules."
+    llm_summary = "Clinical assessment aligns with medical indications."
+    llm_approved_amount = None
 
     try:
-        narrative, token_count, cost = _call_llm(prompt)
-        logger.info(
-            "LLM reasoning: %d input + %d output tokens, ₹%.4f",
-            token_count["input_tokens"], token_count["output_tokens"], cost,
-        )
+        content, token_count, cost, fallback_used, fallback_reason = _call_llm(prompt)
 
-        # Parse Track 2 structured clinical evaluation
-        rec_m = re.search(r'CLINICAL_RECOMMENDATION:\s*(AUTHORISE|APPROVE|DENY|REJECT|ESCALATE|QUERY)', narrative, re.IGNORECASE)
-        if rec_m:
-            val = rec_m.group(1).upper()
-            if val in ("AUTHORISE", "APPROVE"):
-                llm_rec = "RECOMMEND_AUTHORISE"
-            elif val in ("DENY", "REJECT"):
-                llm_rec = "RECOMMEND_DENY"
-            elif val == "QUERY":
-                llm_rec = "RECOMMEND_QUERY"
-            elif val == "ESCALATE":
-                llm_rec = "RECOMMEND_QUERY"
-
-        conf_m = re.search(r'CLINICAL_CONFIDENCE:\s*([0-9.]+)', narrative)
-        if conf_m:
-            try:
-                llm_conf = float(conf_m.group(1))
-            except ValueError:
-                pass
-
-        sum_m = re.search(r'CLINICAL_SUMMARY:\s*(.+?)(?:\n|$)', narrative)
-        if sum_m:
-            llm_summary = sum_m.group(1).strip()
-
-        # Parse proposed approved amount if specified by LLM
-        llm_approved_amount = None
-        if re.search(r'CLINICAL_APPROVED_AMOUNT:\s*SAME_AS_RULES', narrative, re.IGNORECASE):
-            rules_app = adj_result.get("total_approved")
-            if rules_app is not None:
-                try:
-                    llm_approved_amount = Decimal(str(rules_app))
-                except (InvalidOperation, ValueError):
-                    pass
+        if fallback_used or not content:
+            logger.info("LLM executed fallback (%s).", fallback_reason)
+            narrative = _build_fallback_narrative(adj_result)
+            if fallback_reason:
+                narrative += f"\n\n[Notice: {fallback_reason}]"
         else:
-            amt_m = re.search(r'CLINICAL_APPROVED_AMOUNT:\s*([0-9,]+(?:\.[0-9]{2})?)', narrative, re.IGNORECASE)
-            if amt_m:
-                try:
-                    llm_approved_amount = Decimal(amt_m.group(1).replace(",", ""))
-                except (InvalidOperation, ValueError):
-                    pass
-            if llm_approved_amount is None:
-                if re.search(r'(agree|concur|aligns? with|confirm).*rules engine.*approved', narrative, re.IGNORECASE):
-                    rules_app = adj_result.get("total_approved")
-                    if rules_app is not None:
-                        try:
-                            llm_approved_amount = Decimal(str(rules_app))
-                        except (InvalidOperation, ValueError):
-                            pass
-                else:
-                    amt_text_m = re.search(r'[Aa]pproved\s+amount\*?:\s*[*₹Rs\.\s]*([0-9,]+(?:\.[0-9]{2})?)', narrative)
-                    if amt_text_m:
-                        try:
-                            llm_approved_amount = Decimal(amt_text_m.group(1).replace(",", ""))
-                        except (InvalidOperation, ValueError):
-                            pass
-
-        # Clean machine tags from displayed narrative
-        cleaned_narrative = re.sub(r'\n*CLINICAL_RECOMMENDATION:.*', '', narrative, flags=re.DOTALL).strip()
-        cleaned_narrative = re.sub(r'\n*CLINICAL_APPROVED_AMOUNT:.*', '', cleaned_narrative, flags=re.DOTALL).strip()
-        if cleaned_narrative:
-            narrative = cleaned_narrative
+            narrative = content
+            # Parse structured clinical evaluation tags
+            from llm.response_parser import parse_clinical_tags
+            parsed_rec, parsed_conf, parsed_summary, parsed_amt, cleaned_narr = parse_clinical_tags(
+                narrative, default_rec=llm_rec, default_conf=llm_conf
+            )
+            llm_rec = parsed_rec
+            llm_conf = parsed_conf
+            llm_summary = parsed_summary
+            llm_approved_amount = parsed_amt
+            narrative = cleaned_narr
 
     except Exception as e:
-        logger.error("LLM call skipped (%s). Using deterministic fallback.", e, exc_info=True)
+        logger.error("LLM reasoning encountered error (%s). Using deterministic fallback.", e, exc_info=True)
         narrative = _build_fallback_narrative(adj_result)
         narrative += f"\n\n[Exception: {str(e)}]"
         token_count = {"input_tokens": 0, "output_tokens": 0}
         cost = 0.0
-        llm_approved_amount = None
 
     return {
         "reasoning_narrative": narrative,
@@ -552,65 +498,61 @@ def llm_reasoning(state: dict[str, Any]) -> dict[str, Any]:
 
 
 def _build_reasoning_prompt(
-    request: dict, adj_result: dict, retrieved_clauses: list[dict],
+    request: dict, retrieved_clauses: list[dict],
 ) -> str:
-    """Build the structured prompt for LLM reasoning."""
+    """Build the decoupled prompt for Track 2 independent clinical reasoning.
+
+    Guarantees Track 2 independence: does NOT include Track 1's numerical
+    approval totals or symbolic decisions, preventing cognitive anchoring.
+    """
     parts: list[str] = []
 
-    # Patient/claim context
+    # Patient/claim clinical context
     patient = request.get("patient", {}) if request else {}
     diagnosis = request.get("diagnosis", {}) if request else {}
     procedure = request.get("procedure", {}) if request else {}
     policy = request.get("policy", {}) if request else {}
     cost = request.get("cost_estimate", {}) if request else {}
 
-    parts.append("## Pre-Authorisation Request")
+    parts.append("## Pre-Authorisation Clinical Request")
     parts.append(f"- Patient Age: {patient.get('age', 'N/A')}")
-    parts.append(f"- Diagnosis: {diagnosis.get('description', 'N/A')} "
+    parts.append(f"- Patient Gender: {patient.get('gender', 'N/A')}")
+    parts.append(f"- Primary Diagnosis: {diagnosis.get('description', 'N/A')} "
                  f"(ICD-10: {diagnosis.get('icd10_code', 'N/A')})")
-    parts.append(f"- Pre-existing: {'Yes' if diagnosis.get('is_pre_existing') else 'No'}")
-    parts.append(f"- Procedure: {procedure.get('description', 'N/A')}")
+    parts.append(f"- Flagged as Pre-Existing (PED): {'Yes' if diagnosis.get('is_pre_existing') else 'No'}")
+    parts.append(f"- Planned Procedure: {procedure.get('description', 'N/A')} "
+                 f"(Code: {procedure.get('procedure_code', 'N/A')})")
     parts.append(f"- Admission Type: {procedure.get('admission_type', 'N/A')}")
-    parts.append(f"- Plan Type: {policy.get('plan_type', 'N/A')}")
+    parts.append(f"- Policy Plan Type: {policy.get('plan_type', 'N/A')}")
     parts.append(f"- Sum Insured: ₹{policy.get('sum_insured', 'N/A')}")
-    parts.append(f"- Co-pay: {policy.get('co_pay_pct', '0')}%")
-    parts.append(f"- Total Claimed: ₹{cost.get('total_amount', 'N/A')}")
+    parts.append(f"- Total Hospital Estimated Amount: ₹{cost.get('total_amount', 'N/A')}")
 
-    # Rules engine output
-    parts.append("\n## Rules Engine Output")
-    parts.append(f"- Recommendation: {adj_result.get('recommendation', 'N/A')}")
-    parts.append(f"- Confidence: {adj_result.get('confidence_score', 0):.0%}")
-    parts.append(f"- Total Approved: ₹{adj_result.get('total_approved', 'N/A')}")
-    parts.append(f"- Total Deducted: ₹{adj_result.get('total_deducted', 'N/A')}")
+    line_items = cost.get("line_items", [])
+    if line_items:
+        parts.append(f"\n### Itemised Cost Estimates ({len(line_items)} items):")
+        for item in line_items[:8]:
+            parts.append(f"  - [{item.get('category', '?')}] {item.get('item', '')}: ₹{item.get('amount', 0)}")
 
-    deductions = adj_result.get("deductions", [])
-    if deductions:
-        parts.append(f"\n### Deductions Applied ({len(deductions)}):")
-        for d in deductions:
-            parts.append(f"  - [{d.get('category', '?')}] ₹{d.get('deducted_amount', 0)}: "
-                         f"{d.get('explanation', '')}")
-
-    # Retrieved clauses
+    # Retrieved clauses & clinical guidelines
     if retrieved_clauses:
-        parts.append("\n## Retrieved Policy Clauses")
+        parts.append("\n## Retrieved Policy & Clinical Guidelines")
         for i, clause in enumerate(retrieved_clauses[:5], 1):
             text = clause.get("chunk_text", clause.get("text", ""))
             source = clause.get("source_file", "")
             score = clause.get("similarity_score", 0)
-            parts.append(f"\n[Clause {i}] Source: {source} (score: {score:.3f})")
+            parts.append(f"\n[Guideline {i}] Source: {source} (similarity: {score:.3f})")
             parts.append(text[:600])
 
     # Task instruction
-    parts.append("\n## Task (Dual-Track Neuro-Symbolic Evaluation)")
-    parts.append("1. Provide a clear, structured reasoning narrative explaining "
-                 "the recommendation. Cite specific clause references from the "
-                 "retrieved documents above. Begin with "
+    parts.append("\n## Task: Independent Clinical Necessity Adjudication")
+    parts.append("1. Provide a clear, structured clinical reasoning narrative assessing medical necessity, "
+                 "appropriateness of admission type, and whether the procedure is clinically indicated for the diagnosis. "
+                 "Cite specific guideline/clause references from the retrieved excerpts above. Begin your narrative with "
                  "'RECOMMENDATION — requires human sign-off'.")
-    parts.append("2. Perform an independent clinical assessment of medical necessity, "
-                 "appropriateness of admission type, and procedure justification.")
-    parts.append("3. End your response with these exact machine-parseable tags:\n"
+    parts.append("2. Perform this evaluation independently of tariff schedules or financial formulas.")
+    parts.append("3. End your response with these exact machine-parseable tags on separate lines:\n"
                  "CLINICAL_RECOMMENDATION: [AUTHORISE | DENY | ESCALATE | QUERY]\n"
-                 "CLINICAL_APPROVED_AMOUNT: [Amount in ₹ as digits only, or SAME_AS_RULES, or 0]\n"
+                 "CLINICAL_APPROVED_AMOUNT: [Amount in ₹ as digits only, or 0]\n"
                  "CLINICAL_CONFIDENCE: [0.0-1.0]\n"
                  "CLINICAL_SUMMARY: [Single-sentence clinical necessity verdict]")
 
@@ -651,63 +593,17 @@ def _build_fallback_narrative(adj_result: dict) -> str:
     return "\n".join(parts)
 
 
-def _call_llm(prompt: str) -> tuple[str, dict[str, int], float]:
-    """Call an OpenAI-compatible LLM API.
-
-    Args:
-        prompt: The user prompt to send.
+def _call_llm(prompt: str) -> tuple[str, dict[str, int], float, bool, Optional[str]]:
+    """Call the LLM provider subsystem.
 
     Returns:
-        Tuple of (response_text, token_count_dict, cost_inr).
-
-    Raises:
-        ValueError: If no API key is configured.
-        Exception: If the API call fails.
+        Tuple of (content, token_count, cost_inr, fallback_used, fallback_reason).
     """
-    api_key = os.environ.get("OPENAI_API_KEY")
-    if not api_key:
-        raise ValueError("OPENAI_API_KEY not set — using deterministic fallback")
-
-    base_url = os.environ.get("OPENAI_BASE_URL")
-    model = os.environ.get("LLM_MODEL", "gpt-4o")
-    temperature = float(os.environ.get("LLM_TEMPERATURE", "0.0"))
-    max_tokens = int(os.environ.get("LLM_MAX_TOKENS", "1024"))
-    top_p = float(os.environ.get("LLM_TOP_P", "1.0"))
-
-    from openai import OpenAI
-
-    client_kwargs: dict[str, Any] = {"api_key": api_key}
-    if base_url:
-        client_kwargs["base_url"] = base_url
-
-    client = OpenAI(**client_kwargs)
-    response = client.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": _SYSTEM_PROMPT},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=temperature,
-        top_p=top_p,
-        max_tokens=max_tokens,
-    )
-
-    content = response.choices[0].message.content or ""
-    usage = response.usage
-
-    token_count = {
-        "input_tokens": usage.prompt_tokens if usage else 0,
-        "output_tokens": usage.completion_tokens if usage else 0,
-    }
-
-    from orchestration.metrics import compute_cost_inr
-    cost = compute_cost_inr(
-        token_count["input_tokens"],
-        token_count["output_tokens"],
-        model=model,
-    )
-
-    return content, token_count, cost
+    from llm import OpenAICompatibleProvider, LLMConfig
+    config = LLMConfig.from_env()
+    provider = OpenAICompatibleProvider(config=config)
+    resp = provider.generate(prompt, system_prompt=_SYSTEM_PROMPT)
+    return resp.content, resp.token_count, resp.cost_inr, resp.fallback_used, resp.fallback_reason
 
 
 # ============================================================================
@@ -757,9 +653,13 @@ def citation_guard(state: dict[str, Any]) -> dict[str, Any]:
     valid_sections: set[str] = set()
     valid_circulars: set[str] = set()
     valid_sources: set[str] = set()
+    valid_chunk_ids: set[str] = set()
 
     for clause in (retrieved_clauses or []):
         text = clause.get("chunk_text", clause.get("text", ""))
+        cid = clause.get("chunk_id") or clause.get("clause_id")
+        if cid:
+            valid_chunk_ids.add(str(cid).lower())
 
         # Extract section and clause references (e.g., "Section 3.2", "SECTION 42.1", "Clause 4.1")
         for match in re.finditer(r'(?:Section|SECTION|Clause|CLAUSE)\s+(\d+(?:\.\d+)*)', text):
@@ -783,6 +683,13 @@ def citation_guard(state: dict[str, Any]) -> dict[str, Any]:
 
     # --- Check LLM output for ungrounded citations ---
     hallucinated: list[str] = []
+
+    # Check stable chunk/clause ID references
+    for match in re.finditer(r'(?:CHUNK|CLAUSE|DOC)-[A-Za-z0-9_-]+', raw_output, re.IGNORECASE):
+        c_ref = match.group()
+        if c_ref.lower() not in valid_chunk_ids:
+            if c_ref not in hallucinated:
+                hallucinated.append(c_ref)
 
     # Check section and clause references
     for match in re.finditer(r'(?:Section|SECTION|Clause|CLAUSE)\s+(\d+(?:\.\d+)*)', raw_output):

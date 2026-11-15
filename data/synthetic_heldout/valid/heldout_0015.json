@@ -1,0 +1,74 @@
+{
+  "request_id": "4bf16987-50fa-45f4-91c2-7e2463087173",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "17396063-bb41-46a5-8a19-285de0dcd6d5",
+    "full_name": "Ananya Iyer",
+    "age": 29,
+    "gender": "female",
+    "policy_number": "POL-HOLD-100015"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100015",
+    "plan_type": "senior_citizen",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "5ed9cff0-7f61-4303-b50b-fa910e7f27e8",
+    "name": "Tata Memorial Hospital",
+    "city": "Mumbai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "I21.0",
+    "description": "Acute STEMI",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "PCI-001",
+    "description": "Primary PCI with Drug Eluting Stent",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "60000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Stent Implant",
+        "amount": "85000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "17000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "185000.00"
+  }
+}

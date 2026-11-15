@@ -1,0 +1,74 @@
+{
+  "request_id": "67637129-5c94-4308-80fe-4b712098e446",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "231ab349-d7db-42bc-a26e-df13d1f18b04",
+    "full_name": "Neha Deshmukh",
+    "age": 26,
+    "gender": "female",
+    "policy_number": "POL-HOLD-100035"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100035",
+    "plan_type": "group",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "2ad683e0-bd0f-44f2-b67a-d17b6f9865c6",
+    "name": "Apollo Specialty Hospital",
+    "city": "Chennai",
+    "network_tier": "non_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "K80.20",
+    "description": "Calculus of gallbladder (Gallstones)",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-47562",
+    "description": "Elective Laparoscopic Cholecystectomy",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "45000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "15000.00",
+        "category": "other"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "10000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "10000.00",
+        "category": "diagnostic"
+      }
+    ],
+    "total_amount": "88000.00"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "request_id": "92fe26da-0805-4c63-ae0c-3a25387a22bb",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "39eef336-b445-495c-a263-f3685f12747d",
+    "full_name": "Fatima Begum",
+    "age": 41,
+    "gender": "female",
+    "policy_number": "POL-HOLD-100004"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100004",
+    "plan_type": "group",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "ff7e2d39-ae32-4f74-a8bf-587bad14b3ec",
+    "name": "St. Johns Medical Center",
+    "city": "Bengaluru",
+    "network_tier": "non_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "I21.0",
+    "description": "Acute STEMI",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "PCI-001",
+    "description": "Primary PCI with Drug Eluting Stent",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "60000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Stent Implant",
+        "amount": "85000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "17000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "185000.00"
+  }
+}

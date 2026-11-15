@@ -1,0 +1,74 @@
+{
+  "request_id": "6e292287-d7a8-4dac-a679-bc0e0699a433",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "10d13fde-40f1-4487-9c1b-9c7381b2fc0b",
+    "full_name": "Gurpreet Singh",
+    "age": 42,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100034"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100034",
+    "plan_type": "individual",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "20.00"
+  },
+  "hospital": {
+    "hospital_id": "0f44b583-fda1-4620-89b0-58ce0a4bcaa9",
+    "name": "Apollo Specialty Hospital",
+    "city": "Chennai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "M17.11",
+    "description": "Primary osteoarthritis of right knee",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-27447",
+    "description": "Total Knee Arthroplasty (TKR)",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "70000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Knee Prosthesis",
+        "amount": "95000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "210000.00"
+  }
+}

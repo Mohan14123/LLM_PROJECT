@@ -1,0 +1,74 @@
+{
+  "request_id": "56a079ba-dcf5-4aa0-b4f6-d3bf0cf93f49",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "7469ed1a-cec1-4ce0-b8d0-0735b934d77c",
+    "full_name": "Suresh Patel",
+    "age": 63,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100002"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100002",
+    "plan_type": "group",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "0662aad6-9e67-4bd0-995e-4b296a2455ee",
+    "name": "City Clinic & Day Care",
+    "city": "Kolkata",
+    "network_tier": "non_network",
+    "category": "day_care_center"
+  },
+  "diagnosis": {
+    "icd10_code": "K80.20",
+    "description": "Calculus of gallbladder (Gallstones)",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-47562",
+    "description": "Elective Laparoscopic Cholecystectomy",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "45000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "15000.00",
+        "category": "other"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "10000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "10000.00",
+        "category": "diagnostic"
+      }
+    ],
+    "total_amount": "88000.00"
+  }
+}

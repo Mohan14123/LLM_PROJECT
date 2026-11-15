@@ -1,0 +1,74 @@
+{
+  "request_id": "b1d43a87-6f76-4f03-a625-a4a3a1d5a05d",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "299d1242-0988-481f-ab81-8b74a7967e82",
+    "full_name": "Suresh Patel",
+    "age": 66,
+    "gender": "male",
+    "policy_number": "POL-LAPSED-43"
+  },
+  "policy": {
+    "policy_number": "POL-LAPSED-43",
+    "plan_type": "family_floater",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "57c4182a-0713-4859-867f-0e7f9f7fa820",
+    "name": "Fortis Escorts Heart Institute",
+    "city": "Delhi",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "K80.20",
+    "description": "Calculus of gallbladder (Gallstones)",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-47562",
+    "description": "Elective Laparoscopic Cholecystectomy",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "8000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "45000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "15000.00",
+        "category": "other"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "10000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "10000.00",
+        "category": "diagnostic"
+      }
+    ],
+    "total_amount": "88000.00"
+  }
+}

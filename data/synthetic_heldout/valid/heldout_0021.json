@@ -1,0 +1,59 @@
+{
+  "request_id": "5d6c67cb-e1e1-4af7-bcfd-f02d79e6d07e",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "c9e1048d-97f8-4459-9f33-0e21a1328bdd",
+    "full_name": "Pooja Nair",
+    "age": 26,
+    "gender": "female",
+    "policy_number": "POL-HOLD-100021"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100021",
+    "plan_type": "group",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "9e1b1ff3-a607-4be8-88e6-9a570694b270",
+    "name": "St. Johns Medical Center",
+    "city": "Bengaluru",
+    "network_tier": "non_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "N18.6",
+    "description": "End stage renal disease on maintenance hemodialysis",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-90935",
+    "description": "Maintenance hemodialysis session",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Dialysis Fee",
+        "amount": "18000.00",
+        "category": "sub_limit_capping"
+      },
+      {
+        "item": "Consumables & Dialyzer",
+        "amount": "4000.00",
+        "category": "consumables"
+      }
+    ],
+    "total_amount": "22000.00"
+  }
+}

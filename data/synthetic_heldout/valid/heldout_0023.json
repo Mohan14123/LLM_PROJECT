@@ -1,0 +1,74 @@
+{
+  "request_id": "f50c008c-69aa-42a0-a51c-819c43f58150",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "01571342-643b-44e4-bfae-3d41f2fdd010",
+    "full_name": "Ananya Iyer",
+    "age": 38,
+    "gender": "female",
+    "policy_number": "POL-HOLD-100023"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100023",
+    "plan_type": "group",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "173ad0fb-2432-4d7a-87f2-ede4276a5d1d",
+    "name": "Apollo Specialty Hospital",
+    "city": "Chennai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "M17.11",
+    "description": "Primary osteoarthritis of right knee",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-27447",
+    "description": "Total Knee Arthroplasty (TKR)",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Room Rent",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Surgeon Fee",
+        "amount": "70000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Knee Prosthesis",
+        "amount": "95000.00",
+        "category": "implants"
+      },
+      {
+        "item": "Diagnostic",
+        "amount": "15000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Pharmacy",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      }
+    ],
+    "total_amount": "210000.00"
+  }
+}

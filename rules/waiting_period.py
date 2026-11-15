@@ -81,10 +81,10 @@ def check_waiting_period(
     diag_desc = getattr(request.diagnosis, "description", "").lower() if hasattr(request, "diagnosis") else ""
 
     is_endorsed_policy = (
-        plan_type_val.lower() == "group"
-        or "endors" in policy_num.lower()
+        "endors" in policy_num.lower()
         or "end-" in policy_num.lower()
         or "endorsement" in diag_desc
+        or "waiver" in policy_num.lower()
     )
     endorsement_clause = _find_endorsement_waiver(clauses) if is_endorsed_policy else None
 

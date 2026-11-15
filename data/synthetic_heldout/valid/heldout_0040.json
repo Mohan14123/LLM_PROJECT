@@ -1,0 +1,64 @@
+{
+  "request_id": "751fddda-7988-419d-b94b-ce17da82e4f1",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "6b4a6f6d-f4a0-4a69-99ce-0f4312c1c4ef",
+    "full_name": "Ravi Shankar",
+    "age": 74,
+    "gender": "male",
+    "policy_number": "POL-HOLD-100040"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100040",
+    "plan_type": "senior_citizen",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "20.00"
+  },
+  "hospital": {
+    "hospital_id": "80957de5-6ed4-48b6-ac2f-f55a911d76fe",
+    "name": "Tata Memorial Hospital",
+    "city": "Mumbai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "H26.1",
+    "description": "Senile nuclear cataract, bilateral",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-66984",
+    "description": "Phacoemulsification with Foldable IOL",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Surgeon Fee",
+        "amount": "20000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Foldable IOL",
+        "amount": "12000.00",
+        "category": "implants"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "6000.00",
+        "category": "other"
+      }
+    ],
+    "total_amount": "38000.00"
+  }
+}

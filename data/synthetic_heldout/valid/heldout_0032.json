@@ -1,0 +1,64 @@
+{
+  "request_id": "f68bcfde-aade-40e1-9326-7d503bcfda13",
+  "submitted_at": "2026-03-19",
+  "source_format": "json",
+  "status": "pending",
+  "admission_date": "2026-03-20",
+  "patient": {
+    "patient_id": "dd0d1c54-93e9-4298-9f98-68e1813082f6",
+    "full_name": "Harpreet Kaur",
+    "age": 65,
+    "gender": "female",
+    "policy_number": "POL-HOLD-100032"
+  },
+  "policy": {
+    "policy_number": "POL-HOLD-100032",
+    "plan_type": "group",
+    "sum_insured": "200000.00",
+    "policy_start_date": "2023-01-15",
+    "waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "room_rent_per_day": "5000.00"
+      }
+    },
+    "co_pay_pct": "0.00"
+  },
+  "hospital": {
+    "hospital_id": "0ba45067-a3f5-460f-b238-fa2fd81c19c5",
+    "name": "Manipal Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "icd10_code": "H26.1",
+    "description": "Senile nuclear cataract, bilateral",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "procedure_code": "CPT-66984",
+    "description": "Phacoemulsification with Foldable IOL",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "line_items": [
+      {
+        "item": "Surgeon Fee",
+        "amount": "20000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Foldable IOL",
+        "amount": "12000.00",
+        "category": "implants"
+      },
+      {
+        "item": "OT Charges",
+        "amount": "6000.00",
+        "category": "other"
+      }
+    ],
+    "total_amount": "38000.00"
+  }
+}

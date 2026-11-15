@@ -38,5 +38,12 @@ data/synthetic_docs/
 .env
 .env.local
 
+# Database
+data/*.db
+data/*.db-wal
+data/*.db-shm
+*.db
+*.sqlite3
+
 # Logs
 *.log
