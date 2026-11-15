@@ -239,9 +239,36 @@ def call_policy_api(state: dict[str, Any]) -> dict[str, Any]:
     sum_insured = str(policy.get("sum_insured", "500000.00"))
     co_pay_pct = str(policy.get("co_pay_pct", "0.00"))
 
+    # --- Determine PED Waiting Period & Moratorium per IRDAI 2024 ---
+    # Under IRDAI (Insurance Products) Regulations, 2024:
+    # 1. Statutory maximum PED waiting period is 36 months (1,095 days), down from 48 months.
+    # 2. Legacy policies (issued prior to April 1, 2024) retain 48 months (1,460 days).
+    # 3. Statutory non-disclosure moratorium is 60 continuous months (1,825 days).
+    raw_wp_months = policy.get("waiting_period_months")
+    is_legacy = (
+        "LEGACY" in policy_number.upper()
+        or (policy_start and str(policy_start) < "2024-04-01" and raw_wp_months == 48)
+    )
+
+    ped_wp_months = 48 if is_legacy else 36
+
+    # Endorsement waivers reverse waiting periods
+    is_endorsed = (
+        "endors" in policy_number.lower()
+        or "end-" in policy_number.lower()
+        or "waiver" in policy_number.lower()
+    )
+    if is_endorsed:
+        ped_days_threshold = 0
+    else:
+        ped_days_threshold = 1460 if is_legacy else 1095
+
+    ped_clear = days_since_inception >= ped_days_threshold
+    moratorium_clear = days_since_inception >= 1825  # 60 months per IRDAI 2024
+
     logger.info(
-        "Policy %s: status=%s, days_since_inception=%d, remaining_si=%s",
-        policy_number, status, days_since_inception, sum_insured,
+        "Policy %s: status=%s, days_since_inception=%d, remaining_si=%s, ped_wp_months=%d, ped_clear=%s, moratorium_clear=%s",
+        policy_number, status, days_since_inception, sum_insured, ped_wp_months, ped_clear, moratorium_clear,
     )
 
     return {
@@ -254,9 +281,13 @@ def call_policy_api(state: dict[str, Any]) -> dict[str, Any]:
         "waiting_period_info": {
             "initial_wp_clear": days_since_inception >= 30,
             "specific_disease_wp_clear": days_since_inception >= 730,
-            "ped_wp_clear": days_since_inception >= 1460,
+            "ped_wp_clear": ped_clear,
             "days_elapsed": days_since_inception,
-            "applicable_wp_months": 0,
+            "applicable_wp_months": ped_wp_months,
+            "ped_wp_months": ped_wp_months,
+            "is_legacy_policy": is_legacy,
+            "moratorium_clear": moratorium_clear,
+            "moratorium_months": 60,
         },
         "node_latencies": {
             **state.get("node_latencies", {}),
@@ -381,7 +412,11 @@ def apply_rules_engine(state: dict[str, Any]) -> dict[str, Any]:
             specific_disease_wp_clear=wp.get("specific_disease_wp_clear", True),
             ped_wp_clear=wp.get("ped_wp_clear", True),
             days_elapsed=wp.get("days_elapsed", 365),
-            applicable_wp_months=wp.get("applicable_wp_months", 0),
+            applicable_wp_months=wp.get("applicable_wp_months", 36),
+            ped_wp_months=wp.get("ped_wp_months", 36),
+            is_legacy_policy=wp.get("is_legacy_policy", False),
+            moratorium_clear=wp.get("moratorium_clear", True),
+            moratorium_months=wp.get("moratorium_months", 60),
         )
 
         # --- Call rules engine ---

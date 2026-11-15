@@ -1,12 +1,17 @@
 """
 rules/waiting_period.py
 -----------------------
-Rule module: Waiting period checks.
+Rule module: Waiting period and statutory moratorium checks.
 
 Evaluates whether the claim falls within any applicable waiting period:
     1. 30-day initial waiting period (from policy inception).
     2. 2-year specific disease waiting period (cataract, hernia, etc.).
-    3. 4-year pre-existing disease (PED) waiting period.
+    3. Pre-existing disease (PED) waiting period:
+       - Current IRDAI (Insurance Products) Regulations, 2024: Maximum 36 months (3 years / 1,095 days).
+       - Legacy policies (pre-2024): 48 months (4 years / 1,460 days).
+    4. Statutory Moratorium Period tracking:
+       - IRDAI 2024: 60 continuous months (5 years / 1,825 days) for non-contestability on grounds
+         of non-disclosure/misrepresentation, distinct from the PED waiting period.
 
 Mandatory adversarial case: Claim inside a waiting period (Metrics.md).
 
@@ -175,21 +180,37 @@ def check_waiting_period(
             f"Specific disease ({icd_code}) 2-year waiting period: CLEAR."
         )
 
-    # --- Check 3: Pre-existing disease 4-year waiting period ---
+    # --- Check 3: Pre-existing disease (PED) waiting period ---
+    # Current IRDAI 2024 regulations enforce a maximum 36-month (3-year) waiting period.
+    # Legacy policies may specify 48 months (4 years).
+    ped_wp_months = getattr(waiting_period, "ped_wp_months", 36) or 36
+    is_legacy = getattr(waiting_period, "is_legacy_policy", False)
+    ped_type_label = f"legacy {ped_wp_months}-month" if is_legacy else f"IRDAI 2024 {ped_wp_months}-month (3-year)"
+
     if request.diagnosis.is_pre_existing and not waiting_period.ped_wp_clear:
         if endorsement_clause:
             endorsement_applied = True
             endorsement_citation = getattr(endorsement_clause, "chunk_text", "")[:300]
             reasoning_parts.append(
-                "ENDORSEMENT REVERSAL APPLIED: Pre-Existing Disease (PED) 4-year waiting period "
+                f"ENDORSEMENT REVERSAL APPLIED: Pre-Existing Disease (PED) {ped_wp_months}-month waiting period "
                 "is waived by active policy endorsement, superseding base policy exclusions."
             )
         else:
             reasoning_parts.append(
-                f"Diagnosis flagged as pre-existing. 4-year PED waiting period NOT elapsed."
+                f"Diagnosis flagged as pre-existing. {ped_type_label} PED waiting period NOT elapsed "
+                f"({waiting_period.days_elapsed} days elapsed)."
             )
 
-            citation = _find_wp_clause(clauses, "pre-existing", "4 year", "48 month", "PED")
+            citation = _find_wp_clause(
+                clauses,
+                f"{ped_wp_months} month",
+                "36 month",
+                "3 year",
+                "pre-existing",
+                "48 month",
+                "4 year",
+                "PED",
+            )
 
             deductions.append(
                 Deduction(
@@ -198,10 +219,12 @@ def check_waiting_period(
                     allowed_amount=Decimal("0"),
                     deducted_amount=request.cost_estimate.total_amount,
                     clause_citation=citation,
-                    source_document=_find_wp_source(clauses, "pre-existing"),
+                    source_document=_find_wp_source(clauses, "pre-existing", f"{ped_wp_months} month", "36 month"),
                     explanation=(
-                        f"Diagnosis '{request.diagnosis.description}' is flagged as "
-                        "pre-existing. The 4-year PED waiting period has not yet elapsed."
+                        f"Diagnosis '{request.diagnosis.description}' is flagged as pre-existing. "
+                        f"The applicable {ped_type_label} PED waiting period has not yet elapsed "
+                        f"({waiting_period.days_elapsed} days elapsed). "
+                        "Note: Pre-existing disease waiting period is distinct from the 60-month statutory moratorium on contestability."
                     ),
                 )
             )
@@ -213,7 +236,24 @@ def check_waiting_period(
             }
 
     if request.diagnosis.is_pre_existing:
-        reasoning_parts.append("PED 4-year waiting period: CLEAR.")
+        reasoning_parts.append(
+            f"Pre-existing disease ({ped_type_label}) waiting period: CLEAR ({waiting_period.days_elapsed} days elapsed)."
+        )
+
+    # --- Check 4: Statutory Moratorium Period tracking ---
+    # Under IRDAI 2024 regulations, 60 continuous months (1,825 days) grants policy non-contestability
+    # on non-disclosure grounds (except established fraud).
+    moratorium_clear = getattr(waiting_period, "moratorium_clear", False)
+    moratorium_months = getattr(waiting_period, "moratorium_months", 60)
+    if moratorium_clear:
+        reasoning_parts.append(
+            f"Statutory Non-Contestability Moratorium: REACHED ({waiting_period.days_elapsed} days >= 1,825 days / {moratorium_months} months per IRDAI 2024). Policy is incontestable except for established fraud."
+        )
+    else:
+        days_to_moratorium = max(1825 - waiting_period.days_elapsed, 0)
+        reasoning_parts.append(
+            f"Statutory Non-Contestability Moratorium: PENDING ({waiting_period.days_elapsed}/1,825 days elapsed; {days_to_moratorium} days remaining until 60-month threshold)."
+        )
 
     reasoning_parts.append("All applicable waiting periods: CLEAR.")
 

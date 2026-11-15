@@ -52,12 +52,15 @@ and treatments shall be admissible only after completion of 24 continuous months
 3.3 Pre-Existing Disease (PED) Waiting Period: Any condition, ailment, injury
 or disease that is diagnosed or for which medical advice or treatment was
 recommended or received by the Insured Person prior to inception of the first
-policy shall be covered only after completion of 48 continuous months (4 years)
-from the date of commencement of the first policy period.
+policy shall be covered after completion of 36 continuous months (3 years)
+from the date of commencement of the first policy period, in accordance with
+IRDAI (Insurance Products) Regulations, 2024. For legacy policies issued prior
+to April 1, 2024, the applicable waiting period is 48 continuous months (4 years).
 
-3.4 Moratorium Period: After completion of 8 continuous years under the policy,
-no claim shall be contestable on the ground that a disease or condition was
-pre-existing at the time of taking the policy, except for proven fraud.
+3.4 Statutory Moratorium Period: After completion of 60 continuous months (5 years)
+under the policy, no claim shall be contestable on the ground of non-disclosure
+or misrepresentation of a pre-existing condition, except for established fraud.
+The 60-month statutory moratorium is independent of the 36-month PED waiting period.
 
 SECTION 4 — CO-PAYMENT
 4.1 The Insured Person shall bear a co-payment as a percentage of every

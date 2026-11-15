@@ -44,14 +44,18 @@ platform operated by the National Health Authority (NHA).
 42.2 Claims data exchange shall follow the FHIR (Fast Healthcare Interoperability
 Resources) standard as specified by NHA.
 
-Section 43 — Pre-Existing Disease Definition:
-43.1 Pre-Existing Disease (PED) means any condition, ailment, injury or disease:
-    a) That is/are diagnosed by a physician within 48 months prior to the
-       effective date of the policy issued by the insurer, OR
-    b) For which medical advice or treatment was recommended by, or received
-       from, a physician within 48 months prior to the effective date of the
-       policy issued by the insurer.
+Section 43 — Pre-Existing Disease Waiting Period and Statutory Moratorium:
+43.1 Pre-Existing Disease (PED) Waiting Period:
+    a) Under the IRDAI (Insurance Products) Regulations, 2024, the maximum waiting period
+       for pre-existing diseases is reduced to 36 continuous months (3 years).
+    b) Insurers shall not specify a waiting period exceeding 36 months for any pre-existing
+       condition disclosed at policy inception.
+    c) Legacy policies issued prior to April 1, 2024 with a 48-month waiting period remain
+       governed by their legacy contract schedule until renewal/migration.
 
-43.2 The standard moratorium period of 8 continuous years applies, after which
-no claim shall be contestable for pre-existing disease, except in cases of
-proven fraud or moral hazard.
+43.2 Statutory Moratorium Period:
+    a) The statutory moratorium period for non-contestability on grounds of non-disclosure
+       or misrepresentation is 60 continuous months (5 years), reduced from 8 years.
+    b) After 60 months of continuous coverage, no policy or claim shall be contestable on
+       grounds of non-disclosure or misrepresentation, except in cases of established fraud.
+    c) The 60-month moratorium is strictly distinct from the 36-month PED waiting period.

@@ -10,7 +10,7 @@
 > **Audit Version:** 2.0.0 (Master Engineering Upgrade)  
 > **Audit Date:** November 2026  
 > **Master Upgrade Documents:** [`UPDATED_PROJECT_CONTEXT.md`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/UPDATED_PROJECT_CONTEXT.md), [`TECHNICAL_VALIDATION_REPORT.md`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/TECHNICAL_VALIDATION_REPORT.md), [`TECHNICAL_CHANGELOG.md`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/TECHNICAL_CHANGELOG.md)  
-> **Regression Status:** 81/81 Passed (100%), Dev Accuracy 100.00% (210/210), Held-Out Accuracy 94.00% (47/50)  
+> **Regression Status:** 85/85 Passed (100%), Dev Accuracy 100.00% (210/210), Held-Out Accuracy 94.00% (47/50)  
 > **Evidence Classification Standard:**  
 > - **[Verified]:** Directly confirmed via source code inspection, test execution, or runtime artifact.  
 > - **[Documented]:** Explicitly stated in repository documentation, presentations, or project plans.  

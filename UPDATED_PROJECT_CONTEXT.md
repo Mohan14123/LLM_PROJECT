@@ -7,7 +7,7 @@
 > **Active Git Branch:** `feat/master-engineering-upgrade` (Derived from `superfinal`)  
 > **Version:** 2.0.0 (Master Engineering Release)  
 > **Execution Date:** November 2026  
-> **Regression Test Status:** 81/81 Tests Passing (100%)  
+> **Regression Test Status:** 85/85 Tests Passing (100%)  
 > **Development Benchmark (210 cases):** 100.00% Decision Correctness, 100.00% Escalation Recall, 0.00% Unsafe Auto-Approval FPR  
 > **Held-Out Benchmark (50 cases):** 94.00% Decision Accuracy, 100.00% Escalation Recall, 0.00% Unsafe Auto-Approval FPR  
 
@@ -96,7 +96,7 @@
 
 ### 3.3 Symbolic Rules Engine (`rules/`)
 - **`rules/copay_deductible.py`:** Applies co-payments on allowable *admissible amounts* post sub-limits and room-rent deductions (fixing double-penalization in Cases 125, 131, 153).
-- **`rules/waiting_period.py`:** Strictly scopes group PED endorsements to verified waiver markers (`"endors"`, `"end-"`, `"waiver"`) rather than unconditional waivers (fixing Case 210).
+- **`rules/waiting_period.py` & `rules/models.py`:** Enforces the statutory **IRDAI (Insurance Products) Regulations, 2024** maximum **36-month (1,095 days)** PED waiting period for current policies (reduced from 48 months), while retaining 48-month logic for legacy pre-2024 policies. Accurately tracks the separate **60-month (1,825 days)** statutory non-disclosure moratorium (reduced from 8 years). Strictly scopes group PED endorsements to verified waiver markers (`"endors"`, `"end-"`, `"waiver"`). Resolves adversarial Cases 197 & 210.
 - **`rules/room_rent.py`:** Accurate proportionate deductions based on policy room-rent daily limits.
 - **`rules/sub_limits.py`:** Procedure-specific caps (Cataract, Knee Replacement, Hernia, Dialysis, ICU).
 - **`rules/engine.py`:** Master rules evaluator orchestrating 7 policy checks via exact Python Decimal arithmetic.

@@ -1,5 +1,5 @@
 BENEFIT SCHEDULE: WAITING PERIOD MATRIX
-Effective from: 01-April-2024
+Effective from: 01-April-2024 (IRDAI Insurance Products Regulations 2024 Compliant)
 Insurer: Synthetic Insurance Co. Ltd.
 
 Waiting Period by Type and Plan:
@@ -8,10 +8,14 @@ Waiting Period by Type and Plan:
 +-----------------------------+-----------+----------+---------+----------+
 | Initial (all illnesses)     | 30 days   | Waived   | 30 days | 90 days  |
 | Specific Disease (listed)   | 24 months | Waived*  | 24 mo   | N/A      |
-| Pre-Existing Disease (PED)  | 48 months | 12 mo**  | 48 mo   | 48 mo    |
-| Maternity                   | 36 months | 12 mo    | N/A     | N/A      |
-| Moratorium (all diseases)   | 8 years   | 8 years  | 8 years | 8 years  |
+| Pre-Existing Disease (PED)  | 36 months | 12 mo**  | 36 mo   | 36 mo    |
+| Maternity                   | 24 months | 12 mo    | N/A     | N/A      |
+| Statutory Moratorium (IRDAI)| 5 years   | 5 years  | 5 years | 5 years  |
 +-----------------------------+-----------+----------+---------+----------+
+
+Note on Legacy Policies:
+- Policies issued prior to 01-April-2024 carry legacy terms of up to 48 months PED and 8 years moratorium.
+- The 5-year (60-month) statutory moratorium on non-disclosure is strictly independent of the 36-month PED waiting period.
 
 * Waived for groups with 100+ lives.
 ** Reduced to 12 months for groups with 500+ lives.

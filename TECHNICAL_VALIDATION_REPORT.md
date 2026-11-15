@@ -3,7 +3,7 @@
 **Project:** A1 Cashless Health Insurance Pre-Authorisation Agent  
 **Branch:** `feat/master-engineering-upgrade`  
 **Evaluation Date:** November 2026  
-**Test Suite:** 81/81 Passed (100%)  
+**Test Suite:** 85/85 Passed (100%)  
 **Development Benchmark (210 cases):** 100.00% Decision Correctness, 0.00% Unsafe Auto-Approval FPR  
 **Held-Out Benchmark (50 cases):** 94.00% Decision Accuracy, 100.00% Escalation Recall  
 
@@ -15,8 +15,8 @@ This validation report provides documented empirical verification of the A1 Cash
 
 The evaluation encompasses:
 1. **Live Model Connectivity & Telemetry:** Verified endpoint connectivity to Groq (`openai/gpt-oss-120b`).
-2. **Automated Unit & Integration Test Suite:** 81 tests spanning rules, persistence, audit, LLM provider, and API security.
-3. **210-Case Development Benchmark:** Full evaluation with field-level extraction accuracy and separate recommendation vs. escalation metrics.
+2. **Automated Unit & Integration Test Suite:** 85 tests spanning rules, persistence, audit, LLM provider, financial math, and API security.
+3. **210-Case Development Benchmark:** Full evaluation with field-level extraction accuracy, separate recommendation vs. escalation metrics, and IRDAI 2024 PED waiting period compliance.
 4. **50-Case Held-Out Test Set:** Unseen evaluation across routine, edge, and adversarial cases.
 5. **Architectural Ablation Study:** Empirical measurement of 6 pipeline configurations proving the necessity of the human escalation gate and security layers.
 6. **Cryptographic Tamper-Evidence:** SHA-256 hash chain validation and tamper detection.
@@ -46,25 +46,25 @@ The evaluation encompasses:
 
 ## 3. Automated Test Suite Results
 
-The automated regression suite was expanded from 62 tests to **81 tests** across 9 test modules:
+The automated regression suite was expanded to **85 tests** across 9 test modules:
 
 ```text
 ============================= test session starts ==============================
 platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0
 rootdir: /Users/arunkumardhanasekaran/VS_code/LLM_Project
-collected 81 items
+collected 85 items
 
 tests/test_adversarial_extensions.py ...                                 [  3%]
-tests/test_api_and_security.py ......                                    [ 11%]
+tests/test_api_and_security.py ......                                    [ 10%]
 tests/test_consensus_arbiter.py ...                                      [ 14%]
-tests/test_financial_math.py ..                                          [ 17%]
-tests/test_intake.py ........                                            [ 27%]
-tests/test_llm_provider.py .......                                       [ 35%]
-tests/test_persistence_and_audit.py ....                                 [ 40%]
-tests/test_pipeline.py .........................                         [ 71%]
+tests/test_financial_math.py ......                                      [ 21%]
+tests/test_intake.py ........                                            [ 30%]
+tests/test_llm_provider.py .......                                       [ 38%]
+tests/test_persistence_and_audit.py ....                                 [ 43%]
+tests/test_pipeline.py .........................                         [ 72%]
 tests/test_rules.py .......................                              [100%]
 
-================== 81 passed, 4 warnings in 155.05s (0:02:35) ==================
+================== 85 passed, 4 warnings in 73.07s (0:01:13) ===================
 ```
 
 ### 3.1 Newly Implemented Test Suites
@@ -87,9 +87,13 @@ tests/test_rules.py .......................                              [100%]
    - Magic-byte MIME type validation for uploads.
    - File upload size restriction (>10 MB rejected with HTTP 413).
    - Strict CORS origin evaluation.
-4. **`tests/test_financial_math.py` (2 tests):**
-   - Dialysis sub-limit and co-pay ordering (fixing Cases 125, 131, 153).
+4. **`tests/test_financial_math.py` (6 tests):**
+   - Dialysis sub-limit and co-pay ordering on admissible amounts (fixing Cases 125, 131, 153).
    - Group policy PED endorsement scoping (fixing Case 210).
+   - IRDAI (Insurance Products) Regulations, 2024 compliance: 36-month maximum PED waiting period denial (< 1,095 days).
+   - IRDAI 2024 compliance: 36-month PED waiting period clearance (> 1,095 days).
+   - Legacy policy 48-month PED waiting period enforcement (< 1,460 days).
+   - Statutory non-disclosure moratorium (60 continuous months / 1,825 days) distinct tracking.
 
 ---
 

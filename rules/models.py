@@ -158,10 +158,16 @@ class PolicyStatusInfo(BaseModel):
 
 
 class WaitingPeriodInfo(BaseModel):
-    """Waiting period evaluation results.
+    """Waiting period and statutory moratorium evaluation results.
 
-    Used by the waiting_period rule module to determine if the claim
-    falls within any applicable waiting period.
+    Under IRDAI (Insurance Products) Regulations, 2024:
+        - Maximum Pre-Existing Disease (PED) Waiting Period: 36 months (1,095 days)
+          for current retail/group health insurance policies.
+        - Legacy policies (issued prior to April 1, 2024): May specify up to 48 months (1,460 days).
+        - Statutory Moratorium Period: 60 continuous months (5 years / 1,825 days),
+          after which no policy or claim can be contested on grounds of non-disclosure
+          or misrepresentation (except established fraud). This is strictly distinct
+          from the PED waiting period.
     """
 
     initial_wp_clear: bool = Field(
@@ -174,7 +180,7 @@ class WaitingPeriodInfo(BaseModel):
     )
     ped_wp_clear: bool = Field(
         default=True,
-        description="Whether the 4-year pre-existing disease waiting period has elapsed.",
+        description="Whether the applicable pre-existing disease (PED) waiting period has elapsed.",
     )
     days_elapsed: int = Field(
         default=0, ge=0,
@@ -183,6 +189,22 @@ class WaitingPeriodInfo(BaseModel):
     applicable_wp_months: int = Field(
         default=0, ge=0,
         description="Applicable waiting period in months for this diagnosis.",
+    )
+    ped_wp_months: int = Field(
+        default=36, ge=0,
+        description="Applicable PED waiting period in months (36 mo per IRDAI 2024; 48 mo legacy).",
+    )
+    is_legacy_policy: bool = Field(
+        default=False,
+        description="Whether the policy is governed by legacy pre-2024 terms (48-mo PED).",
+    )
+    moratorium_clear: bool = Field(
+        default=True,
+        description="Whether the 60-month (5-year) statutory moratorium on non-disclosure has elapsed.",
+    )
+    moratorium_months: int = Field(
+        default=60, ge=0,
+        description="Statutory moratorium period in months (60 months per IRDAI 2024; 96 mo legacy).",
     )
 
 

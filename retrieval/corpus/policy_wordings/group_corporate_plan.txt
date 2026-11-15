@@ -15,7 +15,7 @@ is waived for all covered members from the date of joining the group scheme.
 waiting period is waived for group policies covering 100 or more lives.
 
 1.4 Pre-Existing Disease: PED waiting period is reduced to 12 months
-(from the standard 48 months) for group policies covering 500 or more lives.
+(from the standard 36 months per IRDAI 2024, or 48 months for legacy policies) for group policies covering 500 or more lives.
 
 SECTION 2 — SUM INSURED AND LIMITS
 2.1 Sum Insured: As specified in the Group Policy Schedule, typically

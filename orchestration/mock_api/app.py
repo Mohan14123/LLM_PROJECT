@@ -133,18 +133,22 @@ async def get_waiting_period(
 ) -> WaitingPeriodResponse:
     """Evaluate waiting period status for a policy.
 
-    Mock Logic:
+    Logic per IRDAI (Insurance Products) Regulations, 2024:
         - Initial 30-day WP: clear if days_since_inception >= 30.
         - Specific disease 2-year WP: clear if days_since_inception >= 730.
-        - PED 4-year WP: clear if days_since_inception >= 1460.
+        - PED WP: clear if days_since_inception >= 1095 (36 months per IRDAI 2024;
+          1460 days / 48 months for legacy pre-2024 policies).
+        - Statutory Moratorium: 60 continuous months (1,825 days).
     """
+    is_legacy = "LEGACY" in policy_number.upper()
+    ped_threshold = 1460 if is_legacy else 1095
     return WaitingPeriodResponse(
         policy_number=policy_number,
         initial_wp_clear=days_since_inception >= 30,
         specific_disease_wp_clear=days_since_inception >= 730,
-        ped_wp_clear=days_since_inception >= 1460,
+        ped_wp_clear=days_since_inception >= ped_threshold,
         days_elapsed=days_since_inception,
-        applicable_wp_months=0,
+        applicable_wp_months=48 if is_legacy else 36,
     )
 
 

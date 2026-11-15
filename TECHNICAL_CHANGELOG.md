@@ -3,7 +3,7 @@
 **Project:** A1 Cashless Health Insurance Pre-Authorisation Agent  
 **Branch:** `feat/master-engineering-upgrade`  
 **Date:** November 2026  
-**Status:** Completed and Verified (81/81 Tests Passing, 100% Decision Accuracy on 210-Case Dev Benchmark, 94% on 50-Case Held-Out Benchmark)
+**Status:** Completed and Verified (85/85 Tests Passing, 100% Decision Accuracy on 210-Case Dev Benchmark, 94% on 50-Case Held-Out Benchmark)
 
 ---
 
@@ -40,15 +40,21 @@ This changelog records the complete architectural, algorithmic, reliability, and
     - Escalates with `Trigger 2.7 (Empty Retrieval Grounds)` when clinical narratives assert policy citations despite zero retrieved policy clauses ($C = \emptyset$).
   - Strips hallucinated and malformed citations from the narrative before presenting to the human reviewer.
 
-### 2.4 Priority 4: Rules Engine Financial Mathematics Fixes
+### 2.4 Priority 4: Rules Engine Financial Mathematics Fixes & IRDAI 2024 PED Compliance
 - **`rules/copay_deductible.py`:**
   - Fixed co-pay deduction ordering: Co-payment percentages are now evaluated on the allowable *admissible amount* after sub-limits and room-rent deductions have been applied, preventing double-penalization.
 - **`rules/engine.py`:**
   - Updated `evaluate_rules()` to pass `admissible_amount` into `apply_copay_deductible()`.
   - **Resolved Cases 125, 131, 153:** ₹2,000 dialysis sub-limit with 20% co-pay now correctly approves ₹1,600 (admissible ₹2,000 minus ₹400 co-pay) instead of deducting ₹4,303.40 co-pay across the full claim and improperly generating a ₹0 false denial.
-- **`rules/waiting_period.py`:**
-  - Scoped `is_endorsed_policy()` to require explicit endorsement waivers (`"endors"`, `"end-"`, `"waiver"`) rather than treating every `plan_type == "group"` as having an unconditional PED waiver.
-  - **Resolved Case 210:** Adversarial PED case on group plan lacking explicit waiver endorsement is now correctly denied under the 48-month statutory waiting period.
+- **`rules/models.py` & `rules/waiting_period.py` (IRDAI 2024 PED Regulations & Moratorium):**
+  - **Statutory PED Waiting Period:** Updated rules engine to model the **IRDAI (Insurance Products) Regulations, 2024** standard: maximum **36 months (3 years / 1,095 days)** for disclosed pre-existing conditions in current policies.
+  - **Legacy Policy Support:** Maintained parameterization for pre-2024 legacy policies carrying up to **48 months (4 years / 1,460 days)**.
+  - **Statutory Non-Disclosure Moratorium:** Implemented distinct tracking for the **60-month (5-year / 1,825 days)** statutory moratorium on non-disclosure contestability (reduced from 8 years per IRDAI 2024). The system strictly distinguishes the 36-month PED claim exclusion period from the 60-month policy contestability moratorium.
+  - **Endorsement Scoping:** Scoped `is_endorsed_policy()` to require explicit endorsement markers (`"endors"`, `"end-"`, `"waiver"`) rather than treating every `plan_type == "group"` as having an unconditional PED waiver.
+  - **Resolved Cases 197 & 210:** Adversarial PED cases correctly denied under applicable statutory waiting periods.
+- **Updated Corpus & Vector Metadata:**
+  - Updated `irdai_master_circular_health_2024.txt`, `individual_health_standard.txt`, `group_corporate_plan.txt`, and `waiting_period_matrix.txt` to align with the 36-month PED and 60-month moratorium rules.
+  - Re-indexed chunk metadata in `retrieval/faiss_index/metadata.json`.
 
 ### 2.5 Priority 5: Transactional Persistence & Cryptographic Hash Chain (`persistence/`)
 - **New Package:** Created `persistence/` directory providing production-grade persistence:
@@ -90,12 +96,12 @@ This changelog records the complete architectural, algorithmic, reliability, and
 - Generated 4 publication-quality vector charts in `figures/`.
 
 ### 2.9 Priority 9: Automated Test Suite Expansion
-- Added 19 new targeted unit and integration tests across 4 test files:
+- Added 23 targeted unit and integration tests across 4 test files:
   - `tests/test_llm_provider.py`: 7 tests covering backoff, circuit breaker, response parsing, and health checks.
   - `tests/test_persistence_and_audit.py`: 4 tests validating SQLite transactions, foreign keys, and SHA-256 tamper detection.
   - `tests/test_api_and_security.py`: 5 tests covering reviewer endpoints, magic-byte upload validation, size caps, and CORS.
-  - `tests/test_financial_math.py`: 2 tests covering sub-limit co-pay ordering and group PED endorsement scoping.
-- Total test suite: **81 passed out of 81 tests** (`pytest` passing in 155s).
+  - `tests/test_financial_math.py`: 6 tests covering sub-limit co-pay ordering, group PED endorsement scoping, IRDAI 2024 36-month PED rule, legacy 48-month PED rule, and 60-month moratorium tracking.
+- Total test suite: **85 passed out of 85 tests** (`pytest` passing in 73s).
 
 ---
 
