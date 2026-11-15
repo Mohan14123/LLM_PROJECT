@@ -23,6 +23,7 @@ Usage:
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from enum import Enum
 from typing import Optional
@@ -160,27 +161,30 @@ class PolicyStatusInfo(BaseModel):
 class WaitingPeriodInfo(BaseModel):
     """Waiting period and statutory moratorium evaluation results.
 
+    Fail-Safe Design:
+        All status flags default to `False` (unresolved / not cleared). Missing
+        or unverified information NEVER defaults to cleared.
+
     Under IRDAI (Insurance Products) Regulations, 2024:
-        - Maximum Pre-Existing Disease (PED) Waiting Period: 36 months (1,095 days)
+        - Maximum Pre-Existing Disease (PED) Waiting Period: 36 continuous calendar months
           for current retail/group health insurance policies.
-        - Legacy policies (issued prior to April 1, 2024): May specify up to 48 months (1,460 days).
-        - Statutory Moratorium Period: 60 continuous months (5 years / 1,825 days),
-          after which no policy or claim can be contested on grounds of non-disclosure
-          or misrepresentation (except established fraud). This is strictly distinct
-          from the PED waiting period.
+        - Legacy policies (issued prior to April 1, 2024): May specify up to 48 months.
+        - Statutory Moratorium Period: 60 continuous calendar months, after which no
+          claim/policy can be contested on non-disclosure/misrepresentation grounds
+          (except established fraud). Applies separately to enhanced sum insured portions.
     """
 
     initial_wp_clear: bool = Field(
-        default=True,
-        description="Whether the 30-day initial waiting period has elapsed.",
+        default=False,
+        description="Whether the 30-day initial waiting period has elapsed (Fail-safe default: False).",
     )
     specific_disease_wp_clear: bool = Field(
-        default=True,
-        description="Whether the 2-year specific disease waiting period has elapsed.",
+        default=False,
+        description="Whether the 2-year specific disease waiting period has elapsed (Fail-safe default: False).",
     )
     ped_wp_clear: bool = Field(
-        default=True,
-        description="Whether the applicable pre-existing disease (PED) waiting period has elapsed.",
+        default=False,
+        description="Whether the applicable pre-existing disease (PED) waiting period has elapsed (Fail-safe default: False).",
     )
     days_elapsed: int = Field(
         default=0, ge=0,
@@ -198,13 +202,37 @@ class WaitingPeriodInfo(BaseModel):
         default=False,
         description="Whether the policy is governed by legacy pre-2024 terms (48-mo PED).",
     )
+    continuity_credit_months: int = Field(
+        default=0, ge=0,
+        description="Months of continuous previous coverage transferred via portability/migration.",
+    )
+    ped_anniversary_date: Optional[date] = Field(
+        default=None,
+        description="Calendar date on which PED waiting period expires.",
+    )
     moratorium_clear: bool = Field(
-        default=True,
-        description="Whether the 60-month (5-year) statutory moratorium on non-disclosure has elapsed.",
+        default=False,
+        description="Whether the statutory non-disclosure moratorium applies to the claim (Fail-safe default: False).",
+    )
+    moratorium_base_clear: bool = Field(
+        default=False,
+        description="Whether the 60-month moratorium has elapsed on the base sum insured.",
+    )
+    moratorium_enhanced_clear: bool = Field(
+        default=False,
+        description="Whether the 60-month moratorium has elapsed on the enhanced sum insured portion.",
     )
     moratorium_months: int = Field(
         default=60, ge=0,
-        description="Statutory moratorium period in months (60 months per IRDAI 2024; 96 mo legacy).",
+        description="Statutory moratorium period in months (60 months per IRDAI 2024).",
+    )
+    moratorium_base_date: Optional[date] = Field(
+        default=None,
+        description="Date on which base sum insured achieves non-contestability.",
+    )
+    moratorium_enhanced_date: Optional[date] = Field(
+        default=None,
+        description="Date on which enhanced sum insured achieves non-contestability.",
     )
 
 

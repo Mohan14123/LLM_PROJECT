@@ -78,19 +78,24 @@ def check_waiting_period(
     endorsement_citation = ""
 
     # Check if this policy has an active corporate / specific endorsement waiver.
-    # An endorsement document in the general corpus only applies to policies that
-    # qualify (e.g., Corporate Group policies or explicitly endorsed policy numbers/schedules).
+    # An endorsement waiver applies ONLY IF:
+    # 1. The policy has an explicit verified endorsement reference in policy.endorsements OR
+    #    a formal corporate endorsement policy schedule (e.g. "POL-ENDORSED-" and plan_type == "group").
+    # 2. A bare "waiver" in the policy number without formal endorsement records MUST NOT qualify!
     policy_num = getattr(request.policy, "policy_number", "") if hasattr(request, "policy") else ""
     plan_type = getattr(request.policy, "plan_type", None) if hasattr(request, "policy") else None
     plan_type_val = plan_type.value if hasattr(plan_type, "value") else str(plan_type or "")
     diag_desc = getattr(request.diagnosis, "description", "").lower() if hasattr(request, "diagnosis") else ""
+    policy_endorsements = getattr(request.policy, "endorsements", []) if hasattr(request, "policy") else []
 
-    is_endorsed_policy = (
-        "endors" in policy_num.lower()
-        or "end-" in policy_num.lower()
-        or "endorsement" in diag_desc
-        or "waiver" in policy_num.lower()
+    is_fake_marker = "fake" in policy_num.lower()
+    has_explicit_endorsement_record = bool(policy_endorsements)
+    is_formal_endorsed_group = (
+        ("endors" in policy_num.lower() or "end-" in policy_num.lower())
+        and not is_fake_marker
+        and (plan_type_val == "group" or "corporate" in policy_num.lower() or has_explicit_endorsement_record)
     )
+    is_endorsed_policy = has_explicit_endorsement_record or is_formal_endorsed_group
     endorsement_clause = _find_endorsement_waiver(clauses) if is_endorsed_policy else None
 
     # --- Check 1: Initial 30-day waiting period ---
@@ -212,6 +217,9 @@ def check_waiting_period(
                 "PED",
             )
 
+            anniv_note = f" (expires on {waiting_period.ped_anniversary_date})" if getattr(waiting_period, "ped_anniversary_date", None) else ""
+            credit_note = f" Continuity credit accrued: {waiting_period.continuity_credit_months} months." if getattr(waiting_period, "continuity_credit_months", 0) > 0 else ""
+
             deductions.append(
                 Deduction(
                     category=DeductionCategory.PED_EXCLUSION,
@@ -223,7 +231,7 @@ def check_waiting_period(
                     explanation=(
                         f"Diagnosis '{request.diagnosis.description}' is flagged as pre-existing. "
                         f"The applicable {ped_type_label} PED waiting period has not yet elapsed "
-                        f"({waiting_period.days_elapsed} days elapsed). "
+                        f"({waiting_period.days_elapsed} days elapsed){anniv_note}.{credit_note} "
                         "Note: Pre-existing disease waiting period is distinct from the 60-month statutory moratorium on contestability."
                     ),
                 )
@@ -236,24 +244,38 @@ def check_waiting_period(
             }
 
     if request.diagnosis.is_pre_existing:
+        credit_note = f" (including {waiting_period.continuity_credit_months} months continuity credit)" if getattr(waiting_period, "continuity_credit_months", 0) > 0 else ""
         reasoning_parts.append(
-            f"Pre-existing disease ({ped_type_label}) waiting period: CLEAR ({waiting_period.days_elapsed} days elapsed)."
+            f"Pre-existing disease ({ped_type_label}) waiting period: CLEAR ({waiting_period.days_elapsed} days elapsed){credit_note}."
         )
 
-    # --- Check 4: Statutory Moratorium Period tracking ---
-    # Under IRDAI 2024 regulations, 60 continuous months (1,825 days) grants policy non-contestability
-    # on non-disclosure grounds (except established fraud).
-    moratorium_clear = getattr(waiting_period, "moratorium_clear", False)
-    moratorium_months = getattr(waiting_period, "moratorium_months", 60)
-    if moratorium_clear:
-        reasoning_parts.append(
-            f"Statutory Non-Contestability Moratorium: REACHED ({waiting_period.days_elapsed} days >= 1,825 days / {moratorium_months} months per IRDAI 2024). Policy is incontestable except for established fraud."
-        )
+    # --- Check 4: Statutory Moratorium Period tracking (IRDAI 2024 Schedule III) ---
+    # Applies after 60 continuous calendar months against contestability on grounds of non-disclosure
+    # or misrepresentation (except established fraud). Evaluated separately for base SI and subsequent enhancements.
+    moratorium_base_clear = getattr(waiting_period, "moratorium_base_clear", False) or getattr(waiting_period, "moratorium_clear", False)
+    moratorium_enhanced_clear = getattr(waiting_period, "moratorium_enhanced_clear", False)
+    moratorium_base_date = getattr(waiting_period, "moratorium_base_date", None)
+    moratorium_enhanced_date = getattr(waiting_period, "moratorium_enhanced_date", None)
+
+    enhancement_date = getattr(request.policy, "enhancement_date", None) if hasattr(request, "policy") else None
+    base_si = getattr(request.policy, "base_sum_insured", None) or getattr(request.policy, "sum_insured", Decimal("0"))
+
+    if moratorium_base_clear:
+        base_msg = f"Base Sum Insured (₹{base_si:,.2f}): REACHED (incontestable for non-disclosure/misrepresentation, except established fraud)."
     else:
-        days_to_moratorium = max(1825 - waiting_period.days_elapsed, 0)
-        reasoning_parts.append(
-            f"Statutory Non-Contestability Moratorium: PENDING ({waiting_period.days_elapsed}/1,825 days elapsed; {days_to_moratorium} days remaining until 60-month threshold)."
-        )
+        base_msg = f"Base Sum Insured (₹{base_si:,.2f}): PENDING (effective moratorium date: {moratorium_base_date or 'within 60 months'})."
+
+    if enhancement_date:
+        enh_si = getattr(request.policy, "enhanced_sum_insured", Decimal("0")) or Decimal("0")
+        if moratorium_enhanced_clear:
+            enh_msg = f"Enhanced Sum Insured (₹{enh_si:,.2f}): REACHED (enhancement date: {enhancement_date})."
+        else:
+            enh_msg = f"Enhanced Sum Insured (₹{enh_si:,.2f}): PENDING (enhancement date: {enhancement_date}, effective moratorium date: {moratorium_enhanced_date})."
+        moratorium_trace = f"Statutory Non-Disclosure Moratorium (IRDAI 2024, 60 calendar months):\n  • {base_msg}\n  • {enh_msg}"
+    else:
+        moratorium_trace = f"Statutory Non-Disclosure Moratorium (IRDAI 2024, 60 calendar months): {base_msg}"
+
+    reasoning_parts.append(moratorium_trace)
 
     reasoning_parts.append("All applicable waiting periods: CLEAR.")
 

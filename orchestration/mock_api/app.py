@@ -23,6 +23,8 @@ from __future__ import annotations
 import logging
 from datetime import date, timedelta
 from decimal import Decimal
+from typing import Optional
+from dateutil.relativedelta import relativedelta
 
 logger = logging.getLogger(__name__)
 
@@ -73,6 +75,15 @@ class WaitingPeriodResponse(BaseModel):
     ped_wp_clear: bool
     days_elapsed: int
     applicable_wp_months: int
+    continuity_credit_months: int = 0
+    moratorium_clear: bool = False
+    moratorium_base_clear: bool = False
+    moratorium_enhanced_clear: bool = False
+    moratorium_months: int = 60
+    is_legacy_policy: bool = False
+    ped_anniversary_date: Optional[str] = None
+    moratorium_base_date: Optional[str] = None
+    moratorium_enhanced_date: Optional[str] = None
 
 
 class SubLimitBalanceResponse(BaseModel):
@@ -130,25 +141,100 @@ async def get_policy_status(policy_number: str) -> PolicyStatusResponse:
 async def get_waiting_period(
     policy_number: str,
     days_since_inception: int = 365,
+    continuity_credit_months: int = 0,
+    policy_start_date: Optional[str] = None,
+    admission_date: Optional[str] = None,
+    enhancement_date: Optional[str] = None,
+    ped_waiting_period_months: Optional[int] = None,
+    is_group_policy: bool = False,
+    claim_amount: float = 0.0,
+    base_sum_insured: float = 500000.0,
 ) -> WaitingPeriodResponse:
-    """Evaluate waiting period status for a policy.
+    """Evaluate waiting period and moratorium status for a policy using continuous calendar arithmetic.
 
-    Logic per IRDAI (Insurance Products) Regulations, 2024:
-        - Initial 30-day WP: clear if days_since_inception >= 30.
-        - Specific disease 2-year WP: clear if days_since_inception >= 730.
-        - PED WP: clear if days_since_inception >= 1095 (36 months per IRDAI 2024;
-          1460 days / 48 months for legacy pre-2024 policies).
-        - Statutory Moratorium: 60 continuous months (1,825 days).
+    Logic per IRDAI (Insurance Products) Regulations, 2024 (Schedule III):
+        - Initial 30-day WP: clear if days >= 30 (waived for group corporate policies).
+        - Specific disease 2-year WP: clear on 24-calendar-month anniversary.
+        - PED WP: clear on statutory 36-calendar-month anniversary (48 months for legacy pre-2024 policies).
+        - Continuity Credits: Portability / migration credits reduce the effective elapsed period.
+        - Statutory Moratorium: 60 continuous calendar months against non-disclosure / misrepresentation,
+          tracked separately for base sum insured and subsequent sum-insured enhancement.
     """
-    is_legacy = "LEGACY" in policy_number.upper()
-    ped_threshold = 1460 if is_legacy else 1095
+    is_legacy = "LEGACY" in policy_number.upper() or ped_waiting_period_months == 48
+
+    # Determine reference and start dates
+    today = date.today()
+    if policy_start_date:
+        try:
+            start_dt = date.fromisoformat(policy_start_date)
+        except ValueError:
+            start_dt = today - timedelta(days=days_since_inception)
+    else:
+        start_dt = today - timedelta(days=days_since_inception)
+
+    if admission_date:
+        try:
+            ref_dt = date.fromisoformat(admission_date)
+        except ValueError:
+            ref_dt = today
+    else:
+        ref_dt = today
+
+    # Effective start after continuity credit
+    effective_start = start_dt - relativedelta(months=continuity_credit_months)
+    effective_days = max((ref_dt - effective_start).days, 0)
+
+    # 1. Initial 30-day WP
+    initial_clear = ref_dt >= (effective_start + timedelta(days=30))
+
+    # 2. Specific disease 24-month WP
+    spec_anniversary = effective_start + relativedelta(months=24)
+    specific_clear = ref_dt >= spec_anniversary
+
+    # 3. PED WP (36 vs 48 calendar months)
+    ped_wp_months = ped_waiting_period_months if ped_waiting_period_months is not None else (48 if is_legacy else 36)
+    ped_anniversary = effective_start + relativedelta(months=ped_wp_months)
+    ped_clear = ref_dt >= ped_anniversary
+
+    # 4. Moratorium (60 calendar months split by base and enhanced)
+    base_moratorium_dt = effective_start + relativedelta(months=60)
+    moratorium_base_clear = ref_dt >= base_moratorium_dt
+
+    if enhancement_date:
+        try:
+            enh_dt = date.fromisoformat(enhancement_date)
+            enhanced_moratorium_dt = enh_dt + relativedelta(months=60)
+            moratorium_enhanced_clear = ref_dt >= enhanced_moratorium_dt
+            enhanced_dt_str = enhanced_moratorium_dt.isoformat()
+        except ValueError:
+            enhanced_moratorium_dt = None
+            moratorium_enhanced_clear = moratorium_base_clear
+            enhanced_dt_str = None
+    else:
+        enhanced_dt_str = None
+        moratorium_enhanced_clear = moratorium_base_clear
+
+    if claim_amount <= base_sum_insured:
+        moratorium_clear = moratorium_base_clear
+    else:
+        moratorium_clear = bool(moratorium_base_clear and moratorium_enhanced_clear)
+
     return WaitingPeriodResponse(
         policy_number=policy_number,
-        initial_wp_clear=days_since_inception >= 30,
-        specific_disease_wp_clear=days_since_inception >= 730,
-        ped_wp_clear=days_since_inception >= ped_threshold,
-        days_elapsed=days_since_inception,
-        applicable_wp_months=48 if is_legacy else 36,
+        initial_wp_clear=initial_clear,
+        specific_disease_wp_clear=specific_clear,
+        ped_wp_clear=ped_clear,
+        days_elapsed=effective_days,
+        applicable_wp_months=ped_wp_months,
+        continuity_credit_months=continuity_credit_months,
+        moratorium_clear=moratorium_clear,
+        moratorium_base_clear=moratorium_base_clear,
+        moratorium_enhanced_clear=moratorium_enhanced_clear,
+        moratorium_months=60,
+        is_legacy_policy=is_legacy,
+        ped_anniversary_date=ped_anniversary.isoformat(),
+        moratorium_base_date=base_moratorium_dt.isoformat(),
+        moratorium_enhanced_date=enhanced_dt_str,
     )
 
 

@@ -96,12 +96,20 @@ This changelog records the complete architectural, algorithmic, reliability, and
 - Generated 4 publication-quality vector charts in `figures/`.
 
 ### 2.9 Priority 9: Automated Test Suite Expansion
-- Added 23 targeted unit and integration tests across 4 test files:
+- Added 28 targeted unit and integration tests across 4 test files:
   - `tests/test_llm_provider.py`: 7 tests covering backoff, circuit breaker, response parsing, and health checks.
   - `tests/test_persistence_and_audit.py`: 4 tests validating SQLite transactions, foreign keys, and SHA-256 tamper detection.
   - `tests/test_api_and_security.py`: 5 tests covering reviewer endpoints, magic-byte upload validation, size caps, and CORS.
-  - `tests/test_financial_math.py`: 6 tests covering sub-limit co-pay ordering, group PED endorsement scoping, IRDAI 2024 36-month PED rule, legacy 48-month PED rule, and 60-month moratorium tracking.
-- Total test suite: **85 passed out of 85 tests** (`pytest` passing in 73s).
+  - `tests/test_financial_math.py`: 11 tests covering sub-limit co-pay ordering, group PED endorsement scoping, IRDAI 2024 36-month PED rule, legacy 48-month PED rule, 60-month moratorium tracking, calendar arithmetic on leap-year boundaries, portability continuity credit accrual, fail-closed defaults, strict endorsement qualification without text shortcuts, and sum-insured enhancement moratorium splits.
+- Total test suite: **90 passed out of 90 tests** (`pytest` passing in 78s).
+
+### 2.10 Priority 10: Calendar-Month Arithmetic, Portability Credits & Split Moratorium
+- **Continuous Calendar Arithmetic:** Replaced fixed-day approximations (1095, 1460, 1825 days) with continuous calendar arithmetic using `dateutil.relativedelta.relativedelta(months=...)`, accurately resolving leap-year boundaries and month lengths per IRDAI 2024 Schedule III.
+- **Portability & Migration Continuity Credits:** Added `continuity_credit_months` to policy schemas and `call_policy_api_node`, bridging accrued waiting period tenure across insurer transitions.
+- **Fail-Closed Default Modeling:** Hardened `WaitingPeriodInfo` in `rules/models.py` to zero-initialize all clearance flags (`initial_wp_clear=False`, `specific_disease_wp_clear=False`, `ped_wp_clear=False`, `moratorium_clear=False`), ensuring missing or unverified policy data fails safely.
+- **Elimination of Endorsement Text Shortcuts:** Removed string heuristics that bypassed waiting periods based on `"waiver"` in policy numbers. Bypassing waiting periods now requires explicit verified endorsement records.
+- **Split Moratorium by Sum Insured Enhancement Date:** Separated the 60-month moratorium tracking between the base sum insured (from policy inception) and enhanced sum insured (from enhancement date) to strictly adhere to IRDAI (Insurance Products) Regulations, 2024.
+- **Synchronized Mock API:** Updated `orchestration/mock_api/app.py` endpoints to mirror the continuous calendar-month arithmetic and split moratorium logic.
 
 ---
 

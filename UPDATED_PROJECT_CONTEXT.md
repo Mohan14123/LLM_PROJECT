@@ -7,8 +7,8 @@
 > **Active Git Branch:** `feat/master-engineering-upgrade` (Derived from `superfinal`)  
 > **Version:** 2.0.0 (Master Engineering Release)  
 > **Execution Date:** November 2026  
-> **Regression Test Status:** 85/85 Tests Passing (100%)  
-> **Development Benchmark (210 cases):** 100.00% Decision Correctness, 100.00% Escalation Recall, 0.00% Unsafe Auto-Approval FPR  
+> **Regression Test Status:** 90/90 Tests Passing (100%)  
+> **Development Benchmark (210 cases):** 100.00% Composite Decision Correctness, 100.00% Escalation Recall, 0.00% Unsafe Auto-Approval FPR  
 > **Held-Out Benchmark (50 cases):** 94.00% Decision Accuracy, 100.00% Escalation Recall, 0.00% Unsafe Auto-Approval FPR  
 
 ---

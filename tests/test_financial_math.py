@@ -261,8 +261,8 @@ class TestPEDWaitingPeriodAndMoratorium:
             moratorium_months=60,
         )
         res_pending = check_waiting_period(req_pending, wp_pending, [])
-        assert "Statutory Non-Contestability Moratorium: PENDING" in res_pending["reasoning"]
-        assert "625 days remaining" in res_pending["reasoning"]
+        assert "Statutory Non-Disclosure Moratorium" in res_pending["reasoning"]
+        assert "PENDING" in res_pending["reasoning"]
 
         # Case B: Moratorium reached (>= 1825 days)
         req_reached = self._build_ped_request(days_since_inception=1900, is_legacy=False, wp_months=36)
@@ -276,4 +276,177 @@ class TestPEDWaitingPeriodAndMoratorium:
             moratorium_months=60,
         )
         res_reached = check_waiting_period(req_reached, wp_reached, [])
-        assert "Statutory Non-Contestability Moratorium: REACHED" in res_reached["reasoning"]
+        assert "Statutory Non-Disclosure Moratorium" in res_reached["reasoning"]
+        assert "REACHED" in res_reached["reasoning"]
+
+    def test_leap_year_boundary_calendar_arithmetic(self):
+        """Leap day inception (2024-02-29) exactly reaches 36 months on 2027-02-28."""
+        from orchestration.nodes import call_policy_api
+        from schemas.pre_auth_request import (
+            Patient, Policy, Hospital, Diagnosis, Procedure, CostEstimate, CostLineItem,
+            Gender, PlanType, NetworkTier, HospitalCategory, AdmissionType, SourceFormat, CostCategory
+        )
+
+        def make_req(adm_date: str):
+            return PreAuthRequest(
+                submitted_at=adm_date,
+                admission_date=adm_date,
+                source_format=SourceFormat.JSON,
+                patient=Patient(full_name="Leap Year Patient", age=45, gender=Gender.FEMALE, policy_number="POL-LEAP-01"),
+                policy=Policy(
+                    policy_number="POL-LEAP-01",
+                    plan_type=PlanType.INDIVIDUAL,
+                    sum_insured=Decimal("500000.00"),
+                    policy_start_date="2024-02-29",
+                    co_pay_pct=Decimal("0.00"),
+                ),
+                hospital=Hospital(
+                    name="Apex Hospital", city="Mumbai",
+                    network_tier=NetworkTier.CASHLESS_NETWORK,
+                    category=HospitalCategory.MULTI_SPECIALTY,
+                ),
+                diagnosis=Diagnosis(icd10_code="I25.10", description="CAD", is_pre_existing=True),
+                procedure=Procedure(procedure_code="CPT-92928", description="PCI", admission_type=AdmissionType.EMERGENCY),
+                cost_estimate=CostEstimate(line_items=[CostLineItem(item="Pkg", amount=Decimal("100000"), category=CostCategory.SURGEON_FEE)], total_amount=Decimal("100000")),
+            )
+
+        # 1 day before 36-month calendar anniversary -> FAILS
+        state_before = {"pre_auth_request": make_req("2027-02-27").model_dump()}
+        res_before = call_policy_api(state_before)
+        assert res_before["waiting_period_info"]["ped_wp_clear"] is False
+
+        # Exact calendar anniversary (2027-02-28) -> CLEARS
+        state_exact = {"pre_auth_request": make_req("2027-02-28").model_dump()}
+        res_exact = call_policy_api(state_exact)
+        assert res_exact["waiting_period_info"]["ped_wp_clear"] is True
+
+    def test_portability_continuity_credits(self):
+        """Portability credits of 24 months bridge a 12-month tenure to meet the 36-month threshold."""
+        from orchestration.nodes import call_policy_api
+        from schemas.pre_auth_request import (
+            Patient, Policy, Hospital, Diagnosis, Procedure, CostEstimate, CostLineItem,
+            Gender, PlanType, NetworkTier, HospitalCategory, AdmissionType, SourceFormat, CostCategory
+        )
+
+        req = PreAuthRequest(
+            submitted_at="2026-01-01",
+            admission_date="2026-01-01",
+            source_format=SourceFormat.JSON,
+            patient=Patient(full_name="Ported Patient", age=40, gender=Gender.MALE, policy_number="POL-PORT-01"),
+            policy=Policy(
+                policy_number="POL-PORT-01",
+                plan_type=PlanType.INDIVIDUAL,
+                sum_insured=Decimal("500000.00"),
+                policy_start_date="2025-01-01",  # 12 months with new insurer
+                continuity_credit_months=24,      # 24 months credited from prior insurer
+                co_pay_pct=Decimal("0.00"),
+            ),
+            hospital=Hospital(
+                name="Care Hospital", city="Pune",
+                network_tier=NetworkTier.CASHLESS_NETWORK,
+                category=HospitalCategory.MULTI_SPECIALTY,
+            ),
+            diagnosis=Diagnosis(icd10_code="I25.10", description="CAD", is_pre_existing=True),
+            procedure=Procedure(procedure_code="CPT-92928", description="PCI", admission_type=AdmissionType.EMERGENCY),
+            cost_estimate=CostEstimate(line_items=[CostLineItem(item="Pkg", amount=Decimal("100000"), category=CostCategory.SURGEON_FEE)], total_amount=Decimal("100000")),
+        )
+
+        res = call_policy_api({"pre_auth_request": req.model_dump()})
+        assert res["waiting_period_info"]["ped_wp_clear"] is True
+        assert res["waiting_period_info"]["continuity_credit_months"] == 24
+
+    def test_fail_safe_waiting_period_info_defaults(self):
+        """Unpopulated WaitingPeriodInfo must fail closed (all clearance flags False)."""
+        from rules.waiting_period import check_waiting_period
+
+        empty_wp = WaitingPeriodInfo()
+        assert empty_wp.initial_wp_clear is False
+        assert empty_wp.specific_disease_wp_clear is False
+        assert empty_wp.ped_wp_clear is False
+        assert empty_wp.moratorium_clear is False
+
+        req = self._build_ped_request(days_since_inception=1200, is_legacy=False)
+        res = check_waiting_period(req, empty_wp, [])
+        assert res["is_clear"] is False
+        assert len(res["deductions"]) == 1
+
+    def test_false_endorsement_marker_in_policy_number_denied(self):
+        """A string like 'WAIVER' in policy number cannot bypass PED check without verified endorsement."""
+        from orchestration.nodes import call_policy_api
+        from schemas.pre_auth_request import (
+            Patient, Policy, Hospital, Diagnosis, Procedure, CostEstimate, CostLineItem,
+            Gender, PlanType, NetworkTier, HospitalCategory, AdmissionType, SourceFormat, CostCategory
+        )
+
+        req = PreAuthRequest(
+            submitted_at="2025-06-01",
+            admission_date="2025-06-01",
+            source_format=SourceFormat.JSON,
+            patient=Patient(full_name="Waiver Spoof", age=35, gender=Gender.FEMALE, policy_number="POL-WAIVER-FAKE"),
+            policy=Policy(
+                policy_number="POL-WAIVER-FAKE",
+                plan_type=PlanType.INDIVIDUAL,
+                sum_insured=Decimal("500000.00"),
+                policy_start_date="2025-01-01",  # only ~5 months old
+                co_pay_pct=Decimal("0.00"),
+                endorsements=[],                  # NO verified endorsement
+            ),
+            hospital=Hospital(
+                name="Care Hospital", city="Pune",
+                network_tier=NetworkTier.CASHLESS_NETWORK,
+                category=HospitalCategory.MULTI_SPECIALTY,
+            ),
+            diagnosis=Diagnosis(icd10_code="I25.10", description="CAD", is_pre_existing=True),
+            procedure=Procedure(procedure_code="CPT-92928", description="PCI", admission_type=AdmissionType.EMERGENCY),
+            cost_estimate=CostEstimate(line_items=[CostLineItem(item="Pkg", amount=Decimal("100000"), category=CostCategory.SURGEON_FEE)], total_amount=Decimal("100000")),
+        )
+
+        res = call_policy_api({"pre_auth_request": req.model_dump()})
+        # Must fail closed: not cleared despite 'WAIVER' in policy number string
+        assert res["waiting_period_info"]["ped_wp_clear"] is False
+
+    def test_sum_insured_enhancement_moratorium_split(self):
+        """Moratorium applies separately to base sum insured (6 yrs old) vs enhancement (2 yrs old)."""
+        from orchestration.nodes import call_policy_api
+        from schemas.pre_auth_request import (
+            Patient, Policy, Hospital, Diagnosis, Procedure, CostEstimate, CostLineItem,
+            Gender, PlanType, NetworkTier, HospitalCategory, AdmissionType, SourceFormat, CostCategory
+        )
+
+        def make_split_req(claim_amt: str):
+            return PreAuthRequest(
+                submitted_at="2026-01-01",
+                admission_date="2026-01-01",
+                source_format=SourceFormat.JSON,
+                patient=Patient(full_name="Split SI Patient", age=50, gender=Gender.MALE, policy_number="POL-SPLIT-01"),
+                policy=Policy(
+                    policy_number="POL-SPLIT-01",
+                    plan_type=PlanType.INDIVIDUAL,
+                    sum_insured=Decimal("1000000.00"),
+                    base_sum_insured=Decimal("300000.00"),
+                    enhanced_sum_insured=Decimal("700000.00"),
+                    policy_start_date="2020-01-01",   # 6 years continuous (base >= 60 months)
+                    enhancement_date="2024-01-01",    # 2 years continuous (enhanced < 60 months)
+                    co_pay_pct=Decimal("0.00"),
+                ),
+                hospital=Hospital(
+                    name="Global Hospital", city="Chennai",
+                    network_tier=NetworkTier.CASHLESS_NETWORK,
+                    category=HospitalCategory.MULTI_SPECIALTY,
+                ),
+                diagnosis=Diagnosis(icd10_code="I25.10", description="CAD", is_pre_existing=True),
+                procedure=Procedure(procedure_code="CPT-92928", description="PCI", admission_type=AdmissionType.EMERGENCY),
+                cost_estimate=CostEstimate(line_items=[CostLineItem(item="Pkg", amount=Decimal(claim_amt), category=CostCategory.SURGEON_FEE)], total_amount=Decimal(claim_amt)),
+            )
+
+        # Claim within base SI (₹2,00,000 <= ₹3,00,000) -> moratorium clear
+        res_base = call_policy_api({"pre_auth_request": make_split_req("200000.00").model_dump()})
+        assert res_base["waiting_period_info"]["moratorium_base_clear"] is True
+        assert res_base["waiting_period_info"]["moratorium_enhanced_clear"] is False
+        assert res_base["waiting_period_info"]["moratorium_clear"] is True
+
+        # Claim exceeding base SI (₹5,00,000 > ₹3,00,000) -> taps into enhancement, moratorium NOT clear
+        res_enh = call_policy_api({"pre_auth_request": make_split_req("500000.00").model_dump()})
+        assert res_enh["waiting_period_info"]["moratorium_base_clear"] is True
+        assert res_enh["waiting_period_info"]["moratorium_enhanced_clear"] is False
+        assert res_enh["waiting_period_info"]["moratorium_clear"] is False

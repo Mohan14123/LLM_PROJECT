@@ -27,9 +27,10 @@ import logging
 import os
 import re
 import time
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal, InvalidOperation
 from typing import Any
+from dateutil.relativedelta import relativedelta
 
 logger = logging.getLogger(__name__)
 
@@ -203,28 +204,25 @@ def call_policy_api(state: dict[str, Any]) -> dict[str, Any]:
     policy = request.get("policy", {}) if request else {}
     policy_number = policy.get("policy_number", "UNKNOWN")
 
-    # --- Compute days since inception ---
+    # --- Parse Exact Policy Dates & Continuous Coverage (Calendar Arithmetic) ---
+    start_date = date.today()
+    ref_date = date.today()
     days_since_inception = 365  # default fallback
     policy_start = policy.get("policy_start_date")
     admission_date_str = request.get("admission_date") if request else None
 
     if policy_start:
         try:
-            if isinstance(policy_start, date):
-                start_date = policy_start
-            else:
-                start_date = date.fromisoformat(str(policy_start))
-
-            ref_date = date.today()
+            start_date = policy_start if isinstance(policy_start, date) else date.fromisoformat(str(policy_start))
             if admission_date_str:
-                if isinstance(admission_date_str, date):
-                    ref_date = admission_date_str
-                else:
-                    ref_date = date.fromisoformat(str(admission_date_str))
-
+                ref_date = admission_date_str if isinstance(admission_date_str, date) else date.fromisoformat(str(admission_date_str))
             days_since_inception = max((ref_date - start_date).days, 0)
         except (ValueError, TypeError) as e:
             logger.warning("Could not parse policy dates: %s. Using default 365 days.", e)
+
+    # --- Accrue Portability / Migration Continuity Credits ---
+    continuity_months = int(policy.get("continuity_credit_months", 0) or 0)
+    effective_start = start_date - relativedelta(months=continuity_months)
 
     # --- Mock PAS logic (matches mock_api/app.py) ---
     status = "ACTIVE"
@@ -239,36 +237,63 @@ def call_policy_api(state: dict[str, Any]) -> dict[str, Any]:
     sum_insured = str(policy.get("sum_insured", "500000.00"))
     co_pay_pct = str(policy.get("co_pay_pct", "0.00"))
 
-    # --- Determine PED Waiting Period & Moratorium per IRDAI 2024 ---
+    # --- Determine PED Waiting Period & Moratorium per IRDAI 2024 (Calendar Months) ---
     # Under IRDAI (Insurance Products) Regulations, 2024:
-    # 1. Statutory maximum PED waiting period is 36 months (1,095 days), down from 48 months.
-    # 2. Legacy policies (issued prior to April 1, 2024) retain 48 months (1,460 days).
-    # 3. Statutory non-disclosure moratorium is 60 continuous months (1,825 days).
+    # 1. Statutory maximum PED waiting period is 36 continuous calendar months (down from 48 months).
+    # 2. Legacy policies (contracted pre-2024) retain 48 months.
+    # 3. Statutory non-disclosure moratorium is 60 continuous calendar months, applied separately
+    #    to the original sum insured and subsequent enhancement increments.
     raw_wp_months = policy.get("waiting_period_months")
+    ped_override = policy.get("ped_waiting_period_months")
+
     is_legacy = (
         "LEGACY" in policy_number.upper()
+        or str(policy.get("product_version", "")).lower() == "legacy"
+        or ped_override == 48
         or (policy_start and str(policy_start) < "2024-04-01" and raw_wp_months == 48)
     )
 
-    ped_wp_months = 48 if is_legacy else 36
-
-    # Endorsement waivers reverse waiting periods
-    is_endorsed = (
-        "endors" in policy_number.lower()
-        or "end-" in policy_number.lower()
-        or "waiver" in policy_number.lower()
-    )
-    if is_endorsed:
-        ped_days_threshold = 0
+    if ped_override is not None:
+        ped_wp_months = int(ped_override)
     else:
-        ped_days_threshold = 1460 if is_legacy else 1095
+        ped_wp_months = 48 if is_legacy else 36
 
-    ped_clear = days_since_inception >= ped_days_threshold
-    moratorium_clear = days_since_inception >= 1825  # 60 months per IRDAI 2024
+    # 1. Initial 30-day waiting period
+    initial_wp_clear = ref_date >= (effective_start + timedelta(days=30))
+
+    # 2. Specific disease waiting period (24 calendar months)
+    specific_anniversary = effective_start + relativedelta(months=24)
+    specific_disease_wp_clear = ref_date >= specific_anniversary
+
+    # 3. Pre-existing disease waiting period (calendar anniversary)
+    ped_anniversary = effective_start + relativedelta(months=ped_wp_months)
+    ped_wp_clear = ref_date >= ped_anniversary
+
+    # 4. Statutory 60-month Moratorium on Non-Disclosure / Misrepresentation
+    base_moratorium_date = effective_start + relativedelta(months=60)
+    moratorium_base_clear = ref_date >= base_moratorium_date
+
+    enhancement_date_val = policy.get("enhancement_date")
+    if enhancement_date_val:
+        enh_date = enhancement_date_val if isinstance(enhancement_date_val, date) else date.fromisoformat(str(enhancement_date_val))
+        enhanced_moratorium_date = enh_date + relativedelta(months=60)
+        moratorium_enhanced_clear = ref_date >= enhanced_moratorium_date
+    else:
+        enhanced_moratorium_date = None
+        moratorium_enhanced_clear = moratorium_base_clear
+
+    # Claim exposure check against base sum insured
+    cost_est = (request.get("cost_estimate") or {}) if request else {}
+    claim_total = Decimal(str(cost_est.get("total_amount", "0")))
+    base_si = Decimal(str((policy or {}).get("base_sum_insured") or (policy or {}).get("sum_insured", "500000")))
+    if claim_total <= base_si:
+        moratorium_clear = moratorium_base_clear
+    else:
+        moratorium_clear = bool(moratorium_base_clear and moratorium_enhanced_clear)
 
     logger.info(
-        "Policy %s: status=%s, days_since_inception=%d, remaining_si=%s, ped_wp_months=%d, ped_clear=%s, moratorium_clear=%s",
-        policy_number, status, days_since_inception, sum_insured, ped_wp_months, ped_clear, moratorium_clear,
+        "Policy %s: status=%s, effective_start=%s, days_elapsed=%d, ped_wp_months=%d, ped_clear=%s, moratorium_clear=%s",
+        policy_number, status, effective_start, days_since_inception, ped_wp_months, ped_wp_clear, moratorium_clear,
     )
 
     return {
@@ -279,15 +304,21 @@ def call_policy_api(state: dict[str, Any]) -> dict[str, Any]:
             "days_since_inception": days_since_inception,
         },
         "waiting_period_info": {
-            "initial_wp_clear": days_since_inception >= 30,
-            "specific_disease_wp_clear": days_since_inception >= 730,
-            "ped_wp_clear": ped_clear,
+            "initial_wp_clear": initial_wp_clear,
+            "specific_disease_wp_clear": specific_disease_wp_clear,
+            "ped_wp_clear": ped_wp_clear,
             "days_elapsed": days_since_inception,
             "applicable_wp_months": ped_wp_months,
             "ped_wp_months": ped_wp_months,
             "is_legacy_policy": is_legacy,
+            "continuity_credit_months": continuity_months,
+            "ped_anniversary_date": str(ped_anniversary),
             "moratorium_clear": moratorium_clear,
+            "moratorium_base_clear": moratorium_base_clear,
+            "moratorium_enhanced_clear": moratorium_enhanced_clear,
             "moratorium_months": 60,
+            "moratorium_base_date": str(base_moratorium_date),
+            "moratorium_enhanced_date": str(enhanced_moratorium_date) if enhanced_moratorium_date else None,
         },
         "node_latencies": {
             **state.get("node_latencies", {}),
@@ -408,15 +439,21 @@ def apply_rules_engine(state: dict[str, Any]) -> dict[str, Any]:
         # --- Reconstruct WaitingPeriodInfo ---
         wp = state.get("waiting_period_info", {})
         waiting_period = WaitingPeriodInfo(
-            initial_wp_clear=wp.get("initial_wp_clear", True),
-            specific_disease_wp_clear=wp.get("specific_disease_wp_clear", True),
-            ped_wp_clear=wp.get("ped_wp_clear", True),
-            days_elapsed=wp.get("days_elapsed", 365),
+            initial_wp_clear=wp.get("initial_wp_clear", False),
+            specific_disease_wp_clear=wp.get("specific_disease_wp_clear", False),
+            ped_wp_clear=wp.get("ped_wp_clear", False),
+            days_elapsed=wp.get("days_elapsed", 0),
             applicable_wp_months=wp.get("applicable_wp_months", 36),
             ped_wp_months=wp.get("ped_wp_months", 36),
             is_legacy_policy=wp.get("is_legacy_policy", False),
-            moratorium_clear=wp.get("moratorium_clear", True),
+            continuity_credit_months=wp.get("continuity_credit_months", 0),
+            ped_anniversary_date=date.fromisoformat(wp["ped_anniversary_date"]) if wp.get("ped_anniversary_date") else None,
+            moratorium_clear=wp.get("moratorium_clear", False),
+            moratorium_base_clear=wp.get("moratorium_base_clear", False),
+            moratorium_enhanced_clear=wp.get("moratorium_enhanced_clear", False),
             moratorium_months=wp.get("moratorium_months", 60),
+            moratorium_base_date=date.fromisoformat(wp["moratorium_base_date"]) if wp.get("moratorium_base_date") else None,
+            moratorium_enhanced_date=date.fromisoformat(wp["moratorium_enhanced_date"]) if wp.get("moratorium_enhanced_date") else None,
         )
 
         # --- Call rules engine ---

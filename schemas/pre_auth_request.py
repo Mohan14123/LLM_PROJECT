@@ -372,6 +372,38 @@ class Policy(BaseModel):
         default=Decimal("0.00"),
         description="Co-pay percentage borne by the insured.",
     )
+    product_uin: Optional[str] = Field(
+        default=None,
+        description="IRDAI Product Unique Identification Number (UIN).",
+    )
+    product_version: Optional[str] = Field(
+        default="2024.1",
+        description="Policy schedule and wording edition version.",
+    )
+    ped_waiting_period_months: Optional[int] = Field(
+        default=None,
+        description="Explicit contractual PED waiting period in months (36 per IRDAI 2024; 48 for legacy).",
+    )
+    continuity_credit_months: Annotated[int, Field(ge=0)] = Field(
+        default=0,
+        description="Continuous coverage credits accrued from previous policies under IRDAI Portability/Migration regulations.",
+    )
+    base_sum_insured: Optional[_INR] = Field(
+        default=None,
+        description="Original sum insured at initial policy inception.",
+    )
+    enhanced_sum_insured: Optional[_INR] = Field(
+        default=None,
+        description="Enhanced sum insured increment added after inception.",
+    )
+    enhancement_date: Optional[date] = Field(
+        default=None,
+        description="Effective date of sum insured enhancement.",
+    )
+    endorsements: list[str] = Field(
+        default_factory=list,
+        description="Verified endorsement reference numbers attached to this policy.",
+    )
 
 
 class Hospital(BaseModel):
