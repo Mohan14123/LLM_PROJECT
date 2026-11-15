@@ -68,6 +68,7 @@ def evaluate():
     
     # 4. Decision metrics (Confusion matrix)
     TP, TN, FP, FN = 0, 0, 0, 0
+    unsafe_auto_approvals = 0
     
     # 5. Escalation metrics
     esc_TP, esc_TN, esc_FP, esc_FN = 0, 0, 0, 0
@@ -194,6 +195,7 @@ def evaluate():
                 is_correct = (rec == expected_dec_str)
                 
             # Decision Confusion Matrix
+            # Track both (A) Recommendation FPR and (B) Unsafe Auto-Approval FPR (leakage)
             if rec == "APPROVE" and expected_dec_str == "APPROVE":
                 TP += 1
             elif rec == "DENY" and expected_dec_str == "DENY":
@@ -206,9 +208,13 @@ def evaluate():
                 else:
                     TN += 1
             elif rec == "APPROVE" and expected_dec_str == "DENY":
-                FP += 1  # False positive: approved fraud/ineligible claim
+                FP += 1  # False positive recommendation
             elif rec == "DENY" and expected_dec_str == "APPROVE":
                 FN += 1  # False negative: denied honest claim
+                
+            # Unsafe auto-approval: approved without escalation when expected was non-APPROVE
+            if rec == "APPROVE" and not needs_escalation and expected_dec_str in ("DENY", "ESCALATE"):
+                unsafe_auto_approvals += 1
                 
             # 5. Escalation Confusion Matrix
             if needs_escalation and expected_escalation:
@@ -295,17 +301,26 @@ def evaluate():
             "overall_accuracy": decision_accuracy,
         },
         "dimensions": {
-            "1_extraction": {"accuracy": round(extraction_accuracy, 4)},
+            "1_extraction": {
+                "metric_label": "Intake Schema Validation & Field Extraction Rate",
+                "accuracy": round(extraction_accuracy, 4),
+            },
             "2_retrieval": {
+                "metric_label": "Document-Level Hit@5 & Query Coverage",
                 "recall_at_5": round(true_recall_at_5, 4),
                 "coverage": round(retrieval_coverage, 4),
                 "recall_proxy_legacy": round(retrieval_quality, 4),
             },
-            "3_grounding": {"hallucination_rate": round(hallucination_rate, 4)},
+            "3_grounding": {
+                "metric_label": "Hallucinated Citation Rate (Regex Guardrail)",
+                "hallucination_rate": round(hallucination_rate, 4),
+            },
             "4_decision": {
+                "metric_label": "Composite Benchmark Correctness under Escalation Policy",
                 "accuracy": round(decision_accuracy, 4),
                 "confusion_matrix": {"TP": TP, "TN": TN, "FP": FP, "FN": FN},
-                "fp_rate": round(FP / max(1, FP + TN), 4),
+                "recommendation_fp_rate": round(FP / max(1, FP + TN), 4),
+                "unsafe_auto_approval_rate": round(unsafe_auto_approvals / max(1, FP + TN), 4),
                 "fn_rate": round(FN / max(1, TP + FN), 4),
             },
             "5_escalation": {

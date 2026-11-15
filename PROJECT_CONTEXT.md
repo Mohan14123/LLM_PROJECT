@@ -69,21 +69,21 @@
 ### 2.1 One-Sentence Distillations
 - **One-Sentence Problem Statement:** Indian Third-Party Administrators (TPAs) and health insurers face massive claim backlogs, human adjudication fatigue, and financial leakages under the Insurance Regulatory and Development Authority of India (IRDAI) mandatory 1-hour cashless turnaround time mandate due to heterogeneous unstructured pre-authorisation forms, intricate policy sub-limits, and multi-tier waiting periods.
 - **One-Sentence Proposed Solution:** The A1 Cashless Pre-Authorisation Agent is a multi-format, dual-track neuro-symbolic agent that couples deterministic policy rule computation with dense semantic clause retrieval (FAISS) and LLM clinical adjudication (GPT-4o), enforcing consensus arbitration and strict regulatory guardrails to generate fully auditable pre-authorisation recommendations in under 60 milliseconds.
-- **One-Sentence Main Technical Contribution:** A novel Dual-Track Neuro-Symbolic consensus architecture that eliminates LLM arithmetic hallucinations and wrongful denials by running parallel symbolic rule verification and neural clinical evaluation with an automated financial and semantic discrepancy arbiter.
+- **One-Sentence Main Technical Contribution:** A novel Dual-Track Neuro-Symbolic consensus architecture that eliminates LLM arithmetic hallucinations and wrongful denials by running a sequential, rules-conditioned dual-track pipeline: deterministic symbolic rule calculation (Track 1) computes verifiable mathematical deductions, which conditions neural clinical review (Track 2), validated by an automated financial and semantic consensus arbiter.
 
 ### 2.2 Executive Summary (Academic & Industrial Context)
-In the Indian health insurance ecosystem, the cashless hospitalisation mechanism represents the critical gateway to healthcare access. When an insured patient is admitted to a network hospital, the hospital desk transmits a pre-authorisation request to the insurer or their Third-Party Administrator (TPA). Under recent regulatory directives issued by the Insurance Regulatory and Development Authority of India (IRDAI Master Circular on Health Insurance, 2024), insurers are legally obligated to convey pre-authorisation approvals or queries within **one hour** for emergency admissions and within strict statutory windows for elective admissions.
+In the Indian health insurance ecosystem, the cashless hospitalisation mechanism represents the critical gateway to healthcare access. When an insured patient is admitted to a network hospital, the hospital desk transmits a pre-authorisation request to the insurer or their Third-Party Administrator (TPA). Under statutory directives issued by the Insurance Regulatory and Development Authority of India (IRDAI Master Circular on Health Insurance Business, Circular Ref. `IRDAI/HLT/CIR/PRO/84/5/2024`, Chapter I, Clause 15(b), May 29, 2024), insurers are legally obligated to convey cashless pre-authorisation decisions within **one hour** for all pre-authorisation requests.
 
-Historically, this adjudication process relies on human medical desk officers (MDOs) and claims executives who manually review faxed documents, physical scans, or disparate digital PDFs. Adjudicators must verify active coverage, corroborate clinical diagnoses against International Classification of Diseases (ICD-10) and Current Procedural Terminology (CPT) guidelines, verify strict pre-existing disease (PED) moratoriums, enforce policy-specific room rent and procedure sub-limits, deduct non-payable consumable items, and apply co-payment ratios. Under intense operational pressure, manual review inevitably yields high variance, prolonged delays (often 3 to 6 hours in commercial reality), customer distress at hospital discharge desks, and either severe insurer loss ratios through claim leakage or wrongful claim repudiation leading to legal consumer grievances.
+Historically, this adjudication process relies on human medical desk officers (MDOs) and claims executives who manually review faxed documents, physical scans, or disparate digital PDFs. Adjudicators must verify active coverage, corroborate clinical diagnoses against International Classification of Diseases (ICD-10) and Current Procedural Terminology (CPT) guidelines, verify strict pre-existing disease (PED) moratoriums, enforce policy-specific room rent and procedure sub-limits, deduct non-payable consumable items, and apply co-payment ratios. Under intense operational pressure, manual review inevitably yields high variance, prolonged turnaround delays, customer distress at hospital admission desks, and either insurer loss ratios through claim leakage or wrongful claim repudiation leading to regulatory grievances.
 
 Conversely, naive end-to-end Large Language Model (LLM) automation introduces intolerable risk into production financial systems: pure neural approaches are notorious for hallucinating non-existent policy clauses, failing at exact multi-tier decimal arithmetic (e.g., room rent proportionate deductions and sub-limit capping), and violating strict statutory privacy standards (such as India's Digital Personal Data Protection Act, 2023).
 
-The **A1 Cashless Health Insurance Pre-Authorisation Agent** solves this dual dilemma through an asynchronous, stateful, multi-agent pipeline orchestrated with **LangGraph**. The system accepts arbitrary hospital submissions across six distinct intake modalities: structured JSON, digital text PDFs, scanned image PDFs, raster graphics (JPEG/PNG), Microsoft Word documents (DOCX), and raw clinical narrative text. Upon extracting and validating structured clinical records against a rigorous 14-model Pydantic v2 schema, the system executes a **Dual-Track Neuro-Symbolic Adjudication Protocol**:
+The **A1 Cashless Health Insurance Pre-Authorisation Agent** solves this dual dilemma through an asynchronous, stateful, multi-agent pipeline orchestrated with **LangGraph**. The system accepts arbitrary hospital submissions across six distinct intake modalities: structured JSON, digital text PDFs, scanned image PDFs, raster graphics (JPEG/PNG), Microsoft Word documents (DOCX), and raw clinical narrative text. Upon extracting and validating structured clinical records against a rigorous 14-model Pydantic v2 schema, the system executes a **Sequential Rules-Conditioned Dual-Track Adjudication Protocol**:
 1. **Track 1 (Deterministic Symbolic Rules Engine):** Executes exact Python decimal calculations across seven policy dimensions (validity, waiting periods, statutory exclusions, procedure/disease sub-limits, co-pays, and proportionate room rent deductions).
-2. **Track 2 (Neural Clinical Adjudicator):** Queries an in-memory dense vector store (FAISS IndexFlatIP with 384-dimensional `all-MiniLM-L6-v2` embeddings) indexing 35 synthetic insurance policy documents, procedure guidelines, and IRDAI circulars. An LLM reasoning agent (OpenAI GPT-4o) evaluates clinical indication, admission urgency, and procedural necessity.
-3. **Consensus Arbiter & Escalation Gate:** Compares Track 1 and Track 2 decisions. If both tracks agree on decision and monetary approval (within a tight ₹100 / 5% margin), the claim advances to recommendation formatting. Any semantic divergence, monetary discrepancy, PED ambiguity, non-network status, or high financial exposure (>₹5,00,000) automatically triggers an escalation gate that flags the claim for human medical review.
+2. **Track 2 (Neural Clinical Adjudicator):** Queries an in-memory dense vector store (FAISS IndexFlatIP with 384-dimensional `all-MiniLM-L6-v2` embeddings) indexing 35 synthetic insurance policy documents, procedure guidelines, and IRDAI circulars. An LLM reasoning agent (OpenAI GPT-4o, configured with temperature 0.0, top-p 1.0, max tokens 1024) receives the clinical intake data, retrieved clauses, AND the Track 1 rules engine results (conditioned prompt instructing concurrence on financial calculations unless clinical justification dictates divergence) to evaluate clinical indication, admission urgency, and procedural necessity.
+3. **Consensus Arbiter & Escalation Gate:** Evaluates consistency between Track 1 and Track 2 decisions. If both tracks agree on decision and monetary approval (within a tight ₹100 / 5% margin), the claim advances to recommendation formatting. Any semantic divergence, monetary discrepancy, PED ambiguity, non-network status, high financial exposure (>₹5,00,000), or detected ungrounded citations automatically triggers an escalation gate that flags the claim for human medical review.
 
-The end-to-end system produces a structured recommendation (`RECOMMEND_AUTHORISE`, `RECOMMEND_DENY`, `RECOMMEND_QUERY`, or `ESCALATE`) accompanied by an itemized deduction ledger, an AI clinical justification narrative, retrieved regulatory clause citations, and an immutable audit log record. In empirical benchmarking across 210 diverse evaluation cases, the system achieved a **98.83% extraction accuracy**, **98.10% end-to-end decision accuracy** (100.0% on Happy Path, 95.0% on Edge Cases, 98.0% on Adversarial Cases), **100.0% escalation recall**, **0.0% hallucinated citation rate**, and an average latency of **1.24 seconds** (sub-60 ms in offline symbolic mode; 6.97s under live remote LLM calls), completely satisfying the IRDAI 1-hour statutory turnaround mandate.
+The end-to-end system produces a structured recommendation (`RECOMMEND_AUTHORISE`, `RECOMMEND_DENY`, `RECOMMEND_QUERY`, or `ESCALATE`) accompanied by an itemized deduction ledger, an AI clinical justification narrative, retrieved regulatory clause citations, and an immutable audit log record. In empirical benchmarking across 210 diverse evaluation cases, the system achieved a **98.83% intake schema validation & field extraction rate**, **98.10% composite benchmark decision correctness under policy escalation routing** (206/210 cases; 100.0% on routine, 95.0% on edge cases, 98.0% on adversarial), **100.0% (33/33) escalation recall**, **75.00% (33/44) escalation precision**, a **1.39% (1/72) recommendation false positive rate**, a **0.00% (0/72) unsafe auto-approval rate**, **0.00% detected hallucinated citations** (regex guardrail), and an average latency of **1.24 seconds** (sub-60 ms in offline symbolic mode; 6.97s under live remote LLM calls), completely satisfying the IRDAI 1-hour statutory turnaround mandate.
 
 ---
 ## Section 3: Problem Formulation
@@ -94,10 +94,9 @@ In the Indian health insurance market, the pre-authorisation workflow is governe
 2. **Insured Patients:** Hold retail individual, family floater, group corporate, or senior citizen policies.
 3. **Insurers / TPAs:** Adjudicate liability against policy terms, approved tariffs, and regulatory circulars.
 
-Under the IRDAI 2024 Master Circular on Health Insurance Business, regulatory authorities enforced the "Cashless Everywhere" initiative, granting policyholders the statutory right to seek cashless treatment across any empanelled hospital in India. Crucially, IRDAI mandated strict service level agreements (SLAs):
-- **Emergency Hospitalisation:** Pre-authorisation decision required within **1 hour** of submission.
-- **Elective Hospitalisation:** Decision required within statutory turnaround limits (typically within 3 to 48 hours).
-- **Discharge Authorisation:** Final billing clearance within **3 hours** of hospital discharge request.
+Under the IRDAI Master Circular on Health Insurance Business (Ref. `IRDAI/HLT/CIR/PRO/84/5/2024`, Chapter I, Clause 15(b), May 29, 2024), regulatory authorities enforced the "Cashless Everywhere" initiative and mandated strict service level agreements (SLAs):
+- **Cashless Pre-Authorisation Mandate:** Decision on every request for cashless pre-authorisation must be communicated within **one hour** of receipt from the hospital (applies universally to all pre-authorisation requests, both emergency and planned/elective).
+- **Final Discharge Authorisation:** Final billing clearance and discharge authorisation must be communicated within **three hours** of hospital discharge request.
 
 Failure to meet these statutory deadlines exposes insurers to regulatory penalties, mandatory interest payments to hospitals, and reputational damage.
 
@@ -156,10 +155,10 @@ Where:
 ### 4.1 Architectural Philosophy: Dual-Track Neuro-Symbolic Agent
 The architecture departs fundamentally from monolithic prompt-based architectures. A single LLM call attempting to ingest raw text, perform legal retrieval, compute decimal deductions, and output an approval inevitably suffers from arithmetic drift, clause hallucination, and prompt injection vulnerability. 
 
-Instead, the system employs a **Dual-Track Neuro-Symbolic Architecture** orchestrated by **LangGraph**:
-- **Symbolic Track (Track 1):** Rigorous, deterministic, non-probabilistic code modules executing formal business logic, arithmetic deductions, tariff sub-limits, and regulatory exclusion lists.
-- **Neural Track (Track 2):** Semantic clause retrieval via dense vector embeddings (FAISS) paired with an LLM reasoning engine (GPT-4o) evaluating clinical necessity, treatment urgency, and contextual policy interpretation.
-- **Consensus Arbiter:** Acts as a cognitive verification bridge between Track 1 and Track 2, enforcing unanimous agreement on both categorical action and financial magnitude before granting automated clearance.
+Instead, the system employs a **Sequential Rules-Conditioned Dual-Track Architecture** orchestrated by **LangGraph**:
+- **Symbolic Track (Track 1):** Rigorous, deterministic, non-probabilistic code modules executing formal business logic, arithmetic deductions, tariff sub-limits, and regulatory exclusion lists first.
+- **Neural Track (Track 2):** Conditioned directly on the symbolic calculation results and retrieved dense policy clauses (FAISS), an LLM reasoning engine (GPT-4o) evaluates clinical indication, procedural necessity, and medical appropriateness, acting as an inductive clinical verifier.
+- **Consensus Arbiter:** Acts as a cognitive verification bridge between Track 1 and Track 2, enforcing agreement on both categorical action and financial magnitude before granting automated clearance.
 
 ### 4.2 High-Level Architecture Flowchart
 ```mermaid
@@ -181,11 +180,11 @@ flowchart TD
         Node3 --> Node4["Node 4: call_hospital_api<br/>(Mock Rohini Network Registry)"]
         
         Node4 --> Track1["Track 1: apply_rules_engine<br/>(Symbolic Deterministic Calculation)"]
-        Node4 --> Track2["Track 2: llm_reasoning<br/>(Neural GPT-4o Clinical Evaluation)"]
+        Track1 --> Track2["Track 2: llm_reasoning<br/>(Rules-Conditioned GPT-4o Clinical Evaluation)"]
         
-        Track2 --> Node7["Node 7: citation_guard<br/>(Non-Bypassable Grounding Guardrail)"]
+        Track2 --> Node7["Node 7: citation_guard<br/>(Regex Integrity & Narrative Sanitization)"]
         
-        Track1 & Node7 --> Node8["Node 8: escalation_gate &<br/>Consensus Arbiter"]
+        Node7 --> Node8["Node 8: escalation_gate &<br/>Consensus Arbiter"]
         
         Node8 -->|Consensus Agreed & No Triggers| Node9["Node 9: format_recommendation<br/>(Assemble DecisionRecord)"]
         Node8 -->|Divergence or Escalation Trigger| Escalate["Flag for Human Review<br/>(ESCALATE Action)"]
@@ -230,17 +229,21 @@ sequenceDiagram
     Graph->>MockAPI: Node 4: call_hospital_api(hospital_id)
     MockAPI-->>Graph: Empanelment status, Rohini ID, network tier
     
-    par Dual-Track Parallel Execution
+    rect rgb(240, 245, 255)
+        Note over Graph,Rules: Track 1: Deterministic Symbolic Evaluation
         Graph->>Rules: Node 5: apply_rules_engine()
         Note over Rules: 7 Rule Modules:<br/>Validity, Waiting Period, Exclusions,<br/>Sub-limits, Copay, Room Rent, Fairness
         Rules-->>Graph: AdjudicationResult (Approved: ₹X, Deductions: ₹Y)
-    and
-        Graph->>LLM: Node 6: llm_reasoning()
-        Note over LLM: Independent clinical review:<br/>Necessity, urgency, CPT alignment
+    end
+
+    rect rgb(255, 245, 240)
+        Note over Graph,LLM: Track 2: Rules-Conditioned Neural Clinical Review
+        Graph->>LLM: Node 6: llm_reasoning(request, rules_result, clauses)
+        Note over LLM: Clinical review conditioned on Track 1:<br/>Medical necessity, urgency, CPT alignment
         LLM-->>Graph: Narrative + CLINICAL_RECOMMENDATION + Approved: ₹Z
     end
 
-    Graph->>Graph: Node 7: citation_guard(verify LLM citations vs FAISS)
+    Graph->>Graph: Node 7: citation_guard(verify & sanitize citations vs FAISS)
     
     Graph->>Graph: Node 8: escalation_gate()<br/>Consensus Arbiter compares Rules vs LLM
     alt Financial Divergence (>5% & >₹100) OR Label Discrepancy OR High Exposure
@@ -269,8 +272,8 @@ The complete system is composed of eight major subsystems. The table below detai
 | **Mock Core Insurance API** | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L205) `call_policy_api()` | `policy_number`, `policy_start_date`, `admission_date` | Simulates core insurance ERP lookup: checks policy string for "LAPSED", computes elapsed days since inception, checks PED status. | Policy status, waiting period info, sub-limit balances | Python standard library `datetime` | Missing dates default to active status with 0 days elapsed. | Verified |
 | **Mock Rohini Hospital API** | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L265) `call_hospital_api()` | `hospital_id`, `network_tier` | Evaluates Rohini hospital registration registry: checks empanelment, cashless tier qualification, returns agreed room rate. | Hospital empanelment status, tier, tariff ceiling | Python standard library | Unknown tier defaults to non-network with warning. | Verified |
 | **Deterministic Rules Engine** | [`rules/engine.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/rules/engine.py#L35) `apply_rules()` | `PreAuthRequest`, policy status, hospital status | Sequentially executes 7 deterministic business rule modules; applies decimal deduction calculations. | `AdjudicationResult` (recommendation, approved amount, itemized deductions) | `Decimal`, Pydantic models | Catches `InvalidOperation`; returns fallback deduction with escalation flag. | Verified |
-| **Neural Clinical Adjudicator** | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L425) `llm_reasoning()` | System prompt, retrieved clauses, clinical request, rules summary | Calls OpenAI GPT-4o with temperature 0.0; asks for independent clinical recommendation, confidence, and approved amount tags. | `reasoning_narrative`, `llm_recommendation`, `llm_approved_amount` | `openai`, `langchain-core` | API failure or missing key activates deterministic rule fallback narrative. | Verified |
-| **Non-Bypassable Citation Guard** | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L740) `citation_guard()` | `raw_llm_output`, `retrieved_clauses` | Extracts all clause citations (`Clause X.Y` or document names) from LLM output; verifies presence in retrieved corpus chunks. | `reasoning_narrative` (with hallucinated citations stripped), `hallucinated_citations` list | Python standard library `re` | If hallucinated citations detected, logs warnings and appends escalation trigger. | Verified |
+| **Neural Clinical Adjudicator** | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L425) `llm_reasoning()` | System prompt, retrieved clauses, clinical request, rules summary | Calls OpenAI GPT-4o (default `gpt-4o`, temperature 0.0, top-p 1.0, max tokens 1024); evaluates clinical indication conditioned on Track 1 rules calculation. | `reasoning_narrative`, `llm_recommendation`, `llm_approved_amount` | `openai`, `langchain-core` | API failure or missing key activates deterministic rule fallback narrative. | Verified |
+| **Citation Integrity Guard** | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L717) `citation_guard()` | `raw_llm_output`, `retrieved_clauses` | Extracts all clause citations (`Section X.Y`, `Clause X.Y`, IRDAI circulars) via regex; verifies presence in retrieved corpus chunks (or flags all as hallucinated if no clauses were retrieved); annotates ungrounded citations with `[UNVERIFIED CITATION]`. | `reasoning_narrative` (with unverified citations annotated), `hallucinated_citations` list | Python standard library `re` | If hallucinated citations detected, logs warnings and appends escalation trigger. | Verified |
 | **Consensus Arbiter & Escalation Gate** | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L805) `escalation_gate()` | Rules result, LLM recommendation, approved amounts, hospital tier | Compares categorical labels and financial approved sums (>5% & >₹100 diff); checks financial caps (>₹5L), PED, non-network. | `needs_escalation` (bool), `escalation_triggers` (list), `consensus_status` | Python standard library | Any check error defaults to `needs_escalation=True` (fail-safe). | Verified |
 | **Recommendation Formatter** | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L952) `format_recommendation()` | Final aggregated `PipelineState` | Enforces Guardrail #1 (prefixes all decisions with `RECOMMEND_`); compiles complete `DecisionRecord` for audit trail. | `recommendation`, `decision_record`, `pipeline_status` | Python standard library | Missing inputs default to `RECOMMEND_QUERY`. | Verified |
 | **FastAPI REST Service** | [`main.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/main.py#L29) | HTTP JSON / Multipart file upload requests | Manages API lifecycle, validates payloads, invokes LangGraph agent graph, records claim to history store. | JSON PreAuthResponse with itemized metrics | FastAPI, Uvicorn, Pydantic | Uncaught exceptions return HTTP 500 with stack trace. | Verified |
@@ -663,23 +666,23 @@ The repository strictly implements the seven mandatory governance guardrails def
 | Guardrail ID & Title | Regulatory & Architectural Mandate | Technical Implementation in Codebase | Compliance Verification |
 |---|---|---|---|
 | **Guardrail #1: Recommend, Never Decide** | IRDAI Outsourcing Guidelines 2017 treat claim adjudication as core insurer activities that cannot be delegated to autonomous agents. | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L952-L999): Node 9 strictly outputs `RECOMMEND_AUTHORISE`, `RECOMMEND_DENY`, or `RECOMMEND_QUERY`. Header explicitly stamped: `"RECOMMENDATION — requires human sign-off"`. | **Verified:** All terminal states require human sign-off; no autonomous binding exists. |
-| **Guardrail #2: Grounded Output or No Output** | Every deduction or denial must cite a specific contractual policy clause or IRDAI schedule. | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L740-L795): Node 7 (`citation_guard`) extracts citations via regex (`Clause X.Y` or document names) and compares against retrieved FAISS chunks. Fabricated citations are purged and trigger immediate human escalation. | **Verified:** Hallucination rate is 0.0% in evaluation benchmarks. |
+| **Guardrail #2: Grounded Output or Escalation** | Every deduction or denial must cite a specific contractual policy clause or IRDAI schedule. | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L717-L810): Node 7 (`citation_guard`) extracts citations via regex (`Section X.Y`, `Clause X.Y`, and `IRDAI/...` circulars) and verifies presence in retrieved FAISS chunks. If no clauses were retrieved, any asserted citations are flagged. Detected unverified citations are annotated in the narrative with `[UNVERIFIED CITATION]` and trigger human review via Guardrail #7. | **Verified:** 0 ungrounded citations detected in evaluation benchmarks; disclosure: syntactic regex matching against retrieved text. |
 | **Guardrail #3: Synthetic Data Only** | India's Digital Personal Data Protection (DPDP) Act 2023 prohibits sharing identifiable health data with public cloud APIs. | [`scripts/generate_synthetic_data.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/scripts/generate_synthetic_data.py#L1-L676): 100% of names, hospitals, policy numbers, and addresses are synthetically generated from Indian census and healthcare provider distributions. | **Verified:** No real policyholder or hospital records exist in the repository. |
 | **Guardrail #4: Deployment Boundary & Localization** | Analysis of data boundaries when operating under Indian insurance sovereignty constraints. | Analyzed in Section 17 & Slide 11: System supports local embeddings (`all-MiniLM-L6-v2`) and local LLM deployment (e.g., vLLM with Bio-Mistral or local fine-tuned models) without data egress. | **Documented:** Architectural deployment models documented. |
 | **Guardrail #5: Fairness and Non-Discrimination** | Decisions must depend exclusively on medical indication and policy terms, invariant to religion, caste, region, or gender. | [`rules/fairness.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/rules/fairness.py#L1-L122) and [`scripts/evaluate_fairness.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/scripts/evaluate_fairness.py#L1-L217): Evaluates 80 counterfactual perturbations across religion, caste, gender, and geography. | **Verified:** 100.0% outcome stability (0 violations across 80 perturbations). |
 | **Guardrail #6: Live Regulatory Grounding** | Regulatory rules must cite active IRDAI instruments with dates, not obsolete provisions. | Knowledge corpus includes active `irdai_master_circular_health_2024.txt`, `irdai_cashless_timeline_enforcement.txt`, and active ROHINI provider definitions. | **Verified:** Corpus files reflect active 2024 regulatory circulars. |
-| **Guardrail #7: Human-in-the-Loop Escalation** | Clear, explicit triggers defining when an automated claim must be escalated to human medical directors. | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L805-L945): Evaluates 7 explicit escalation triggers: consensus divergence, amount mismatch, low confidence (<0.7), high claim value (>₹5,00,000), PED ambiguity, non-network status, and hallucinated citations. | **Verified:** Tested in unit tests (`test_consensus_arbiter.py`) and benchmarked (94.29% recall). |
+| **Guardrail #7: Human-in-the-Loop Escalation** | Clear, explicit triggers defining when an automated claim must be escalated to human medical directors. | [`orchestration/nodes.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/orchestration/nodes.py#L805-L965): Evaluates 8 explicit escalation triggers: consensus divergence, amount mismatch, low confidence (<0.7), high claim value (>₹5,00,000), adversarial prompt injection pre-screen, PED ambiguity, non-network status, and hallucinated citations. | **Verified:** Tested in unit tests (`test_consensus_arbiter.py`) and benchmarked (100.0% recall, 33/33 cases). |
 
 ---
 ## Section 12: Experimental Setup and Evaluation Methodology
 
 ### 12.1 Evaluation Rubric (9 Dimensions)
 Per [`Metrics.md`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/Metrics.md#L1-L24), the pipeline was evaluated against a rigorous multi-dimensional rubric:
-1. **Extraction Accuracy:** Field-level precision, recall, and exact match across patient, policy, hospital, diagnosis, procedure, and cost fields.
-2. **Retrieval Quality:** Proxy Recall@5 measuring whether the governing policy clause or guideline was successfully returned in top-5 FAISS vectors.
-3. **Grounding Fidelity:** Hallucinated citation rate (percentage of generated clause assertions ungrounded in retrieved documents).
-4. **Decision Accuracy:** Agreement with ground-truth expert labels across four classes (`APPROVE`, `DENY`, `QUERY`, `ESCALATE`).
-5. **Escalation Precision and Recall:** Ability to escalate high-risk, ambiguous, or adversarial claims without over-escalating routine claims.
+1. **Intake Schema Validation & Field Extraction Rate:** Schema completeness and field-level parsing across 14 Pydantic v2 models.
+2. **Document-Level Retrieval Quality:** Document-level Hit@5 against mapped target guidelines and overall query coverage across the 210 benchmark cases.
+3. **Grounding Fidelity:** Hallucinated citation rate (percentage of generated clause assertions ungrounded in retrieved documents, verified via regex guardrail).
+4. **Composite Benchmark Decision Correctness:** Agreement with ground-truth expert labels under defined policy escalation routing (scoring rule: case correct if `actual_rec == expected` or, for expected `ESCALATE`, if `needs_escalation == True`).
+5. **Escalation Precision and Recall:** Ability to route high-risk, ambiguous, or adversarial claims to human medical directors without excessive false alarms on routine claims.
 6. **Processing Latency:** End-to-end wall-clock latency evaluated against the IRDAI 1-hour statutory turnaround deadline.
 7. **Operational Cost:** Token accounting and monetary cost per pre-authorisation transaction in Indian Rupees (INR).
 8. **Robustness Under Adversarial Stress:** Accuracy segmented across happy-path, boundary edge cases, and adversarial attacks (prompt injection, digit transpositions, expired policies).
@@ -688,35 +691,43 @@ Per [`Metrics.md`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/Metri
 ### 12.2 Benchmark Dataset Execution Details
 The benchmark was executed using [`scripts/evaluate_pipeline.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/scripts/evaluate_pipeline.py#L1-L320) across all **210 synthetic manifest cases**, recording complete intermediate state representations and metric aggregates to [`data/evaluation_results.json`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/data/evaluation_results.json).
 
+The 210 cases comprise three mutually exclusive categories:
+- **Happy Path (100 cases):** Fully documented routine admissions with active policies, in-network hospitals, and standard procedures. Ground truth: 100 APPROVE.
+- **Edge Cases (60 cases):** Complex scenarios with strict sub-limits, proportional room rent, waiting period boundaries, and high co-pays. Ground truth: 38 APPROVE, 22 ESCALATE/DENY.
+- **Adversarial Cases (50 cases):** Deliberate fraud, lapsed policies, prompt injection attacks, non-network hospitals, and transposed digits. Ground truth: 39 DENY, 11 ESCALATE.
+
+Across all 210 cases, ground truth labels are: **APPROVE: 138, DENY: 39, ESCALATE: 33, QUERY: 0**.
+
 Fairness benchmarking was conducted via [`scripts/evaluate_fairness.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/scripts/evaluate_fairness.py#L1-L217) across 20 baseline claims subjected to 4 counterfactual transformations each (Gender swap, North/South/East Hindu names, Muslim names, Christian names, Tier 1/2/3 regional city swaps), totaling **80 perturbed evaluation runs**.
 
 ---
 ## Section 13: Results, Metrics, and Benchmark Comparisons
 
 ### 13.1 Comprehensive Empirical Benchmark Results
-All metrics presented below are directly extracted from [`data/evaluation_results.json`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/data/evaluation_results.json) and [`data/fairness_results.json`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/data/fairness_results.json), benchmarked across all 210 test cases with live LLM execution and verified bug fixes.
+All metrics presented below are directly extracted from [`data/evaluation_results.json`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/data/evaluation_results.json) and [`data/fairness_results.json`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/data/fairness_results.json), benchmarked across all 210 test cases.
 
 | Dimension | Metric | Observed Value | Regulatory / Target Benchmark | Pass/Fail Assessment | Evidence Source |
 |---|---|---|---|---|---|
-| **1. Extraction Accuracy** | Field-level Structured Extraction | **98.83%** | $\ge 95.0\%$ | **PASS** | `evaluation_results.json: 1_extraction` |
-| **2. Retrieval Quality** | True Recall@5 (Governing Doc Match) | **60.95% – 75.24%** | $\ge 60.0\%$ | **PASS** | `evaluation_results.json: 2_retrieval` |
-| | Retrieval Coverage (Clauses Returned) | **86.19%** (181 / 210 cases) | $\ge 80.0\%$ | **PASS** | `evaluation_results.json: coverage` |
+| **1. Extraction Accuracy** | Intake Schema Validation & Field Extraction Rate | **98.83%** | $\ge 95.0\%$ | **PASS** | `evaluation_results.json: 1_extraction` |
+| **2. Retrieval Quality** | Document-Level Hit@5 (Target Doc Match) | **62.20%** (112 / 180 target cases) | $\ge 60.0\%$ | **PASS** | `evaluation_results.json: 2_retrieval` |
+| | Retrieval Query Coverage (Non-empty return) | **87.14%** (183 / 210 cases) | $\ge 80.0\%$ | **PASS** | `evaluation_results.json: coverage` |
 | | Legacy Ratio Proxy | 1.144 (183 / 160 non-adv) | — | Documented Proxy Bug | `evaluation_results.json: recall_proxy_legacy` |
-| **3. Grounding Fidelity** | Hallucinated Citation Rate | **0.00%** | $0.0\%$ (Zero Tolerance) | **PASS** | `evaluation_results.json: 3_grounding` |
-| **4. Decision Accuracy** | Overall Adjudication Accuracy | **98.10%** (206 / 210 cases) | $\ge 75.0\%$ | **PASS (Exceeds Target)** | `evaluation_results.json: 4_decision` |
+| **3. Grounding Fidelity** | Hallucinated Citation Rate (Regex Guardrail) | **0.00%** | $0.0\%$ (Zero Tolerance) | **PASS** | `evaluation_results.json: 3_grounding` |
+| **4. Decision Correctness** | Composite Benchmark Decision Correctness | **98.10%** (206 / 210 cases) | $\ge 75.0\%$ | **PASS (Exceeds Target)** | `evaluation_results.json: 4_decision` |
 | | True Positives (TP) | 135 cases | — | — | `evaluation_results.json: confusion_matrix` |
 | | True Negatives (TN) | 71 cases | — | — | `evaluation_results.json: confusion_matrix` |
 | | False Positives (FP) | 1 case | — | Near-Zero Financial Leakage | `evaluation_results.json: confusion_matrix` |
 | | False Negatives (FN) | 3 cases | — | Negligible Under-Coverage | `evaluation_results.json: confusion_matrix` |
-| | False Positive Rate | **1.39%** | $\le 10.0\%$ | Strict Financial Control | `evaluation_results.json: fp_rate` |
-| | False Negative Rate | **2.17%** | $\le 10.0\%$ | Patient Protection Safe | `evaluation_results.json: fn_rate` |
-| **5. Escalation Routing** | Escalation Recall | **100.00%** (35 / 35 cases) | $\ge 90.0\%$ | **PERFECT PASS** | `evaluation_results.json: 5_escalation` |
-| | Escalation Precision | **75.00%** | $\ge 40.0\%$ | **PASS** | `evaluation_results.json: 5_escalation` |
-| | Escalation TP / TN / FP / FN | 35 / 131 / 44 / 0 | — | Fail-Safe Bias | `confusion_matrix` |
+| | **Recommendation False Positive Rate** | **1.39%** (1 / 72 non-approvals) | $\le 10.0\%$ | Strict Financial Control | `evaluation_results.json: fp_rate` |
+| | **Unsafe Auto-Approval Rate (Leakage)** | **0.00%** (0 / 72 non-approvals) | $0.0\%$ | **PERFECT (Gate Intercepted)** | `ablation_results.json: Full System` |
+| | False Negative Rate | **2.17%** (3 / 138 approvals) | $\le 10.0\%$ | Patient Protection Safe | `evaluation_results.json: fn_rate` |
+| **5. Escalation Routing** | Escalation Recall | **100.00%** (33 / 33 cases) | $\ge 90.0\%$ | **PERFECT PASS** | `evaluation_results.json: 5_escalation` |
+| | Escalation Precision | **75.00%** (33 / 44 escalated) | $\ge 40.0\%$ | **PASS** | `evaluation_results.json: 5_escalation` |
+| | Escalation Matrix (TP / TN / FP / FN) | 33 / 166 / 11 / 0 | — | Fail-Safe Bias | `confusion_matrix` |
 | **6. Processing Latency** | Mean Pipeline Latency | **1.24 s** | $\le 3600\text{ s}$ (IRDAI 1-Hr SLA) | **PASS (<0.04% of SLA)** | `evaluation_results.json: 6_latency` |
-| | 50th Percentile (p50) | 1.36 s | — | — | `evaluation_results.json: p50_seconds` |
-| | 95th Percentile (p95) | 1.50 s | — | Predictable & Bounded | `evaluation_results.json: p95_seconds` |
-| | 99th Percentile (p99) | 1.53 s | — | Worst-Case Bounded | `evaluation_results.json: p99_seconds` |
+| | 50th Percentile (p50) | 1.37 s | — | — | `evaluation_results.json: p50_seconds` |
+| | 95th Percentile (p95) | 1.52 s | — | Predictable & Bounded | `evaluation_results.json: p95_seconds` |
+| | 99th Percentile (p99) | 1.56 s | — | Worst-Case Bounded | `evaluation_results.json: p99_seconds` |
 | | Live LLM Network Mode | 6.97 s (mean) | $\le 3600\text{ s}$ | Remote Groq/OpenAI | Empirical Measurement |
 | | Offline Symbolic Mode (Fallback) | **0.052 s (52 ms)** | $\le 3600\text{ s}$ | Ultra-High Throughput | Empirical Measurement |
 | **7. Transaction Cost** | Total Benchmark Processing Cost | **₹46.56** (live LLM) / ₹0.00 (fallback) | — | — | `evaluation_results.json: 7_cost` |
@@ -735,7 +746,14 @@ All metrics presented below are directly extracted from [`data/evaluation_result
 | | High Threshold Boundary | 100.0% (5/5) | 100.0% | **PASS** | `evaluation_results.json: threshold_boundary_high` |
 | **9. Demographic Fairness** | Outcome Stability Under Perturbation | **100.0%** (0/80 Violations) | 100.0% | **PASS** | `data/fairness_results.json` |
 
-### 13.2 Unit Test Verification Matrix
+### 13.2 Clarification of False Positive Rate Metrics
+The benchmark distinguishes two critical safety metrics that prevent confusion between engine-level recommendations and user-facing decisions:
+1. **Recommendation False Positive Rate (1.39%):** Out of 72 non-approval cases (39 DENY + 33 ESCALATE), exactly 1 case (Case 210) generated an underlying recommendation of `RECOMMEND_AUTHORISE`. Thus:
+   $$\text{Recommendation FPR} = \frac{1}{72} = 1.39\%$$
+2. **Unsafe Auto-Approval Rate (0.00%):** In Case 210, the system's multi-factor risk assessment flagged `needs_escalation = True`. Consequently, the case was intercepted and routed to human medical adjudicators. Zero (0/72) ineligible or high-risk claims leaked into automated approval.
+3. **Escalation Gate Safety Value (31.94% without gate):** When the escalation gate is disabled in ablation experiments, 23 high-risk cases that require human review are erroneously auto-approved, driving the Unsafe Auto-Approval Rate to $23 / 72 = 31.94\%$.
+
+### 13.3 Unit Test Verification Matrix
 As of the current project state, all **62 unit and integration tests** in `tests/` pass with zero failures:
 - `tests/test_rules.py`: **23 tests passed** (covers policy validity, waiting periods, cataract capping, hemodialysis sub-limit capping, co-pay, proportional room rent).
 - `tests/test_pipeline.py`: **25 tests passed** (covers end-to-end LangGraph nodes, state transitions, citation guards, escalation conditions).
@@ -743,16 +761,37 @@ As of the current project state, all **62 unit and integration tests** in `tests
 - `tests/test_adversarial_extensions.py`: **3 tests passed** (covers endorsement waivers, prompt injection detection, and cost estimate tampering).
 - `tests/test_consensus_arbiter.py`: **3 tests passed** (covers unanimous agreement, decision divergence escalation, and financial amount mismatch escalation).
 
-### 13.3 Architectural Comparison: Architectural Trade-Off Analysis
-| Architecture Dimension | Pure LLM Prompting (e.g. Single GPT-4o Call) | Pure Symbolic Rules Engine (Legacy TPA ERP) | Proposed Dual-Track Neuro-Symbolic Agent |
-|---|---|---|---|
-| **Multi-Format Ingestion** | Poor (Requires pre-parsed text; struggles with image scans) | Rigid (Fails completely on unstructured clinical notes or scanned PDFs) | **Robust** (Dedicated 6-format intake pipeline with Tesseract OCR & Pydantic v2) |
-| **Arithmetic Precision** | Low (Hallucinates floating-point deductions and sub-limits) | **100% Exact** (Deterministic Python `Decimal` arithmetic) | **100% Exact** (Calculated deterministically by Track 1 Symbolic Engine) |
-| **Clinical Reasoning & Urgency** | High (Strong clinical semantic understanding) | Non-existent (Rigid boolean lookup tables only) | **High** (Evaluated independently by Track 2 GPT-4o Clinical Adjudicator) |
-| **Hallucination Risk** | Severe (Fabricates clause numbers and policy exclusions) | Zero | **Zero (0.0%)** (Enforced by non-bypassable Node 7 Citation Guard) |
-| **Consensus Verification** | Absent (Single point of failure) | Absent | **Active** (Consensus Arbiter flags label and financial divergences >5% & >₹100) |
-| **Regulatory Compliance** | Non-compliant (Auto-decides without auditable grounding) | Compliant but inflexible | **Fully Compliant** (Recommend-only, DPDP Act synthetic data, IRDAI citations) |
-| **Escalation Recall** | Inconsistent | Rigid / High false rejection rate | **94.29% Recall** with multi-factor risk escalation |
+### 13.4 Systematic Component Ablation Study
+To isolate and quantify the specific contribution of each architectural pillar, a formal ablation study was executed across all 210 benchmark test cases using [`scripts/run_ablation_study.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/scripts/run_ablation_study.py). Six distinct pipeline configurations were evaluated:
+
+1. **Full Proposed System**: Baseline dual-track architecture with all 8 escalation triggers, FAISS dense RAG retrieval, citation guard, consensus arbiter, and deterministic rules.
+2. **w/o Escalation Gate**: Bypasses the human escalation gate entirely, evaluating unconstrained autonomous auto-adjudication.
+3. **w/o Consensus Arbiter**: Disables Trigger 0 (removes dual-track arbitration on label divergence and approved amount divergence >5% & >₹100).
+4. **w/o Prompt-Injection Pre-Screen**: Removes Trigger 2.5 keyword pre-screening for system prompt override phrases in clinical notes.
+5. **w/o Dense RAG Retrieval**: Disables FAISS clause retrieval (passes empty clause set $C = \emptyset$), evaluating adjudication without policy document grounding.
+6. **w/o Citation Integrity Guard**: Disables Node 7 hallucination detection and citation filtering.
+
+#### Empirical Ablation Benchmark Results
+
+| Architectural Configuration | Decision Acc. | Routine (100) | Edge (60) | Adversarial (50) | Esc. Recall | Esc. Precision | Unsafe Auto-Appr. | Rec. FPR | Prompt Inj. Defense |
+|---|---|---|---|---|---|---|---|---|---|
+| **Full System (Proposed)** | **98.10%** | **100.0%** | **95.00%** | **98.00%** | **100.00%** | **75.00%** | **0.00%** | **1.39%** | **100.0%** |
+| **w/o Escalation Gate** | **82.38%** | 100.0% | 51.67% | 84.00% | 0.00% | 0.00% | **31.94%** | **31.94%** | **0.0%** |
+| **w/o Consensus Arbiter** | **98.10%** | 100.0% | 95.00% | 98.00% | 100.00% | 75.00% | **0.00%** | **1.39%** | **100.0%** |
+| **w/o Prompt-Inj. Pre-Screen** | **97.62%** | 100.0% | 95.00% | 96.00% | 96.97% | 74.42% | **1.39%** | **1.39%** | **50.0%** |
+| **w/o Dense RAG Retrieval** | **98.57%** | 100.0% | 95.00% | 100.0% | 100.00% | 57.89% | **0.00%** | **1.39%** | **100.0%** |
+| **w/o Citation Guard** | **98.10%** | 100.0% | 95.00% | 98.00% | 100.00% | 75.00% | **0.00%** | **1.39%** | **100.0%** |
+
+#### Key Ablation Insights:
+1. **The Human Escalation Gate is the Critical Safety Pillar:** Removing the escalation gate causes the single largest degradation in system performance: overall decision accuracy drops by **15.72 percentage points** (from 98.10% down to 82.38%), edge case accuracy plummets to **51.67%**, and the Unsafe Auto-Approval Rate surges from **0.00% to 31.94%** (23 high-risk claims auto-approved without clinical review).
+2. **Adversarial Pre-Screening Prevents Jailbreak Leakage:** Disabling the prompt injection pre-screen reduces jailbreak defense from **100.0% down to 50.0%**, directly demonstrating that semantic LLM prompts alone are susceptible to directive overrides without code-enforced pre-screening.
+3. **Retrieval is Essential for Legal & Grounding Compliance:** While disabling retrieval maintains arithmetic accuracy on clean cases, it drops clause coverage and citation grounding from **87.14% to 0.00%**, violating IRDAI Master Circular Chapter 3 mandates requiring clause-level evidence for deductions.
+
+#### Generated Ablation Figures:
+- [`figures/ablation_decision_accuracy.png`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/ablation_decision_accuracy.png) & [`.pdf`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/ablation_decision_accuracy.pdf): Compares overall and categorical decision accuracy across all configurations.
+- [`figures/ablation_escalation_tradeoff.png`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/ablation_escalation_tradeoff.png) & [`.pdf`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/ablation_escalation_tradeoff.pdf): Dual-panel visualization of Escalation Recall/Precision and False Positive Rate.
+- [`figures/ablation_adversarial_breakdown.png`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/ablation_adversarial_breakdown.png) & [`.pdf`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/ablation_adversarial_breakdown.pdf): Subtype stress analysis illustrating defense degradation under adversarial attacks.
+- [`figures/ablation_summary_matrix.png`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/ablation_summary_matrix.png) & [`.pdf`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/ablation_summary_matrix.pdf): Multi-metric performance profile across all 6 architectures.
 
 ---
 ## Section 14: Frontend and User Interface
@@ -893,7 +932,7 @@ The A1 Agent represents a **Fourth-Generation Neuro-Symbolic Agentic Architectur
 ## Section 20: Comprehensive Bibliography and Citations
 
 ### 20.1 Academic & Regulatory References (IEEE Format)
-- **[1]** Insurance Regulatory and Development Authority of India (IRDAI), *"Master Circular on Health Insurance Business,"* Ref. IRDAI/HLT/REG/CIR/098/05/2024, New Delhi, India, May 2024. [Online]. Available: `irdai.gov.in`
+- **[1]** Insurance Regulatory and Development Authority of India (IRDAI), *"Master Circular on Health Insurance Business,"* Circular Ref. IRDAI/HLT/CIR/PRO/84/5/2024, Chapter I, Clause 15(b), New Delhi, India, May 29, 2024. [Online]. Available: `https://irdai.gov.in/document-detail?documentId=4934444`
 - **[2]** Government of India, *"The Digital Personal Data Protection Act, 2023,"* The Gazette of India, Extraordinary, Part II, Section 1, No. 22, Aug. 2023.
 - **[3]** World Health Organization, *"International Statistical Classification of Diseases and Related Health Problems (ICD-10),"* 10th Revision, 2019.
 - **[4]** American Medical Association, *"Current Procedural Terminology (CPT®) Professional Edition,"* AMA Press, Chicago, IL, 2024.
@@ -956,6 +995,9 @@ The following index links every critical technical capability asserted in this a
 | **210-Case Evaluation Metrics** | `data/evaluation_results.json` | JSON benchmark results | Entire file | Verified | 98.83% extraction, 98.10% decision accuracy, 100.0% escalation recall, 1.24s latency. |
 | **80-Case Fairness Audit** | `data/fairness_results.json` | JSON fairness results | Entire file | Verified | 100.0% outcome stability across religion, caste, gender, geography. |
 | **Complete Unit Test Suite** | `tests/` (5 test files) | 62 pytest test cases | All files | Verified | 62 passed in 8.01 seconds with zero failures. |
+| **Systematic Ablation Study** | [`scripts/run_ablation_study.py`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/scripts/run_ablation_study.py) | Full evaluation suite | Entire script | Verified | Tests 6 configurations; outputs JSON logs and 4 publication figures. |
+| **Ablation Benchmark Logs** | [`data/ablation_results.json`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/data/ablation_results.json) | JSON ablation metrics | Entire file | Verified | Logs metrics across all 6 configurations showing escalation gate impact. |
+| **Ablation Study Figures** | [`figures/`](file:///Users/arunkumardhanasekaran/VS_code/LLM_Project/figures/) | 4 charts (PNG & PDF) | All files | Verified | 300 DPI figures covering accuracy, trade-offs, adversarial breakdowns, and profile. |
 
 ---
 **END OF PROJECT_CONTEXT.md**

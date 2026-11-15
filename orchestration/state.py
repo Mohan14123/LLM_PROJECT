@@ -46,6 +46,9 @@ class PipelineState(TypedDict, total=False):
     pre_auth_request: dict[str, Any]
     """Serialized PreAuthRequest extracted from the intake result."""
 
+    ablation_config: dict[str, Any]
+    """Optional component ablation configuration flags for sensitivity studies."""
+
     # ── Retrieval ──────────────────────────────────────────────────────
     retrieval_query: str
     """Composite query string built from diagnosis + procedure + plan type."""

@@ -100,7 +100,10 @@ def build_graph():
     return compiled
 
 
-def run_pipeline(intake_result: dict[str, Any]) -> dict[str, Any]:
+def run_pipeline(
+    intake_result: dict[str, Any],
+    ablation_config: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     """Run the full pre-auth adjudication pipeline.
 
     This is the main entry point for processing a single claim. It builds
@@ -108,6 +111,10 @@ def run_pipeline(intake_result: dict[str, Any]) -> dict[str, Any]:
 
     Args:
         intake_result: Serialized IntakeResult from Member 1's pipeline.
+        ablation_config: Optional dictionary of component ablation flags
+            (e.g., disable_retrieval, disable_citation_guard,
+            disable_escalation_gate, disable_consensus_arbiter,
+            disable_prompt_injection_screen).
 
     Returns:
         The final PipelineState dict containing the recommendation,
@@ -119,6 +126,7 @@ def run_pipeline(intake_result: dict[str, Any]) -> dict[str, Any]:
 
     initial_state: dict[str, Any] = {
         "intake_result": intake_result,
+        "ablation_config": ablation_config or {},
         "node_latencies": {},
         "errors": [],
         "pipeline_status": "running",

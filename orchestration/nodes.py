@@ -123,8 +123,9 @@ def retrieve_clauses_node(state: dict[str, Any]) -> dict[str, Any]:
     start = time.perf_counter()
 
     request = state.get("pre_auth_request")
+    ablation = state.get("ablation_config", {})
 
-    if request is None:
+    if request is None or ablation.get("disable_retrieval", False):
         return {
             "retrieved_clauses": [],
             "retrieval_query": "",
@@ -668,7 +669,10 @@ def _call_llm(prompt: str) -> tuple[str, dict[str, int], float]:
         raise ValueError("OPENAI_API_KEY not set — using deterministic fallback")
 
     base_url = os.environ.get("OPENAI_BASE_URL")
-    model = os.environ.get("LLM_MODEL", "gpt-4o-mini")
+    model = os.environ.get("LLM_MODEL", "gpt-4o")
+    temperature = float(os.environ.get("LLM_TEMPERATURE", "0.0"))
+    max_tokens = int(os.environ.get("LLM_MAX_TOKENS", "1024"))
+    top_p = float(os.environ.get("LLM_TOP_P", "1.0"))
 
     from openai import OpenAI
 
@@ -683,8 +687,9 @@ def _call_llm(prompt: str) -> tuple[str, dict[str, int], float]:
             {"role": "system", "content": _SYSTEM_PROMPT},
             {"role": "user", "content": prompt},
         ],
-        temperature=0.2,
-        max_tokens=1500,
+        temperature=temperature,
+        top_p=top_p,
+        max_tokens=max_tokens,
     )
 
     content = response.choices[0].message.content or ""
@@ -712,28 +717,36 @@ def _call_llm(prompt: str) -> tuple[str, dict[str, int], float]:
 def citation_guard(state: dict[str, Any]) -> dict[str, Any]:
     """Verify all citations in LLM output against retrieved clauses.
 
-    This node is NON-BYPASSABLE per Guardrail #2: "Grounded output or
-    no output." Every clause reference in the LLM output must match a
-    clause that was actually retrieved. Unmatched citations are flagged
-    and counted as hallucinations.
+    This node implements Guardrail #2 (grounded citations or escalation).
+    Every section, clause, and regulatory circular reference in the LLM
+    narrative is cross-checked against retrieved clauses using regex pattern
+    matching. Detected unverified citations are flagged, sanitized in the
+    narrative (annotated with [UNVERIFIED CITATION]), and routed to human
+    escalation via Guardrail #7.
+
+    If no clauses were retrieved but citations are asserted in LLM output,
+    all asserted citations are flagged as ungrounded/hallucinated.
 
     Checks:
-        1. Section references (e.g., "Section 3.2") in LLM output are
-           cross-checked against sections present in retrieved clauses.
+        1. Section/Clause references (e.g., "Section 3.2", "Clause 4.1") in LLM output
+           are cross-checked against sections present in retrieved clauses.
         2. IRDAI circular references are verified against retrieved metadata.
         3. Document name references are verified against retrieved sources.
 
     Returns:
-        Updated state with hallucinated_citations list.
+        Updated state with hallucinated_citations list and sanitized reasoning_narrative.
     """
     start = time.perf_counter()
 
-    raw_output = state.get("raw_llm_output", "")
+    raw_output = state.get("raw_llm_output", "") or state.get("reasoning_narrative", "")
     retrieved_clauses = state.get("retrieved_clauses", [])
+    ablation = state.get("ablation_config", {})
+    narrative = state.get("reasoning_narrative", raw_output)
 
-    if not raw_output or not retrieved_clauses:
+    if not raw_output or ablation.get("disable_citation_guard", False):
         return {
             "hallucinated_citations": [],
+            "reasoning_narrative": narrative,
             "node_latencies": {
                 **state.get("node_latencies", {}),
                 "citation_guard": time.perf_counter() - start,
@@ -745,11 +758,11 @@ def citation_guard(state: dict[str, Any]) -> dict[str, Any]:
     valid_circulars: set[str] = set()
     valid_sources: set[str] = set()
 
-    for clause in retrieved_clauses:
+    for clause in (retrieved_clauses or []):
         text = clause.get("chunk_text", clause.get("text", ""))
 
-        # Extract section references (e.g., "Section 3.2", "SECTION 42.1")
-        for match in re.finditer(r'(?:Section|SECTION)\s+(\d+(?:\.\d+)*)', text):
+        # Extract section and clause references (e.g., "Section 3.2", "SECTION 42.1", "Clause 4.1")
+        for match in re.finditer(r'(?:Section|SECTION|Clause|CLAUSE)\s+(\d+(?:\.\d+)*)', text):
             valid_sections.add(match.group(1))
 
         # Also extract numbered subsections like "3.1 Initial Waiting Period"
@@ -757,7 +770,7 @@ def citation_guard(state: dict[str, Any]) -> dict[str, Any]:
             valid_sections.add(match.group(1))
 
         # Extract IRDAI circular numbers
-        for match in re.finditer(r'IRDAI/[A-Z/]+/\d+/\d+/\d+', text):
+        for match in re.finditer(r'IRDAI/[A-Z0-9/]+/\d+/\d+/\d+', text):
             valid_circulars.add(match.group())
 
         # Extract source file basenames
@@ -765,38 +778,46 @@ def citation_guard(state: dict[str, Any]) -> dict[str, Any]:
         if source:
             basename = os.path.basename(source)
             valid_sources.add(basename.lower())
-            # Also add without extension
             name_no_ext = os.path.splitext(basename)[0]
             valid_sources.add(name_no_ext.lower().replace("_", " "))
 
     # --- Check LLM output for ungrounded citations ---
     hallucinated: list[str] = []
 
-    # Check section references
-    for match in re.finditer(r'(?:Section|SECTION)\s+(\d+(?:\.\d+)*)', raw_output):
+    # Check section and clause references
+    for match in re.finditer(r'(?:Section|SECTION|Clause|CLAUSE)\s+(\d+(?:\.\d+)*)', raw_output):
         section_num = match.group(1)
         if section_num not in valid_sections and section_num.split(".")[0] not in valid_sections:
-            citation = f"Section {section_num}"
+            citation = f"{match.group().split()[0]} {section_num}"
             if citation not in hallucinated:
                 hallucinated.append(citation)
 
     # Check IRDAI circular references
-    for match in re.finditer(r'IRDAI/[A-Z/]+/\d+/\d+/\d+', raw_output):
+    for match in re.finditer(r'IRDAI/[A-Z0-9/]+/\d+/\d+/\d+', raw_output):
         circular = match.group()
         if circular not in valid_circulars:
             if circular not in hallucinated:
                 hallucinated.append(circular)
 
+    # Sanitize narrative by annotating unverified citations
+    sanitized_narrative = narrative
     if hallucinated:
         logger.warning(
             "CITATION GUARD: %d hallucinated citation(s) detected: %s",
             len(hallucinated), hallucinated,
         )
+        for h in hallucinated:
+            sanitized_narrative = re.sub(
+                re.escape(h),
+                f"[UNVERIFIED CITATION: {h}]",
+                sanitized_narrative,
+            )
     else:
         logger.info("Citation guard: PASSED — all citations grounded in retrieved clauses.")
 
     return {
         "hallucinated_citations": hallucinated,
+        "reasoning_narrative": sanitized_narrative,
         "node_latencies": {
             **state.get("node_latencies", {}),
             "citation_guard": time.perf_counter() - start,
@@ -827,87 +848,105 @@ def escalation_gate(state: dict[str, Any]) -> dict[str, Any]:
     triggers: list[str] = []
     adj = state.get("adjudication_result", {})
     request = state.get("pre_auth_request", {})
+    ablation = state.get("ablation_config", {})
+
+    # If the escalation gate is disabled in an ablation experiment, bypass all triggers
+    if ablation.get("disable_escalation_gate", False):
+        return {
+            "needs_escalation": False,
+            "escalation_triggers": [],
+            "consensus_status": "BYPASS",
+            "discrepancy_report": None,
+            "node_latencies": {
+                **state.get("node_latencies", {}),
+                "escalation_gate": time.perf_counter() - start,
+            },
+        }
 
     # --- Trigger 0: Dual-Track Neuro-Symbolic Consensus Check ---
-    rules_rec = adj.get("recommendation", "RECOMMEND_QUERY")
-    llm_rec = state.get("llm_recommendation", rules_rec)
+    consensus_status = "AGREED"
+    discrepancy_report = None
 
-    def _normalize_decision(r: str) -> str:
-        s = str(r).upper()
-        if "AUTHORISE" in s or "APPROVE" in s:
-            return "APPROVE"
-        if "DENY" in s or "REJECT" in s:
-            return "DENY"
-        if "QUERY" in s:
-            return "QUERY"
-        if "ESCALATE" in s:
-            return "ESCALATE"
-        return s
+    if not ablation.get("disable_consensus_arbiter", False):
+        rules_rec = adj.get("recommendation", "RECOMMEND_QUERY")
+        llm_rec = state.get("llm_recommendation", rules_rec)
 
-    norm_rules = _normalize_decision(rules_rec)
-    norm_llm = _normalize_decision(llm_rec)
+        def _normalize_decision(r: str) -> str:
+            s = str(r).upper()
+            if "AUTHORISE" in s or "APPROVE" in s:
+                return "APPROVE"
+            if "DENY" in s or "REJECT" in s:
+                return "DENY"
+            if "QUERY" in s:
+                return "QUERY"
+            if "ESCALATE" in s:
+                return "ESCALATE"
+            return s
 
-    # Check amount agreement if LLM specified an approved amount
-    llm_amt_str = state.get("llm_approved_amount")
-    llm_approved_amount = None
-    if llm_amt_str:
-        try:
-            llm_approved_amount = Decimal(str(llm_amt_str))
-        except (InvalidOperation, ValueError):
-            pass
+        norm_rules = _normalize_decision(rules_rec)
+        norm_llm = _normalize_decision(llm_rec)
 
-    rules_approved_dec = None
-    rules_approved = adj.get("total_approved")
-    if rules_approved is not None:
-        try:
-            rules_approved_dec = Decimal(str(rules_approved))
-        except (InvalidOperation, ValueError):
-            pass
+        # Check amount agreement if LLM specified an approved amount
+        llm_amt_str = state.get("llm_approved_amount")
+        llm_approved_amount = None
+        if llm_amt_str:
+            try:
+                llm_approved_amount = Decimal(str(llm_amt_str))
+            except (InvalidOperation, ValueError):
+                pass
 
-    amount_diverged = False
-    if (
-        norm_rules in ("APPROVE", "AUTHORISE")
-        and norm_llm in ("APPROVE", "AUTHORISE")
-        and llm_approved_amount is not None
-        and rules_approved_dec is not None
-    ):
-        diff = abs(rules_approved_dec - llm_approved_amount)
-        # If difference exceeds ₹100 and >5%
-        if diff > Decimal("100.00") and (diff / max(rules_approved_dec, llm_approved_amount, Decimal("1"))) > Decimal("0.05"):
-            amount_diverged = True
+        rules_approved_dec = None
+        rules_approved = adj.get("total_approved")
+        if rules_approved is not None:
+            try:
+                rules_approved_dec = Decimal(str(rules_approved))
+            except (InvalidOperation, ValueError):
+                pass
 
-    if amount_diverged:
-        consensus_status = "DIVERGED"
-        discrepancy_report = {
-            "rules_recommendation": f"{norm_rules} (Approved ₹{rules_approved_dec:,.2f})",
-            "rules_rationale": adj.get("reasoning_trace", f"Rules Engine approved ₹{rules_approved_dec:,.2f} based on policy formulas."),
-            "llm_recommendation": f"{norm_llm} (Approved ₹{llm_approved_amount:,.2f})",
-            "llm_rationale": state.get("llm_clinical_summary", f"Neural Clinical Adjudicator recommended approved amount ₹{llm_approved_amount:,.2f}."),
-        }
-        triggers.append(
-            f"Consensus Discrepancy: Amount Mismatch (Rules ₹{rules_approved_dec:,.2f} vs LLM ₹{llm_approved_amount:,.2f})"
-        )
-        logger.warning(
-            "DUAL-TRACK DISCREPANCY: Rules Approved ₹%s != LLM Approved ₹%s. Escalating to human reviewer.",
-            rules_approved_dec, llm_approved_amount,
-        )
-    elif norm_rules == norm_llm or (norm_rules == "APPROVE" and norm_llm in ("APPROVE", "AUTHORISE")):
-        consensus_status = "AGREED"
-        discrepancy_report = None
-        logger.info("DUAL-TRACK CONSENSUS: Both tracks agree on %s", norm_rules)
-    else:
-        consensus_status = "DIVERGED"
-        discrepancy_report = {
-            "rules_recommendation": norm_rules,
-            "rules_rationale": adj.get("reasoning_trace", "Rules evaluated based on policy schedules and tariff sub-limits."),
-            "llm_recommendation": norm_llm,
-            "llm_rationale": state.get("llm_clinical_summary", "Independent clinical review reached a diverging conclusion."),
-        }
-        triggers.append(f"Consensus Discrepancy: Rules ({norm_rules}) vs LLM Clinical ({norm_llm})")
-        logger.warning(
-            "DUAL-TRACK DISCREPANCY: Rules Engine (%s) != LLM Clinical (%s). Escalating to human reviewer.",
-            norm_rules, norm_llm,
-        )
+        amount_diverged = False
+        if (
+            norm_rules in ("APPROVE", "AUTHORISE")
+            and norm_llm in ("APPROVE", "AUTHORISE")
+            and llm_approved_amount is not None
+            and rules_approved_dec is not None
+        ):
+            diff = abs(rules_approved_dec - llm_approved_amount)
+            # If difference exceeds ₹100 and >5%
+            if diff > Decimal("100.00") and (diff / max(rules_approved_dec, llm_approved_amount, Decimal("1"))) > Decimal("0.05"):
+                amount_diverged = True
+
+        if amount_diverged:
+            consensus_status = "DIVERGED"
+            discrepancy_report = {
+                "rules_recommendation": f"{norm_rules} (Approved ₹{rules_approved_dec:,.2f})",
+                "rules_rationale": adj.get("reasoning_trace", f"Rules Engine approved ₹{rules_approved_dec:,.2f} based on policy formulas."),
+                "llm_recommendation": f"{norm_llm} (Approved ₹{llm_approved_amount:,.2f})",
+                "llm_rationale": state.get("llm_clinical_summary", f"Neural Clinical Adjudicator recommended approved amount ₹{llm_approved_amount:,.2f}."),
+            }
+            triggers.append(
+                f"Consensus Discrepancy: Amount Mismatch (Rules ₹{rules_approved_dec:,.2f} vs LLM ₹{llm_approved_amount:,.2f})"
+            )
+            logger.warning(
+                "DUAL-TRACK DISCREPANCY: Rules Approved ₹%s != LLM Approved ₹%s. Escalating to human reviewer.",
+                rules_approved_dec, llm_approved_amount,
+            )
+        elif norm_rules == norm_llm or (norm_rules == "APPROVE" and norm_llm in ("APPROVE", "AUTHORISE")):
+            consensus_status = "AGREED"
+            discrepancy_report = None
+            logger.info("DUAL-TRACK CONSENSUS: Both tracks agree on %s", norm_rules)
+        else:
+            consensus_status = "DIVERGED"
+            discrepancy_report = {
+                "rules_recommendation": norm_rules,
+                "rules_rationale": adj.get("reasoning_trace", "Rules evaluated based on policy schedules and tariff sub-limits."),
+                "llm_recommendation": norm_llm,
+                "llm_rationale": state.get("llm_clinical_summary", "Independent clinical review reached a diverging conclusion."),
+            }
+            triggers.append(f"Consensus Discrepancy: Rules ({norm_rules}) vs LLM Clinical ({norm_llm})")
+            logger.warning(
+                "DUAL-TRACK DISCREPANCY: Rules Engine (%s) != LLM Clinical (%s). Escalating to human reviewer.",
+                norm_rules, norm_llm,
+            )
 
     # --- Trigger 1: Low confidence ---
     confidence = adj.get("confidence_score", 1.0)
@@ -925,7 +964,7 @@ def escalation_gate(state: dict[str, Any]) -> dict[str, Any]:
             pass
 
     # --- Trigger 2.5: Adversarial Prompt Injection Pre-Screening ---
-    if request:
+    if request and not ablation.get("disable_prompt_injection_screen", False):
         diag_desc = str(request.get("diagnosis", {}).get("description", "")).lower()
         clinical_notes = str(request.get("clinical_notes", "")).lower()
         combined_text = f"{diag_desc} {clinical_notes}"
