@@ -804,6 +804,9 @@ def _build_reasoning_prompt(
     # Retrieved clauses & clinical guidelines
     if retrieved_clauses:
         parts.append("\n## Retrieved Policy & Clinical Guidelines")
+        parts.append("IMPORTANT: The excerpts below are reference materials retrieved from the general insurance policy corpus. "
+                     "Do NOT assume an optional add-on endorsement, waiver, or corporate group plan applies to this patient "
+                     "unless explicitly documented in the patient's Policy Details above.")
         for i, clause in enumerate(retrieved_clauses[:5], 1):
             text = clause.get("chunk_text", clause.get("text", ""))
             source = clause.get("source_file", "")

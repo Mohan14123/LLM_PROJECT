@@ -50,7 +50,7 @@ class LLMConfig(BaseModel):
         description="Sampling temperature (0.0 for deterministic evaluation)."
     )
     max_tokens: int = Field(
-        default=1024,
+        default=4096,
         ge=64,
         le=8192,
         description="Maximum tokens in generated response."
@@ -91,7 +91,7 @@ class LLMConfig(BaseModel):
             base_url=os.environ.get("OPENAI_BASE_URL"),
             model=os.environ.get("LLM_MODEL", "openai/gpt-oss-120b"),
             temperature=float(os.environ.get("LLM_TEMPERATURE", "0.0")),
-            max_tokens=int(os.environ.get("LLM_MAX_TOKENS", "1024")),
+            max_tokens=int(os.environ.get("LLM_MAX_TOKENS", "4096")),
             top_p=float(os.environ.get("LLM_TOP_P", "1.0")),
             timeout_seconds=float(os.environ.get("LLM_TIMEOUT", "30.0")),
             max_retries=int(os.environ.get("LLM_MAX_RETRIES", "3")),
