@@ -1,15 +1,15 @@
 [
   {
     "status": "success",
-    "request_id": "bf253b7f-eada-452a-a599-991dfa935dad",
+    "request_id": "c20b3660-ade2-45c0-8bac-bfea8f220cf7",
     "extracted_request": {
-      "request_id": "bf253b7f-eada-452a-a599-991dfa935dad",
+      "request_id": "c20b3660-ade2-45c0-8bac-bfea8f220cf7",
       "submitted_at": "2026-11-16",
       "source_format": "form",
       "status": "pending",
       "admission_date": null,
       "patient": {
-        "patient_id": "16f75e09-852b-400d-8380-f958e8ae664e",
+        "patient_id": "a3fd209a-e394-416f-94dc-b4a81ff4d570",
         "full_name": "Priya Gupta",
         "age": 42,
         "gender": "female",
@@ -38,7 +38,7 @@
         "endorsements": []
       },
       "hospital": {
-        "hospital_id": "848a7a87-1b3a-4478-9933-389f3f2cf8f4",
+        "hospital_id": "076148e4-13af-4f92-befd-f84e70a10d45",
         "name": "City Care Hospital",
         "city": "Delhi",
         "network_tier": "cashless_network",
@@ -71,20 +71,23 @@
     "consensus_status": "DIVERGED",
     "discrepancy_report": {
       "rules_recommendation": "APPROVE",
-      "llm_recommendation": "QUERY",
+      "llm_recommendation": "ESCALATE",
       "rules_confidence": 0.8,
-      "llm_confidence": 0.72,
-      "reason": "Label divergence: Track 1 (rules) produced 'RECOMMEND_AUTHORISE' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'"
+      "llm_confidence": 0.4,
+      "reason": "Label divergence: Track 1 (rules) produced 'RECOMMEND_AUTHORISE' while Track 2 (clinical LLM) produced 'RECOMMEND_ESCALATE'"
     },
     "rules_recommendation": "RECOMMEND_AUTHORISE",
-    "llm_recommendation": "RECOMMEND_QUERY",
+    "llm_recommendation": "RECOMMEND_ESCALATE",
     "needs_escalation": true,
     "escalation_triggers": [
-      "Consensus Discrepancy: Label divergence: Track 1 (rules) produced 'RECOMMEND_AUTHORISE' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'"
+      "Consensus Discrepancy: Label divergence: Track 1 (rules) produced 'RECOMMEND_AUTHORISE' while Track 2 (clinical LLM) produced 'RECOMMEND_ESCALATE'"
     ],
-    "reasoning": "### RECOMMENDATION \u2014 requires human sign\u2011off  \n\n#### 1. Medical necessity of the admission  \n- **Primary diagnosis:** *Pneumonia, unspecified organism with respiratory distress* (ICD\u201110\u202fJ18.9).  \n- **Clinical context:** The patient is presenting with respiratory distress, a recognized indication for **emergency inpatient care** to allow for close monitoring, oxygen therapy, intravenous antibiotics, and possible escalation to ventilatory support.  \n- **Policy alignment:**  \n  - The **Standard Individual Health Insurance** wording (Guideline\u202f3, clause\u202f1.1) covers \u201chospitalisation necessitated by illness\u201d and requires a **minimum continuous inpatient period of 24\u202fhours** (Guideline\u202f3, clause\u202f1.2). The emergency admission satisfies this criterion.  \n\n#### 2. Concordance of diagnosis with the planned procedure  \n- **Planned procedure:** *Surgical / Medical Procedure (Code: PROC\u2011MED\u2011CON)* \u2013 no clinical description is provided.  \n- **Assessment:**  \n  - For uncomplicated bacterial or viral pneumonia, the standard of care is **medical management** (antibiotics, supportive therapy). Surgical or invasive procedures are **not routinely indicated** unless there is a specific complication (e.g., empyema requiring thoracostomy, lung abscess requiring drainage).  \n  - Because the request does **not specify the nature of PROC\u2011MED\u2011CON**, we cannot verify that the procedure is **clinically indicated** for the stated diagnosis.  \n\n#### 3. Sufficiency of clinical evidence / investigations  \n- The submission includes only the diagnosis and the planned procedure.  \n- **Missing documentation:**  \n  - Radiological evidence (e.g., chest X\u2011ray/CT) confirming pneumonia severity.  \n  - Laboratory results (e.g., complete blood count, inflammatory markers, arterial blood gas) that justify **respiratory distress** and the need for inpatient care.  \n  - Details of any **complication** (e.g., pleural effusion, empyema) that would warrant a procedural intervention.  \n\n#### 4. Clinical uncertainty or contraindications  \n- **Uncertainty:** High regarding the necessity of the unspecified procedure.  \n- **Potential contraindications:** If the procedure is invasive (e.g., bronchoscopy, thoracotomy) without clear indication, it may expose the patient to unnecessary risk.  \n\n#### 5. Compliance with waiting\u2011period and pre\u2011existing disease rules  \n- **Initial waiting period:** For an individual plan, a 30\u2011day waiting period applies (Guideline\u202f4, \u201cInitial (all illnesses) \u2013 Indiv/FF \u2013 30 days\u201d). The request does not indicate the policy start date; therefore, we cannot confirm that the waiting period has been satisfied.  \n- **Pre\u2011existing disease (PED):** Flagged as **No**, so the 48\u2011month PED waiting period is not relevant.  \n\n#### 6. Overall clinical judgment  \n- The **emergency admission** for pneumonia with respiratory distress appears **medically necessary** and aligns with the policy\u2019s coverage of inpatient hospitalization.  \n- However, the **absence of procedural justification** and supporting investigations prevents a definitive conclusion that the planned procedure is clinically indicated.  \n\n**Recommendation:** Request additional clinical details (procedure description, imaging/lab reports, and justification for the intervention) before a final authorisation decision can be made.  \n\n---  \n\n**Machine\u2011parseable tags**",
+    "reasoning": "### RECOMMENDATION \u2014 requires human sign\u2011off  \n\n#### 1. Medical necessity of the admission  \n- **Primary diagnosis:** Pneumonia, unspecified organism with respiratory distress (ICD\u201110\u202fJ18.9).  \n- **Clinical context:** Respiratory distress in a 42\u2011year\u2011old female constitutes a **potentially life\u2011threatening condition** that generally warrants **emergency inpatient care** for close monitoring, oxygen therapy, intravenous antibiotics, and possible ventilatory support.  \n- **Policy alignment:**  \n  - *Policy\u202fWORDING \u2013 INDIVIDUAL HEALTH STANDARD* (ID: `policy_wordings/individual_health_standard.txt::chunk_0000`) states that \u201ccoverage is available for hospitalization requiring a minimum continuous period of **24\u202fhours as an inpatient**\u201d\u30103\u2020L1-L3\u3011. The emergency admission meets this criterion.  \n\n#### 2. Concordance of diagnosis with the planned procedure  \n- **Planned procedure:** \u201cSurgical / Medical Procedure (Code: PROC\u2011MED\u2011CON)\u201d. No clinical details (e.g., indication, type of intervention, expected benefit) are provided in the request.  \n- **Guideline reference:** The policy documents do **not** list specific procedural exclusions for pneumonia, but they require that the **procedure be clinically indicated** for the diagnosed condition. Without documentation (e.g., imaging, bronchoscopy, failure of medical therapy) demonstrating that a procedural intervention is necessary, the link between **J18.9** and **PROC\u2011MED\u2011CON** remains **unclear**.  \n\n#### 3. Sufficiency of clinical evidence / investigations  \n- The request supplies **only the diagnosis** and **admission type**.  \n- No supporting investigations (e.g., chest X\u2011ray, CT scan, arterial blood gas, sputum culture) or treatment response data are attached.  \n- According to standard clinical pathways for community\u2011acquired pneumonia with respiratory distress, **initial management is medical** (antibiotics, supportive care). Procedural interventions are reserved for **specific complications** (e.g., empyema drainage, bronchoscopy for airway obstruction). The absence of such details suggests **insufficient evidence** to justify the procedure at this stage.  \n\n#### 4. Clinical uncertainty / contraindications  \n- **Uncertainty:** High regarding the necessity of the unspecified \u201cPROC\u2011MED\u2011CON\u201d for a patient whose primary problem is pneumonia.  \n- **Contraindications:** None identified from the limited data, but the lack of procedural justification raises a **clinical red flag**.  \n\n#### 5. Policy\u2011related waiting\u2011period considerations  \n- **Initial waiting period:** For an individual plan, a 30\u2011day waiting period applies (Guideline\u202f4 \u2013 *Waiting Period Matrix*). The request does not indicate the policy start date; assuming the policy is in force beyond 30\u202fdays, the waiting period is satisfied.  \n- **Pre\u2011Existing Disease (PED):** The case is flagged **No**; therefore, the 48\u2011month PED waiting period (Guideline\u202f4) is not applicable.  \n- **Specific Disease Waiting Period:** Pneumonia is **not** listed among the specific diseases with a 24\u2011month waiting period (Guideline\u202f5).  \n\n#### 6. Overall assessment  \n- **Admission:** Clinically justified and aligns with policy coverage for emergency inpatient care.  \n- **Procedure:** **Insufficient clinical documentation** to confirm that the planned \u201cPROC\u2011MED\u2011CON\u201d is medically necessary for the stated diagnosis.  \n\n**Recommendation:** Request additional clinical details (investigation reports, explicit indication for the procedure, and expected therapeutic benefit) before authorising the",
+    "model_provider": "Groq / OpenAI-Compatible",
+    "model_name": "openai/gpt-oss-120b",
+    "execution_mode": "LIVE_WITH_FALLBACK",
     "adjudication_result": {
-      "request_id": "bf253b7f-eada-452a-a599-991dfa935dad",
+      "request_id": "c20b3660-ade2-45c0-8bac-bfea8f220cf7",
       "recommendation": "RECOMMEND_AUTHORISE",
       "confidence_score": 0.8,
       "total_claimed": "87007.00",
@@ -98,156 +101,17 @@
       "escalation_triggers": []
     },
     "latencies": {
-      "validate_intake": 9.579999975528608e-07,
-      "retrieve_clauses": 4.833253583000001,
-      "call_policy_api": 0.00023683300000243435,
-      "call_hospital_api": 3.0419999994535374e-06,
-      "apply_rules_engine": 0.02560333400000303,
-      "llm_reasoning": 3.5561444169999987,
-      "join_tracks": 7.079999981840501e-07,
-      "citation_guard": 0.0010587079999986315,
-      "consensus_arbiter": 0.0001618329999999446,
-      "escalation_gate": 6.433299999741848e-05,
-      "format_recommendation": 1.1167000000256166e-05
-    }
-  },
-  {
-    "status": "success",
-    "request_id": "718841ec-e977-4aab-ab42-5b3fb835e3b8",
-    "extracted_request": {
-      "request_id": "718841ec-e977-4aab-ab42-5b3fb835e3b8",
-      "submitted_at": "2026-10-06",
-      "source_format": "pdf",
-      "status": "pending",
-      "admission_date": "2026-10-07",
-      "patient": {
-        "patient_id": "35e06c87-aa7b-4fcf-a395-0a63cbcb129b",
-        "full_name": "Priya Gupta",
-        "age": 23,
-        "gender": "female",
-        "policy_number": "POL-646155"
-      },
-      "policy": {
-        "policy_number": "POL-646155",
-        "plan_type": "family_floater",
-        "sum_insured": "1000000",
-        "policy_start_date": "2023-01-15",
-        "waiting_period_months": 0,
-        "sub_limits": {
-          "limits": {}
-        },
-        "co_pay_pct": "0.00",
-        "product_uin": null,
-        "product_version": "2024.1",
-        "ped_waiting_period_months": null,
-        "continuity_credit_months": 0,
-        "portability_history": [],
-        "base_sum_insured": null,
-        "enhanced_sum_insured": null,
-        "enhancement_date": null,
-        "enhancements": [],
-        "specific_disease_schedules": [],
-        "endorsements": []
-      },
-      "hospital": {
-        "hospital_id": "3e7ed8ad-a1a9-4e28-b371-18548886e9d4",
-        "name": "Medanta Hospital, Ahmedabad",
-        "city": "Ahmedabad",
-        "network_tier": "cashless_network",
-        "category": "multi_specialty"
-      },
-      "diagnosis": {
-        "icd10_code": "J18.9",
-        "description": "Pneumonia, unspecified organism with respiratory distress",
-        "is_pre_existing": false
-      },
-      "procedure": {
-        "procedure_code": "PROC-MED-CON",
-        "description": "Surgical / Medical Procedure",
-        "admission_type": "emergency"
-      },
-      "cost_estimate": {
-        "line_items": [
-          {
-            "item": "Estimated Room Rent",
-            "amount": "17401.40",
-            "category": "room_rent"
-          },
-          {
-            "item": "Estimated Icu Charges",
-            "amount": "13051.05",
-            "category": "icu_charges"
-          },
-          {
-            "item": "Estimated Surgeon Fee",
-            "amount": "21751.75",
-            "category": "surgeon_fee"
-          },
-          {
-            "item": "Estimated Anaesthesia Fee",
-            "amount": "6960.56",
-            "category": "anaesthesia_fee"
-          },
-          {
-            "item": "Estimated Consultation Fee",
-            "amount": "6090.49",
-            "category": "consultation_fee"
-          },
-          {
-            "item": "Estimated Diagnostic",
-            "amount": "8700.70",
-            "category": "diagnostic"
-          },
-          {
-            "item": "Estimated Pharmacy",
-            "amount": "8700.70",
-            "category": "pharmacy"
-          },
-          {
-            "item": "Estimated Consumables",
-            "amount": "4350.35",
-            "category": "consumables"
-          }
-        ],
-        "total_amount": "87007.00"
-      }
-    },
-    "pipeline_status": "completed",
-    "recommendation": "RECOMMEND_AUTHORISE",
-    "confidence": 0.8,
-    "consensus_status": "AGREED",
-    "discrepancy_report": null,
-    "rules_recommendation": "RECOMMEND_AUTHORISE",
-    "llm_recommendation": "RECOMMEND_AUTHORISE",
-    "needs_escalation": false,
-    "escalation_triggers": [],
-    "reasoning": "RECOMMENDATION \u2014 requires human sign-off\n==================================================\nClinical Necessity Assessment: AUTHORISE\nClinical Confidence: 90%\nSummary: Clinical necessity validated: Surgical / Medical Procedure is medically indicated for Pneumonia, unspecified organism with respiratory distress.\nDiagnosis: Pneumonia, unspecified organism with respiratory distress (ICD-10: J18.9)\nProcedure: Surgical / Medical Procedure (PROC-MED-CON)\nAdmission Type: emergency\n\n[Generated by Track 2 Deterministic Clinical Necessity Engine]",
-    "adjudication_result": {
-      "request_id": "718841ec-e977-4aab-ab42-5b3fb835e3b8",
-      "recommendation": "RECOMMEND_AUTHORISE",
-      "confidence_score": 0.8,
-      "total_claimed": "87007.00",
-      "total_approved": "87007.00",
-      "total_deducted": "0",
-      "deductions": [],
-      "missing_info": [],
-      "policy_status": "ACTIVE",
-      "waiting_period_clear": true,
-      "reasoning_trace": "Policy POL-646155 is ACTIVE. Inception date: 2023-01-15. Days since inception: 1361.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (1361 days elapsed).\nStatutory Non-Disclosure Moratorium (IRDAI 2024 Schedule III, 60 continuous calendar months):\n  \u2022 Base Sum Insured (SI: \u20b91,000,000.00, Claim Allocation: \u20b987,007.00): PENDING (anniversary date: 2028-01-15)\nAll applicable waiting periods: CLEAR.\nExclusion checks: No non-payable or excluded items found.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
-      "escalation_triggers": []
-    },
-    "latencies": {
-      "validate_intake": 2.8750000637955964e-06,
-      "retrieve_clauses": 5.2731767500000615,
-      "call_policy_api": 0.0001961250000022119,
-      "call_hospital_api": 6.2079999452180346e-06,
-      "apply_rules_engine": 0.02279329099997085,
-      "llm_reasoning": 0.00010012499990352808,
-      "join_tracks": 6.669999947916949e-07,
-      "citation_guard": 0.0009159579999504786,
-      "consensus_arbiter": 1.3333999959286302e-05,
-      "escalation_gate": 8.95899995612126e-06,
-      "format_recommendation": 6.999999982326699e-06
+      "validate_intake": 2.4160000009487703e-06,
+      "retrieve_clauses": 5.259211541999999,
+      "call_policy_api": 0.00018641700000188166,
+      "call_hospital_api": 3.208000002530298e-06,
+      "apply_rules_engine": 0.025442334000000955,
+      "llm_reasoning": 3.722006125,
+      "join_tracks": 8.75000001343551e-07,
+      "citation_guard": 0.0012647500000007028,
+      "consensus_arbiter": 0.0001760839999995767,
+      "escalation_gate": 7.195799999948349e-05,
+      "format_recommendation": 8.124999997249915e-06
     }
   }
 ]

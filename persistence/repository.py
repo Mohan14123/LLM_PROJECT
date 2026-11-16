@@ -94,7 +94,7 @@ class ClaimRepository:
 
         needs_esc = 1 if pipeline_result.get("needs_escalation", False) else 0
         triggers = json.dumps(pipeline_result.get("escalation_triggers", []))
-        reasoning = str(pipeline_result.get("reasoning_narrative", ""))
+        reasoning = str(pipeline_result.get("reasoning") or pipeline_result.get("reasoning_narrative") or "")
         deductions_json = json.dumps(adj.get("deductions", []), default=str)
         retrieved_json = json.dumps(pipeline_result.get("retrieved_clauses", []), default=str)
 
@@ -205,8 +205,10 @@ class ClaimRepository:
                     r.hospital_name, r.diagnosis_description, r.procedure_description,
                     r.total_claimed,
                     d.recommendation, d.confidence, d.consensus_status,
+                    d.rules_recommendation, d.llm_recommendation,
                     d.total_approved, d.total_deducted, d.needs_escalation,
-                    d.escalation_triggers, d.reasoning, d.latency_seconds, d.cost_inr,
+                    d.escalation_triggers, d.reasoning, d.deductions_json,
+                    d.latency_seconds, d.cost_inr,
                     d.created_at as adjudicated_at
                 FROM preauth_requests r
                 LEFT JOIN adjudication_decisions d ON r.request_id = d.request_id
@@ -220,9 +222,11 @@ class ClaimRepository:
         """Clear all historical requests, decisions, and reviewer actions."""
         with get_db_connection(self.db_path) as conn:
             cursor = conn.cursor()
-            cursor.execute("DELETE FROM preauth_requests;")
-            cursor.execute("DELETE FROM adjudication_decisions;")
+            cursor.execute("PRAGMA foreign_keys = OFF;")
             cursor.execute("DELETE FROM reviewer_actions;")
+            cursor.execute("DELETE FROM adjudication_decisions;")
+            cursor.execute("DELETE FROM preauth_requests;")
+            cursor.execute("PRAGMA foreign_keys = ON;")
 
     def verify_integrity(self) -> tuple[bool, int, Optional[str]]:
         """Verify the entire SHA-256 hash chain audit trail."""

@@ -37,7 +37,7 @@ function formatRecordToQueueItem(record: any) {
   const cost = req.cost_estimate || {};
   const policy = req.policy || {};
   const hospital = req.hospital || {};
-  const adj = record.adjudication_metrics || {};
+  const adj = record.adjudication_metrics || record.adjudication_result || {};
 
   let decisionStatus = 'escalated';
   let decisionLabel = 'ESCALATE';
@@ -63,31 +63,69 @@ function formatRecordToQueueItem(record: any) {
   }
 
   const reqId = record.request_id || req.request_id || adj.request_id || 'req-saved';
-  const claimRaw = cost.total_amount || adj.total_claimed || 0;
-  const approvedRaw = adj.total_approved !== undefined ? adj.total_approved : (decisionLabel === 'APPROVE' ? claimRaw : 0);
-  const deductedRaw = adj.total_deducted !== undefined ? adj.total_deducted : (Number(claimRaw) - Number(approvedRaw));
+
+  // Support BOTH nested structure (live response) AND flat DB columns (SQLite history)
+  const patientName = patient.full_name?.split('\n')[0] || record.patient_name || 'Patient';
+  const patientAge = patient.age || record.patient_age || 45;
+  const patientGender = String(patient.gender || record.patient_gender || 'Unknown').replace(/^Gender\./i, '');
+  const diagnosisDesc = diagnosis.description?.split('\n')[0] || record.diagnosis_description || 'Unknown Diagnosis';
+  const procedureDesc = procedure.description || record.procedure_description || 'N/A';
+  const hospitalName = hospital.name || record.hospital_name || 'N/A';
+  const hospitalCity = hospital.city || record.hospital_city || 'N/A';
+  const policyNo = policy.policy_number || patient.policy_number || record.policy_number || 'POL-DEFAULT';
+
+  const claimRaw = cost.total_amount ?? record.total_claimed ?? adj.total_claimed ?? 0;
+  const approvedRaw = record.total_approved !== undefined
+    ? record.total_approved
+    : (adj.total_approved !== undefined ? adj.total_approved : (decisionLabel === 'APPROVE' ? claimRaw : 0));
+  const deductedRaw = record.total_deducted !== undefined
+    ? record.total_deducted
+    : (adj.total_deducted !== undefined ? adj.total_deducted : (Number(claimRaw) - Number(approvedRaw)));
 
   const formatCurrency = (val: any) => {
     const num = Number(val);
     return isNaN(num) ? `₹${val}` : `₹${num.toLocaleString('en-IN')}`;
   };
 
-  const rawTriggers = record.escalation_triggers || adj.escalation_triggers || [];
+  let rawTriggers = record.escalation_triggers || adj.escalation_triggers || [];
+  if (typeof rawTriggers === 'string') {
+    try {
+      const parsed = JSON.parse(rawTriggers);
+      if (Array.isArray(parsed)) rawTriggers = parsed;
+    } catch {
+      rawTriggers = rawTriggers ? [rawTriggers] : [];
+    }
+  }
   const normalizedTriggers: string[] = Array.isArray(rawTriggers)
     ? rawTriggers.map(String)
     : (rawTriggers ? [String(rawTriggers)] : []);
 
+  // Parse deductions if passed as JSON string from SQLite
+  let deductionsList = adj.deductions;
+  if (!deductionsList && record.deductions_json) {
+    try {
+      deductionsList = JSON.parse(record.deductions_json);
+    } catch {
+      deductionsList = [];
+    }
+  }
+
+  const modelProvider = (record.model_provider && !String(record.model_provider).toLowerCase().includes('gemini'))
+    ? record.model_provider
+    : (record.model_name || 'Groq: openai/gpt-oss-120b');
+  const reasoningTrace = record.reasoning || record.reasoning_narrative || adj.reasoning_trace || 'No reasoning trace recorded.';
+
   return {
     id: reqId,
-    patient: patient.full_name?.split('\n')[0] || 'Unknown Patient',
-    diagnosis: diagnosis.description?.split('\n')[0] || 'Unknown Diagnosis',
-    procedure: procedure.description || 'N/A',
-    hospital: hospital.name || 'N/A',
-    city: hospital.city || 'N/A',
+    patient: patientName,
+    diagnosis: diagnosisDesc,
+    procedure: procedureDesc,
+    hospital: hospitalName,
+    city: hospitalCity,
     network_tier: hospital.network_tier || 'cashless_network',
     status: decisionStatus,
     decisionLabel: decisionLabel,
-    date: req.submitted_at || new Date().toISOString().split('T')[0],
+    date: req.submitted_at || record.submitted_at || record.adjudicated_at?.split(' ')[0] || new Date().toISOString().split('T')[0],
     amount: formatCurrency(claimRaw),
     amountRaw: Number(claimRaw),
     approvedAmount: formatCurrency(approvedRaw),
@@ -101,12 +139,12 @@ function formatRecordToQueueItem(record: any) {
     llm_recommendation: record.llm_recommendation || record.recommendation || 'N/A',
     escalation_triggers: normalizedTriggers,
     execution_mode: record.execution_mode || 'PARALLEL_DUAL_TRACK',
-    model_provider: record.model_provider || 'gemini-1.5-pro',
+    model_provider: modelProvider,
     extractedData: {
       patient_id: patient.patient_id || 'PAT-001',
-      age: patient.age || 45,
-      gender: patient.gender || 'Unknown',
-      policy_number: policy.policy_number || patient.policy_number || 'POL-DEFAULT',
+      age: patientAge,
+      gender: patientGender,
+      policy_number: policyNo,
       plan_type: policy.plan_type || 'individual',
       sum_insured: policy.sum_insured || '1000000',
       policy_start_date: policy.policy_start_date || '2021-01-01',
@@ -114,9 +152,12 @@ function formatRecordToQueueItem(record: any) {
       moratorium_cleared: policy.moratorium_cleared ?? true,
       portability_credits: policy.portability_credits || '0 months'
     },
-    adjudication_metrics: adj,
+    adjudication_metrics: {
+      ...adj,
+      deductions: deductionsList || []
+    },
     latencies: record.latencies || {},
-    reasoning: record.reasoning || adj.reasoning_trace || 'No reasoning trace recorded.'
+    reasoning: reasoningTrace
   };
 }
 
