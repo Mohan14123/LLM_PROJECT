@@ -377,23 +377,18 @@ Total Amount: INR 82000.00`);
         const histRes = await fetch(`${API_BASE}/api/v1/preauth/history?limit=50`);
         if (histRes.ok) {
           const histData = await histRes.json();
-          if (histData.status === "success" && Array.isArray(histData.history) && histData.history.length > 0) {
+          if (histData.status === "success" && Array.isArray(histData.history)) {
             const formatted = histData.history.map(formatRecordToQueueItem);
-            setQueue((current) => {
-              const existingIds = new Set(current.map((c: any) => c.id));
-              const newItems = formatted.filter((f: any) => !existingIds.has(f.id));
-              const updated = current.map((c: any) => {
-                const match = formatted.find((f: any) => f.id === c.id);
-                return match || c;
+            setQueue(formatted);
+            if (formatted.length > 0) {
+              setActiveItem((prev: any) => {
+                if (!prev) return formatted[0];
+                const match = formatted.find((f: any) => f.id === prev.id);
+                return match || formatted[0];
               });
-              return [...newItems, ...updated];
-            });
-
-            setActiveItem((prev: any) => {
-              if (!prev) return formatted[0];
-              const match = formatted.find((f: any) => f.id === prev.id);
-              return match || prev;
-            });
+            } else {
+              setActiveItem(null);
+            }
           }
         }
       } catch (e) {
@@ -457,6 +452,20 @@ Total Amount: INR 82000.00`);
     } catch (e) {
       alert("Could not export cryptographic anchor.");
     }
+  };
+
+  const handleClearHistory = async () => {
+    if (!confirm("Are you sure you want to clear all saved requests from the queue and database?")) return;
+    try {
+      await fetch(`${API_BASE}/api/v1/preauth/history`, { method: 'DELETE' });
+    } catch (e) {
+      console.warn("Failed to clear server history", e);
+    }
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(ACTIVE_ID_KEY);
+    setQueue([]);
+    setActiveItem(null);
+    showToast("✓ All historical requests have been cleared.");
   };
 
   // Handle Reviewer Action Submission
@@ -916,24 +925,32 @@ Total Amount: INR 82000.00`);
           }}>
             <span>{queue.length} claims in database</span>
             <button
-              onClick={() => {
-                if (confirm("Reset local history cache and refresh from server?")) {
-                  localStorage.removeItem(STORAGE_KEY);
-                  localStorage.removeItem(ACTIVE_ID_KEY);
-                  window.location.reload();
-                }
-              }}
+              onClick={handleClearHistory}
+              title="Clear all saved requests from database"
               style={{
-                background: 'transparent',
-                border: 'none',
-                color: 'var(--text-muted)',
+                background: 'rgba(239, 68, 68, 0.1)',
+                border: '1px solid rgba(239, 68, 68, 0.25)',
+                color: '#fb7185',
+                padding: '4px 10px',
+                borderRadius: '6px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '4px'
+                gap: '5px',
+                fontWeight: 600,
+                fontSize: '0.75rem',
+                transition: 'all 0.15s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.25)';
+                e.currentTarget.style.color = '#ffffff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
+                e.currentTarget.style.color = '#fb7185';
               }}
             >
-              <RotateCcw size={12} /> Refresh
+              <RotateCcw size={12} /> Clear Queue
             </button>
           </div>
         </aside>

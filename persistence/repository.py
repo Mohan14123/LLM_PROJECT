@@ -216,6 +216,14 @@ class ClaimRepository:
             rows = cursor.fetchall()
             return [dict(row) for row in rows]
 
+    def clear_history(self) -> None:
+        """Clear all historical requests, decisions, and reviewer actions."""
+        with get_db_connection(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute("DELETE FROM preauth_requests;")
+            cursor.execute("DELETE FROM adjudication_decisions;")
+            cursor.execute("DELETE FROM reviewer_actions;")
+
     def verify_integrity(self) -> tuple[bool, int, Optional[str]]:
         """Verify the entire SHA-256 hash chain audit trail."""
         with get_db_connection(self.db_path) as conn:

@@ -130,6 +130,21 @@ async def get_preauth_history(limit: int = 50):
         return {"status": "success", "history": []}
 
 
+@app.delete("/api/v1/preauth/history", summary="Clear Claim History")
+@app.post("/api/v1/preauth/history/clear", summary="Clear Claim History")
+async def clear_preauth_history():
+    """Clears all historical claims from the database and history JSON file."""
+    try:
+        repository.clear_history()
+        if os.path.exists(HISTORY_FILE):
+            with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+                json.dump([], f)
+        return {"status": "success", "message": "Claim history cleared successfully."}
+    except Exception as e:
+        logger.error("Error clearing history: %s", e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/v1/preauth/audit/verify", summary="Verify SHA-256 Cryptographic Audit Chain")
 async def verify_audit_trail():
     """Validates the complete SHA-256 hash chain from the Genesis block to the tip."""
