@@ -63,6 +63,36 @@ class TestAPIAndReviewerEndpoints:
         assert res.status_code == 200
         assert res.json()["action"] == "OVERRIDE"
 
+    def test_reviewer_rbac_unauthorized_role_rejected(self, client):
+        req_id = "TEST-API-RBAC-01"
+        # Auditor role is read-only and cannot approve
+        res = client.post(
+            f"/api/v1/preauth/{req_id}/review/approve",
+            json={"reviewer_id": "AUDITOR_01", "approved_amount": 10000.0, "notes": "Auditor attempt"},
+            headers={"X-Reviewer-Role": "auditor"}
+        )
+        assert res.status_code == 403
+        assert "not authorized" in res.json()["detail"]
+
+    def test_external_audit_anchor_export(self, client):
+        res = client.get("/api/v1/preauth/audit/anchor")
+        assert res.status_code == 200
+        data = res.json()
+        assert data["status"] == "success"
+        anchor = data["anchor"]
+        assert "chain_tip_hash" in anchor
+        assert "cumulative_digest" in anchor
+        assert anchor["block_height"] >= 1
+
+    def test_pii_redaction_scrubber(self):
+        from intake.pii_scrubber import scrub_pii
+        text = "Patient phone is +91-9876543210 and Aadhaar is 1234 5678 9012 with email test@carehospital.com"
+        redacted = scrub_pii(text)
+        assert "1234 5678 9012" not in redacted
+        assert "XXXX-XXXX-9012" in redacted
+        assert "9876543210" not in redacted
+        assert "[EMAIL_REDACTED]" in redacted
+
 
 class TestUploadSecuritySafeguards:
     def test_rejects_unallowed_binary_formats(self, client):

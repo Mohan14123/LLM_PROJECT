@@ -84,6 +84,8 @@ class WaitingPeriodResponse(BaseModel):
     ped_anniversary_date: Optional[str] = None
     moratorium_base_date: Optional[str] = None
     moratorium_enhanced_date: Optional[str] = None
+    tranches: list[dict] = []
+    is_accident_exception: bool = False
 
 
 class SubLimitBalanceResponse(BaseModel):
@@ -147,20 +149,22 @@ async def get_waiting_period(
     enhancement_date: Optional[str] = None,
     ped_waiting_period_months: Optional[int] = None,
     is_group_policy: bool = False,
+    is_accident: bool = False,
+    specific_disease_wp_months: int = 24,
     claim_amount: float = 0.0,
     base_sum_insured: float = 500000.0,
 ) -> WaitingPeriodResponse:
     """Evaluate waiting period and moratorium status for a policy using continuous calendar arithmetic.
 
     Logic per IRDAI (Insurance Products) Regulations, 2024 (Schedule III):
-        - Initial 30-day WP: clear if days >= 30 (waived for group corporate policies).
-        - Specific disease 2-year WP: clear on 24-calendar-month anniversary.
-        - PED WP: clear on statutory 36-calendar-month anniversary (48 months for legacy pre-2024 policies).
+        - Initial 30-day WP: clear if days >= 30; waived for accidental emergency trauma.
+        - Specific disease WP: configurable via schedule or statutory 24 months; waived for accidental emergency trauma.
+        - PED WP: clear on statutory 36-calendar-month anniversary (48 months for contractual legacy pre-2024 policies).
         - Continuity Credits: Portability / migration credits reduce the effective elapsed period.
         - Statutory Moratorium: 60 continuous calendar months against non-disclosure / misrepresentation,
           tracked separately for base sum insured and subsequent sum-insured enhancement.
     """
-    is_legacy = "LEGACY" in policy_number.upper() or ped_waiting_period_months == 48
+    is_legacy = ped_waiting_period_months == 48
 
     # Determine reference and start dates
     today = date.today()
@@ -184,21 +188,34 @@ async def get_waiting_period(
     effective_start = start_dt - relativedelta(months=continuity_credit_months)
     effective_days = max((ref_dt - effective_start).days, 0)
 
-    # 1. Initial 30-day WP
-    initial_clear = ref_dt >= (effective_start + timedelta(days=30))
+    # 1. Initial 30-day WP (statutory accident exception)
+    initial_clear = is_accident or (ref_dt >= (effective_start + timedelta(days=30)))
 
-    # 2. Specific disease 24-month WP
-    spec_anniversary = effective_start + relativedelta(months=24)
-    specific_clear = ref_dt >= spec_anniversary
+    # 2. Specific disease WP (statutory accident exception)
+    spec_anniversary = effective_start + relativedelta(months=specific_disease_wp_months)
+    specific_clear = is_accident or (ref_dt >= spec_anniversary)
 
     # 3. PED WP (36 vs 48 calendar months)
     ped_wp_months = ped_waiting_period_months if ped_waiting_period_months is not None else (48 if is_legacy else 36)
     ped_anniversary = effective_start + relativedelta(months=ped_wp_months)
     ped_clear = ref_dt >= ped_anniversary
 
-    # 4. Moratorium (60 calendar months split by base and enhanced)
+    # 4. Moratorium (60 calendar months split by base and enhanced tranches)
     base_moratorium_dt = effective_start + relativedelta(months=60)
     moratorium_base_clear = ref_dt >= base_moratorium_dt
+
+    tranches = [
+        {
+            "tranche_id": "BASE",
+            "tranche_label": "Base Sum Insured",
+            "sum_insured": float(base_sum_insured),
+            "start_date": effective_start.isoformat(),
+            "moratorium_anniversary_date": base_moratorium_dt.isoformat(),
+            "is_moratorium_clear": moratorium_base_clear,
+            "utilised_amount": min(claim_amount, float(base_sum_insured)),
+            "remaining_amount": max(0.0, float(base_sum_insured) - claim_amount),
+        }
+    ]
 
     if enhancement_date:
         try:
@@ -206,6 +223,17 @@ async def get_waiting_period(
             enhanced_moratorium_dt = enh_dt + relativedelta(months=60)
             moratorium_enhanced_clear = ref_dt >= enhanced_moratorium_dt
             enhanced_dt_str = enhanced_moratorium_dt.isoformat()
+            rem_for_enh = max(0.0, claim_amount - float(base_sum_insured))
+            tranches.append({
+                "tranche_id": "ENH-1",
+                "tranche_label": "Enhancement (ENH-1)",
+                "sum_insured": 500000.0,
+                "start_date": enh_dt.isoformat(),
+                "moratorium_anniversary_date": enhanced_dt_str,
+                "is_moratorium_clear": moratorium_enhanced_clear,
+                "utilised_amount": rem_for_enh,
+                "remaining_amount": 500000.0 - rem_for_enh,
+            })
         except ValueError:
             enhanced_moratorium_dt = None
             moratorium_enhanced_clear = moratorium_base_clear
@@ -235,6 +263,8 @@ async def get_waiting_period(
         ped_anniversary_date=ped_anniversary.isoformat(),
         moratorium_base_date=base_moratorium_dt.isoformat(),
         moratorium_enhanced_date=enhanced_dt_str,
+        tranches=tranches,
+        is_accident_exception=is_accident,
     )
 
 

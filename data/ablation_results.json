@@ -16,11 +16,11 @@
         "false_positive_rate": 0.0,
         "false_negative_rate": 0.0,
         "escalation_recall": 100.0,
-        "escalation_precision": 75.0,
+        "escalation_precision": 73.33,
         "prompt_injection_accuracy": 100.0,
         "non_network_accuracy": 100.0,
-        "mean_latency_s": 0.059,
-        "total_eval_time_s": 12.32,
+        "mean_latency_s": 0.068,
+        "total_eval_time_s": 14.24,
         "confusion_matrix": {
           "TP": 138,
           "TN": 72,
@@ -29,8 +29,8 @@
         },
         "escalation_matrix": {
           "esc_TP": 33,
-          "esc_TN": 166,
-          "esc_FP": 11,
+          "esc_TN": 165,
+          "esc_FP": 12,
           "esc_FN": 0
         }
       }
@@ -54,8 +54,8 @@
         "escalation_precision": 0.0,
         "prompt_injection_accuracy": 0.0,
         "non_network_accuracy": 0.0,
-        "mean_latency_s": 0.036,
-        "total_eval_time_s": 7.47,
+        "mean_latency_s": 0.046,
+        "total_eval_time_s": 9.59,
         "confusion_matrix": {
           "TP": 138,
           "TN": 47,
@@ -89,8 +89,8 @@
         "escalation_precision": 75.0,
         "prompt_injection_accuracy": 100.0,
         "non_network_accuracy": 100.0,
-        "mean_latency_s": 0.035,
-        "total_eval_time_s": 7.36,
+        "mean_latency_s": 0.046,
+        "total_eval_time_s": 9.67,
         "confusion_matrix": {
           "TP": 138,
           "TN": 72,
@@ -121,11 +121,11 @@
         "false_positive_rate": 1.39,
         "false_negative_rate": 0.0,
         "escalation_recall": 96.97,
-        "escalation_precision": 74.42,
+        "escalation_precision": 72.73,
         "prompt_injection_accuracy": 50.0,
         "non_network_accuracy": 100.0,
-        "mean_latency_s": 0.035,
-        "total_eval_time_s": 7.37,
+        "mean_latency_s": 0.046,
+        "total_eval_time_s": 9.62,
         "confusion_matrix": {
           "TP": 138,
           "TN": 71,
@@ -134,8 +134,8 @@
         },
         "escalation_matrix": {
           "esc_TP": 32,
-          "esc_TN": 166,
-          "esc_FP": 11,
+          "esc_TN": 165,
+          "esc_FP": 12,
           "esc_FN": 1
         }
       }
@@ -154,23 +154,23 @@
         "unsafe_auto_approval_rate": 0.0,
         "recommendation_false_positive_rate": 34.72,
         "false_positive_rate": 0.0,
-        "false_negative_rate": 9.42,
+        "false_negative_rate": 0.0,
         "escalation_recall": 100.0,
-        "escalation_precision": 57.89,
+        "escalation_precision": 73.33,
         "prompt_injection_accuracy": 100.0,
         "non_network_accuracy": 100.0,
-        "mean_latency_s": 0.026,
-        "total_eval_time_s": 5.43,
+        "mean_latency_s": 0.036,
+        "total_eval_time_s": 7.47,
         "confusion_matrix": {
-          "TP": 125,
+          "TP": 138,
           "TN": 72,
           "FP": 0,
-          "FN": 13
+          "FN": 0
         },
         "escalation_matrix": {
           "esc_TP": 33,
-          "esc_TN": 153,
-          "esc_FP": 24,
+          "esc_TN": 165,
+          "esc_FP": 12,
           "esc_FN": 0
         }
       }
@@ -191,11 +191,11 @@
         "false_positive_rate": 0.0,
         "false_negative_rate": 0.0,
         "escalation_recall": 100.0,
-        "escalation_precision": 75.0,
+        "escalation_precision": 73.33,
         "prompt_injection_accuracy": 100.0,
         "non_network_accuracy": 100.0,
-        "mean_latency_s": 0.035,
-        "total_eval_time_s": 7.32,
+        "mean_latency_s": 0.045,
+        "total_eval_time_s": 9.46,
         "confusion_matrix": {
           "TP": 138,
           "TN": 72,
@@ -204,8 +204,8 @@
         },
         "escalation_matrix": {
           "esc_TP": 33,
-          "esc_TN": 166,
-          "esc_FP": 11,
+          "esc_TN": 165,
+          "esc_FP": 12,
           "esc_FN": 0
         }
       }

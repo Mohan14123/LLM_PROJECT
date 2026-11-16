@@ -71,6 +71,7 @@ class TestEndorsementReversal:
         # Under endorsement: approved (endorsement explicitly waives 2-year waiting period).
         endorsed_req = PreAuthRequest(
             submitted_at=date.today(),
+            admission_date=date.today(),
             source_format=SourceFormat.FORM,
             patient=Patient(
                 full_name="Anil Kapoor",
@@ -83,6 +84,7 @@ class TestEndorsementReversal:
                 plan_type=PlanType.GROUP,
                 sum_insured=Decimal("500000.00"),
                 policy_start_date=date.today() - timedelta(days=90),
+                endorsements=["END-2024-WAV-001"],
             ),
             hospital=Hospital(
                 name="Apollo Hospital, Delhi",

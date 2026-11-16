@@ -31,7 +31,9 @@ from orchestration.nodes import (
     call_hospital_api,
     apply_rules_engine,
     llm_reasoning,
+    join_tracks_node,
     citation_guard,
+    consensus_arbiter_node,
     escalation_gate,
     format_recommendation,
 )
@@ -40,7 +42,7 @@ logger = logging.getLogger(__name__)
 
 
 def build_graph():
-    """Build and compile the LangGraph state machine.
+    """Build and compile the LangGraph state machine with genuine parallel fan-out/fan-in.
 
     Returns:
         A compiled LangGraph graph ready for invocation.
@@ -49,11 +51,25 @@ def build_graph():
         ImportError: If langgraph is not installed.
 
     Graph Structure:
-        validate_intake → retrieve_clauses → call_policy_api →
-        call_hospital_api → apply_rules_engine → llm_reasoning →
-        citation_guard → escalation_gate →
-            ├─ (needs_escalation=False) → format_recommendation → END
-            └─ (needs_escalation=True)  → format_recommendation → END
+        validate_intake → retrieve_clauses → call_policy_api → call_hospital_api
+                                    │
+                                 Fan-out
+                                  ┌───┴───┐
+                                  ▼       ▼
+                          Track 1 (Rules)  Track 2 (Clinical LLM)
+                                  │       │
+                                  └───┬───┘
+                                   Fan-in
+                                      ▼
+                                 join_tracks
+                                      ▼
+                                citation_guard
+                                      ▼
+                              consensus_arbiter
+                                      ▼
+                               escalation_gate
+                                      ▼
+                            format_recommendation → END
     """
     try:
         from langgraph.graph import StateGraph, END
@@ -73,29 +89,38 @@ def build_graph():
     graph.add_node("call_hospital_api", call_hospital_api)
     graph.add_node("apply_rules_engine", apply_rules_engine)
     graph.add_node("llm_reasoning", llm_reasoning)
+    graph.add_node("join_tracks", join_tracks_node)
     graph.add_node("citation_guard", citation_guard)
+    graph.add_node("consensus_arbiter", consensus_arbiter_node)
     graph.add_node("escalation_gate", escalation_gate)
     graph.add_node("format_recommendation", format_recommendation)
 
     # Set entry point
     graph.set_entry_point("validate_intake")
 
-    # Wire edges (linear sequence with conditional at escalation_gate)
+    # Shared preparation and retrieval
     graph.add_edge("validate_intake", "retrieve_clauses")
     graph.add_edge("retrieve_clauses", "call_policy_api")
     graph.add_edge("call_policy_api", "call_hospital_api")
-    graph.add_edge("call_hospital_api", "apply_rules_engine")
-    graph.add_edge("apply_rules_engine", "llm_reasoning")
-    graph.add_edge("llm_reasoning", "citation_guard")
-    graph.add_edge("citation_guard", "escalation_gate")
 
-    # Both escalation paths lead to format_recommendation
+    # Fan-out to Track 1 (Symbolic Rules) and Track 2 (Clinical LLM) in parallel
+    graph.add_edge("call_hospital_api", "apply_rules_engine")
+    graph.add_edge("call_hospital_api", "llm_reasoning")
+
+    # Fan-in to join node
+    graph.add_edge("apply_rules_engine", "join_tracks")
+    graph.add_edge("llm_reasoning", "join_tracks")
+
+    # Downstream verification, arbitration, and escalation
+    graph.add_edge("join_tracks", "citation_guard")
+    graph.add_edge("citation_guard", "consensus_arbiter")
+    graph.add_edge("consensus_arbiter", "escalation_gate")
     graph.add_edge("escalation_gate", "format_recommendation")
     graph.add_edge("format_recommendation", END)
 
     # Compile
     compiled = graph.compile()
-    logger.info("LangGraph pipeline compiled with %d nodes.", 9)
+    logger.info("LangGraph parallel dual-track pipeline compiled with %d nodes.", 11)
 
     return compiled
 

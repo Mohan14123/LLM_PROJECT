@@ -101,3 +101,45 @@ def verify_audit_chain(conn: sqlite3.Connection) -> Tuple[bool, int, Optional[st
         expected_prev = curr_h
 
     return True, len(records), None
+
+
+def export_external_anchor(
+    conn: sqlite3.Connection,
+    anchor_path: Optional[str] = None,
+) -> dict[str, Any]:
+    """Export an external anchor summary of the cryptographic audit chain.
+
+    Anchors the current block height, chain tip hash, cumulative state digest,
+    and UTC timestamp to prevent retroactive alteration or truncation attacks.
+    """
+    import os
+    cursor = conn.cursor()
+    cursor.execute("SELECT log_id, current_hash, timestamp FROM audit_log ORDER BY log_id DESC LIMIT 1;")
+    row = cursor.fetchone()
+
+    if not row:
+        return {"block_height": 0, "tip_hash": None, "anchored_at": datetime.now(timezone.utc).isoformat()}
+
+    block_height, tip_hash, last_ts = row
+
+    # Calculate cumulative hash over all block hashes
+    cursor.execute("SELECT current_hash FROM audit_log ORDER BY log_id ASC;")
+    all_hashes = [r[0] for r in cursor.fetchall()]
+    cumulative_digest = hashlib.sha256("".join(all_hashes).encode("utf-8")).hexdigest()
+
+    anchor = {
+        "version": "1.0",
+        "block_height": block_height,
+        "chain_tip_hash": tip_hash,
+        "cumulative_digest": cumulative_digest,
+        "anchored_at": datetime.now(timezone.utc).isoformat(),
+        "last_block_timestamp": last_ts,
+    }
+
+    if anchor_path:
+        os.makedirs(os.path.dirname(os.path.abspath(anchor_path)), exist_ok=True)
+        with open(anchor_path, "w", encoding="utf-8") as f:
+            json.dump(anchor, f, indent=2)
+
+    return anchor
+

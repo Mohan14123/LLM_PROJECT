@@ -47,7 +47,7 @@ import uuid
 from datetime import date, datetime
 from decimal import Decimal
 from enum import Enum
-from typing import Annotated, Optional
+from typing import Annotated, Optional, Union
 
 # pyrefly: ignore [missing-import]
 from pydantic import (
@@ -325,6 +325,126 @@ class SubLimitMap(BaseModel):
     )
 
 
+class PortabilityRecord(BaseModel):
+    """Verified continuous coverage record under IRDAI Portability / Migration guidelines."""
+
+    model_config = ConfigDict(populate_by_name=True, str_strip_whitespace=True)
+
+    previous_insurer: str = Field(
+        ...,
+        description="Name or code of the previous insurance company.",
+    )
+    previous_policy_number: str = Field(
+        ...,
+        description="Policy number with previous insurer.",
+    )
+    previous_policy_start_date: date = Field(
+        ...,
+        description="Inception date of coverage with previous insurer.",
+    )
+    previous_policy_end_date: date = Field(
+        ...,
+        description="Expiry/cancellation date of previous policy.",
+    )
+    continuity_break_days: Annotated[int, Field(ge=0)] = Field(
+        default=0,
+        description="Break days between previous expiry and new policy inception (statutory grace: 30 days).",
+    )
+    transferred_sum_insured: _INR = Field(
+        ...,
+        description="Sum insured transferred under portability / migration in INR.",
+    )
+    is_portability_approved: bool = Field(
+        default=True,
+        description="Whether portability credit was verified and accepted by the receiving insurer.",
+    )
+    eligible_credit_months: Optional[int] = Field(
+        default=None,
+        description="Explicit verified credit duration in completed calendar months.",
+    )
+
+
+class EnhancementEvent(BaseModel):
+    """Sum insured enhancement event with distinct waiting period and moratorium commencement."""
+
+    model_config = ConfigDict(populate_by_name=True, str_strip_whitespace=True)
+
+    enhancement_id: str = Field(
+        default_factory=lambda: f"ENH-{uuid.uuid4().hex[:8].upper()}",
+        description="Unique identifier for the sum insured enhancement.",
+    )
+    enhancement_date: date = Field(
+        ...,
+        description="Effective date of sum insured enhancement endorsement.",
+    )
+    additional_sum_insured: _INR = Field(
+        ...,
+        description="Incremental sum insured amount added by this enhancement in INR.",
+    )
+    remaining_amount: Optional[_INR] = Field(
+        default=None,
+        description="Remaining unexhausted balance of this enhancement tranche.",
+    )
+    notes: Optional[str] = Field(
+        default=None,
+        description="Underwriting or schedule notes associated with this enhancement.",
+    )
+
+
+class SpecificDiseaseWaitingPeriod(BaseModel):
+    """Contractual waiting period schedule for specific diseases/procedures."""
+
+    model_config = ConfigDict(populate_by_name=True, str_strip_whitespace=True)
+
+    condition_name: str = Field(
+        ...,
+        description="Condition or procedure name (e.g. Cataract, Hernia, Hysterectomy).",
+    )
+    icd10_prefixes: list[str] = Field(
+        default_factory=list,
+        description="Applicable ICD-10 prefix codes for this exclusion.",
+    )
+    waiting_period_months: Annotated[int, Field(ge=0)] = Field(
+        default=24,
+        description="Applicable waiting period in calendar months.",
+    )
+    is_accident_exempt: bool = Field(
+        default=True,
+        description="Whether the waiting period is waived if hospitalization arises from accidental trauma.",
+    )
+
+
+class Endorsement(BaseModel):
+    """Verified policy endorsement altering base policy coverage or exclusions."""
+
+    model_config = ConfigDict(populate_by_name=True, str_strip_whitespace=True)
+
+    endorsement_number: str = Field(
+        ...,
+        description="Contractual endorsement schedule identifier.",
+    )
+    effective_date: date = Field(
+        ...,
+        description="Effective inception date of the endorsement.",
+    )
+    scope: str = Field(
+        default="WAITING_PERIOD_WAIVER",
+        description="Scope of alteration (e.g. WAITING_PERIOD_WAIVER, PED_WAIVER, SPECIFIC_DISEASE_WAIVER).",
+    )
+    applicable_conditions: list[str] = Field(
+        default_factory=list,
+        description="List of specific conditions, ICD-10 prefixes, or 'ALL' covered by waiver.",
+    )
+    waiver_type: str = Field(
+        default="FULL",
+        description="Type of waiver: FULL (zero waiting period) or REDUCED.",
+    )
+    clause_reference: Optional[str] = Field(
+        default=None,
+        description="Retrieved policy schedule endorsement clause reference.",
+    )
+
+
 class Policy(BaseModel):
     """Policy-level entitlement data required at intake time.
 
@@ -332,8 +452,7 @@ class Policy(BaseModel):
         Represents the active insurance contract and financial coverage terms.
         Supplies essential parameters to the rules engine for:
         - Checking policy status and cumulative annual Sum Insured exhaustion.
-        - Evaluating waiting period compliance (e.g., 30-day initial waiting period
-          or 24-48 month pre-existing condition exclusions) against admission date.
+        - Evaluating waiting period compliance against admission date.
         - Applying mandatory or voluntary co-payment percentages.
         - Applying disease-specific and treatment-specific sub-limit caps.
     """
@@ -388,21 +507,33 @@ class Policy(BaseModel):
         default=0,
         description="Continuous coverage credits accrued from previous policies under IRDAI Portability/Migration regulations.",
     )
+    portability_history: list[PortabilityRecord] = Field(
+        default_factory=list,
+        description="Verified continuous coverage history records for portability / migration credit.",
+    )
     base_sum_insured: Optional[_INR] = Field(
         default=None,
         description="Original sum insured at initial policy inception.",
     )
     enhanced_sum_insured: Optional[_INR] = Field(
         default=None,
-        description="Enhanced sum insured increment added after inception.",
+        description="Enhanced sum insured increment added after inception (convenience alias).",
     )
     enhancement_date: Optional[date] = Field(
         default=None,
-        description="Effective date of sum insured enhancement.",
+        description="Effective date of sum insured enhancement (convenience alias).",
     )
-    endorsements: list[str] = Field(
+    enhancements: list[EnhancementEvent] = Field(
         default_factory=list,
-        description="Verified endorsement reference numbers attached to this policy.",
+        description="Detailed chronological log of sum insured enhancement events.",
+    )
+    specific_disease_schedules: list[SpecificDiseaseWaitingPeriod] = Field(
+        default_factory=list,
+        description="Policy-specific schedules of waiting periods for declared conditions/procedures.",
+    )
+    endorsements: list[Union[Endorsement, str]] = Field(
+        default_factory=list,
+        description="Verified endorsement records or reference numbers attached to this policy.",
     )
 
 

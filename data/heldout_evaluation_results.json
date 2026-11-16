@@ -2,7 +2,24 @@
   "summary": {
     "evaluated_cases": 50,
     "total_cases": 50,
-    "overall_accuracy": 0.94
+    "valid_cases": 50,
+    "schema_invalid_cases": 0,
+    "exact_recommendation_accuracy_valid": 0.9,
+    "exact_recommendation_accuracy_all": 0.9,
+    "composite_handling_correctness": 0.94,
+    "escalation_f1_score": 0.5405,
+    "unsafe_auto_approval_rate": 0.0
+  },
+  "cohort_breakdown": {
+    "total_inputs": 50,
+    "valid_inputs": 50,
+    "schema_invalid_inputs": 0,
+    "expected_distribution": {
+      "valid_approvals": 32,
+      "valid_denials": 8,
+      "valid_escalations": 10,
+      "schema_invalid_query_abstentions": 0
+    }
   },
   "dimensions": {
     "1_extraction": {
@@ -10,18 +27,22 @@
       "accuracy": 0.9
     },
     "2_retrieval": {
-      "metric_label": "Document-Level Hit@5 & Query Coverage",
+      "metric_label": "Dense FAISS Retrieval Quality (Hit@5, MRR, Coverage)",
       "recall_at_5": 0.74,
-      "coverage": 0.9,
-      "recall_proxy_legacy": 1.125
+      "mrr": 0.5947,
+      "query_coverage": 0.9
     },
     "3_grounding": {
       "metric_label": "Hallucinated Citation Rate (Regex Guardrail)",
       "hallucination_rate": 0.0
     },
     "4_decision": {
-      "metric_label": "Composite Benchmark Correctness under Escalation Policy",
-      "accuracy": 0.94,
+      "metric_label": "Decision Accuracy & Composite Correctness",
+      "exact_recommendation_accuracy_valid": 0.9,
+      "exact_recommendation_accuracy_all": 0.9,
+      "composite_handling_correctness": 0.94,
+      "schema_invalid_abstention_rate": 1.0,
+      "unsafe_auto_approval_rate": 0.0,
       "confusion_matrix": {
         "TP": 29,
         "TN": 18,
@@ -29,24 +50,25 @@
         "FN": 3
       },
       "recommendation_fp_rate": 0.0,
-      "unsafe_auto_approval_rate": 0.0,
       "fn_rate": 0.0938
     },
     "5_escalation": {
-      "precision": 0.4545,
+      "metric_label": "Escalation Gate Precision, Recall & F1",
+      "precision": 0.3704,
       "recall": 1.0,
+      "f1_score": 0.5405,
       "confusion_matrix": {
         "esc_TP": 10,
-        "esc_TN": 28,
-        "esc_FP": 12,
+        "esc_TN": 23,
+        "esc_FP": 17,
         "esc_FN": 0
       }
     },
     "6_latency": {
-      "mean_seconds": 0.134,
-      "p50_seconds": 0.04,
-      "p95_seconds": 0.042,
-      "p99_seconds": 2.521,
+      "mean_seconds": 0.139,
+      "p50_seconds": 0.05,
+      "p95_seconds": 0.052,
+      "p99_seconds": 2.429,
       "sla_compliant": true
     },
     "7_cost": {
@@ -81,9 +103,9 @@
           "accuracy": 1.0
         },
         "lapsed_policy": {
-          "correct": 5,
+          "correct": 3,
           "total": 5,
-          "accuracy": 1.0
+          "accuracy": 0.6
         },
         "prompt_injection": {
           "correct": 2,
@@ -113,13 +135,38 @@
           "accuracy": 1.0
         },
         "adversarial": {
-          "correct": 10,
+          "correct": 8,
           "total": 10,
-          "accuracy": 1.0
+          "accuracy": 0.8
         }
       }
     },
-    "9_fairness": "Detailed demographic parity and equal opportunity metrics available in data/fairness_results.json."
+    "9_fairness": "Detailed demographic parity and equal opportunity metrics available in data/fairness_results.json.",
+    "10_multiformat": {
+      "metric_label": "Multi-Format Ingestion Benchmark (PDF, DOCX, Image OCR, TXT)",
+      "by_format": {
+        "pdf": {
+          "tested_files": 10,
+          "success_rate": 1.0,
+          "avg_confidence": 0.91
+        },
+        "docx": {
+          "tested_files": 10,
+          "success_rate": 0.8,
+          "avg_confidence": 0.744
+        },
+        "image": {
+          "tested_files": 10,
+          "success_rate": 1.0,
+          "avg_confidence": 0.857
+        },
+        "txt": {
+          "tested_files": 10,
+          "success_rate": 1.0,
+          "avg_confidence": 0.918
+        }
+      }
+    }
   },
   "case_results": [
     {
@@ -130,7 +177,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 4.804
+      "latency_s": 4.594
     },
     {
       "case_id": 2,
@@ -140,7 +187,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 3,
@@ -150,7 +197,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 4,
@@ -160,7 +207,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.037
+      "latency_s": 0.047
     },
     {
       "case_id": 5,
@@ -170,7 +217,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 6,
@@ -180,7 +227,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 7,
@@ -190,7 +237,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 8,
@@ -200,7 +247,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 9,
@@ -210,7 +257,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.049
     },
     {
       "case_id": 10,
@@ -230,7 +277,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.049
     },
     {
       "case_id": 12,
@@ -250,7 +297,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.038
+      "latency_s": 0.048
     },
     {
       "case_id": 14,
@@ -260,7 +307,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.037
+      "latency_s": 0.048
     },
     {
       "case_id": 15,
@@ -270,7 +317,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.175
     },
     {
       "case_id": 16,
@@ -280,7 +327,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.047
     },
     {
       "case_id": 17,
@@ -290,7 +337,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.048
     },
     {
       "case_id": 18,
@@ -300,7 +347,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.048
     },
     {
       "case_id": 19,
@@ -310,7 +357,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 20,
@@ -320,7 +367,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 21,
@@ -340,7 +387,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 23,
@@ -350,7 +397,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 24,
@@ -360,7 +407,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 25,
@@ -370,7 +417,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 26,
@@ -380,7 +427,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 27,
@@ -390,7 +437,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 28,
@@ -400,7 +447,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.052
     },
     {
       "case_id": 29,
@@ -410,7 +457,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.038
+      "latency_s": 0.05
     },
     {
       "case_id": 30,
@@ -420,7 +467,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.038
+      "latency_s": 0.051
     },
     {
       "case_id": 31,
@@ -430,7 +477,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 32,
@@ -440,7 +487,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 33,
@@ -450,7 +497,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 34,
@@ -460,7 +507,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 35,
@@ -470,7 +517,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.145
+      "latency_s": 0.051
     },
     {
       "case_id": 36,
@@ -480,7 +527,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 37,
@@ -490,7 +537,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 38,
@@ -500,7 +547,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 39,
@@ -510,7 +557,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.049
     },
     {
       "case_id": 40,
@@ -520,7 +567,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 41,
@@ -529,7 +576,7 @@
       "expected_decision": "DENY",
       "actual_recommendation": "QUERY",
       "needs_escalation": false,
-      "is_correct": true,
+      "is_correct": false,
       "latency_s": 0.005
     },
     {
@@ -540,7 +587,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.038
+      "latency_s": 0.05
     },
     {
       "case_id": 43,
@@ -548,9 +595,9 @@
       "subtype": "lapsed_policy",
       "expected_decision": "DENY",
       "actual_recommendation": "DENY",
-      "needs_escalation": false,
+      "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 44,
@@ -560,7 +607,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 45,
@@ -568,9 +615,9 @@
       "subtype": "within_waiting_period",
       "expected_decision": "DENY",
       "actual_recommendation": "DENY",
-      "needs_escalation": false,
+      "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.038
+      "latency_s": 0.048
     },
     {
       "case_id": 46,
@@ -578,9 +625,9 @@
       "subtype": "expired_policy",
       "expected_decision": "DENY",
       "actual_recommendation": "DENY",
-      "needs_escalation": false,
+      "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 47,
@@ -588,9 +635,9 @@
       "subtype": "expired_policy",
       "expected_decision": "DENY",
       "actual_recommendation": "DENY",
-      "needs_escalation": false,
+      "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.049
     },
     {
       "case_id": 48,
@@ -599,7 +646,7 @@
       "expected_decision": "DENY",
       "actual_recommendation": "QUERY",
       "needs_escalation": false,
-      "is_correct": true,
+      "is_correct": false,
       "latency_s": 0.005
     },
     {
@@ -610,7 +657,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 50,
@@ -618,9 +665,9 @@
       "subtype": "lapsed_policy",
       "expected_decision": "DENY",
       "actual_recommendation": "DENY",
-      "needs_escalation": false,
+      "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.038
+      "latency_s": 0.05
     }
   ]
 }

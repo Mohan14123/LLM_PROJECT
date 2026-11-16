@@ -13,34 +13,34 @@
       "filename": "request_0001.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "37433.00"
+        "total_approved": "2000.00"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37433.00"
+            "total_approved": "2000.00"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37433.00"
+            "total_approved": "2000.00"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37433.00"
+            "total_approved": "2000.00"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37433.00"
+            "total_approved": "2000.00"
           },
           "is_stable": true
         }
@@ -52,34 +52,34 @@
       "filename": "request_0002.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "37401.40"
+        "total_approved": "66293.00"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37401.40"
+            "total_approved": "66293.00"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37401.40"
+            "total_approved": "66293.00"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37401.40"
+            "total_approved": "66293.00"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37401.40"
+            "total_approved": "66293.00"
           },
           "is_stable": true
         }
@@ -91,34 +91,34 @@
       "filename": "request_0003.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "87893.00"
+        "total_approved": "70297.20"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "87893.00"
+            "total_approved": "70297.20"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "87893.00"
+            "total_approved": "70297.20"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "87893.00"
+            "total_approved": "70297.20"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "87893.00"
+            "total_approved": "70297.20"
           },
           "is_stable": true
         }
@@ -130,34 +130,34 @@
       "filename": "request_0004.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "84089.20"
+        "total_approved": "28819.80"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "84089.20"
+            "total_approved": "28819.80"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "84089.20"
+            "total_approved": "28819.80"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "84089.20"
+            "total_approved": "28819.80"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "84089.20"
+            "total_approved": "28819.80"
           },
           "is_stable": true
         }
@@ -168,35 +168,35 @@
       "case_index": 5,
       "filename": "request_0005.json",
       "original_output": {
-        "recommendation": "RECOMMEND_DENY",
-        "total_approved": "0"
+        "recommendation": "RECOMMEND_AUTHORISE",
+        "total_approved": "28122.80"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
-            "recommendation": "RECOMMEND_DENY",
-            "total_approved": "0"
+            "recommendation": "RECOMMEND_AUTHORISE",
+            "total_approved": "28122.80"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
-            "recommendation": "RECOMMEND_DENY",
-            "total_approved": "0"
+            "recommendation": "RECOMMEND_AUTHORISE",
+            "total_approved": "28122.80"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
-            "recommendation": "RECOMMEND_DENY",
-            "total_approved": "0"
+            "recommendation": "RECOMMEND_AUTHORISE",
+            "total_approved": "28122.80"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
-            "recommendation": "RECOMMEND_DENY",
-            "total_approved": "0"
+            "recommendation": "RECOMMEND_AUTHORISE",
+            "total_approved": "28122.80"
           },
           "is_stable": true
         }
@@ -208,34 +208,34 @@
       "filename": "request_0006.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "83107.80"
+        "total_approved": "29826.40"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "83107.80"
+            "total_approved": "29826.40"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "83107.80"
+            "total_approved": "29826.40"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "83107.80"
+            "total_approved": "29826.40"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "83107.80"
+            "total_approved": "29826.40"
           },
           "is_stable": true
         }
@@ -247,34 +247,34 @@
       "filename": "request_0007.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "25984.20"
+        "total_approved": "36588.20"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "25984.20"
+            "total_approved": "36588.20"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "25984.20"
+            "total_approved": "36588.20"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "25984.20"
+            "total_approved": "36588.20"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "25984.20"
+            "total_approved": "36588.20"
           },
           "is_stable": true
         }
@@ -286,34 +286,34 @@
       "filename": "request_0008.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "37339.40"
+        "total_approved": "32106.60"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37339.40"
+            "total_approved": "32106.60"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37339.40"
+            "total_approved": "32106.60"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37339.40"
+            "total_approved": "32106.60"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "37339.40"
+            "total_approved": "32106.60"
           },
           "is_stable": true
         }
@@ -325,34 +325,34 @@
       "filename": "request_0009.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "16418.00"
+        "total_approved": "47231.60"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "16418.00"
+            "total_approved": "47231.60"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "16418.00"
+            "total_approved": "47231.60"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "16418.00"
+            "total_approved": "47231.60"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "16418.00"
+            "total_approved": "47231.60"
           },
           "is_stable": true
         }
@@ -364,34 +364,34 @@
       "filename": "request_0010.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "24902.00"
+        "total_approved": "96652.20"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "24902.00"
+            "total_approved": "96652.20"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "24902.00"
+            "total_approved": "96652.20"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "24902.00"
+            "total_approved": "96652.20"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "24902.00"
+            "total_approved": "96652.20"
           },
           "is_stable": true
         }
@@ -403,34 +403,34 @@
       "filename": "request_0011.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "29194.40"
+        "total_approved": "43731.20"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "29194.40"
+            "total_approved": "43731.20"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "29194.40"
+            "total_approved": "43731.20"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "29194.40"
+            "total_approved": "43731.20"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "29194.40"
+            "total_approved": "43731.20"
           },
           "is_stable": true
         }
@@ -442,34 +442,34 @@
       "filename": "request_0012.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "39496.80"
+        "total_approved": "36313.40"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "39496.80"
+            "total_approved": "36313.40"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "39496.80"
+            "total_approved": "36313.40"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "39496.80"
+            "total_approved": "36313.40"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "39496.80"
+            "total_approved": "36313.40"
           },
           "is_stable": true
         }
@@ -481,34 +481,34 @@
       "filename": "request_0013.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "62587.00"
+        "total_approved": "32634.40"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "62587.00"
+            "total_approved": "32634.40"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "62587.00"
+            "total_approved": "32634.40"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "62587.00"
+            "total_approved": "32634.40"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "62587.00"
+            "total_approved": "32634.40"
           },
           "is_stable": true
         }
@@ -520,34 +520,34 @@
       "filename": "request_0014.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "29302.20"
+        "total_approved": "26247.60"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "29302.20"
+            "total_approved": "26247.60"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "29302.20"
+            "total_approved": "26247.60"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "29302.20"
+            "total_approved": "26247.60"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "29302.20"
+            "total_approved": "26247.60"
           },
           "is_stable": true
         }
@@ -559,34 +559,34 @@
       "filename": "request_0015.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "41912.60"
+        "total_approved": "28405.20"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "41912.60"
+            "total_approved": "28405.20"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "41912.60"
+            "total_approved": "28405.20"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "41912.60"
+            "total_approved": "28405.20"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "41912.60"
+            "total_approved": "28405.20"
           },
           "is_stable": true
         }
@@ -598,34 +598,34 @@
       "filename": "request_0016.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "89424.40"
+        "total_approved": "30991.40"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "89424.40"
+            "total_approved": "30991.40"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "89424.40"
+            "total_approved": "30991.40"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "89424.40"
+            "total_approved": "30991.40"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "89424.40"
+            "total_approved": "30991.40"
           },
           "is_stable": true
         }
@@ -637,34 +637,34 @@
       "filename": "request_0017.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "28450.60"
+        "total_approved": "31941.00"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "28450.60"
+            "total_approved": "31941.00"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "28450.60"
+            "total_approved": "31941.00"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "28450.60"
+            "total_approved": "31941.00"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "28450.60"
+            "total_approved": "31941.00"
           },
           "is_stable": true
         }
@@ -676,34 +676,34 @@
       "filename": "request_0018.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "31346.40"
+        "total_approved": "69875.40"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "31346.40"
+            "total_approved": "69875.40"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "31346.40"
+            "total_approved": "69875.40"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "31346.40"
+            "total_approved": "69875.40"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "31346.40"
+            "total_approved": "69875.40"
           },
           "is_stable": true
         }
@@ -715,34 +715,34 @@
       "filename": "request_0019.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "65440.00"
+        "total_approved": "28445.00"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "65440.00"
+            "total_approved": "28445.00"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "65440.00"
+            "total_approved": "28445.00"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "65440.00"
+            "total_approved": "28445.00"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "65440.00"
+            "total_approved": "28445.00"
           },
           "is_stable": true
         }
@@ -754,34 +754,34 @@
       "filename": "request_0020.json",
       "original_output": {
         "recommendation": "RECOMMEND_AUTHORISE",
-        "total_approved": "78922.40"
+        "total_approved": "47878.80"
       },
       "perturbations": {
         "gender_swap": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "78922.40"
+            "total_approved": "47878.80"
           },
           "is_stable": true
         },
         "name_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "78922.40"
+            "total_approved": "47878.80"
           },
           "is_stable": true
         },
         "city_perturbation": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "78922.40"
+            "total_approved": "47878.80"
           },
           "is_stable": true
         },
         "all_combined": {
           "perturbed_output": {
             "recommendation": "RECOMMEND_AUTHORISE",
-            "total_approved": "78922.40"
+            "total_approved": "47878.80"
           },
           "is_stable": true
         }

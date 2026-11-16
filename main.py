@@ -29,9 +29,13 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 from intake import process_intake
+from intake.pii_scrubber import PIIRedactingFilter
 from orchestration import run_pipeline
 from persistence import ClaimRepository
 from schemas import SourceFormat
+
+# Attach PII redaction filter to root logging
+logging.getLogger().addFilter(PIIRedactingFilter())
 
 app = FastAPI(
     title="A1 Cashless Pre-Auth API",
@@ -304,11 +308,30 @@ async def process_file_upload(file: UploadFile = File(...)):
 
 
 # ----------------------------------------------------------------------------
-# Reviewer Action Endpoints (Sign-Off, Reject, Override, Query)
+# Reviewer Role-Based Access Control (RBAC) & Endpoints
 # ----------------------------------------------------------------------------
+def _check_reviewer_role(request: Request, allowed_roles: set[str]) -> str:
+    """Enforce role-based access control for medical and administrative reviewer endpoints."""
+    role = request.headers.get("X-Reviewer-Role", "underwriter").strip().lower()
+    if role not in allowed_roles:
+        raise HTTPException(
+            status_code=403,
+            detail=f"Reviewer role '{role}' is not authorized for this operation. Allowed roles: {sorted(list(allowed_roles))}"
+        )
+    return role
+
+
+@app.get("/api/v1/preauth/audit/anchor", summary="Export External Anchor for Audit Trail")
+async def get_audit_anchor():
+    """Generates an external cryptographic anchor state for regulatory anchoring."""
+    anchor = repository.export_anchor()
+    return {"status": "success", "anchor": anchor}
+
+
 @app.post("/api/v1/preauth/{request_id}/review/approve", summary="Human Reviewer Approval Sign-off")
-async def review_approve(request_id: str, payload: ReviewerActionPayload):
+async def review_approve(request_id: str, payload: ReviewerActionPayload, request: Request):
     """Medical reviewer grants formal approval sign-off for a pre-auth recommendation."""
+    role = _check_reviewer_role(request, {"underwriter", "supervisor", "medical_officer"})
     if not repository.get_request(request_id):
         # Insert minimal placeholder if request was processed before DB schema
         repository.save_request({"request_id": request_id, "submitted_at": "UNKNOWN", "cost_estimate": {"total_amount": 0}})
@@ -325,13 +348,15 @@ async def review_approve(request_id: str, payload: ReviewerActionPayload):
         "action_id": action_id,
         "request_id": request_id,
         "action": "APPROVE",
-        "message": f"Pre-authorisation {request_id} signed off by reviewer {payload.reviewer_id}."
+        "reviewer_role": role,
+        "message": f"Pre-authorisation {request_id} signed off by reviewer {payload.reviewer_id} ({role})."
     }
 
 
 @app.post("/api/v1/preauth/{request_id}/review/reject", summary="Human Reviewer Rejection")
-async def review_reject(request_id: str, payload: ReviewerActionPayload):
+async def review_reject(request_id: str, payload: ReviewerActionPayload, request: Request):
     """Medical reviewer issues formal rejection for a pre-auth recommendation."""
+    role = _check_reviewer_role(request, {"underwriter", "supervisor", "medical_officer"})
     if not repository.get_request(request_id):
         repository.save_request({"request_id": request_id, "submitted_at": "UNKNOWN", "cost_estimate": {"total_amount": 0}})
 
@@ -347,13 +372,15 @@ async def review_reject(request_id: str, payload: ReviewerActionPayload):
         "action_id": action_id,
         "request_id": request_id,
         "action": "REJECT",
-        "message": f"Pre-authorisation {request_id} rejected by reviewer {payload.reviewer_id}."
+        "reviewer_role": role,
+        "message": f"Pre-authorisation {request_id} rejected by reviewer {payload.reviewer_id} ({role})."
     }
 
 
 @app.post("/api/v1/preauth/{request_id}/review/override", summary="Human Reviewer Override")
-async def review_override(request_id: str, payload: ReviewerActionPayload):
+async def review_override(request_id: str, payload: ReviewerActionPayload, request: Request):
     """Medical reviewer overrides the automated pipeline recommendation."""
+    role = _check_reviewer_role(request, {"supervisor", "senior_underwriter", "underwriter"})
     if payload.approved_amount is None:
         raise HTTPException(status_code=400, detail="Approved amount is required when overriding.")
 
@@ -372,13 +399,15 @@ async def review_override(request_id: str, payload: ReviewerActionPayload):
         "action_id": action_id,
         "request_id": request_id,
         "action": "OVERRIDE",
-        "message": f"Pre-authorisation {request_id} overridden by reviewer {payload.reviewer_id}."
+        "reviewer_role": role,
+        "message": f"Pre-authorisation {request_id} overridden by reviewer {payload.reviewer_id} ({role})."
     }
 
 
 @app.post("/api/v1/preauth/{request_id}/review/request-docs", summary="Request Additional Medical Documents")
-async def review_request_docs(request_id: str, payload: ReviewerActionPayload):
+async def review_request_docs(request_id: str, payload: ReviewerActionPayload, request: Request):
     """Medical reviewer places pre-authorisation in queried state requesting further documentation."""
+    role = _check_reviewer_role(request, {"underwriter", "supervisor", "medical_officer"})
     if not repository.get_request(request_id):
         repository.save_request({"request_id": request_id, "submitted_at": "UNKNOWN", "cost_estimate": {"total_amount": 0}})
 

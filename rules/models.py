@@ -158,6 +158,19 @@ class PolicyStatusInfo(BaseModel):
     )
 
 
+class MoratoriumTranche(BaseModel):
+    """Tracks statutory moratorium and utilization for an individual coverage tranche."""
+
+    tranche_id: str = Field(..., description="Identifier for this tranche ('BASE' or enhancement ID).")
+    tranche_label: str = Field(default="Base Sum Insured", description="Human-readable label for this tranche.")
+    sum_insured: Decimal = Field(default=Decimal("0.00"), ge=Decimal("0.00"), description="Total sum insured allocated to this tranche.")
+    utilised_amount: Decimal = Field(default=Decimal("0.00"), ge=Decimal("0.00"), description="Claim amount allocated against this tranche.")
+    remaining_amount: Decimal = Field(default=Decimal("0.00"), ge=Decimal("0.00"), description="Remaining unexhausted balance.")
+    start_date: date = Field(..., description="Effective commencement date of this coverage tranche.")
+    moratorium_anniversary_date: date = Field(..., description="Calendar date on which 60-month moratorium is reached.")
+    is_moratorium_clear: bool = Field(default=False, description="Whether 60 continuous months have elapsed for this tranche.")
+
+
 class WaitingPeriodInfo(BaseModel):
     """Waiting period and statutory moratorium evaluation results.
 
@@ -171,7 +184,7 @@ class WaitingPeriodInfo(BaseModel):
         - Legacy policies (issued prior to April 1, 2024): May specify up to 48 months.
         - Statutory Moratorium Period: 60 continuous calendar months, after which no
           claim/policy can be contested on non-disclosure/misrepresentation grounds
-          (except established fraud). Applies separately to enhanced sum insured portions.
+          (except established fraud). Applies separately to each enhanced sum insured tranche.
     """
 
     initial_wp_clear: bool = Field(
@@ -180,7 +193,7 @@ class WaitingPeriodInfo(BaseModel):
     )
     specific_disease_wp_clear: bool = Field(
         default=False,
-        description="Whether the 2-year specific disease waiting period has elapsed (Fail-safe default: False).",
+        description="Whether the specific disease waiting period has elapsed (Fail-safe default: False).",
     )
     ped_wp_clear: bool = Field(
         default=False,
@@ -233,6 +246,22 @@ class WaitingPeriodInfo(BaseModel):
     moratorium_enhanced_date: Optional[date] = Field(
         default=None,
         description="Date on which enhanced sum insured achieves non-contestability.",
+    )
+    tranches: list[MoratoriumTranche] = Field(
+        default_factory=list,
+        description="Granular tranche-by-tranche moratorium and allocation status.",
+    )
+    specific_disease_name: Optional[str] = Field(
+        default=None,
+        description="Name of the specific disease identified in policy schedule.",
+    )
+    applicable_specific_disease_months: int = Field(
+        default=24, ge=0,
+        description="Contractual specific disease waiting period duration in months.",
+    )
+    is_accident_exception: bool = Field(
+        default=False,
+        description="Whether an emergency accidental trauma exception waives initial/specific waiting periods.",
     )
 
 

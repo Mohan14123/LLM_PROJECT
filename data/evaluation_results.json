@@ -2,7 +2,24 @@
   "summary": {
     "evaluated_cases": 210,
     "total_cases": 210,
-    "overall_accuracy": 1.0
+    "valid_cases": 183,
+    "schema_invalid_cases": 27,
+    "exact_recommendation_accuracy_valid": 1.0,
+    "exact_recommendation_accuracy_all": 1.0,
+    "composite_handling_correctness": 1.0,
+    "escalation_f1_score": 0.8462,
+    "unsafe_auto_approval_rate": 0.0
+  },
+  "cohort_breakdown": {
+    "total_inputs": 210,
+    "valid_inputs": 183,
+    "schema_invalid_inputs": 27,
+    "expected_distribution": {
+      "valid_approvals": 138,
+      "valid_denials": 12,
+      "valid_escalations": 33,
+      "schema_invalid_query_abstentions": 27
+    }
   },
   "dimensions": {
     "1_extraction": {
@@ -10,18 +27,22 @@
       "accuracy": 0.8714
     },
     "2_retrieval": {
-      "metric_label": "Document-Level Hit@5 & Query Coverage",
+      "metric_label": "Dense FAISS Retrieval Quality (Hit@5, MRR, Coverage)",
       "recall_at_5": 0.622,
-      "coverage": 0.8714,
-      "recall_proxy_legacy": 1.1438
+      "mrr": 0.4272,
+      "query_coverage": 0.8714
     },
     "3_grounding": {
       "metric_label": "Hallucinated Citation Rate (Regex Guardrail)",
       "hallucination_rate": 0.0
     },
     "4_decision": {
-      "metric_label": "Composite Benchmark Correctness under Escalation Policy",
-      "accuracy": 1.0,
+      "metric_label": "Decision Accuracy & Composite Correctness",
+      "exact_recommendation_accuracy_valid": 1.0,
+      "exact_recommendation_accuracy_all": 1.0,
+      "composite_handling_correctness": 1.0,
+      "schema_invalid_abstention_rate": 1.0,
+      "unsafe_auto_approval_rate": 0.0,
       "confusion_matrix": {
         "TP": 138,
         "TN": 72,
@@ -29,24 +50,25 @@
         "FN": 0
       },
       "recommendation_fp_rate": 0.0,
-      "unsafe_auto_approval_rate": 0.0,
       "fn_rate": 0.0
     },
     "5_escalation": {
-      "precision": 0.75,
+      "metric_label": "Escalation Gate Precision, Recall & F1",
+      "precision": 0.7333,
       "recall": 1.0,
+      "f1_score": 0.8462,
       "confusion_matrix": {
         "esc_TP": 33,
-        "esc_TN": 166,
-        "esc_FP": 11,
+        "esc_TN": 165,
+        "esc_FP": 12,
         "esc_FN": 0
       }
     },
     "6_latency": {
-      "mean_seconds": 0.059,
-      "p50_seconds": 0.04,
-      "p95_seconds": 0.042,
-      "p99_seconds": 0.044,
+      "mean_seconds": 0.046,
+      "p50_seconds": 0.051,
+      "p95_seconds": 0.053,
+      "p99_seconds": 0.075,
       "sla_compliant": true
     },
     "7_cost": {
@@ -159,7 +181,32 @@
         }
       }
     },
-    "9_fairness": "Detailed demographic parity and equal opportunity metrics available in data/fairness_results.json."
+    "9_fairness": "Detailed demographic parity and equal opportunity metrics available in data/fairness_results.json.",
+    "10_multiformat": {
+      "metric_label": "Multi-Format Ingestion Benchmark (PDF, DOCX, Image OCR, TXT)",
+      "by_format": {
+        "pdf": {
+          "tested_files": 10,
+          "success_rate": 1.0,
+          "avg_confidence": 0.91
+        },
+        "docx": {
+          "tested_files": 10,
+          "success_rate": 0.8,
+          "avg_confidence": 0.744
+        },
+        "image": {
+          "tested_files": 10,
+          "success_rate": 1.0,
+          "avg_confidence": 0.857
+        },
+        "txt": {
+          "tested_files": 10,
+          "success_rate": 1.0,
+          "avg_confidence": 0.918
+        }
+      }
+    }
   },
   "case_results": [
     {
@@ -170,7 +217,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 4.703
+      "latency_s": 0.062
     },
     {
       "case_id": 2,
@@ -180,7 +227,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.053
     },
     {
       "case_id": 3,
@@ -190,7 +237,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.076
     },
     {
       "case_id": 4,
@@ -200,7 +247,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 5,
@@ -210,7 +257,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 6,
@@ -220,7 +267,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 7,
@@ -230,7 +277,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 8,
@@ -240,7 +287,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 9,
@@ -250,7 +297,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 10,
@@ -260,7 +307,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 11,
@@ -270,7 +317,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 12,
@@ -280,7 +327,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 13,
@@ -290,7 +337,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 14,
@@ -300,7 +347,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 15,
@@ -310,7 +357,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 16,
@@ -320,7 +367,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.052
     },
     {
       "case_id": 17,
@@ -330,7 +377,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 18,
@@ -340,7 +387,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 19,
@@ -350,7 +397,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 20,
@@ -360,7 +407,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.052
     },
     {
       "case_id": 21,
@@ -370,7 +417,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 22,
@@ -380,7 +427,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 23,
@@ -390,7 +437,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 24,
@@ -400,7 +447,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 25,
@@ -410,7 +457,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 26,
@@ -420,7 +467,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.052
     },
     {
       "case_id": 27,
@@ -430,7 +477,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.043
+      "latency_s": 0.051
     },
     {
       "case_id": 28,
@@ -440,7 +487,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 29,
@@ -450,7 +497,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.05
     },
     {
       "case_id": 30,
@@ -460,7 +507,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 31,
@@ -470,7 +517,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.052
     },
     {
       "case_id": 32,
@@ -480,7 +527,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 33,
@@ -490,7 +537,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.052
     },
     {
       "case_id": 34,
@@ -500,7 +547,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 35,
@@ -510,7 +557,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.138
+      "latency_s": 0.052
     },
     {
       "case_id": 36,
@@ -520,7 +567,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.052
     },
     {
       "case_id": 37,
@@ -530,7 +577,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.185
     },
     {
       "case_id": 38,
@@ -540,7 +587,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.048
     },
     {
       "case_id": 39,
@@ -550,7 +597,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.048
     },
     {
       "case_id": 40,
@@ -560,7 +607,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 41,
@@ -570,7 +617,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 42,
@@ -580,7 +627,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 43,
@@ -590,7 +637,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.05
     },
     {
       "case_id": 44,
@@ -600,7 +647,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.053
     },
     {
       "case_id": 45,
@@ -610,7 +657,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.05
     },
     {
       "case_id": 46,
@@ -620,7 +667,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.053
     },
     {
       "case_id": 47,
@@ -630,7 +677,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 48,
@@ -640,7 +687,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 49,
@@ -650,7 +697,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 50,
@@ -660,7 +707,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.049
     },
     {
       "case_id": 51,
@@ -670,7 +717,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 52,
@@ -680,7 +727,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 53,
@@ -690,7 +737,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.049
     },
     {
       "case_id": 54,
@@ -700,7 +747,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 55,
@@ -710,7 +757,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 56,
@@ -720,7 +767,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.053
     },
     {
       "case_id": 57,
@@ -730,7 +777,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.053
     },
     {
       "case_id": 58,
@@ -740,7 +787,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 59,
@@ -750,7 +797,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 60,
@@ -760,7 +807,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.053
     },
     {
       "case_id": 61,
@@ -770,7 +817,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.053
     },
     {
       "case_id": 62,
@@ -780,7 +827,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.038
+      "latency_s": 0.051
     },
     {
       "case_id": 63,
@@ -790,7 +837,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.053
     },
     {
       "case_id": 64,
@@ -800,7 +847,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.049
     },
     {
       "case_id": 65,
@@ -810,7 +857,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.047
     },
     {
       "case_id": 66,
@@ -820,7 +867,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.049
     },
     {
       "case_id": 67,
@@ -830,7 +877,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 68,
@@ -840,7 +887,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 69,
@@ -850,7 +897,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 70,
@@ -860,7 +907,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.053
     },
     {
       "case_id": 71,
@@ -870,7 +917,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 72,
@@ -880,7 +927,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 73,
@@ -890,7 +937,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 74,
@@ -900,7 +947,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 75,
@@ -910,7 +957,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 76,
@@ -920,7 +967,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 77,
@@ -930,7 +977,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 78,
@@ -940,7 +987,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.048
     },
     {
       "case_id": 79,
@@ -950,7 +997,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 80,
@@ -960,7 +1007,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 81,
@@ -970,7 +1017,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 82,
@@ -980,7 +1027,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.05
     },
     {
       "case_id": 83,
@@ -990,7 +1037,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 84,
@@ -1000,7 +1047,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 85,
@@ -1010,7 +1057,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.052
     },
     {
       "case_id": 86,
@@ -1020,7 +1067,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 87,
@@ -1030,7 +1077,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.055
     },
     {
       "case_id": 88,
@@ -1040,7 +1087,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.053
     },
     {
       "case_id": 89,
@@ -1050,7 +1097,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.054
     },
     {
       "case_id": 90,
@@ -1060,7 +1107,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.054
     },
     {
       "case_id": 91,
@@ -1070,7 +1117,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.053
     },
     {
       "case_id": 92,
@@ -1080,7 +1127,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 93,
@@ -1090,7 +1137,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 94,
@@ -1100,7 +1147,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 95,
@@ -1110,7 +1157,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 96,
@@ -1120,7 +1167,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 97,
@@ -1130,7 +1177,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 98,
@@ -1140,7 +1187,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.053
     },
     {
       "case_id": 99,
@@ -1150,7 +1197,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 100,
@@ -1160,7 +1207,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.053
     },
     {
       "case_id": 101,
@@ -1170,7 +1217,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.052
     },
     {
       "case_id": 102,
@@ -1180,7 +1227,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 103,
@@ -1190,7 +1237,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.053
     },
     {
       "case_id": 104,
@@ -1200,7 +1247,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 105,
@@ -1210,7 +1257,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 106,
@@ -1220,7 +1267,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.053
     },
     {
       "case_id": 107,
@@ -1230,7 +1277,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.049
     },
     {
       "case_id": 108,
@@ -1240,7 +1287,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.049
     },
     {
       "case_id": 109,
@@ -1250,7 +1297,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 110,
@@ -1260,7 +1307,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 111,
@@ -1270,7 +1317,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.141
     },
     {
       "case_id": 112,
@@ -1280,7 +1327,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 113,
@@ -1290,7 +1337,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 114,
@@ -1300,7 +1347,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 115,
@@ -1310,7 +1357,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.052
     },
     {
       "case_id": 116,
@@ -1320,7 +1367,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 117,
@@ -1330,7 +1377,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.05
     },
     {
       "case_id": 118,
@@ -1340,7 +1387,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.049
     },
     {
       "case_id": 119,
@@ -1350,7 +1397,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 120,
@@ -1360,7 +1407,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.044
+      "latency_s": 0.052
     },
     {
       "case_id": 121,
@@ -1370,7 +1417,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 122,
@@ -1380,7 +1427,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 123,
@@ -1390,7 +1437,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.05
     },
     {
       "case_id": 124,
@@ -1400,7 +1447,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.049
     },
     {
       "case_id": 125,
@@ -1410,7 +1457,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.054
     },
     {
       "case_id": 126,
@@ -1420,7 +1467,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 127,
@@ -1430,7 +1477,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.05
     },
     {
       "case_id": 128,
@@ -1440,7 +1487,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 129,
@@ -1450,7 +1497,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.052
     },
     {
       "case_id": 130,
@@ -1460,7 +1507,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 131,
@@ -1470,7 +1517,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 132,
@@ -1480,7 +1527,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 133,
@@ -1490,7 +1537,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.05
     },
     {
       "case_id": 134,
@@ -1500,7 +1547,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 135,
@@ -1510,7 +1557,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.052
     },
     {
       "case_id": 136,
@@ -1520,7 +1567,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.052
     },
     {
       "case_id": 137,
@@ -1530,7 +1577,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.049
     },
     {
       "case_id": 138,
@@ -1540,7 +1587,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.049
     },
     {
       "case_id": 139,
@@ -1550,7 +1597,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.048
     },
     {
       "case_id": 140,
@@ -1560,7 +1607,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.043
+      "latency_s": 0.05
     },
     {
       "case_id": 141,
@@ -1570,7 +1617,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 142,
@@ -1580,7 +1627,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.05
     },
     {
       "case_id": 143,
@@ -1590,7 +1637,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 144,
@@ -1600,7 +1647,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.05
     },
     {
       "case_id": 145,
@@ -1610,7 +1657,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 146,
@@ -1620,7 +1667,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 147,
@@ -1630,7 +1677,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.053
     },
     {
       "case_id": 148,
@@ -1640,7 +1687,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 149,
@@ -1650,7 +1697,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 150,
@@ -1660,7 +1707,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 151,
@@ -1670,7 +1717,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.049
     },
     {
       "case_id": 152,
@@ -1680,7 +1727,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 153,
@@ -1690,7 +1737,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 154,
@@ -1700,7 +1747,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 155,
@@ -1710,7 +1757,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.042
+      "latency_s": 0.051
     },
     {
       "case_id": 156,
@@ -1720,7 +1767,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.052
     },
     {
       "case_id": 157,
@@ -1730,7 +1777,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.052
     },
     {
       "case_id": 158,
@@ -1740,7 +1787,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.053
     },
     {
       "case_id": 159,
@@ -1750,7 +1797,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.052
     },
     {
       "case_id": 160,
@@ -1760,7 +1807,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.052
     },
     {
       "case_id": 161,
@@ -1820,7 +1867,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.05
     },
     {
       "case_id": 167,
@@ -1830,7 +1877,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 168,
@@ -1890,7 +1937,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.049
     },
     {
       "case_id": 174,
@@ -1940,7 +1987,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.05
     },
     {
       "case_id": 179,
@@ -1960,7 +2007,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 181,
@@ -1970,7 +2017,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.053
     },
     {
       "case_id": 182,
@@ -1980,7 +2027,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 183,
@@ -2000,7 +2047,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 185,
@@ -2020,7 +2067,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 187,
@@ -2030,7 +2077,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 188,
@@ -2040,7 +2087,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 189,
@@ -2050,7 +2097,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 190,
@@ -2100,7 +2147,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.05
     },
     {
       "case_id": 195,
@@ -2108,9 +2155,9 @@
       "subtype": "within_waiting_period",
       "expected_decision": "DENY",
       "actual_recommendation": "DENY",
-      "needs_escalation": false,
+      "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 196,
@@ -2120,7 +2167,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": false,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 197,
@@ -2130,7 +2177,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 198,
@@ -2140,7 +2187,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.049
     },
     {
       "case_id": 199,
@@ -2150,7 +2197,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.04
+      "latency_s": 0.051
     },
     {
       "case_id": 200,
@@ -2170,7 +2217,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.05
     },
     {
       "case_id": 202,
@@ -2180,7 +2227,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.051
     },
     {
       "case_id": 203,
@@ -2240,7 +2287,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.051
     },
     {
       "case_id": 209,
@@ -2250,7 +2297,7 @@
       "actual_recommendation": "APPROVE",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.041
+      "latency_s": 0.05
     },
     {
       "case_id": 210,
@@ -2260,7 +2307,7 @@
       "actual_recommendation": "DENY",
       "needs_escalation": true,
       "is_correct": true,
-      "latency_s": 0.039
+      "latency_s": 0.05
     }
   ]
 }

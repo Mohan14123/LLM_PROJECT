@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from decimal import Decimal
 from typing import Any, Optional
 
@@ -122,6 +123,12 @@ class ClaimRepository:
             ))
             decision_id = cursor.lastrowid
 
+            # Model execution metadata for regulatory traceability
+            model_provider = str(pipeline_result.get("model_provider") or os.environ.get("LLM_PROVIDER", "openai_compatible"))
+            execution_mode = str(pipeline_result.get("execution_mode") or os.environ.get("LLM_EXECUTION_MODE", "FALLBACK_ONLY"))
+            model_name = str(pipeline_result.get("model_name") or os.environ.get("OPENAI_MODEL", "gpt-4o"))
+            prompt_version = str(pipeline_result.get("prompt_version", "v2.1"))
+
             append_audit_event(
                 conn,
                 request_id=request_id,
@@ -131,11 +138,21 @@ class ClaimRepository:
                     "approved_amount": approved,
                     "consensus_status": consensus,
                     "needs_escalation": bool(needs_esc),
+                    "model_provider": model_provider,
+                    "execution_mode": execution_mode,
+                    "model_name": model_name,
+                    "prompt_version": prompt_version,
                 }
             )
 
         logger.info("Saved decision #%d for request %s.", decision_id, request_id)
         return decision_id
+
+    def export_anchor(self, anchor_path: Optional[str] = None) -> dict[str, Any]:
+        """Export external anchor summary of the audit chain."""
+        from persistence.audit_chain import export_external_anchor
+        with get_db_connection(self.db_path) as conn:
+            return export_external_anchor(conn, anchor_path=anchor_path)
 
     def get_request(self, request_id: str) -> Optional[dict[str, Any]]:
         """Fetch pre-authorisation request by ID."""

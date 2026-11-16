@@ -19,8 +19,20 @@ Usage:
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any, Optional, Annotated
 from typing_extensions import TypedDict
+
+
+def _merge_node_latencies(a: dict[str, float] | None, b: dict[str, float] | None) -> dict[str, float]:
+    """Reducer combining node latencies across parallel execution tracks."""
+    merged = dict(a or {})
+    merged.update(b or {})
+    return merged
+
+
+def _merge_errors(a: list[str] | None, b: list[str] | None) -> list[str]:
+    """Reducer combining errors across parallel execution tracks."""
+    return list(a or []) + [e for e in (b or []) if e not in (a or [])]
 
 
 class PipelineState(TypedDict, total=False):
@@ -118,7 +130,7 @@ class PipelineState(TypedDict, total=False):
     """Final decision record for the audit log (shared with Member 3)."""
 
     # ── Metrics Tracking ──────────────────────────────────────────────
-    node_latencies: dict[str, float]
+    node_latencies: Annotated[dict[str, float], _merge_node_latencies]
     """Wall-clock time (seconds) for each pipeline node."""
 
     total_latency: float
@@ -131,7 +143,7 @@ class PipelineState(TypedDict, total=False):
     """Estimated LLM cost in INR for this transaction."""
 
     # ── Error Handling ────────────────────────────────────────────────
-    errors: list[str]
+    errors: Annotated[list[str], _merge_errors]
     """Errors encountered during pipeline execution."""
 
     pipeline_status: str

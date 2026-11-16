@@ -77,8 +77,38 @@ def _compute_field_extraction(payload: dict, extracted: dict | None) -> tuple[in
     return matched, len(fields)
 
 
+def _evaluate_multi_format(base_docs_dir: str) -> dict[str, Any]:
+    """Evaluate extraction performance across digital PDF, DOCX, Images (OCR), and TXT."""
+    formats = {
+        "pdf": os.path.join(base_docs_dir, "pdf"),
+        "docx": os.path.join(base_docs_dir, "docx"),
+        "image": os.path.join(base_docs_dir, "images"),
+        "txt": os.path.join(base_docs_dir, "txt"),
+    }
+    format_results = {}
+    for fmt_name, dir_path in formats.items():
+        if not os.path.exists(dir_path):
+            continue
+        files = [os.path.join(dir_path, f) for f in os.listdir(dir_path) if not f.startswith(".")][:10]
+        if not files:
+            continue
+        successes = 0
+        conf_scores = []
+        for fpath in files:
+            res = process_intake(fpath)
+            if res.is_success:
+                successes += 1
+            conf_scores.append(res.confidence_score)
+        format_results[fmt_name] = {
+            "tested_files": len(files),
+            "success_rate": round(successes / max(1, len(files)), 4),
+            "avg_confidence": round(float(np.mean(conf_scores)), 4) if conf_scores else 0.0,
+        }
+    return format_results
+
+
 def evaluate(manifest_path: str | None = None, results_path: str | None = None, benchmark_name: str = "Development Set (210 cases)"):
-    """Runs automated evaluation across all 9 dimensions defined in Metrics.md."""
+    """Runs automated evaluation across all dimensions defined in Metrics.md."""
     if manifest_path is None:
         manifest_path = os.path.join(PROJECT_ROOT, "data", "synthetic", "manifest.json")
     if results_path is None:
@@ -93,6 +123,14 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
         
     results = []
     
+    # 0. Cohort breakdown
+    valid_cases = 0
+    invalid_cases = 0
+    exact_matches_valid = 0
+    exact_matches_all = 0
+    schema_invalid_abstained = 0
+    mrr_scores = []
+
     # 1. Extraction metrics (true field-level)
     fields_extracted = 0
     fields_total = 0
@@ -215,51 +253,74 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
             
             if target_docs:
                 total_target_cases += 1
-                if any(td in retrieved_sources for td in target_docs):
+                hit_rank = None
+                for idx, src in enumerate(retrieved_sources, 1):
+                    if src in target_docs:
+                        hit_rank = idx
+                        break
+                if hit_rank is not None:
                     true_recall_hits += 1
+                    mrr_scores.append(1.0 / hit_rank)
+                else:
+                    mrr_scores.append(0.0)
                 
             # 3. Grounding Check
             hallucinated_citations += hallucinated
             total_citations += max(1, tot_cits)
             
-            # 4. Decision Correctness Check
+            # 4. Decision Correctness & Exact Recommendation Check
             expected_dec_str = str(expected_decision).upper()
+            is_schema_valid = case.get("is_schema_valid", True)
+            exact_match = False
             
-            if not intake_res.is_success:
-                # Halted safely at schema intake gate (e.g. missing fields, invalid format)
-                is_correct = (expected_dec_str in ("DENY", "QUERY"))
-                if is_correct:
+            if not is_schema_valid:
+                invalid_cases += 1
+                # Must abstain / reject at schema validation gate or issue QUERY
+                if not intake_res.is_success or rec == "QUERY":
+                    schema_invalid_abstained += 1
+                    exact_matches_all += 1
+                    is_correct = True
                     TN += 1
                 else:
-                    FN += 1
-            elif expected_dec_str == "ESCALATE":
-                # For cases expected to escalate (e.g. non-network hospital, high-value, PED)
-                is_correct = needs_escalation
-                if needs_escalation:
-                    TN += 1  # Correctly halted and escalated to human
-                elif rec == "APPROVE":
-                    FP += 1  # Escalation missed; claim auto-approved
-                else:
-                    TN += 1
-            elif expected_dec_str == "APPROVE":
-                is_correct = (rec == "APPROVE")
-                if rec == "APPROVE":
-                    TP += 1
-                else:
-                    FN += 1  # False negative: denied legitimate claim
-            elif expected_dec_str == "DENY":
-                is_correct = (rec == "DENY")
-                if rec == "DENY":
-                    TN += 1
-                elif rec == "APPROVE":
-                    FP += 1  # False positive: approved ineligible claim
-                else:
-                    TN += 1
+                    is_correct = False
+                    FP += 1
             else:
-                is_correct = (rec == expected_dec_str)
-                
+                valid_cases += 1
+                if expected_dec_str == "APPROVE":
+                    exact_match = (rec == "APPROVE")
+                    is_correct = (rec == "APPROVE")
+                    if rec == "APPROVE":
+                        TP += 1
+                    else:
+                        FN += 1
+                elif expected_dec_str == "DENY":
+                    exact_match = (rec == "DENY")
+                    is_correct = (rec == "DENY")
+                    if rec == "DENY":
+                        TN += 1
+                    elif rec == "APPROVE":
+                        FP += 1
+                    else:
+                        TN += 1
+                elif expected_dec_str == "ESCALATE":
+                    exact_match = (rec == "ESCALATE" or needs_escalation)
+                    is_correct = needs_escalation
+                    if needs_escalation:
+                        TN += 1
+                    elif rec == "APPROVE":
+                        FP += 1
+                    else:
+                        TN += 1
+                else:
+                    exact_match = (rec == expected_dec_str)
+                    is_correct = (rec == expected_dec_str)
+                    
+                if exact_match:
+                    exact_matches_valid += 1
+                    exact_matches_all += 1
+                    
             # Unsafe auto-approval: approved without escalation when expected was non-APPROVE
-            if rec == "APPROVE" and not needs_escalation and expected_dec_str in ("DENY", "ESCALATE"):
+            if rec == "APPROVE" and not needs_escalation and (not is_schema_valid or expected_dec_str in ("DENY", "ESCALATE")):
                 unsafe_auto_approvals += 1
                 
             # 5. Escalation Confusion Matrix
@@ -314,16 +375,20 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
         return
         
     extraction_accuracy = fields_extracted / max(1, fields_total)
-    retrieval_quality = retrieval_successes / max(1, len([r for r in results if r.get("category") != "adversarial"]))
     true_recall_at_5 = true_recall_hits / max(1, total_target_cases)
+    mrr = float(np.mean(mrr_scores)) if mrr_scores else 0.0
     retrieval_coverage = retrieval_successes / max(1, total_cases)
     hallucination_rate = hallucinated_citations / max(1, total_citations)
     
     total_decisions = TP + TN + FP + FN
     decision_accuracy = (TP + TN) / max(1, total_decisions)
+    exact_rec_acc_valid = exact_matches_valid / max(1, valid_cases)
+    exact_rec_acc_all = exact_matches_all / max(1, evaluated_cases)
+    invalid_abstention_rate = schema_invalid_abstained / max(1, invalid_cases) if invalid_cases else 1.0
     
     esc_precision = esc_TP / max(1, esc_TP + esc_FP)
     esc_recall = esc_TP / max(1, esc_TP + esc_FN)
+    esc_f1 = (2 * esc_precision * esc_recall) / max(1e-9, esc_precision + esc_recall)
     
     mean_latency = float(np.mean(latencies)) if latencies else 0.0
     p50 = float(np.percentile(latencies, 50)) if latencies else 0.0
@@ -339,12 +404,32 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
         
     fairness_note = "Detailed demographic parity and equal opportunity metrics available in data/fairness_results.json."
     
+    # Multi-format ingestion benchmark
+    multi_format_results = _evaluate_multi_format(os.path.join(PROJECT_ROOT, "data", "synthetic_docs"))
+
     # 9. Format Report Output
     report = {
         "summary": {
             "evaluated_cases": evaluated_cases,
             "total_cases": total_cases,
-            "overall_accuracy": decision_accuracy,
+            "valid_cases": valid_cases,
+            "schema_invalid_cases": invalid_cases,
+            "exact_recommendation_accuracy_valid": round(exact_rec_acc_valid, 4),
+            "exact_recommendation_accuracy_all": round(exact_rec_acc_all, 4),
+            "composite_handling_correctness": round(decision_accuracy, 4),
+            "escalation_f1_score": round(esc_f1, 4),
+            "unsafe_auto_approval_rate": round(unsafe_auto_approvals / max(1, FP + TN), 4),
+        },
+        "cohort_breakdown": {
+            "total_inputs": total_cases,
+            "valid_inputs": valid_cases,
+            "schema_invalid_inputs": invalid_cases,
+            "expected_distribution": {
+                "valid_approvals": sum(1 for c in manifest if c.get("is_schema_valid", True) and c.get("expected_decision") == "APPROVE"),
+                "valid_denials": sum(1 for c in manifest if c.get("is_schema_valid", True) and c.get("expected_decision") == "DENY"),
+                "valid_escalations": sum(1 for c in manifest if c.get("is_schema_valid", True) and c.get("expected_decision") == "ESCALATE"),
+                "schema_invalid_query_abstentions": sum(1 for c in manifest if not c.get("is_schema_valid", True)),
+            }
         },
         "dimensions": {
             "1_extraction": {
@@ -352,26 +437,31 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
                 "accuracy": round(extraction_accuracy, 4),
             },
             "2_retrieval": {
-                "metric_label": "Document-Level Hit@5 & Query Coverage",
+                "metric_label": "Dense FAISS Retrieval Quality (Hit@5, MRR, Coverage)",
                 "recall_at_5": round(true_recall_at_5, 4),
-                "coverage": round(retrieval_coverage, 4),
-                "recall_proxy_legacy": round(retrieval_quality, 4),
+                "mrr": round(mrr, 4),
+                "query_coverage": round(retrieval_coverage, 4),
             },
             "3_grounding": {
                 "metric_label": "Hallucinated Citation Rate (Regex Guardrail)",
                 "hallucination_rate": round(hallucination_rate, 4),
             },
             "4_decision": {
-                "metric_label": "Composite Benchmark Correctness under Escalation Policy",
-                "accuracy": round(decision_accuracy, 4),
+                "metric_label": "Decision Accuracy & Composite Correctness",
+                "exact_recommendation_accuracy_valid": round(exact_rec_acc_valid, 4),
+                "exact_recommendation_accuracy_all": round(exact_rec_acc_all, 4),
+                "composite_handling_correctness": round(decision_accuracy, 4),
+                "schema_invalid_abstention_rate": round(invalid_abstention_rate, 4),
+                "unsafe_auto_approval_rate": round(unsafe_auto_approvals / max(1, FP + TN), 4),
                 "confusion_matrix": {"TP": TP, "TN": TN, "FP": FP, "FN": FN},
                 "recommendation_fp_rate": round(FP / max(1, FP + TN), 4),
-                "unsafe_auto_approval_rate": round(unsafe_auto_approvals / max(1, FP + TN), 4),
                 "fn_rate": round(FN / max(1, TP + FN), 4),
             },
             "5_escalation": {
+                "metric_label": "Escalation Gate Precision, Recall & F1",
                 "precision": round(esc_precision, 4),
                 "recall": round(esc_recall, 4),
+                "f1_score": round(esc_f1, 4),
                 "confusion_matrix": {"esc_TP": esc_TP, "esc_TN": esc_TN, "esc_FP": esc_FP, "esc_FN": esc_FN},
             },
             "6_latency": {
@@ -390,6 +480,10 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
                 "by_category": dict(category_metrics),
             },
             "9_fairness": fairness_note,
+            "10_multiformat": {
+                "metric_label": "Multi-Format Ingestion Benchmark (PDF, DOCX, Image OCR, TXT)",
+                "by_format": multi_format_results,
+            }
         },
         "case_results": results,
     }
@@ -403,12 +497,17 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
     print("           A1 CASHLESS PRE-AUTH: 9-DIMENSION BENCHMARK")
     print("=" * 65)
     print(f"Total Cases Evaluated: {evaluated_cases} / {total_cases}")
+    print(f"Cohort Breakdown: {valid_cases} Valid Inputs | {invalid_cases} Schema-Invalid Inputs")
     print("\n1. Extraction Accuracy  : {:.2%}".format(extraction_accuracy))
-    print("2. Retrieval Quality     : {:.2%}".format(retrieval_quality))
+    print("2. Retrieval Quality     : Recall@5: {:.2%} | MRR: {:.4f} | Coverage: {:.2%}".format(true_recall_at_5, mrr, retrieval_coverage))
     print("3. Grounding Fidelity    : {:.2%} hallucination rate".format(hallucination_rate))
-    print("4. Decision Accuracy     : {:.2%}".format(decision_accuracy))
-    print(f"   Confusion Matrix      : TP={TP} | TN={TN} | FP={FP} | FN={FN}")
-    print("5. Escalation Precision  : {:.2%} | Recall: {:.2%}".format(esc_precision, esc_recall))
+    print("4. Decision Accuracy     :")
+    print("   • Exact Rec Accuracy (Valid) : {:.2%} ({}/{})".format(exact_rec_acc_valid, exact_matches_valid, valid_cases))
+    print("   • Exact Rec Accuracy (All)   : {:.2%} ({}/{})".format(exact_rec_acc_all, exact_matches_all, evaluated_cases))
+    print("   • Composite Handling Correct : {:.2%}".format(decision_accuracy))
+    print("   • Schema-Invalid Abstention  : {:.2%} ({}/{})".format(invalid_abstention_rate, schema_invalid_abstained, invalid_cases))
+    print(f"   • Confusion Matrix           : TP={TP} | TN={TN} | FP={FP} | FN={FN}")
+    print("5. Escalation Precision  : {:.2%} | Recall: {:.2%} | F1: {:.2%}".format(esc_precision, esc_recall, esc_f1))
     print("6. Latency Profile       : Mean={:.2f}s | p50={:.2f}s | p95={:.2f}s | p99={:.2f}s".format(
         mean_latency, p50, p95, p99
     ))
@@ -426,6 +525,10 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
             
     print("\n9. Fairness & Non-Discrimination:")
     print(f"   {fairness_note}")
+
+    print("\n10. Multi-Format Ingestion Benchmark:")
+    for fmt, fstats in multi_format_results.items():
+        print(f"   • {fmt.upper():<8}: Success Rate: {fstats['success_rate']:.1%} | Avg Conf: {fstats['avg_confidence']:.2f}")
     
     print("\n" + "-" * 65)
     print("Trade-Off Highlight (Error Direction Analysis):")
@@ -439,4 +542,21 @@ def evaluate(manifest_path: str | None = None, results_path: str | None = None, 
 
 
 if __name__ == "__main__":
-    evaluate()
+    import argparse
+    parser = argparse.ArgumentParser(description="Evaluate Cashless Pre-Auth Adjudication Pipeline")
+    parser.add_argument("--heldout", action="store_true", help="Run evaluation on held-out test suite")
+    parser.add_argument("--all", action="store_true", help="Run evaluation on both development and held-out test suites")
+    args = parser.parse_args()
+
+    if args.heldout or args.all:
+        evaluate(
+            manifest_path=os.path.join(PROJECT_ROOT, "data", "synthetic_heldout", "manifest.json"),
+            results_path=os.path.join(PROJECT_ROOT, "data", "heldout_evaluation_results.json"),
+            benchmark_name="Held-Out Independent Benchmark (50 cases)"
+        )
+    if not args.heldout or args.all:
+        evaluate(
+            manifest_path=os.path.join(PROJECT_ROOT, "data", "synthetic", "manifest.json"),
+            results_path=os.path.join(PROJECT_ROOT, "data", "evaluation_results.json"),
+            benchmark_name="Development Set (210 cases)"
+        )
