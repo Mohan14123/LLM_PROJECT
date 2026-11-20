@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-247",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-247",
+  "policy_id": "POL-002",
+  "policy_version": "1.0",
+  "description": "Temporal coverage conflict: admission date precedes policy inception",
+  "expected_schema_valid": false,
+  "expected_error_substring": "is before policy.policy_start_date",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "2a7e1734-2858-49e2-9983-48d984dcba61",
+    "submitted_at": "2027-05-10",
+    "admission_date": "2023-04-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "015502c5-97fe-4cd9-af9f-ad27db6cd65d",
+      "full_name": "Amit Singh",
+      "age": 59,
+      "gender": "female",
+      "policy_number": "POL-002"
+    },
+    "policy": {
+      "policy_number": "POL-002",
+      "plan_type": "family_floater",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2023-06-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "50000.00",
+          "Joint Replacement": "250000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-FF-2024-V02",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "db00107d-ab9f-4f04-bd1f-3f2b22097db0",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "114000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

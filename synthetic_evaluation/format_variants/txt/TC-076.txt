@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: fe050e71-015e-4947-8c20-cd271ce714a5
+Submission Date: 2027-04-15
+Admission Date: 2027-04-15
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Kavita Sharma
+Age: 35
+Gender: female
+Policy / Member Number: POL-006
+
+POLICY DETAILS
+--------------
+Policy Number: POL-006
+Plan Type: individual
+Sum Insured: INR 200000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 10.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Manipal Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Chennai, State: None
+ICD-10 Code: S82.201A
+Primary Diagnosis: Closed fracture of shaft of right tibia due to road traffic collision
+Pre-Existing Disease Flag: False
+Planned Procedure: Open reduction and internal fixation (ORIF) with interlocking intramedullary nail
+Procedure Code: PROC-ORTHO-ORIF-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 4 days): INR 26000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 40250.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 23000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 17250.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 11500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 23000.00
+------------------------
+Total Estimated Amount: INR 141000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

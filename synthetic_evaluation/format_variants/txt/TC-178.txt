@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 22276b3e-ee91-45f4-bbfb-5616e93e2eff
+Submission Date: 2027-01-14
+Admission Date: 2027-01-14
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Divya Mehta
+Age: 72
+Gender: female
+Policy / Member Number: POL-003
+
+POLICY DETAILS
+--------------
+Policy Number: POL-003
+Plan Type: individual
+Sum Insured: INR 300000.00
+Policy Inception Date: 2023-01-01
+Co-Payment Percentage: 20.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Fortis Memorial Research Institute
+Network Status: cashless_network
+Facility Category: None
+City: Gurugram, State: None
+ICD-10 Code: K80.20
+Primary Diagnosis: Calculus of gallbladder without cholecystitis without obstruction
+Pre-Existing Disease Flag: False
+Planned Procedure: Laparoscopic cholecystectomy
+Procedure Code: PROC-SURG-LAP-02
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 3 days): INR 12500.75
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 15000.25
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 19000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 14250.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 9500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 19000.00
+------------------------
+Total Estimated Amount: INR 89251.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

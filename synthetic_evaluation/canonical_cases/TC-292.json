@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-292",
+  "category": "missing_and_ambiguous",
+  "scenario_id": "SCN-292",
+  "policy_id": "POL-012",
+  "policy_version": "1.0",
+  "description": "Ambiguous symptom-only diagnostic code (R10.9) lacking definitive etiology",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "RECOMMEND_QUERY",
+  "rules_tested": [
+    "CLINICAL_AMBIGUITY_GATE"
+  ],
+  "payload": {
+    "request_id": "185849b5-799c-4a8c-828f-fb70c458e57f",
+    "submitted_at": "2027-04-03",
+    "admission_date": "2027-04-03",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "7ba7ee7d-64b0-483a-b6fe-609d76203be3",
+      "full_name": "Pooja Singh",
+      "age": 50,
+      "gender": "male",
+      "policy_number": "POL-012"
+    },
+    "policy": {
+      "policy_number": "POL-012",
+      "plan_type": "individual",
+      "sum_insured": "1500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Chemotherapy": "100000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "TITA-HLT-012-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "8a39ab52-012c-4570-aef6-1ec815afa7b0",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unspecified abdominal pain, etiology under investigation",
+      "icd10_code": "R10.9",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+      "procedure_code": "PROC-CARD-PTCA-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "317500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 5 days)",
+          "amount": "32500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "99750.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "57000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "42750.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "28500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "57000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

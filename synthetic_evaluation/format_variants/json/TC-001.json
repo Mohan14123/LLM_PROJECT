@@ -1,0 +1,87 @@
+{
+  "request_id": "162b9b4b-1d67-42f9-9048-e42619f40d5f",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "c14c6ff1-88b2-4336-8a3d-29c870feb5e2",
+    "full_name": "Manoj Gupta",
+    "age": 39,
+    "gender": "female",
+    "policy_number": "POL-001"
+  },
+  "policy": {
+    "policy_number": "POL-001",
+    "plan_type": "individual",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "40000.00",
+        "Hernia": "50000.00",
+        "Knee Replacement": "150000.00",
+        "Kidney Stone / Lithotripsy": "45000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "APEX-HLT-IND-2024-V01",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "6671c89c-7b33-4bc7-9882-4227c9067d22",
+    "name": "Apollo Multispeciality Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Senile nuclear cataract, bilateral grade 3",
+    "icd10_code": "H25.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+    "procedure_code": "PROC-CAT-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "54000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 1 days)",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "14700.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "8400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "6300.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "4200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "8400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

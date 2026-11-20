@@ -1,0 +1,105 @@
+{
+  "request_id": "d201f45f-14c9-496a-a9c3-7343c0b7cb4e",
+  "submitted_at": "2027-11-21",
+  "admission_date": "2027-11-21",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "a71225a9-a06b-431a-b731-a7ac975a7432",
+    "full_name": "Anita Nair",
+    "age": 72,
+    "gender": "male",
+    "policy_number": "POL-029"
+  },
+  "policy": {
+    "policy_number": "POL-029",
+    "plan_type": "individual",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {
+        "Knee Replacement": "180000.00",
+        "Hip Replacement": "180000.00"
+      }
+    },
+    "co_pay_pct": "10.00",
+    "product_uin": "RELI-HLT-029-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "0962013f-365d-4668-9729-f21c6fad324a",
+    "name": "Sunshine Community Nursing Home",
+    "city": "Lucknow",
+    "network_tier": "non_network",
+    "category": "private"
+  },
+  "diagnosis": {
+    "description": "Calculus of gallbladder without cholecystitis without obstruction",
+    "icd10_code": "K80.20",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Laparoscopic cholecystectomy",
+    "procedure_code": "PROC-SURG-LAP-02",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "117000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 3 days)",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "33250.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "19000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "14250.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "9500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "19000.00",
+        "category": "other"
+      },
+      {
+        "item": "Specialist Consultation Add-on #7",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #8",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #9",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #10",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

@@ -1,0 +1,84 @@
+{
+  "request_id": "2d07df59-d1b6-456d-8acf-a9f8679c2ddc",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "c299804a-b050-45ff-9f80-e8a214192165",
+    "full_name": "Suresh Banerjee",
+    "age": 71,
+    "gender": "female",
+    "policy_number": "POL-021"
+  },
+  "policy": {
+    "policy_number": "POL-021",
+    "plan_type": "individual",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "40000.00"
+      }
+    },
+    "co_pay_pct": "5.00",
+    "product_uin": "RELI-HLT-021-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "fdb0bf0f-d843-48b2-9ef8-7d73172f2617",
+    "name": "Max Super Speciality Hospital",
+    "city": "New Delhi",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Unilateral inguinal hernia, without obstruction or gangrene",
+    "icd10_code": "K40.90",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair",
+    "procedure_code": "PROC-SURG-HER-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "92000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+        "amount": "24000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "23800.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "13600.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "10200.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "6800.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "13600.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

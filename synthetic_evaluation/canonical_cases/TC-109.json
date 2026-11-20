@@ -1,0 +1,95 @@
+{
+  "test_case_id": "TC-109",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-109",
+  "policy_id": "POL-004",
+  "policy_version": "1.0",
+  "description": "Non-network hospital pre-auth trigger",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "ESCALATE",
+  "rules_tested": [
+    "RULE-POL004-01"
+  ],
+  "payload": {
+    "request_id": "dc0ea780-56fc-49a5-bb98-55373d71a220",
+    "submitted_at": "2027-04-05",
+    "admission_date": "2027-04-05",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "f0b8a5ef-c9cc-4650-b9ee-bf3b3739c3e4",
+      "full_name": "Meena Mehta",
+      "age": 49,
+      "gender": "male",
+      "policy_number": "POL-004"
+    },
+    "policy": {
+      "policy_number": "POL-004",
+      "plan_type": "individual",
+      "sum_insured": "5000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZEN-HLT-TOP-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "1dd0b37c-5803-48d4-9ccf-9d4a16867bc0",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "non_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+      "icd10_code": "S82.201A",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "163000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 4 days)",
+          "amount": "48000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

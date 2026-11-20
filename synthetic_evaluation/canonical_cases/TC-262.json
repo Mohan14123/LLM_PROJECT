@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-262",
+  "category": "ocr_stress",
+  "scenario_id": "SCN-262",
+  "policy_id": "POL-017",
+  "policy_version": "1.0",
+  "ocr_distortion": "downsample_low_res",
+  "description": "OCR degradation stress test: downsample_low_res",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "OCR_EXTRACTION_ROBUSTNESS"
+  ],
+  "payload": {
+    "request_id": "42830009-fde0-4fdf-85d6-7d0106abffd8",
+    "submitted_at": "2027-07-21",
+    "admission_date": "2027-07-21",
+    "source_format": "scanned_image",
+    "status": "pending",
+    "patient": {
+      "patient_id": "80b5373d-aad9-4c13-ba33-2ff5ce3576d9",
+      "full_name": "Ananya Kulkarni",
+      "age": 37,
+      "gender": "male",
+      "policy_number": "POL-017"
+    },
+    "policy": {
+      "policy_number": "POL-017",
+      "plan_type": "individual",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-017-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "6484c16a-a3af-4d30-8233-574e49553d52",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "95000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 2 days)",
+          "amount": "8000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

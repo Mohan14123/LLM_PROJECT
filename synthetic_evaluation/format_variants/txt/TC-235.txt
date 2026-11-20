@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 396a5984-2f41-4845-aa2a-30887ea99671
+Submission Date: 2025-11-09
+Admission Date: 2023-11-02
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Pooja Singh
+Age: 33
+Gender: female
+Policy / Member Number: POL-025
+
+POLICY DETAILS
+--------------
+Policy Number: POL-025
+Plan Type: individual
+Sum Insured: INR 400000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 10.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Max Super Speciality Hospital
+Network Status: cashless_network
+Facility Category: None
+City: New Delhi, State: None
+ICD-10 Code: M17.11
+Primary Diagnosis: Primary unilateral osteoarthritis, right knee grade 4
+Pre-Existing Disease Flag: False
+Planned Procedure: Total knee replacement (TKR) unilateral right with cruciate retaining implant
+Procedure Code: PROC-ORTHO-TKR-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Deluxe Suite, 2 days): INR 24000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 84000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 48000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 36000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 24000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 48000.00
+------------------------
+Total Estimated Amount: INR 264000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

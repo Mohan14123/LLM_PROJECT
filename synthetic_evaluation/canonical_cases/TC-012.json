@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-012",
+  "category": "happy_path",
+  "scenario_id": "SCN-012",
+  "policy_id": "POL-012",
+  "policy_version": "1.0",
+  "description": "Happy path: Senile nuclear cataract, bilateral grade 3 at Manipal Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-012-01",
+    "RULE-POL-012-02",
+    "RULE-POL-012-03"
+  ],
+  "payload": {
+    "request_id": "d3e1bf4d-8f05-4cb7-aed5-bc66e8eafb8e",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "5af044d6-44c3-4c3b-ba8c-24aaf954078c",
+      "full_name": "Rekha Patel",
+      "age": 32,
+      "gender": "male",
+      "policy_number": "POL-012"
+    },
+    "policy": {
+      "policy_number": "POL-012",
+      "plan_type": "individual",
+      "sum_insured": "1500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Chemotherapy": "100000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "TITA-HLT-012-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "5a1f1bc4-80bd-497e-90e9-003b5bc10f71",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "48500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 1 days)",
+          "amount": "6500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

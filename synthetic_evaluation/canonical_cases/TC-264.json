@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-264",
+  "category": "ocr_stress",
+  "scenario_id": "SCN-264",
+  "policy_id": "POL-019",
+  "policy_version": "1.0",
+  "ocr_distortion": "noise_speckle",
+  "description": "OCR degradation stress test: noise_speckle",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "OCR_EXTRACTION_ROBUSTNESS"
+  ],
+  "payload": {
+    "request_id": "8be57dd4-f05b-49e7-860d-57a1ba23e1fa",
+    "submitted_at": "2027-09-03",
+    "admission_date": "2027-09-03",
+    "source_format": "scanned_image",
+    "status": "pending",
+    "patient": {
+      "patient_id": "f4a0b9c9-6785-4710-b9bf-4a2b10700591",
+      "full_name": "Vikram Singh",
+      "age": 75,
+      "gender": "female",
+      "policy_number": "POL-019"
+    },
+    "policy": {
+      "policy_number": "POL-019",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 48,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "35000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZENI-HLT-019-2024",
+      "product_version": "pre_2024.legacy",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "adba8b88-7f84-44e8-ba4d-b400629e3d93",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Encounter for cosmetic aesthetic rhinoplasty",
+      "icd10_code": "Z41.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Elective cosmetic rhinoplasty and septal reshaping",
+      "procedure_code": "PROC-COSM-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "139500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 3 days)",
+          "amount": "19500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "42000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "24000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "18000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "12000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "24000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

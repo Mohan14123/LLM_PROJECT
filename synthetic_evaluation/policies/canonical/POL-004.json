@@ -1,0 +1,70 @@
+{
+  "policy_id": "POL-004",
+  "policy_version": "1.0",
+  "policy_name": "Zenith Super Top-Up Premier",
+  "insurer_name": "Zenith General Insurance Ltd.",
+  "policy_type": "individual",
+  "product_uin": "ZEN-HLT-TOP-2024-V01",
+  "product_version": "2024.1",
+  "policyholder_eligibility": {
+    "min_entry_age": 18,
+    "max_entry_age": 70
+  },
+  "policy_start_date": "2024-01-01",
+  "policy_expiry_date": "2024-12-31",
+  "sum_insured": {
+    "amount": "5000000.00",
+    "currency": "INR"
+  },
+  "available_sum_insured": {
+    "amount": "5000000.00",
+    "currency": "INR"
+  },
+  "room_rent_limits": {
+    "type": "actuals",
+    "daily_cap_inr": null,
+    "proportional_deduction_applies": false
+  },
+  "icu_limits": {
+    "type": "actuals",
+    "daily_cap_inr": null
+  },
+  "disease_sublimits": {},
+  "waiting_periods": {
+    "initial_days": 30,
+    "initial_accident_exempt": true,
+    "specific_disease_months": 24,
+    "ped_months": 36,
+    "statutory_moratorium_months": 60
+  },
+  "co_payment": {
+    "mandatory_pct": "0.00",
+    "clause": "None"
+  },
+  "deductible": {
+    "amount": "500000.00",
+    "currency": "INR",
+    "type": "aggregate_annual_deductible",
+    "clause_reference": "Section 1.2"
+  },
+  "restoration_benefit": {
+    "is_available": false
+  },
+  "exclusions": {
+    "permanent": [
+      "Cosmetic treatments",
+      "Experimental therapies"
+    ],
+    "conditional": []
+  },
+  "network_hospital_conditions": "Nationwide cashless empanelment.",
+  "rules": [
+    {
+      "rule_id": "RULE-POL004-01",
+      "rule_type": "annual_deductible",
+      "clause_reference": "Section 1.2",
+      "condition": "Claims become payable only once total medical expenses exceed the \u20b95,00,000 threshold.",
+      "expected_interpretation": "deduct_500000_threshold"
+    }
+  ]
+}

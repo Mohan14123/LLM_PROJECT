@@ -1,0 +1,85 @@
+{
+  "request_id": "38bf7123-f924-4b16-8271-a1a09589697c",
+  "submitted_at": "2027-12-30",
+  "admission_date": "2027-12-30",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "6a03944f-9e85-44f7-9428-9436d82f0a78",
+    "full_name": "",
+    "age": 39,
+    "gender": "female",
+    "policy_number": "POL-006"
+  },
+  "policy": {
+    "policy_number": "POL-006",
+    "plan_type": "individual",
+    "sum_insured": "200000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "20000.00",
+        "Hernia": "30000.00"
+      }
+    },
+    "co_pay_pct": "10.00",
+    "product_uin": "NATI-HLT-006-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "a681998b-e329-43d5-b988-9265b0769c77",
+    "name": "Care & Cure Rural Hospital",
+    "city": "Ahmedabad",
+    "network_tier": "non_network",
+    "category": "trust"
+  },
+  "diagnosis": {
+    "description": "Calculus of ureter with moderate hydronephrosis",
+    "icd10_code": "N20.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+    "procedure_code": "PROC-URO-LITH-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "78000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+        "amount": "26000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "18200.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "10400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "7800.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "5200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "10400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-018",
+  "category": "happy_path",
+  "scenario_id": "SCN-018",
+  "policy_id": "POL-018",
+  "policy_version": "1.0",
+  "description": "Happy path: Calculus of ureter with moderate hydronephrosis at Fortis Memorial Research Institute",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-018-01",
+    "RULE-POL-018-02",
+    "RULE-POL-018-03"
+  ],
+  "payload": {
+    "request_id": "0002b276-2487-4aa6-8a1f-759e99fff8c9",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "81d68828-abba-4d55-a760-3c8fe7c23ddc",
+      "full_name": "Deepak Joshi",
+      "age": 30,
+      "gender": "female",
+      "policy_number": "POL-018"
+    },
+    "policy": {
+      "policy_number": "POL-018",
+      "plan_type": "family_floater",
+      "sum_insured": "2000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-018-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "3f150b64-407b-40ba-a9be-e59191f08035",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of ureter with moderate hydronephrosis",
+      "icd10_code": "N20.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+      "procedure_code": "PROC-URO-LITH-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "72000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "18200.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "10400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "7800.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "5200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "10400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

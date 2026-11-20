@@ -1,0 +1,722 @@
+{
+  "POL-001": {
+    "policy_name": "Apex Comprehensive Health Shield",
+    "plan_type": "individual",
+    "sum_insured_inr": "500000.00",
+    "room_rent_cap_inr": "5000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "40000.00",
+        "per": "per_eye",
+        "clause": "Schedule B, Item 1"
+      },
+      "Hernia": {
+        "cap_inr": "50000.00",
+        "per": "per_admission",
+        "clause": "Schedule B, Item 2"
+      },
+      "Knee Replacement": {
+        "cap_inr": "150000.00",
+        "per": "per_knee",
+        "clause": "Schedule B, Item 3"
+      },
+      "Kidney Stone / Lithotripsy": {
+        "cap_inr": "45000.00",
+        "per": "per_admission",
+        "clause": "Schedule B, Item 4"
+      }
+    }
+  },
+  "POL-002": {
+    "policy_name": "Vanguard Family Floater Health Security",
+    "plan_type": "family_floater",
+    "sum_insured_inr": "1000000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "50000.00",
+        "per": "per_eye",
+        "clause": "Clause 5.1"
+      },
+      "Joint Replacement": {
+        "cap_inr": "250000.00",
+        "per": "per_joint",
+        "clause": "Clause 5.2"
+      }
+    }
+  },
+  "POL-003": {
+    "policy_name": "Paramount Senior Citizen Silver Care",
+    "plan_type": "individual",
+    "sum_insured_inr": "300000.00",
+    "room_rent_cap_inr": "3000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "20.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 12,
+    "ped_wp_months": 24,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "25000.00",
+        "per": "per_eye",
+        "clause": "Section 4.1"
+      },
+      "Cardiac Stent Surgery": {
+        "cap_inr": "120000.00",
+        "per": "per_admission",
+        "clause": "Section 4.2"
+      },
+      "Knee Replacement": {
+        "cap_inr": "100000.00",
+        "per": "per_knee",
+        "clause": "Section 4.3"
+      },
+      "Cancer Chemotherapy": {
+        "cap_inr": "80000.00",
+        "per": "per_cycle",
+        "clause": "Section 4.4"
+      }
+    }
+  },
+  "POL-004": {
+    "policy_name": "Zenith Super Top-Up Premier",
+    "plan_type": "individual",
+    "sum_insured_inr": "5000000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "500000.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {}
+  },
+  "POL-005": {
+    "policy_name": "Titan Corporate Group Mediclaim",
+    "plan_type": "group",
+    "sum_insured_inr": "500000.00",
+    "room_rent_cap_inr": "7500.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 0,
+    "specific_disease_wp_months": 0,
+    "ped_wp_months": 0,
+    "restoration_benefit": true,
+    "disease_sublimits": {
+      "Maternity Normal": {
+        "cap_inr": "50000.00",
+        "per": "per_delivery",
+        "clause": "Maternity Endorsement"
+      },
+      "Maternity Caesarean": {
+        "cap_inr": "75000.00",
+        "per": "per_delivery",
+        "clause": "Maternity Endorsement"
+      },
+      "Cataract": {
+        "cap_inr": "40000.00",
+        "per": "per_eye",
+        "clause": "Schedule C"
+      }
+    }
+  },
+  "POL-006": {
+    "policy_name": "National Economy Basic Care",
+    "plan_type": "individual",
+    "sum_insured_inr": "200000.00",
+    "room_rent_cap_inr": "2000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "10.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "20000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      },
+      "Hernia": {
+        "cap_inr": "30000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Hernia)"
+      }
+    }
+  },
+  "POL-007": {
+    "policy_name": "Metropolitan Gold Family Floater",
+    "plan_type": "family_floater",
+    "sum_insured_inr": "750000.00",
+    "room_rent_cap_inr": "11250.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "45000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      },
+      "Knee Replacement": {
+        "cap_inr": "175000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Knee Replacement)"
+      }
+    }
+  },
+  "POL-008": {
+    "policy_name": "Apex Platinum Global Shield",
+    "plan_type": "individual",
+    "sum_insured_inr": "2500000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 12,
+    "ped_wp_months": 24,
+    "restoration_benefit": true,
+    "disease_sublimits": {}
+  },
+  "POL-009": {
+    "policy_name": "Vanguard Senior Citizen Vitality",
+    "plan_type": "individual",
+    "sum_insured_inr": "400000.00",
+    "room_rent_cap_inr": "4000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "20.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 12,
+    "ped_wp_months": 24,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Cardiac": {
+        "cap_inr": "150000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cardiac)"
+      },
+      "Cataract": {
+        "cap_inr": "30000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      }
+    }
+  },
+  "POL-010": {
+    "policy_name": "Paramount Corporate Executive Group",
+    "plan_type": "group",
+    "sum_insured_inr": "1000000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 0,
+    "specific_disease_wp_months": 0,
+    "ped_wp_months": 0,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Maternity": {
+        "cap_inr": "80000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Maternity)"
+      }
+    }
+  },
+  "POL-011": {
+    "policy_name": "Zenith Diabetes & Hypertension Care",
+    "plan_type": "individual",
+    "sum_insured_inr": "500000.00",
+    "room_rent_cap_inr": "5000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "15.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 12,
+    "ped_wp_months": 12,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Dialysis": {
+        "cap_inr": "50000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Dialysis)"
+      }
+    }
+  },
+  "POL-012": {
+    "policy_name": "Titan Cardiac & Cancer Protect",
+    "plan_type": "individual",
+    "sum_insured_inr": "1500000.00",
+    "room_rent_cap_inr": "30000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "10.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 24,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Chemotherapy": {
+        "cap_inr": "100000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Chemotherapy)"
+      }
+    }
+  },
+  "POL-013": {
+    "policy_name": "Reliant Youth Starter Health",
+    "plan_type": "individual",
+    "sum_insured_inr": "300000.00",
+    "room_rent_cap_inr": "3000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "5.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Appendicitis": {
+        "cap_inr": "40000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Appendicitis)"
+      }
+    }
+  },
+  "POL-014": {
+    "policy_name": "National Women Complete Wellness",
+    "plan_type": "individual",
+    "sum_insured_inr": "600000.00",
+    "room_rent_cap_inr": "9000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Maternity": {
+        "cap_inr": "60000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Maternity)"
+      },
+      "Hysterectomy": {
+        "cap_inr": "70000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Hysterectomy)"
+      }
+    }
+  },
+  "POL-015": {
+    "policy_name": "Metropolitan Metro Preferred Floater",
+    "plan_type": "family_floater",
+    "sum_insured_inr": "1200000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {
+      "Joint Replacement": {
+        "cap_inr": "200000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Joint Replacement)"
+      }
+    }
+  },
+  "POL-016": {
+    "policy_name": "Apex Rural Micro-Insurance",
+    "plan_type": "individual",
+    "sum_insured_inr": "100000.00",
+    "room_rent_cap_inr": "1000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "15000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      }
+    }
+  },
+  "POL-017": {
+    "policy_name": "Vanguard High-Deductible Top-Up 25k",
+    "plan_type": "individual",
+    "sum_insured_inr": "1000000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "25000.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {}
+  },
+  "POL-018": {
+    "policy_name": "Paramount High-Deductible Top-Up 50k",
+    "plan_type": "family_floater",
+    "sum_insured_inr": "2000000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "50000.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {}
+  },
+  "POL-019": {
+    "policy_name": "Zenith Legacy 48-Month PED Plan",
+    "plan_type": "individual",
+    "sum_insured_inr": "500000.00",
+    "room_rent_cap_inr": "5000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 48,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "35000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      }
+    }
+  },
+  "POL-020": {
+    "policy_name": "Titan Legacy Family Plan 48m",
+    "plan_type": "family_floater",
+    "sum_insured_inr": "600000.00",
+    "room_rent_cap_inr": "6000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "10.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 48,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Hernia": {
+        "cap_inr": "45000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Hernia)"
+      }
+    }
+  },
+  "POL-021": {
+    "policy_name": "Reliant Arogya Sanjeevani Standard",
+    "plan_type": "individual",
+    "sum_insured_inr": "500000.00",
+    "room_rent_cap_inr": "5000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "5.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "40000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      }
+    }
+  },
+  "POL-022": {
+    "policy_name": "National Arogya Sanjeevani Floater",
+    "plan_type": "family_floater",
+    "sum_insured_inr": "500000.00",
+    "room_rent_cap_inr": "5000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "5.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "40000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      }
+    }
+  },
+  "POL-023": {
+    "policy_name": "Metropolitan Day Care Special Plan",
+    "plan_type": "individual",
+    "sum_insured_inr": "300000.00",
+    "room_rent_cap_inr": "4500.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 12,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Lithotripsy": {
+        "cap_inr": "40000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Lithotripsy)"
+      },
+      "Cataract": {
+        "cap_inr": "35000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      }
+    }
+  },
+  "POL-024": {
+    "policy_name": "Apex Emergency Trauma Shield",
+    "plan_type": "individual",
+    "sum_insured_inr": "1000000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 0,
+    "specific_disease_wp_months": 0,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {}
+  },
+  "POL-025": {
+    "policy_name": "Vanguard Tier-2 City Advantage Plan",
+    "plan_type": "individual",
+    "sum_insured_inr": "400000.00",
+    "room_rent_cap_inr": "4000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "10.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "25000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      }
+    }
+  },
+  "POL-026": {
+    "policy_name": "Paramount Tier-1 Corporate Gold",
+    "plan_type": "group",
+    "sum_insured_inr": "750000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 0,
+    "specific_disease_wp_months": 0,
+    "ped_wp_months": 0,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Maternity": {
+        "cap_inr": "70000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Maternity)"
+      }
+    }
+  },
+  "POL-027": {
+    "policy_name": "Zenith Armed Forces Veteran Care",
+    "plan_type": "individual",
+    "sum_insured_inr": "800000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 0,
+    "specific_disease_wp_months": 0,
+    "ped_wp_months": 12,
+    "restoration_benefit": false,
+    "disease_sublimits": {}
+  },
+  "POL-028": {
+    "policy_name": "Titan Critical Illness Lump-Sum Combo",
+    "plan_type": "individual",
+    "sum_insured_inr": "2000000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 90,
+    "specific_disease_wp_months": 0,
+    "ped_wp_months": 24,
+    "restoration_benefit": false,
+    "disease_sublimits": {}
+  },
+  "POL-029": {
+    "policy_name": "Reliant Joint Replacement Plus",
+    "plan_type": "individual",
+    "sum_insured_inr": "500000.00",
+    "room_rent_cap_inr": "5000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "10.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 12,
+    "ped_wp_months": 24,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Knee Replacement": {
+        "cap_inr": "180000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Knee Replacement)"
+      },
+      "Hip Replacement": {
+        "cap_inr": "180000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Hip Replacement)"
+      }
+    }
+  },
+  "POL-030": {
+    "policy_name": "National Ophthalmic & ENT Special",
+    "plan_type": "individual",
+    "sum_insured_inr": "250000.00",
+    "room_rent_cap_inr": "2500.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 12,
+    "ped_wp_months": 24,
+    "restoration_benefit": false,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "30000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      },
+      "Tympanoplasty": {
+        "cap_inr": "35000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Tympanoplasty)"
+      }
+    }
+  },
+  "POL-031": {
+    "policy_name": "Metropolitan Pediatric & Family Floater",
+    "plan_type": "family_floater",
+    "sum_insured_inr": "800000.00",
+    "room_rent_cap_inr": "12000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {
+      "Tonsillectomy": {
+        "cap_inr": "30000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Tonsillectomy)"
+      }
+    }
+  },
+  "POL-032": {
+    "policy_name": "Apex Executive Restoration Shield",
+    "plan_type": "individual",
+    "sum_insured_inr": "1500000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {}
+  },
+  "POL-033": {
+    "policy_name": "Vanguard Smart Deductible 100k",
+    "plan_type": "individual",
+    "sum_insured_inr": "2500000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "100000.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {}
+  },
+  "POL-034": {
+    "policy_name": "Paramount Portability Guaranteed Shield",
+    "plan_type": "individual",
+    "sum_insured_inr": "500000.00",
+    "room_rent_cap_inr": "5000.00",
+    "proportional_deduction": true,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": true,
+    "disease_sublimits": {
+      "Cataract": {
+        "cap_inr": "40000.00",
+        "per": "per_admission",
+        "clause": "Section 4 Sub-Limits Schedule Item (Cataract)"
+      }
+    }
+  },
+  "POL-035": {
+    "policy_name": "Zenith Cashless Anywhere Elite",
+    "plan_type": "individual",
+    "sum_insured_inr": "1000000.00",
+    "room_rent_cap_inr": null,
+    "proportional_deduction": false,
+    "copay_percentage": "0.00",
+    "deductible_amount_inr": "0.00",
+    "initial_wp_days": 30,
+    "specific_disease_wp_months": 24,
+    "ped_wp_months": 36,
+    "restoration_benefit": false,
+    "disease_sublimits": {}
+  }
+}

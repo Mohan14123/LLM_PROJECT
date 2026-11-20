@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-035",
+  "category": "happy_path",
+  "scenario_id": "SCN-035",
+  "policy_id": "POL-035",
+  "policy_version": "1.0",
+  "description": "Happy path: Calculus of gallbladder without cholecystitis without obstruction at Max Super Speciality Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-035-01",
+    "RULE-POL-035-02",
+    "RULE-POL-035-03"
+  ],
+  "payload": {
+    "request_id": "d6c7b2f2-9776-4706-be9d-11438787ee9d",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "10bdc8cb-10c8-4a29-9347-3a4ce64fadc2",
+      "full_name": "Anita Banerjee",
+      "age": 48,
+      "gender": "female",
+      "policy_number": "POL-035"
+    },
+    "policy": {
+      "policy_number": "POL-035",
+      "plan_type": "individual",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZENI-HLT-035-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "59946c7c-9850-466e-b2e4-7d35518ef1eb",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "119000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

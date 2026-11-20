@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-219",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-219",
+  "policy_id": "POL-009",
+  "policy_version": "1.0",
+  "description": "Malformed non-ISO admission date format",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be a valid date or date-time",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "faf77c03-a8fc-44bc-9da4-a3e678a69975",
+    "submitted_at": "2027-06-28",
+    "admission_date": "31-02-2024",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "38794658-dd14-4166-8dbe-5f112f2c415f",
+      "full_name": "Arjun Iyer",
+      "age": 75,
+      "gender": "female",
+      "policy_number": "POL-009"
+    },
+    "policy": {
+      "policy_number": "POL-009",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cardiac": "150000.00",
+          "Cataract": "30000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "VANG-HLT-009-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "d0d494ce-09d7-46ee-816c-d85b48bae35b",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+      "icd10_code": "S82.201A",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "151000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

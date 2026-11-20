@@ -1,0 +1,85 @@
+{
+  "request_id": "25145e2f-b9cf-4866-bbc4-5f5a7fe420b6",
+  "submitted_at": "2024-01-06",
+  "admission_date": "2024-01-06",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "260e6118-6848-4625-be80-014048b41a3a",
+    "full_name": "Karthik Reddy",
+    "age": 64,
+    "gender": "female",
+    "policy_number": "POL-030"
+  },
+  "policy": {
+    "policy_number": "POL-030",
+    "plan_type": "individual",
+    "sum_insured": "250000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "30000.00",
+        "Tympanoplasty": "35000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "NATI-HLT-030-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "f22aa5d9-7906-4682-afba-cc106631636b",
+    "name": "Fortis Memorial Research Institute",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Unspecified acute appendicitis with localized peritonitis",
+    "icd10_code": "K35.80",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Emergency laparoscopic appendectomy",
+    "procedure_code": "PROC-SURG-APP-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "78201.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 5 days)",
+        "amount": "12500.75",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "15000.25",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "15600.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "11700.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "7800.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "15600.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

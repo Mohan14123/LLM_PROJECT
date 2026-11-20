@@ -1,0 +1,85 @@
+{
+  "request_id": "bf6ccf27-b61b-49a1-a355-fce88d76f96e",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "c8559c8a-54df-4b22-841d-026bed69a42d",
+    "full_name": "Suresh Patel",
+    "age": 68,
+    "gender": "female",
+    "policy_number": "POL-009"
+  },
+  "policy": {
+    "policy_number": "POL-009",
+    "plan_type": "individual",
+    "sum_insured": "400000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {
+        "Cardiac": "150000.00",
+        "Cataract": "30000.00"
+      }
+    },
+    "co_pay_pct": "20.00",
+    "product_uin": "VANG-HLT-009-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "5739d154-7157-4a49-9e15-a2481c6c65e7",
+    "name": "Apollo Multispeciality Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Pneumonia, unspecified organism with acute respiratory distress",
+    "icd10_code": "J18.9",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+    "procedure_code": "PROC-MED-CON-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "135000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 4 days)",
+        "amount": "48000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "30450.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "17400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "13050.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "8700.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "17400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

@@ -1,0 +1,100 @@
+{
+  "test_case_id": "TC-076",
+  "category": "happy_path",
+  "scenario_id": "SCN-076",
+  "policy_id": "POL-006",
+  "policy_version": "1.0",
+  "description": "Happy path: Closed fracture of shaft of right tibia due to road traffic collision at Manipal Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-006-01",
+    "RULE-POL-006-02",
+    "RULE-POL-006-03"
+  ],
+  "payload": {
+    "request_id": "fe050e71-015e-4947-8c20-cd271ce714a5",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "264c6197-b731-4fb0-a499-cd9f07250240",
+      "full_name": "Kavita Sharma",
+      "age": 35,
+      "gender": "female",
+      "policy_number": "POL-006"
+    },
+    "policy": {
+      "policy_number": "POL-006",
+      "plan_type": "individual",
+      "sum_insured": "200000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "20000.00",
+          "Hernia": "30000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "NATI-HLT-006-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "8802d30e-c892-47a8-abd3-d03e663cb2c9",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+      "icd10_code": "S82.201A",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "141000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+          "amount": "26000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

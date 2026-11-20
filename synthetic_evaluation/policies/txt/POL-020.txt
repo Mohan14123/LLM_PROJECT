@@ -1,0 +1,52 @@
+================================================================================
+TITAN INSURANCE CO. LTD.
+CERTIFICATE OF INSURANCE & POLICY SCHEDULE: TITAN LEGACY FAMILY PLAN 48M
+UIN: TITA-HLT-020-2024 | Version: pre_2024.legacy
+================================================================================
+
+SECTION 1: POLICY SCHEDULE & ENTITLEMENT DETAILS
+--------------------------------------------------------------------------------
+Policy Identifier      : POL-020
+Insurance Product Name : Titan Legacy Family Plan 48m
+Underwriting Insurer   : Titan Insurance Co. Ltd.
+Plan Category / Type   : FAMILY_FLOATER
+Policy Inception Date  : 2024-01-01
+Policy Expiry Date     : 2024-12-31
+Annual Sum Insured     : INR 600000.00
+Available Sum Insured  : INR 600000.00
+
+SECTION 2: ROOM RENT & INTENSIVE CARE UNIT (ICU) RESTRICTIONS
+--------------------------------------------------------------------------------
+Room Rent Limit Type   : percentage_of_sum_insured
+Daily Room Rent Cap    : INR 6000.00
+Proportional Deduction : Applicable under Clause 3.1.A
+ICU Daily Limit        : INR 12000.00
+
+SECTION 3: MANDATORY WAITING PERIOD SCHEDULE
+--------------------------------------------------------------------------------
+Initial Waiting Period : 30 Days (Waived for Accidental Injury)
+Specific Disease Period: 24 Months
+Pre-Existing Disease   : 48 Months of Continuous Coverage
+Statutory Moratorium   : 60 Months
+
+SECTION 4: CO-PAYMENT & ANNUAL DEDUCTIBLE PROVISIONS
+--------------------------------------------------------------------------------
+Mandatory Co-Payment   : 10.00%
+Deductible Amount      : INR 0.00 (none)
+
+SECTION 5: SPECIFIC PROCEDURE & DISEASE SUB-LIMIT SCHEDULE
+--------------------------------------------------------------------------------
+  * Hernia                    : INR 45000.00     (per_admission)
+
+SECTION 6: PERMANENT & STATUTORY EXCLUSIONS
+--------------------------------------------------------------------------------
+  [X] Aesthetic, cosmetic or plastic surgery
+  [X] Self-inflicted injury or suicide attempts
+  [X] Unproven or investigational procedures
+
+SECTION 7: NETWORK HOSPITALIZATION & PRE-AUTH GUIDELINES
+--------------------------------------------------------------------------------
+Empanelled Network Hospitals for Cashless Facilities.
+Pre-Authorisation Mandate: Planned admissions require submission 48 hours prior;
+Emergency hospitalizations require intimation within 24 hours of admission.
+================================================================================

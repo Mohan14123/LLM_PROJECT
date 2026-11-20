@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 9757d888-ad2b-418f-9b49-788feddd626c
+Submission Date: 2027-06-08
+Admission Date: 2027-06-08
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Ramesh Nair
+Age: 71
+Gender: female
+Policy / Member Number: POL-001
+
+POLICY DETAILS
+--------------
+Policy Number: POL-001
+Plan Type: individual
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Fortis Memorial Research Institute
+Network Status: cashless_network
+Facility Category: None
+City: Gurugram, State: None
+ICD-10 Code: N20.1
+Primary Diagnosis: Calculus of ureter with moderate hydronephrosis
+Pre-Existing Disease Flag: False
+Planned Procedure: Ureteroscopic lithotripsy (URSL) with DJ stenting
+Procedure Code: PROC-URO-LITH-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 2 days): INR 12500.75
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 15000.25
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 10400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 7800.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 5200.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 10400.00
+------------------------
+Total Estimated Amount: INR 61301.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-205",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-205",
+  "policy_id": "POL-030",
+  "policy_version": "1.0",
+  "description": "Negative line-item amount",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be greater than or equal to 0",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "03792696-7af7-4c4a-a78f-4dbb05bbf806",
+    "submitted_at": "2026-03-31",
+    "admission_date": "2026-03-31",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "ec8e42d5-6003-4012-a35c-a67f2f9e84dd",
+      "full_name": "Neha Rao",
+      "age": 60,
+      "gender": "female",
+      "policy_number": "POL-030"
+    },
+    "policy": {
+      "policy_number": "POL-030",
+      "plan_type": "individual",
+      "sum_insured": "250000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "30000.00",
+          "Tympanoplasty": "35000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "NATI-HLT-030-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "1febd795-d57f-44a2-a271-eb61ee59e8a7",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of ureter with moderate hydronephrosis",
+      "icd10_code": "N20.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+      "procedure_code": "PROC-URO-LITH-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "76000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 2 days)",
+          "amount": "-1500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "18200.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "10400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "7800.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "5200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "10400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

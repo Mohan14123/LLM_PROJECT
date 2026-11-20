@@ -1,0 +1,82 @@
+{
+  "request_id": "c90cf445-744a-4172-a5b2-6f2c26c18875",
+  "submitted_at": "2024-01-17",
+  "admission_date": "2024-01-17",
+  "source_format": "scanned_image",
+  "status": "pending",
+  "patient": {
+    "patient_id": "0b6a1fde-af6d-4036-8613-2a4e12b41e11",
+    "full_name": "Anil Kumar",
+    "age": 53,
+    "gender": "male",
+    "policy_number": "POL-035"
+  },
+  "policy": {
+    "policy_number": "POL-035",
+    "plan_type": "individual",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "ZENI-HLT-035-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "0ece6bc0-6699-4572-9f0c-d8eddd21b32d",
+    "name": "Care & Cure Rural Hospital",
+    "city": "Ahmedabad",
+    "network_tier": "non_network",
+    "category": "trust"
+  },
+  "diagnosis": {
+    "description": "Unspecified acute appendicitis with localized peritonitis",
+    "icd10_code": "K35.80",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Emergency laparoscopic appendectomy",
+    "procedure_code": "PROC-SURG-APP-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "104000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+        "amount": "26000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "27300.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "15600.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "11700.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "7800.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "15600.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

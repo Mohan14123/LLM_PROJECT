@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-245",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-245",
+  "policy_id": "POL-035",
+  "policy_version": "1.0",
+  "description": "Financial cross-field contradiction between line items and total",
+  "expected_schema_valid": false,
+  "expected_error_substring": "exceeds the +/- 1 INR reconciliation tolerance",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "abe5c097-7492-429b-be04-56f410256bec",
+    "submitted_at": "2025-01-08",
+    "admission_date": "2025-01-08",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "22b32a0f-2a14-45af-b41c-50098db64de8",
+      "full_name": "Meena Rao",
+      "age": 71,
+      "gender": "female",
+      "policy_number": "POL-035"
+    },
+    "policy": {
+      "policy_number": "POL-035",
+      "plan_type": "individual",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZENI-HLT-035-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "94265d91-d764-4cb9-a373-2d6631193873",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unilateral inguinal hernia, without obstruction or gangrene",
+      "icd10_code": "K40.90",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair",
+      "procedure_code": "PROC-SURG-HER-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "92500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "23800.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "13600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "10200.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "6800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "13600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

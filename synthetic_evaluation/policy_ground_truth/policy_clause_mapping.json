@@ -1,0 +1,453 @@
+{
+  "POL-001": {
+    "room_rent_clause": "Section 3.1.A",
+    "copay_clause": "Section 4.1",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Schedule B, Item 1",
+      "Hernia": "Schedule B, Item 2",
+      "Knee Replacement": "Schedule B, Item 3",
+      "Kidney Stone / Lithotripsy": "Schedule B, Item 4"
+    }
+  },
+  "POL-002": {
+    "room_rent_clause": "Section 3.2",
+    "copay_clause": "Section 4.0",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Clause 5.1",
+      "Joint Replacement": "Clause 5.2"
+    }
+  },
+  "POL-003": {
+    "room_rent_clause": "Section 2.1",
+    "copay_clause": "Section 5.1",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (12 months)",
+      "ped": "Section 2.3 (24 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4.1",
+      "Cardiac Stent Surgery": "Section 4.2",
+      "Knee Replacement": "Section 4.3",
+      "Cancer Chemotherapy": "Section 4.4"
+    }
+  },
+  "POL-004": {
+    "room_rent_clause": null,
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-005": {
+    "room_rent_clause": "Endorsement Schedule A",
+    "copay_clause": null,
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (0 months)",
+      "ped": "Section 2.3 (0 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Maternity Normal": "Maternity Endorsement",
+      "Maternity Caesarean": "Maternity Endorsement",
+      "Cataract": "Schedule C"
+    }
+  },
+  "POL-006": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (10.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)",
+      "Hernia": "Section 4 Sub-Limits Schedule Item (Hernia)"
+    }
+  },
+  "POL-007": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)",
+      "Knee Replacement": "Section 4 Sub-Limits Schedule Item (Knee Replacement)"
+    }
+  },
+  "POL-008": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (12 months)",
+      "ped": "Section 2.3 (24 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-009": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (20.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (12 months)",
+      "ped": "Section 2.3 (24 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cardiac": "Section 4 Sub-Limits Schedule Item (Cardiac)",
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)"
+    }
+  },
+  "POL-010": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (0 months)",
+      "ped": "Section 2.3 (0 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Maternity": "Section 4 Sub-Limits Schedule Item (Maternity)"
+    }
+  },
+  "POL-011": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (15.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (12 months)",
+      "ped": "Section 2.3 (12 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Dialysis": "Section 4 Sub-Limits Schedule Item (Dialysis)"
+    }
+  },
+  "POL-012": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (10.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (24 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Chemotherapy": "Section 4 Sub-Limits Schedule Item (Chemotherapy)"
+    }
+  },
+  "POL-013": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (5.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Appendicitis": "Section 4 Sub-Limits Schedule Item (Appendicitis)"
+    }
+  },
+  "POL-014": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Maternity": "Section 4 Sub-Limits Schedule Item (Maternity)",
+      "Hysterectomy": "Section 4 Sub-Limits Schedule Item (Hysterectomy)"
+    }
+  },
+  "POL-015": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Joint Replacement": "Section 4 Sub-Limits Schedule Item (Joint Replacement)"
+    }
+  },
+  "POL-016": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)"
+    }
+  },
+  "POL-017": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-018": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-019": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (48 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)"
+    }
+  },
+  "POL-020": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (10.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (48 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Hernia": "Section 4 Sub-Limits Schedule Item (Hernia)"
+    }
+  },
+  "POL-021": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (5.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)"
+    }
+  },
+  "POL-022": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (5.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)"
+    }
+  },
+  "POL-023": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (12 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Lithotripsy": "Section 4 Sub-Limits Schedule Item (Lithotripsy)",
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)"
+    }
+  },
+  "POL-024": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (0 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-025": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (10.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)"
+    }
+  },
+  "POL-026": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (0 months)",
+      "ped": "Section 2.3 (0 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Maternity": "Section 4 Sub-Limits Schedule Item (Maternity)"
+    }
+  },
+  "POL-027": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (0 months)",
+      "ped": "Section 2.3 (12 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-028": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (0 months)",
+      "ped": "Section 2.3 (24 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-029": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "Section 5.1 (10.00% Co-Payment)",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (12 months)",
+      "ped": "Section 2.3 (24 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Knee Replacement": "Section 4 Sub-Limits Schedule Item (Knee Replacement)",
+      "Hip Replacement": "Section 4 Sub-Limits Schedule Item (Hip Replacement)"
+    }
+  },
+  "POL-030": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (12 months)",
+      "ped": "Section 2.3 (24 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)",
+      "Tympanoplasty": "Section 4 Sub-Limits Schedule Item (Tympanoplasty)"
+    }
+  },
+  "POL-031": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Tonsillectomy": "Section 4 Sub-Limits Schedule Item (Tonsillectomy)"
+    }
+  },
+  "POL-032": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-033": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  },
+  "POL-034": {
+    "room_rent_clause": "Section 3.1",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {
+      "Cataract": "Section 4 Sub-Limits Schedule Item (Cataract)"
+    }
+  },
+  "POL-035": {
+    "room_rent_clause": "Section 3.0 (No Cap)",
+    "copay_clause": "None",
+    "waiting_period_clauses": {
+      "initial": "Section 2.1 (30-day initial waiting period)",
+      "specific_disease": "Section 2.2 (24 months)",
+      "ped": "Section 2.3 (36 months PED)",
+      "moratorium": "Section 2.4 (60-month statutory moratorium)"
+    },
+    "sublimit_clauses": {}
+  }
+}

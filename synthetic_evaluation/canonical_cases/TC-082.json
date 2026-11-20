@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-082",
+  "category": "happy_path",
+  "scenario_id": "SCN-082",
+  "policy_id": "POL-012",
+  "policy_version": "1.0",
+  "description": "Happy path: Unspecified acute appendicitis with localized peritonitis at Fortis Memorial Research Institute",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-012-01",
+    "RULE-POL-012-02",
+    "RULE-POL-012-03"
+  ],
+  "payload": {
+    "request_id": "9687f80b-db6d-4e39-abe2-4d649b531db7",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "f30c7f35-f1b9-4ba3-8899-7a13a795fd80",
+      "full_name": "Vikram Sharma",
+      "age": 71,
+      "gender": "male",
+      "policy_number": "POL-012"
+    },
+    "policy": {
+      "policy_number": "POL-012",
+      "plan_type": "individual",
+      "sum_insured": "1500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Chemotherapy": "100000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "TITA-HLT-012-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "a1adcfc0-23f8-4862-8834-6a18a3030788",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "98000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

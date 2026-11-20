@@ -1,0 +1,100 @@
+{
+  "test_case_id": "TC-271",
+  "category": "ocr_stress",
+  "scenario_id": "SCN-271",
+  "policy_id": "POL-026",
+  "policy_version": "1.0",
+  "ocr_distortion": "gaussian_blur",
+  "description": "OCR degradation stress test: gaussian_blur",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "OCR_EXTRACTION_ROBUSTNESS"
+  ],
+  "payload": {
+    "request_id": "3c9638cd-7e86-49ff-baf8-dac1ec717ef5",
+    "submitted_at": "2027-01-27",
+    "admission_date": "2027-01-27",
+    "source_format": "scanned_image",
+    "status": "pending",
+    "patient": {
+      "patient_id": "02f57da8-f829-42e2-85a2-410770bbcff9",
+      "full_name": "Arjun Sharma",
+      "age": 52,
+      "gender": "female",
+      "policy_number": "POL-026"
+    },
+    "policy": {
+      "policy_number": "POL-026",
+      "plan_type": "group",
+      "sum_insured": "750000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "70000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-026-2024",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "e21aaa94-fac4-4b10-b887-2616273d201b",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Calculus of ureter with moderate hydronephrosis",
+      "icd10_code": "N20.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+      "procedure_code": "PROC-URO-LITH-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "112000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 5 days)",
+          "amount": "60000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "18200.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "10400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "7800.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "5200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "10400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

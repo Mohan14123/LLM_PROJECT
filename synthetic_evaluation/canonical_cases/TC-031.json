@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-031",
+  "category": "happy_path",
+  "scenario_id": "SCN-031",
+  "policy_id": "POL-031",
+  "policy_version": "1.0",
+  "description": "Happy path: Pneumonia, unspecified organism with acute respiratory distress at Lifeline Day Care Surgery Centre",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-031-01",
+    "RULE-POL-031-02",
+    "RULE-POL-031-03"
+  ],
+  "payload": {
+    "request_id": "35325658-9899-4843-a0e7-e5e5d64b4b84",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "2e0608cf-036a-4154-9991-af73daae6b82",
+      "full_name": "Aarav Nair",
+      "age": 22,
+      "gender": "male",
+      "policy_number": "POL-031"
+    },
+    "policy": {
+      "policy_number": "POL-031",
+      "plan_type": "family_floater",
+      "sum_insured": "800000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Tonsillectomy": "30000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "METR-HLT-031-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "8e3bba8d-66f5-4db0-8708-42b3d6ee7186",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "111000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "policy_id": "POL-026",
+  "policy_version": "1.0",
+  "policy_name": "Paramount Tier-1 Corporate Gold",
+  "insurer_name": "Paramount Assurance Co.",
+  "policy_type": "group",
+  "product_uin": "PARA-HLT-026-2024",
+  "product_version": "2024.1",
+  "policyholder_eligibility": {
+    "min_entry_age": 18,
+    "max_entry_age": 65,
+    "renewable_for_life": true
+  },
+  "policy_start_date": "2024-01-01",
+  "policy_expiry_date": "2024-12-31",
+  "sum_insured": {
+    "amount": "750000.00",
+    "currency": "INR"
+  },
+  "available_sum_insured": {
+    "amount": "750000.00",
+    "currency": "INR"
+  },
+  "room_rent_limits": {
+    "type": "actuals",
+    "percentage": null,
+    "daily_cap_inr": null,
+    "proportional_deduction_applies": false,
+    "clause_reference": "Section 3.0 (No Cap)"
+  },
+  "icu_limits": {
+    "type": "actuals",
+    "percentage": null,
+    "daily_cap_inr": null
+  },
+  "disease_sublimits": {
+    "Maternity": {
+      "cap_inr": "70000.00",
+      "per": "per_admission",
+      "clause": "Section 4 Sub-Limits Schedule Item (Maternity)"
+    }
+  },
+  "waiting_periods": {
+    "initial_days": 0,
+    "initial_accident_exempt": true,
+    "specific_disease_months": 0,
+    "ped_months": 0,
+    "statutory_moratorium_months": 60,
+    "waiver_endorsement": "DAY_1_COVERAGE"
+  },
+  "co_payment": {
+    "mandatory_pct": "0.00",
+    "clause": "None"
+  },
+  "deductible": {
+    "amount": "0.00",
+    "currency": "INR",
+    "type": "none"
+  },
+  "restoration_benefit": {
+    "is_available": false,
+    "percentage": 100.0
+  },
+  "exclusions": {
+    "permanent": [
+      "Aesthetic, cosmetic or plastic surgery",
+      "Self-inflicted injury or suicide attempts",
+      "Unproven or investigational procedures"
+    ],
+    "conditional": [
+      "Maternity expenses excluded unless corporate waiver applies"
+    ]
+  },
+  "network_hospital_conditions": "Empanelled Network Hospitals for Cashless Facilities.",
+  "rules": [
+    {
+      "rule_id": "RULE-POL-026-01",
+      "rule_type": "room_rent_unlimited",
+      "clause_reference": "Section 3.1",
+      "condition": "No room rent sub-limit applicable.",
+      "expected_interpretation": "full_coverage"
+    },
+    {
+      "rule_id": "RULE-POL-026-02",
+      "rule_type": "ped_waiting_period",
+      "clause_reference": "Section 2.3",
+      "condition": "Pre-existing diseases subject to 0-month waiting period.",
+      "expected_interpretation": "deny_if_ped_under_0m"
+    },
+    {
+      "rule_id": "RULE-POL-026-03",
+      "rule_type": "co_payment_check",
+      "clause_reference": "Section 5.1",
+      "condition": "No co-payment applies.",
+      "expected_interpretation": "no_copay"
+    }
+  ]
+}

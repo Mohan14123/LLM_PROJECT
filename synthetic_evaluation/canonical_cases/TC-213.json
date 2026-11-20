@@ -1,0 +1,101 @@
+{
+  "test_case_id": "TC-213",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-213",
+  "policy_id": "POL-003",
+  "policy_version": "1.0",
+  "description": "Missing mandatory diagnosis ICD-10 code",
+  "expected_schema_valid": false,
+  "expected_error_substring": "String should have at least 1 character",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "139bfe34-843a-4555-8a38-73226ecd9950",
+    "submitted_at": "2026-02-27",
+    "admission_date": "2026-02-27",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "f863735c-a353-4405-9967-079e36f990ae",
+      "full_name": "Ananya Rao",
+      "age": 72,
+      "gender": "male",
+      "policy_number": "POL-003"
+    },
+    "policy": {
+      "policy_number": "POL-003",
+      "plan_type": "individual",
+      "sum_insured": "300000.00",
+      "policy_start_date": "2023-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "25000.00",
+          "Cardiac Stent Surgery": "120000.00",
+          "Knee Replacement": "100000.00",
+          "Cancer Chemotherapy": "80000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "PARA-HLT-SNR-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "74648c97-3616-45bc-8c1a-0383de8ba2e4",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "276000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "84000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "48000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "36000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "24000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "48000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

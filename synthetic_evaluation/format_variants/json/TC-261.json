@@ -1,0 +1,84 @@
+{
+  "request_id": "2a3a3471-d630-4148-af17-517e25ad619f",
+  "submitted_at": "2027-01-18",
+  "admission_date": "2027-01-18",
+  "source_format": "scanned_image",
+  "status": "pending",
+  "patient": {
+    "patient_id": "e84b75e0-97cf-42ba-8cfa-4817a1f60d28",
+    "full_name": "Rekha Nair",
+    "age": 44,
+    "gender": "male",
+    "policy_number": "POL-016"
+  },
+  "policy": {
+    "policy_number": "POL-016",
+    "plan_type": "individual",
+    "sum_insured": "100000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "15000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "APEX-HLT-016-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "1ae843e7-956c-47e3-bcb7-da779917218c",
+    "name": "Narayana Health City",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "End stage renal disease on maintenance hemodialysis",
+    "icd10_code": "N18.6",
+    "is_pre_existing": true
+  },
+  "procedure": {
+    "description": "Hemodialysis single session via AV fistula",
+    "procedure_code": "PROC-MED-HEMO-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "16500.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 1 days)",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "1575.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "900.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "675.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "450.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "900.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+}

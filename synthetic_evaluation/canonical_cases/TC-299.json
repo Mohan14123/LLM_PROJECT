@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-299",
+  "category": "missing_and_ambiguous",
+  "scenario_id": "SCN-299",
+  "policy_id": "POL-019",
+  "policy_version": "1.0",
+  "description": "Ambiguous level of care at non-network facility",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "RECOMMEND_QUERY",
+  "rules_tested": [
+    "CLINICAL_AMBIGUITY_GATE"
+  ],
+  "payload": {
+    "request_id": "2c2a2ae5-f206-4cb9-908d-d99083cfb35a",
+    "submitted_at": "2027-11-29",
+    "admission_date": "2027-11-29",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "f4b52147-be4c-4f39-a386-653bf16a4389",
+      "full_name": "Ramesh Patel",
+      "age": 42,
+      "gender": "female",
+      "policy_number": "POL-019"
+    },
+    "policy": {
+      "policy_number": "POL-019",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 48,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "35000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZENI-HLT-019-2024",
+      "product_version": "pre_2024.legacy",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "ad3b0571-602e-4097-87d0-c75cf3fec4d2",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "non_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "119000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Unclear whether emergency life-saving or elective observation"
+  }
+}

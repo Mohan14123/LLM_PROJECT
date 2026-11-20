@@ -1,0 +1,54 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 2c878356-ed14-4c42-b602-0d6bdc27ca01
+Submission Date: 2027-01-27
+Admission Date: 2027-01-27
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Deepak Nair
+Age: 48
+Gender: male
+Policy / Member Number: POL-018
+
+POLICY DETAILS
+--------------
+Policy Number: POL-018
+Plan Type: family_floater
+Sum Insured: INR 2000000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Sunshine Community Nursing Home
+Network Status: non_network
+Facility Category: None
+City: Lucknow, State: None
+ICD-10 Code: M17.11
+Primary Diagnosis: Primary unilateral osteoarthritis, right knee grade 4
+Pre-Existing Disease Flag: False
+Planned Procedure: Total knee replacement (TKR) unilateral right with cruciate retaining implant
+Procedure Code: PROC-ORTHO-TKR-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 4 days): INR 16000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 84000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 48000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 36000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 24000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 48000.00
+  [diagnostic    ] Specialist Consultation Add-on #7            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #8            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #9            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #10           : INR 2500.00
+------------------------
+Total Estimated Amount: INR 266000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

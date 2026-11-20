@@ -1,0 +1,84 @@
+{
+  "request_id": "91f723c6-2d7b-42e0-af57-3e132eb0df03",
+  "submitted_at": "2024-01-08",
+  "admission_date": "2024-01-08",
+  "source_format": "scanned_image",
+  "status": "pending",
+  "patient": {
+    "patient_id": "1e8380ae-fd10-4793-accc-ddac5bc7a035",
+    "full_name": "Meena Nair",
+    "age": 33,
+    "gender": "male",
+    "policy_number": "POL-025"
+  },
+  "policy": {
+    "policy_number": "POL-025",
+    "plan_type": "individual",
+    "sum_insured": "400000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "25000.00"
+      }
+    },
+    "co_pay_pct": "10.00",
+    "product_uin": "VANG-HLT-025-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "ed1e013d-1c57-4312-a729-6d82fcf27d75",
+    "name": "Sunshine Community Nursing Home",
+    "city": "Lucknow",
+    "network_tier": "non_network",
+    "category": "private"
+  },
+  "diagnosis": {
+    "description": "Acute anterior myocardial infarction (STEMI)",
+    "icd10_code": "I21.09",
+    "is_pre_existing": true
+  },
+  "procedure": {
+    "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+    "procedure_code": "PROC-CARD-PTCA-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "301000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 4 days)",
+        "amount": "16000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "99750.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "57000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "42750.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "28500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "57000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+}

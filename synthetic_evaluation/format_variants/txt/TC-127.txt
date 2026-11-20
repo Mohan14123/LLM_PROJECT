@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 64941b6f-d103-4e13-8ac1-ce0a11bf29de
+Submission Date: 2027-03-06
+Admission Date: 2027-03-06
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Vikram Rao
+Age: 37
+Gender: female
+Policy / Member Number: POL-022
+
+POLICY DETAILS
+--------------
+Policy Number: POL-022
+Plan Type: family_floater
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 20.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Lifeline Day Care Surgery Centre
+Network Status: cashless_network
+Facility Category: None
+City: Pune, State: None
+ICD-10 Code: I21.09
+Primary Diagnosis: Acute anterior myocardial infarction (STEMI)
+Pre-Existing Disease Flag: True
+Planned Procedure: Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent
+Procedure Code: PROC-CARD-PTCA-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Deluxe Suite, 5 days): INR 60000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 99750.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 57000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 42750.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 28500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 57000.00
+------------------------
+Total Estimated Amount: INR 345000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Hypertension under medical control.
+==================================================

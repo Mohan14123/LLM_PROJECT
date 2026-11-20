@@ -1061,7 +1061,7 @@ def _call_llm(prompt: str) -> tuple[str, dict[str, int], float, bool, Optional[s
 
 
 # ============================================================================
-# Node 7: Citation Guard (NON-BYPASSABLE — Guardrail #2)
+# Node 8: Citation Guard (NON-BYPASSABLE — Guardrail #2)
 # ============================================================================
 
 def citation_guard(state: dict[str, Any]) -> dict[str, Any]:
@@ -1187,7 +1187,7 @@ def citation_guard(state: dict[str, Any]) -> dict[str, Any]:
 
 
 # ============================================================================
-# Node 8: Escalation Gate (Guardrail #7)
+# Node 10: Escalation Gate (Guardrail #7)
 # ============================================================================
 
 def escalation_gate(state: dict[str, Any]) -> dict[str, Any]:
@@ -1320,7 +1320,7 @@ def escalation_gate(state: dict[str, Any]) -> dict[str, Any]:
 
 
 # ============================================================================
-# Node 9: Format Recommendation (Guardrail #1)
+# Node 11: Format Recommendation (Guardrail #1)
 # ============================================================================
 
 def format_recommendation(state: dict[str, Any]) -> dict[str, Any]:

@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-060",
+  "category": "happy_path",
+  "scenario_id": "SCN-060",
+  "policy_id": "POL-025",
+  "policy_version": "1.0",
+  "description": "Happy path: Unspecified acute appendicitis with localized peritonitis at Manipal Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-025-01",
+    "RULE-POL-025-02",
+    "RULE-POL-025-03"
+  ],
+  "payload": {
+    "request_id": "f40ba71d-9c22-47a0-aedf-2fc32b7fd265",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "ff8fe03d-c31f-41c5-8277-762a7331d694",
+      "full_name": "Geeta Verma",
+      "age": 35,
+      "gender": "male",
+      "policy_number": "POL-025"
+    },
+    "policy": {
+      "policy_number": "POL-025",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "25000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "VANG-HLT-025-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "a646bb61-7695-4fb7-a760-8fc374ababba",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "91000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 2 days)",
+          "amount": "13000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

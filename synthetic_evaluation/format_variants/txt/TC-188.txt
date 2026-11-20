@@ -1,0 +1,44 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 0cf3bd80-cda0-4e9b-a18e-e3ef7783e2a0
+Submission Date: 2027-07-22
+Admission Date: 2027-07-22
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Pooja Nair
+Age: 30
+Gender: male
+Policy / Member Number: POL-013
+
+POLICY DETAILS
+--------------
+Policy Number: POL-013
+Plan Type: individual
+Sum Insured: INR 300000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 5.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Manipal Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Chennai, State: None
+ICD-10 Code: H25.1
+Primary Diagnosis: Senile nuclear cataract, bilateral grade 3
+Pre-Existing Disease Flag: False
+Planned Procedure: Phacoemulsification with foldable intraocular lens (IOL) implantation
+Procedure Code: PROC-CAT-01
+Admission Type: day_care
+
+ESTIMATED COST BREAKDOWN
+------------------------
+------------------------
+Total Estimated Amount: INR 48500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

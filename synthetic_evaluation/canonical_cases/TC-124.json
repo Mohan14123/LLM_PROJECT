@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-124",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-124",
+  "policy_id": "POL-019",
+  "policy_version": "1.0",
+  "description": "Admission exactly after 30-day initial waiting period expires",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-019-01",
+    "RULE-POL-019-02",
+    "RULE-POL-019-03"
+  ],
+  "payload": {
+    "request_id": "c5cfc20e-5699-4b3c-91ed-51b51ea8fc99",
+    "submitted_at": "2024-02-02",
+    "admission_date": "2024-02-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "767c1aca-5396-4fb1-9d85-38990653a857",
+      "full_name": "Vikram Shah",
+      "age": 22,
+      "gender": "female",
+      "policy_number": "POL-019"
+    },
+    "policy": {
+      "policy_number": "POL-019",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 48,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "35000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZENI-HLT-019-2024",
+      "product_version": "pre_2024.legacy",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "100f5216-3805-49df-816b-63e6c90d0e2b",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unilateral inguinal hernia, without obstruction or gangrene",
+      "icd10_code": "K40.90",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair",
+      "procedure_code": "PROC-SURG-HER-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "94000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+          "amount": "26000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "23800.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "13600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "10200.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "6800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "13600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "dataset_name": "Cashless Health Insurance Pre-Authorisation Synthetic Benchmark",
+  "version": "2.4.0",
+  "created_date": "2026-11-18",
+  "license": "Academic Research & Educational Evaluation Benchmark",
+  "architecture_dependency": "Synthetic Policies -> Policy Documents -> Patient Scenarios -> Logical Test Cases -> Multi-Format Renderers -> Ground Truth -> Evaluation",
+  "summary": {
+    "total_synthetic_policies": 35,
+    "total_policy_rules": 101,
+    "total_logical_test_cases": 300,
+    "total_rendered_request_documents": 1800,
+    "total_rendered_policy_documents": 210,
+    "total_physical_artifacts": 2345,
+    "categories": {
+      "happy_path": 100,
+      "valid_edge_cases": 80,
+      "invalid_schema": 45,
+      "cross_field_conflicts": 30,
+      "ocr_stress": 25,
+      "missing_and_ambiguous": 20
+    },
+    "splits": {
+      "train": 180,
+      "validation": 60,
+      "test": 60
+    }
+  },
+  "qa_status": {
+    "is_valid": true,
+    "errors": [],
+    "warnings": []
+  }
+}

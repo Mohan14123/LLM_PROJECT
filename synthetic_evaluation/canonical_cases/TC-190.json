@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-190",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-190",
+  "policy_id": "POL-015",
+  "policy_version": "1.0",
+  "description": "Invalid Gender enum",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be 'male', 'female', 'other' or 'prefer_not_to_say'",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "a329ce95-27ab-4cde-b60b-98aa0e01f5f2",
+    "submitted_at": "2024-01-07",
+    "admission_date": "2024-01-07",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "c8b3e5fb-40c9-4003-8da6-ed6334bec3a1",
+      "full_name": "Pooja Shah",
+      "age": 39,
+      "gender": "NON_BINARY_UNREGISTERED",
+      "policy_number": "POL-015"
+    },
+    "policy": {
+      "policy_number": "POL-015",
+      "plan_type": "family_floater",
+      "sum_insured": "1200000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Joint Replacement": "200000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "METR-HLT-015-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "0032f865-8721-47a3-8077-208d24dadcbc",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Unilateral inguinal hernia, without obstruction or gangrene",
+      "icd10_code": "K40.90",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair",
+      "procedure_code": "PROC-SURG-HER-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "84000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 4 days)",
+          "amount": "16000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "23800.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "13600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "10200.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "6800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "13600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "request_id": "f7234f19-5af0-4954-8822-6c02b97da5cf",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "7387777f-9502-4781-bba0-9403894714e1",
+    "full_name": "Anita Shah",
+    "age": 30,
+    "gender": "female",
+    "policy_number": "POL-033"
+  },
+  "policy": {
+    "policy_number": "POL-033",
+    "plan_type": "individual",
+    "sum_insured": "2500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "VANG-HLT-033-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "343cc9a5-8e7a-48b8-af3d-fe1cd2ac5545",
+    "name": "Apollo Multispeciality Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Encounter for cosmetic aesthetic rhinoplasty",
+    "icd10_code": "Z41.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Elective cosmetic rhinoplasty and septal reshaping",
+    "procedure_code": "PROC-COSM-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "180000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 5 days)",
+        "amount": "60000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "42000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "24000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "12000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "24000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

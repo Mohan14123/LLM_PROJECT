@@ -1,0 +1,85 @@
+{
+  "request_id": "add3cc5a-692e-4944-86d9-0cb96943ab62",
+  "submitted_at": "2027-01-18",
+  "admission_date": "2027-01-18",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "a5ef2524-03ae-473c-987d-41c9785ef291",
+    "full_name": "Anil Reddy",
+    "age": 64,
+    "gender": "female",
+    "policy_number": "POL-009"
+  },
+  "policy": {
+    "policy_number": "POL-009",
+    "plan_type": "individual",
+    "sum_insured": "400000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {
+        "Cardiac": "150000.00",
+        "Cataract": "30000.00"
+      }
+    },
+    "co_pay_pct": "20.00",
+    "product_uin": "VANG-HLT-009-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "dba1b8a6-d8a4-4272-b30c-a6202ba871f2",
+    "name": "Apollo Multispeciality Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Unilateral inguinal hernia, without obstruction or gangrene",
+    "icd10_code": "K40.90",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Diagnostic laparoscopy and possible therapeutic intervention",
+    "procedure_code": "PROC-SURG-HER-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "104000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 3 days)",
+        "amount": "36000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "23800.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "13600.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "10200.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "6800.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "13600.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

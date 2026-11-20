@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 139bfe34-843a-4555-8a38-73226ecd9950
+Submission Date: 2026-02-27
+Admission Date: 2026-02-27
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Ananya Rao
+Age: 72
+Gender: male
+Policy / Member Number: POL-003
+
+POLICY DETAILS
+--------------
+Policy Number: POL-003
+Plan Type: individual
+Sum Insured: INR 300000.00
+Policy Inception Date: 2023-01-01
+Co-Payment Percentage: 20.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Narayana Health City
+Network Status: cashless_network
+Facility Category: None
+City: Bengaluru, State: None
+ICD-10 Code: 
+Primary Diagnosis: Primary unilateral osteoarthritis, right knee grade 4
+Pre-Existing Disease Flag: False
+Planned Procedure: Total knee replacement (TKR) unilateral right with cruciate retaining implant
+Procedure Code: PROC-ORTHO-TKR-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Twin Sharing, 3 days): INR 36000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 84000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 48000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 36000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 24000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 48000.00
+------------------------
+Total Estimated Amount: INR 276000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

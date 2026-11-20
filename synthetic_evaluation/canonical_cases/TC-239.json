@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-239",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-239",
+  "policy_id": "POL-029",
+  "policy_version": "1.0",
+  "description": "Financial cross-field contradiction between line items and total",
+  "expected_schema_valid": false,
+  "expected_error_substring": "exceeds the +/- 1 INR reconciliation tolerance",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "540825e6-63e3-4b32-9893-6b149369ceb5",
+    "submitted_at": "2027-01-24",
+    "admission_date": "2027-01-24",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "a59091f2-63b0-495f-bfdc-3d9c6579bd3b",
+      "full_name": "Arjun Patel",
+      "age": 50,
+      "gender": "female",
+      "policy_number": "POL-029"
+    },
+    "policy": {
+      "policy_number": "POL-029",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Knee Replacement": "180000.00",
+          "Hip Replacement": "180000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "RELI-HLT-029-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "315a93f3-68e9-4b45-9ce7-36f520c448a4",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "17000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 1 days)",
+          "amount": "12000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "test_case_id": "TC-211",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-211",
+  "policy_id": "POL-001",
+  "policy_version": "1.0",
+  "description": "Cost estimate reconciliation discrepancy > 1 INR",
+  "expected_schema_valid": false,
+  "expected_error_substring": "exceeds the +/- 1 INR reconciliation tolerance",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "52f92b5c-200d-4df3-9a34-f5dc1d644582",
+    "submitted_at": "2027-10-19",
+    "admission_date": "2027-10-19",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "74229693-9ee5-46cf-8b8e-73ff4157035b",
+      "full_name": "Vikram Verma",
+      "age": 57,
+      "gender": "male",
+      "policy_number": "POL-001"
+    },
+    "policy": {
+      "policy_number": "POL-001",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00",
+          "Hernia": "50000.00",
+          "Knee Replacement": "150000.00",
+          "Kidney Stone / Lithotripsy": "45000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-IND-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "52bba8d4-9b38-4ed8-ad05-d57ad842130a",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "999999.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 4 days)",
+          "amount": "48000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

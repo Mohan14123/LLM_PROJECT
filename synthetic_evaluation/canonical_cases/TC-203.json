@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-203",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-203",
+  "policy_id": "POL-028",
+  "policy_version": "1.0",
+  "description": "Invalid PlanType enum value",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be 'individual', 'family_floater', 'group', 'senior_citizen', 'critical_illness', 'top_up' or 'super_top_up'",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "0836e160-646d-461b-a636-c177e7273aec",
+    "submitted_at": "2024-08-25",
+    "admission_date": "2024-08-25",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "c968531e-a000-47fa-9c72-6046e17f542e",
+      "full_name": "Pooja Shah",
+      "age": 50,
+      "gender": "male",
+      "policy_number": "POL-028"
+    },
+    "policy": {
+      "policy_number": "POL-028",
+      "plan_type": "COMMUNITY_POOL",
+      "sum_insured": "2000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "TITA-HLT-028-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "6e3188d3-2934-46e8-a7bf-b9ac2cbb4651",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "102000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

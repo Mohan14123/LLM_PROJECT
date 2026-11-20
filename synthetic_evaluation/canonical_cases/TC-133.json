@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-133",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-133",
+  "policy_id": "POL-028",
+  "policy_version": "1.0",
+  "description": "Non-network hospital pre-auth trigger",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "ESCALATE",
+  "rules_tested": [
+    "RULE-POL-028-01",
+    "RULE-POL-028-02",
+    "RULE-POL-028-03"
+  ],
+  "payload": {
+    "request_id": "ab36e25e-d4ad-44c1-9b40-bbe186969f69",
+    "submitted_at": "2025-03-08",
+    "admission_date": "2025-03-08",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "9bc6a0f4-c715-45ea-9107-cffe9cab83b6",
+      "full_name": "Lakshmi Rao",
+      "age": 66,
+      "gender": "male",
+      "policy_number": "POL-028"
+    },
+    "policy": {
+      "policy_number": "POL-028",
+      "plan_type": "individual",
+      "sum_insured": "2000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "TITA-HLT-028-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "23d2d54f-31f8-4779-95ab-b6cc7a797970",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "non_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "54000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 1 days)",
+          "amount": "12000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

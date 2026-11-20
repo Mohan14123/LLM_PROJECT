@@ -1,0 +1,102 @@
+{
+  "request_id": "2c878356-ed14-4c42-b602-0d6bdc27ca01",
+  "submitted_at": "2027-01-27",
+  "admission_date": "2027-01-27",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "fba518c6-26a8-4094-bf0f-795d4422250e",
+    "full_name": "Deepak Nair",
+    "age": 48,
+    "gender": "male",
+    "policy_number": "POL-018"
+  },
+  "policy": {
+    "policy_number": "POL-018",
+    "plan_type": "family_floater",
+    "sum_insured": "2000000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "PARA-HLT-018-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "8c6b8f0f-c4de-4eef-90dd-91b768448698",
+    "name": "Sunshine Community Nursing Home",
+    "city": "Lucknow",
+    "network_tier": "non_network",
+    "category": "private"
+  },
+  "diagnosis": {
+    "description": "Primary unilateral osteoarthritis, right knee grade 4",
+    "icd10_code": "M17.11",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+    "procedure_code": "PROC-ORTHO-TKR-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "266000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 4 days)",
+        "amount": "16000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "84000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "48000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "36000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "24000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "48000.00",
+        "category": "other"
+      },
+      {
+        "item": "Specialist Consultation Add-on #7",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #8",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #9",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #10",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

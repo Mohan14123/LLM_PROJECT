@@ -1,0 +1,87 @@
+{
+  "request_id": "920c15cb-7e98-46c6-a583-18d41675b4de",
+  "submitted_at": "2026-07-03",
+  "admission_date": "2026-07-03",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "2f548902-c481-4ff6-9203-fecc56dd5a9a",
+    "full_name": "Vijay Banerjee",
+    "age": 75,
+    "gender": "female",
+    "policy_number": "POL-003"
+  },
+  "policy": {
+    "policy_number": "POL-003",
+    "plan_type": "individual",
+    "sum_insured": "300000.00",
+    "policy_start_date": "2023-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "25000.00",
+        "Cardiac Stent Surgery": "120000.00",
+        "Knee Replacement": "100000.00",
+        "Cancer Chemotherapy": "80000.00"
+      }
+    },
+    "co_pay_pct": "20.00",
+    "product_uin": "PARA-HLT-SNR-2024-V01",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "c0627c23-ffa9-4f48-a3d7-21d6940a883b",
+    "name": "Max Super Speciality Hospital",
+    "city": "New Delhi",
+    "network_tier": "non_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "End stage renal disease on maintenance hemodialysis",
+    "icd10_code": "N18.6",
+    "is_pre_existing": true
+  },
+  "procedure": {
+    "description": "Hemodialysis single session via AV fistula",
+    "procedure_code": "PROC-MED-HEMO-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "16500.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 1 days)",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "1575.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "900.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "675.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "450.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "900.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Unclear whether emergency life-saving or elective observation"
+}

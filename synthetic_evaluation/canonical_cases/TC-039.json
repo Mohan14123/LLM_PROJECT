@@ -1,0 +1,95 @@
+{
+  "test_case_id": "TC-039",
+  "category": "happy_path",
+  "scenario_id": "SCN-039",
+  "policy_id": "POL-004",
+  "policy_version": "1.0",
+  "description": "Happy path: Acute anterior myocardial infarction (STEMI) at Lifeline Day Care Surgery Centre",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL004-01"
+  ],
+  "payload": {
+    "request_id": "3df25233-da17-4121-b56f-2e6cf85bc234",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "962e8a32-6601-4773-b442-7033310c5e7a",
+      "full_name": "Manoj Sharma",
+      "age": 70,
+      "gender": "male",
+      "policy_number": "POL-004"
+    },
+    "policy": {
+      "policy_number": "POL-004",
+      "plan_type": "individual",
+      "sum_insured": "5000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZEN-HLT-TOP-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "f6366c5a-3849-4bc8-a513-89935bec149d",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Acute anterior myocardial infarction (STEMI)",
+      "icd10_code": "I21.09",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+      "procedure_code": "PROC-CARD-PTCA-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "321000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "99750.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "57000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "42750.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "28500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "57000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

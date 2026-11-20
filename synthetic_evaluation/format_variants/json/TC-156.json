@@ -1,0 +1,84 @@
+{
+  "request_id": "403a6f0a-f1bc-48d6-821a-958a17a7c5a7",
+  "submitted_at": "2024-02-02",
+  "admission_date": "2024-02-02",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "2fb1e179-2ec3-461f-a744-d1f30195667e",
+    "full_name": "Anita Shah",
+    "age": 50,
+    "gender": "male",
+    "policy_number": "POL-016"
+  },
+  "policy": {
+    "policy_number": "POL-016",
+    "plan_type": "individual",
+    "sum_insured": "100000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "15000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "APEX-HLT-016-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "2318b192-7ea3-40fa-8a3c-62e349f2530a",
+    "name": "Manipal Hospital",
+    "city": "Chennai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Calculus of gallbladder without cholecystitis without obstruction",
+    "icd10_code": "K80.20",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Laparoscopic cholecystectomy",
+    "procedure_code": "PROC-SURG-LAP-02",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "127500.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Single Private A/C Room, 5 days)",
+        "amount": "32500.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "33250.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "19000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "14250.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "9500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "19000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

@@ -1,0 +1,100 @@
+{
+  "test_case_id": "TC-114",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-114",
+  "policy_id": "POL-009",
+  "policy_version": "1.0",
+  "description": "Paise decimal precision calculations",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-009-01",
+    "RULE-POL-009-02",
+    "RULE-POL-009-03"
+  ],
+  "payload": {
+    "request_id": "e364b3c9-a8ac-433d-a380-6afa76b786c4",
+    "submitted_at": "2027-04-12",
+    "admission_date": "2027-04-12",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "c9f0e182-816e-4427-ba2c-fc38ee340cce",
+      "full_name": "Amit Reddy",
+      "age": 77,
+      "gender": "male",
+      "policy_number": "POL-009"
+    },
+    "policy": {
+      "policy_number": "POL-009",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cardiac": "150000.00",
+          "Cataract": "30000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "VANG-HLT-009-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "ae815efc-25dd-4483-bd82-b1cc1d893b00",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "M17.11",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "183501.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 2 days)",
+          "amount": "12500.75",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "15000.25",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "48000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "36000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "24000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "48000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

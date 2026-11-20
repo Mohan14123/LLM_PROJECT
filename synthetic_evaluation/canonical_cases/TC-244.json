@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-244",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-244",
+  "policy_id": "POL-034",
+  "policy_version": "1.0",
+  "description": "Temporal coverage conflict: admission date precedes policy inception",
+  "expected_schema_valid": false,
+  "expected_error_substring": "is before policy.policy_start_date",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "41ac1848-57ec-490d-a7d7-5fd58ab57337",
+    "submitted_at": "2027-08-17",
+    "admission_date": "2023-11-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "6b7890ea-36e6-4ecf-acbc-a1fa2e445402",
+      "full_name": "Sunita Verma",
+      "age": 50,
+      "gender": "female",
+      "policy_number": "POL-034"
+    },
+    "policy": {
+      "policy_number": "POL-034",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-034-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "276d46ab-6bf2-4787-b83f-753585ca807d",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "114500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 3 days)",
+          "amount": "19500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

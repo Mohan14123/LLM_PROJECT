@@ -1,0 +1,84 @@
+{
+  "request_id": "3ff6f7c5-26f8-4155-8a09-e3abb63b6570",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "4aaa7b41-bc63-43e3-8be0-b7e403b691b7",
+    "full_name": "Anita Iyer",
+    "age": 39,
+    "gender": "female",
+    "policy_number": "POL-031"
+  },
+  "policy": {
+    "policy_number": "POL-031",
+    "plan_type": "family_floater",
+    "sum_insured": "800000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Tonsillectomy": "30000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "METR-HLT-031-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "8a9ae751-7784-42af-9ebf-4b4aae6e3698",
+    "name": "Fortis Memorial Research Institute",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Encounter for cosmetic aesthetic rhinoplasty",
+    "icd10_code": "Z41.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Elective cosmetic rhinoplasty and septal reshaping",
+    "procedure_code": "PROC-COSM-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "136000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 4 days)",
+        "amount": "16000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "42000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "24000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "12000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "24000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

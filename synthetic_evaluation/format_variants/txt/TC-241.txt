@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 9f414adc-4053-42f3-a00a-54dce0436075
+Submission Date: 2027-10-24
+Admission Date: 2023-11-02
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Ramesh Verma
+Age: 73
+Gender: female
+Policy / Member Number: POL-031
+
+POLICY DETAILS
+--------------
+Policy Number: POL-031
+Plan Type: family_floater
+Sum Insured: INR 800000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Apollo Multispeciality Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Bengaluru, State: None
+ICD-10 Code: S82.201A
+Primary Diagnosis: Closed fracture of shaft of right tibia due to road traffic collision
+Pre-Existing Disease Flag: False
+Planned Procedure: Open reduction and internal fixation (ORIF) with interlocking intramedullary nail
+Procedure Code: PROC-ORTHO-ORIF-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Twin Sharing, 3 days): INR 36000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 40250.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 23000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 17250.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 11500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 23000.00
+------------------------
+Total Estimated Amount: INR 151000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

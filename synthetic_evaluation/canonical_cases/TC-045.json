@@ -1,0 +1,101 @@
+{
+  "test_case_id": "TC-045",
+  "category": "happy_path",
+  "scenario_id": "SCN-045",
+  "policy_id": "POL-010",
+  "policy_version": "1.0",
+  "description": "Happy path: Senile nuclear cataract, bilateral grade 3 at Narayana Health City",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-010-01",
+    "RULE-POL-010-02",
+    "RULE-POL-010-03"
+  ],
+  "payload": {
+    "request_id": "bf5ecd40-83a8-419d-9f28-293c62dfaff6",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "f90d7ed4-9727-4e34-a73a-720b639127bc",
+      "full_name": "Neha Patel",
+      "age": 37,
+      "gender": "male",
+      "policy_number": "POL-010"
+    },
+    "policy": {
+      "policy_number": "POL-010",
+      "plan_type": "group",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "80000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-010-2024",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "d40376a0-7653-4e30-8cf8-377ef5c9562b",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "54000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 1 days)",
+          "amount": "12000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

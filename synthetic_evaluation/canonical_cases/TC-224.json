@@ -1,0 +1,68 @@
+{
+  "test_case_id": "TC-224",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-224",
+  "policy_id": "POL-014",
+  "policy_version": "1.0",
+  "description": "Empty cost estimate line items list",
+  "expected_schema_valid": false,
+  "expected_error_substring": "List should have at least 1 item",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "f0444254-3847-4477-a8b7-59b74c24d73e",
+    "submitted_at": "2024-08-11",
+    "admission_date": "2024-08-11",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "d9422979-ed88-463d-9d9d-9ba6a2d2bbf3",
+      "full_name": "Divya Shah",
+      "age": 41,
+      "gender": "male",
+      "policy_number": "POL-014"
+    },
+    "policy": {
+      "policy_number": "POL-014",
+      "plan_type": "individual",
+      "sum_insured": "600000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "60000.00",
+          "Hysterectomy": "70000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "NATI-HLT-014-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "fadec606-3dde-41e0-821a-b7305265afa7",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "M17.11",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "259500.00",
+      "line_items": []
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-199",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-199",
+  "policy_id": "POL-024",
+  "policy_version": "1.0",
+  "description": "Invalid Gender enum",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be 'male', 'female', 'other' or 'prefer_not_to_say'",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "3bf26f08-cf4c-4937-9b87-9c128d43858f",
+    "submitted_at": "2027-08-08",
+    "admission_date": "2027-08-08",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "28279804-f1cf-4a0e-b7a7-f83e6881c134",
+      "full_name": "Sunita Reddy",
+      "age": 69,
+      "gender": "NON_BINARY_UNREGISTERED",
+      "policy_number": "POL-024"
+    },
+    "policy": {
+      "policy_number": "POL-024",
+      "plan_type": "individual",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-024-2024",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "ad4b2e28-8a64-4c69-8aea-6e44bc24ab49",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "54000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 1 days)",
+          "amount": "12000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

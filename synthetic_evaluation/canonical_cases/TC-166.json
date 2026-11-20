@@ -1,0 +1,121 @@
+{
+  "test_case_id": "TC-166",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-166",
+  "policy_id": "POL-026",
+  "policy_version": "1.0",
+  "description": "Extended 10-line-item billing reconciliation",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-026-01",
+    "RULE-POL-026-02",
+    "RULE-POL-026-03"
+  ],
+  "payload": {
+    "request_id": "e73fc113-411e-4041-970c-ba209f4bf032",
+    "submitted_at": "2027-06-07",
+    "admission_date": "2027-06-07",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "d994e2f0-382a-4154-ad06-614354cb2804",
+      "full_name": "Rohan Gupta",
+      "age": 66,
+      "gender": "female",
+      "policy_number": "POL-026"
+    },
+    "policy": {
+      "policy_number": "POL-026",
+      "plan_type": "group",
+      "sum_insured": "750000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "70000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-026-2024",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "9675c9df-9806-49f7-905c-94767c755621",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "56000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 1 days)",
+          "amount": "4000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        },
+        {
+          "item": "Specialist Consultation Add-on #7",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #8",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #9",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #10",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

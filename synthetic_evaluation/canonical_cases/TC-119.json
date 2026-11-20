@@ -1,0 +1,100 @@
+{
+  "test_case_id": "TC-119",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-119",
+  "policy_id": "POL-014",
+  "policy_version": "1.0",
+  "description": "Mandatory 20% co-payment computation",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-014-01",
+    "RULE-POL-014-02",
+    "RULE-POL-014-03"
+  ],
+  "payload": {
+    "request_id": "6f772906-463f-47b9-b6ad-1db85373fa75",
+    "submitted_at": "2024-11-14",
+    "admission_date": "2024-11-14",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "00e0a019-96d5-449f-b34e-d98b9f653b95",
+      "full_name": "Meena Mehta",
+      "age": 38,
+      "gender": "female",
+      "policy_number": "POL-014"
+    },
+    "policy": {
+      "policy_number": "POL-014",
+      "plan_type": "individual",
+      "sum_insured": "600000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "60000.00",
+          "Hysterectomy": "70000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "NATI-HLT-014-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "479481fd-9fd6-4075-8de1-e25d070d1a25",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "111000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

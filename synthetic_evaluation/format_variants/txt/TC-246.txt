@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 2eb6515e-5718-4bae-ac32-6a17cb8ced62
+Submission Date: 2027-10-17
+Admission Date: 2027-10-17
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Manoj Deshmukh
+Age: 28
+Gender: female
+Policy / Member Number: POL-CONFLICT-999
+
+POLICY DETAILS
+--------------
+Policy Number: POL-001
+Plan Type: individual
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Sunshine Community Nursing Home
+Network Status: non_network
+Facility Category: None
+City: Lucknow, State: None
+ICD-10 Code: M17.11
+Primary Diagnosis: Primary unilateral osteoarthritis, right knee grade 4
+Pre-Existing Disease Flag: False
+Planned Procedure: Total knee replacement (TKR) unilateral right with cruciate retaining implant
+Procedure Code: PROC-ORTHO-TKR-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 5 days): INR 20000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 84000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 48000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 36000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 24000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 48000.00
+------------------------
+Total Estimated Amount: INR 260000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: e905f34a-f9fa-442e-af4f-192b44f5f3bf
+Submission Date: 2024-08-14
+Admission Date: 2024-08-14
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Dr. Venkata Satyanarayana Ramakrishna Murthy-Venkateshwaran
+Age: 70
+Gender: male
+Policy / Member Number: POL-007
+
+POLICY DETAILS
+--------------
+Policy Number: POL-007
+Plan Type: family_floater
+Sum Insured: INR 750000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Max Super Speciality Hospital
+Network Status: cashless_network
+Facility Category: None
+City: New Delhi, State: None
+ICD-10 Code: M17.11
+Primary Diagnosis: Primary unilateral osteoarthritis, right knee grade 4
+Pre-Existing Disease Flag: False
+Planned Procedure: Total knee replacement (TKR) unilateral right with cruciate retaining implant
+Procedure Code: PROC-ORTHO-TKR-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Deluxe Suite, 3 days): INR 36000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 84000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 48000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 36000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 24000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 48000.00
+------------------------
+Total Estimated Amount: INR 276000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

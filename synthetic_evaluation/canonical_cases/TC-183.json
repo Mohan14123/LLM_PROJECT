@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-183",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-183",
+  "policy_id": "POL-008",
+  "policy_version": "1.0",
+  "description": "Malformed non-ISO admission date format",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be a valid date or date-time",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "c689aa09-661e-4f49-9dad-69f33311c2e5",
+    "submitted_at": "2027-03-09",
+    "admission_date": "31-02-2024",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "6025ebf2-5190-4df2-8d0a-1321a0ab6f86",
+      "full_name": "Priya Kulkarni",
+      "age": 56,
+      "gender": "female",
+      "policy_number": "POL-008"
+    },
+    "policy": {
+      "policy_number": "POL-008",
+      "plan_type": "individual",
+      "sum_insured": "2500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-008-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "ab8c9a9c-ef58-4a1b-9a4f-29aaaf23d6d7",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Calculus of ureter with moderate hydronephrosis",
+      "icd10_code": "N20.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+      "procedure_code": "PROC-URO-LITH-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "112000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 5 days)",
+          "amount": "60000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "18200.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "10400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "7800.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "5200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "10400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

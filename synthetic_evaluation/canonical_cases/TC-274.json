@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-274",
+  "category": "ocr_stress",
+  "scenario_id": "SCN-274",
+  "policy_id": "POL-029",
+  "policy_version": "1.0",
+  "ocr_distortion": "noise_speckle",
+  "description": "OCR degradation stress test: noise_speckle",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "OCR_EXTRACTION_ROBUSTNESS"
+  ],
+  "payload": {
+    "request_id": "65db2330-2458-4ea7-b422-da4bf9498f4c",
+    "submitted_at": "2028-02-07",
+    "admission_date": "2028-02-07",
+    "source_format": "scanned_image",
+    "status": "pending",
+    "patient": {
+      "patient_id": "b6addd24-f100-4d40-afad-1771a462ab05",
+      "full_name": "Meena Deshmukh",
+      "age": 33,
+      "gender": "male",
+      "policy_number": "POL-029"
+    },
+    "policy": {
+      "policy_number": "POL-029",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Knee Replacement": "180000.00",
+          "Hip Replacement": "180000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "RELI-HLT-029-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "e698ec77-f0f9-4868-a0f6-dee4187c36a2",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+      "icd10_code": "S82.201A",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "135000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

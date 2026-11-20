@@ -1,0 +1,87 @@
+{
+  "request_id": "28bcc24f-687d-43d1-ab7f-0fcb550a11eb",
+  "submitted_at": "2027-04-07",
+  "admission_date": "2027-04-07",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "e0b236ca-9a3d-49de-87d2-1fbbafdea0ad",
+    "full_name": "Rajesh Banerjee",
+    "age": 60,
+    "gender": "female",
+    "policy_number": "POL-001"
+  },
+  "policy": {
+    "policy_number": "POL-001",
+    "plan_type": "individual",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "40000.00",
+        "Hernia": "50000.00",
+        "Knee Replacement": "150000.00",
+        "Kidney Stone / Lithotripsy": "45000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "APEX-HLT-IND-2024-V01",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "f9f2b96c-d3aa-4a82-91c5-6dcbf9f4becc",
+    "name": "Apollo Multispeciality Hospital",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Acute anterior myocardial infarction (STEMI)",
+    "icd10_code": "I21.09",
+    "is_pre_existing": true
+  },
+  "procedure": {
+    "description": "Diagnostic laparoscopy and possible therapeutic intervention",
+    "procedure_code": "PROC-CARD-PTCA-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "333000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 4 days)",
+        "amount": "48000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "99750.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "57000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "42750.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "28500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "57000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+}

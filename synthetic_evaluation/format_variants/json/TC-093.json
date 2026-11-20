@@ -1,0 +1,85 @@
+{
+  "request_id": "ae227638-2250-4171-8ad9-4505412db5fc",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "04fa17e4-2f53-4b91-a9b2-cb83e4543664",
+    "full_name": "Sanjay Banerjee",
+    "age": 69,
+    "gender": "male",
+    "policy_number": "POL-023"
+  },
+  "policy": {
+    "policy_number": "POL-023",
+    "plan_type": "individual",
+    "sum_insured": "300000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Lithotripsy": "40000.00",
+        "Cataract": "35000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "METR-HLT-023-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "8cc2005d-f105-460e-9747-c3bed952daed",
+    "name": "Narayana Health City",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Unspecified acute appendicitis with localized peritonitis",
+    "icd10_code": "K35.80",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Emergency laparoscopic appendectomy",
+    "procedure_code": "PROC-SURG-APP-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "114000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 3 days)",
+        "amount": "36000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "27300.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "15600.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "11700.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "7800.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "15600.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

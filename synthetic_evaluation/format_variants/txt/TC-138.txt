@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: cee2c83d-2f34-4c45-b5c7-420094b43090
+Submission Date: 2027-01-25
+Admission Date: 2027-01-25
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Kavita Shah
+Age: 60
+Gender: female
+Policy / Member Number: POL-033
+
+POLICY DETAILS
+--------------
+Policy Number: POL-033
+Plan Type: individual
+Sum Insured: INR 2500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Fortis Memorial Research Institute
+Network Status: cashless_network
+Facility Category: None
+City: Gurugram, State: None
+ICD-10 Code: I21.09
+Primary Diagnosis: Acute anterior myocardial infarction (STEMI)
+Pre-Existing Disease Flag: True
+Planned Procedure: Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent
+Procedure Code: PROC-CARD-PTCA-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 5 days): INR 12500.75
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 15000.25
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 57000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 42750.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 28500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 57000.00
+------------------------
+Total Estimated Amount: INR 212751.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Hypertension under medical control.
+==================================================

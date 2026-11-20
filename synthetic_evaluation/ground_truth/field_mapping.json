@@ -1,0 +1,73 @@
+{
+  "critical_fields": [
+    {
+      "field": "patient.full_name",
+      "description": "Legal name of the insured patient",
+      "criticality": "HIGH",
+      "fabrication_penalty": "FATAL"
+    },
+    {
+      "field": "patient.policy_number",
+      "description": "Unique insurance policy contract ID",
+      "criticality": "HIGH",
+      "fabrication_penalty": "FATAL"
+    },
+    {
+      "field": "hospital.name",
+      "description": "Treating hospital healthcare facility",
+      "criticality": "HIGH",
+      "fabrication_penalty": "FATAL"
+    },
+    {
+      "field": "diagnosis.icd10_code",
+      "description": "WHO ICD-10 diagnostic condition code",
+      "criticality": "HIGH",
+      "fabrication_penalty": "FATAL"
+    },
+    {
+      "field": "procedure.procedure_code",
+      "description": "Clinical procedure / intervention code",
+      "criticality": "HIGH",
+      "fabrication_penalty": "FATAL"
+    },
+    {
+      "field": "cost_estimate.total_amount",
+      "description": "Total estimated hospital claimed cost",
+      "criticality": "HIGH",
+      "fabrication_penalty": "FATAL"
+    },
+    {
+      "field": "admission_date",
+      "description": "Date of hospital admission",
+      "criticality": "HIGH",
+      "fabrication_penalty": "FATAL"
+    }
+  ],
+  "non_critical_fields": [
+    {
+      "field": "patient.age",
+      "description": "Age in completed years",
+      "criticality": "MEDIUM"
+    },
+    {
+      "field": "patient.gender",
+      "description": "Gender as recorded on policy",
+      "criticality": "MEDIUM"
+    },
+    {
+      "field": "hospital.facility_category",
+      "description": "Hospital infrastructure category",
+      "criticality": "LOW"
+    },
+    {
+      "field": "procedure.admission_type",
+      "description": "Emergency, Planned, or Day-Care",
+      "criticality": "MEDIUM"
+    },
+    {
+      "field": "clinical_notes",
+      "description": "Physician clinical observations",
+      "criticality": "LOW"
+    }
+  ]
+}

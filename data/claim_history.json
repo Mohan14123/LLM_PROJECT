@@ -1,25 +1,25 @@
 [
   {
     "status": "success",
-    "request_id": "c20b3660-ade2-45c0-8bac-bfea8f220cf7",
+    "request_id": "ee29b6b9-9a8c-45a7-a9de-ded9082d189c",
     "extracted_request": {
-      "request_id": "c20b3660-ade2-45c0-8bac-bfea8f220cf7",
-      "submitted_at": "2026-11-16",
-      "source_format": "form",
+      "request_id": "ee29b6b9-9a8c-45a7-a9de-ded9082d189c",
+      "submitted_at": "2026-10-04",
+      "source_format": "scanned_image",
       "status": "pending",
-      "admission_date": null,
+      "admission_date": "2026-10-09",
       "patient": {
-        "patient_id": "a3fd209a-e394-416f-94dc-b4a81ff4d570",
-        "full_name": "Priya Gupta",
-        "age": 42,
+        "patient_id": "0edc2f5b-d927-40f0-a277-b3a5dec708f5",
+        "full_name": "Anita Shah",
+        "age": 26,
         "gender": "female",
-        "policy_number": "POL-646155"
+        "policy_number": "POL-904007"
       },
       "policy": {
-        "policy_number": "POL-646155",
+        "policy_number": "POL-904007",
         "plan_type": "individual",
-        "sum_insured": "1000000",
-        "policy_start_date": "2021-01-01",
+        "sum_insured": "500000",
+        "policy_start_date": "2022-04-15",
         "waiting_period_months": 0,
         "sub_limits": {
           "limits": {}
@@ -38,80 +38,1056 @@
         "endorsements": []
       },
       "hospital": {
-        "hospital_id": "076148e4-13af-4f92-befd-f84e70a10d45",
-        "name": "City Care Hospital",
-        "city": "Delhi",
+        "hospital_id": "5b52a902-64f5-40bf-8db3-26b54ced776f",
+        "name": "Manipal Hospital, Jalpur",
+        "city": "Jalpur",
         "network_tier": "cashless_network",
         "category": "multi_specialty"
       },
       "diagnosis": {
-        "icd10_code": "J18.9",
-        "description": "Pneumonia, unspecified organism with respiratory distress",
+        "icd10_code": "K35.80",
+        "description": "Acute appendicitis without perforation or gangrene",
         "is_pre_existing": false
       },
       "procedure": {
-        "procedure_code": "PROC-MED-CON",
-        "description": "Surgical / Medical Procedure",
+        "procedure_code": "CPT-44970",
+        "description": "Laparoscopic appendectomy",
         "admission_type": "emergency"
       },
       "cost_estimate": {
         "line_items": [
           {
-            "item": "Estimated Medical Charges",
-            "amount": "87007.00",
+            "item": "Estimated Room Rent",
+            "amount": "17339.40",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "13004.55",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "21674.25",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesla Fee",
+            "amount": "6935.76",
             "category": "other"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "6068.79",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "8669.70",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "8669.70",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "4334.85",
+            "category": "consumables"
           }
         ],
-        "total_amount": "87007.00"
+        "total_amount": "86697.00"
       }
     },
-    "pipeline_status": "escalated",
+    "pipeline_status": "completed",
     "recommendation": "RECOMMEND_AUTHORISE",
     "confidence": 0.8,
-    "consensus_status": "DIVERGED",
-    "discrepancy_report": {
-      "rules_recommendation": "APPROVE",
-      "llm_recommendation": "ESCALATE",
-      "rules_confidence": 0.8,
-      "llm_confidence": 0.4,
-      "reason": "Label divergence: Track 1 (rules) produced 'RECOMMEND_AUTHORISE' while Track 2 (clinical LLM) produced 'RECOMMEND_ESCALATE'"
-    },
+    "consensus_status": "AGREED",
+    "discrepancy_report": null,
     "rules_recommendation": "RECOMMEND_AUTHORISE",
-    "llm_recommendation": "RECOMMEND_ESCALATE",
-    "needs_escalation": true,
-    "escalation_triggers": [
-      "Consensus Discrepancy: Label divergence: Track 1 (rules) produced 'RECOMMEND_AUTHORISE' while Track 2 (clinical LLM) produced 'RECOMMEND_ESCALATE'"
-    ],
-    "reasoning": "### RECOMMENDATION \u2014 requires human sign\u2011off  \n\n#### 1. Medical necessity of the admission  \n- **Primary diagnosis:** Pneumonia, unspecified organism with respiratory distress (ICD\u201110\u202fJ18.9).  \n- **Clinical context:** Respiratory distress in a 42\u2011year\u2011old female constitutes a **potentially life\u2011threatening condition** that generally warrants **emergency inpatient care** for close monitoring, oxygen therapy, intravenous antibiotics, and possible ventilatory support.  \n- **Policy alignment:**  \n  - *Policy\u202fWORDING \u2013 INDIVIDUAL HEALTH STANDARD* (ID: `policy_wordings/individual_health_standard.txt::chunk_0000`) states that \u201ccoverage is available for hospitalization requiring a minimum continuous period of **24\u202fhours as an inpatient**\u201d\u30103\u2020L1-L3\u3011. The emergency admission meets this criterion.  \n\n#### 2. Concordance of diagnosis with the planned procedure  \n- **Planned procedure:** \u201cSurgical / Medical Procedure (Code: PROC\u2011MED\u2011CON)\u201d. No clinical details (e.g., indication, type of intervention, expected benefit) are provided in the request.  \n- **Guideline reference:** The policy documents do **not** list specific procedural exclusions for pneumonia, but they require that the **procedure be clinically indicated** for the diagnosed condition. Without documentation (e.g., imaging, bronchoscopy, failure of medical therapy) demonstrating that a procedural intervention is necessary, the link between **J18.9** and **PROC\u2011MED\u2011CON** remains **unclear**.  \n\n#### 3. Sufficiency of clinical evidence / investigations  \n- The request supplies **only the diagnosis** and **admission type**.  \n- No supporting investigations (e.g., chest X\u2011ray, CT scan, arterial blood gas, sputum culture) or treatment response data are attached.  \n- According to standard clinical pathways for community\u2011acquired pneumonia with respiratory distress, **initial management is medical** (antibiotics, supportive care). Procedural interventions are reserved for **specific complications** (e.g., empyema drainage, bronchoscopy for airway obstruction). The absence of such details suggests **insufficient evidence** to justify the procedure at this stage.  \n\n#### 4. Clinical uncertainty / contraindications  \n- **Uncertainty:** High regarding the necessity of the unspecified \u201cPROC\u2011MED\u2011CON\u201d for a patient whose primary problem is pneumonia.  \n- **Contraindications:** None identified from the limited data, but the lack of procedural justification raises a **clinical red flag**.  \n\n#### 5. Policy\u2011related waiting\u2011period considerations  \n- **Initial waiting period:** For an individual plan, a 30\u2011day waiting period applies (Guideline\u202f4 \u2013 *Waiting Period Matrix*). The request does not indicate the policy start date; assuming the policy is in force beyond 30\u202fdays, the waiting period is satisfied.  \n- **Pre\u2011Existing Disease (PED):** The case is flagged **No**; therefore, the 48\u2011month PED waiting period (Guideline\u202f4) is not applicable.  \n- **Specific Disease Waiting Period:** Pneumonia is **not** listed among the specific diseases with a 24\u2011month waiting period (Guideline\u202f5).  \n\n#### 6. Overall assessment  \n- **Admission:** Clinically justified and aligns with policy coverage for emergency inpatient care.  \n- **Procedure:** **Insufficient clinical documentation** to confirm that the planned \u201cPROC\u2011MED\u2011CON\u201d is medically necessary for the stated diagnosis.  \n\n**Recommendation:** Request additional clinical details (investigation reports, explicit indication for the procedure, and expected therapeutic benefit) before authorising the",
+    "llm_recommendation": "RECOMMEND_AUTHORISE",
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "### RECOMMENDATION \u2014 requires human sign-off\n\n#### 1. Clinical Necessity Assessment\n- **Clinical Verdict**: **AUTHORISE**\n- **Clinical Confidence**: **90%**\n- **Summary**: Clinical necessity validated: Laparoscopic appendectomy is medically indicated for Acute appendicitis without perforation or gangrene.\n\n#### 2. Diagnostic & Procedure Concordance\n- **Patient Profile**: Age 26 \u2022 female (Policy: `POL-904007`)\n- **Primary Diagnosis**: **Acute appendicitis without perforation or gangrene** (ICD-10 Code: `K35.80`)\n- **Proposed Procedure**: **Laparoscopic appendectomy** (Procedure Code: `CPT-44970`)\n- **Admission Type**: `Admissiontype.emergency`\n- **Pre-Existing Flag**: No\n\n#### 3. Medical Indication Rationale\nDiagnostic indication concordance is established between the primary diagnosis of **Acute appendicitis without perforation or gangrene** (K35.80) and the planned procedure **Laparoscopic appendectomy** (CPT-44970). The admission type (**Admissiontype.emergency**) is clinically appropriate for acute management and postoperative monitoring.\n\n#### 4. Clinical Guidelines & Reference Alignment\n- **policy_wordings/individual_health_standard.txt::chunk_0002** (policy_wordings/individual_health_standard.txt): Concordant with standard IRDAI clinical treatment protocols.\n- **policy_wordings/individual_health_standard.txt::chunk_0001** (policy_wordings/individual_health_standard.txt): Concordant with standard IRDAI clinical treatment protocols.\n- **policy_wordings/critical_illness_plan.txt::chunk_0000** (policy_wordings/critical_illness_plan.txt): Concordant with standard IRDAI clinical treatment protocols.\n\n---\n*Track 2 Autonomous Clinical Necessity Evaluation Engine*\n\n[Fallback Used: APIConnectionError: Connection error.]",
     "model_provider": "Groq / OpenAI-Compatible",
     "model_name": "openai/gpt-oss-120b",
     "execution_mode": "LIVE_WITH_FALLBACK",
     "adjudication_result": {
-      "request_id": "c20b3660-ade2-45c0-8bac-bfea8f220cf7",
+      "request_id": "ee29b6b9-9a8c-45a7-a9de-ded9082d189c",
       "recommendation": "RECOMMEND_AUTHORISE",
       "confidence_score": 0.8,
-      "total_claimed": "87007.00",
-      "total_approved": "87007.00",
+      "total_claimed": "86697.00",
+      "total_approved": "86697.00",
       "total_deducted": "0",
       "deductions": [],
       "missing_info": [],
       "policy_status": "ACTIVE",
       "waiting_period_clear": true,
-      "reasoning_trace": "Policy POL-646155 is ACTIVE. Inception date: 2021-01-01. Days since inception: 2145.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (2145 days elapsed).\nStatutory Non-Disclosure Moratorium (IRDAI 2024 Schedule III, 60 continuous calendar months):\n  \u2022 Base Sum Insured (SI: \u20b91,000,000.00, Claim Allocation: \u20b987,007.00): REACHED (Incontestable except established fraud)\nAll applicable waiting periods: CLEAR.\nExclusion checks: No non-payable or excluded items found.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "reasoning_trace": "Policy POL-904007 is ACTIVE. Inception date: 2022-04-15. Days since inception: 1638.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (1638 days elapsed).\nStatutory Non-Disclosure Moratorium (IRDAI 2024 Schedule III, 60 continuous calendar months):\n  \u2022 Base Sum Insured (SI: \u20b9500,000.00, Claim Allocation: \u20b986,697.00): PENDING (anniversary date: 2027-04-15)\nAll applicable waiting periods: CLEAR.\nExclusion checks: No non-payable or excluded items found.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
       "escalation_triggers": []
     },
     "latencies": {
-      "validate_intake": 2.4160000009487703e-06,
-      "retrieve_clauses": 5.259211541999999,
-      "call_policy_api": 0.00018641700000188166,
-      "call_hospital_api": 3.208000002530298e-06,
-      "apply_rules_engine": 0.025442334000000955,
-      "llm_reasoning": 3.722006125,
-      "join_tracks": 8.75000001343551e-07,
-      "citation_guard": 0.0012647500000007028,
-      "consensus_arbiter": 0.0001760839999995767,
-      "escalation_gate": 7.195799999948349e-05,
-      "format_recommendation": 8.124999997249915e-06
+      "validate_intake": 9.57999873207882e-07,
+      "retrieve_clauses": 0.016280667000501126,
+      "call_policy_api": 0.00016837499970279168,
+      "call_hospital_api": 5.750000127591193e-06,
+      "apply_rules_engine": 0.001051999999617692,
+      "llm_reasoning": 7.502442207999593,
+      "join_tracks": 1.583999619469978e-06,
+      "citation_guard": 0.0009110000000873697,
+      "consensus_arbiter": 7.417000233544968e-06,
+      "escalation_gate": 2.7459000193630345e-05,
+      "format_recommendation": 1.1625000297499355e-05
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "1ceaa976-e867-4399-8d3e-2a2c79c4c693",
+    "extracted_request": {
+      "request_id": "1ceaa976-e867-4399-8d3e-2a2c79c4c693",
+      "submitted_at": "2026-10-11",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-10-15",
+      "patient": {
+        "patient_id": "58f781f3-00d4-4945-864c-95c3df564ef7",
+        "full_name": "Rajesh Shah",
+        "age": 37,
+        "gender": "male",
+        "policy_number": "POL-540925"
+      },
+      "policy": {
+        "policy_number": "POL-540925",
+        "plan_type": "family_floater",
+        "sum_insured": "500000",
+        "policy_start_date": "2024-06-23",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00",
+        "product_uin": null,
+        "product_version": "2024.1",
+        "ped_waiting_period_months": null,
+        "continuity_credit_months": 0,
+        "portability_history": [],
+        "base_sum_insured": null,
+        "enhanced_sum_insured": null,
+        "enhancement_date": null,
+        "enhancements": [],
+        "specific_disease_schedules": [],
+        "endorsements": []
+      },
+      "hospital": {
+        "hospital_id": "98c3dce4-b469-4319-b8b7-9c8cd6aede51",
+        "name": "Medanta Hospital, Hyderabad",
+        "city": "Hyderabad",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "E11.9",
+        "description": "Type 2 diabetes mellitus without complications admitted for glycemic control",
+        "is_pre_existing": true
+      },
+      "procedure": {
+        "procedure_code": "PROC-MED-E11",
+        "description": "Surgical / Medical Procedure",
+        "admission_type": "planned"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "8357.80",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "6268.35",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "10447.25",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "3343.12",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "2925.23",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "4178.90",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "4178.90",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "2089.45",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "41789.00"
+      }
+    },
+    "pipeline_status": "escalated",
+    "recommendation": "RECOMMEND_DENY",
+    "confidence": 0.9,
+    "consensus_status": "AGREED",
+    "discrepancy_report": null,
+    "rules_recommendation": "RECOMMEND_DENY",
+    "llm_recommendation": "RECOMMEND_DENY",
+    "needs_escalation": true,
+    "escalation_triggers": [
+      "PED-flagged diagnosis"
+    ],
+    "reasoning": "### RECOMMENDATION \u2014 requires human sign\u2011off  \n\n#### 1. Clinical indication vs. planned procedure  \n- **Primary diagnosis:** Type\u202f2 diabetes mellitus without complications (ICD\u201110\u202fE11.9).  \n- **Planned procedure:** \u201cSurgical / Medical Procedure (Code: PROC\u2011MED\u2011E11)\u201d.  \n- Standard diabetes management guidelines (e.g., ADA, Endocrine Society) reserve **in\u2011patient admission** for:  \n  - Diabetic ketoacidosis / hyperosmolar hyperglycaemic state  \n  - Severe refractory hyperglycaemia despite optimal outpatient therapy  \n  - Acute metabolic decompensation, infection, or surgery requiring tight glucose control  \n- The case description provides **no evidence of acute metabolic crisis**, no laboratory data (e.g., HbA1c, blood glucose trends), and no documented failure of outpatient therapy. Consequently, the **diagnosis does not clinically justify a surgical/medical procedure** or an inpatient stay solely for routine glycaemic control.\n\n#### 2. Admission type appropriateness  \n- **Planned admission** is listed as \u201cplanned\u201d (i.e., elective inpatient).  \n- For uncomplicated Type\u202f2 diabetes, **outpatient or day\u2011care services** (e.g., medication optimisation, diabetes education) are the accepted standard of care.  \n- An inpatient admission would be **unnecessary** and likely **non\u2011covered** under the policy\u2019s medical necessity criteria.\n\n#### 3. Policy compliance  \n\n| Policy excerpt | Relevance |\n|----------------|-----------|\n| **Guideline\u202f2** \u2013 *family_floater_plan.txt* (clause\u202f1.1) \u2013 \u201cThe Sum Insured \u2026 is the combined maximum liability \u2026\u201d | Confirms the patient is under a **Family Floater** plan; no special waiver for pre\u2011existing conditions is mentioned. |\n| **Guideline\u202f1** \u2013 *group_corporate_plan.txt* (clause\u202f1.2) \u2013 \u201cWaiver of Initial Waiting Period \u2026\u201d | **Not applicable** to this Family Floater policy; therefore the **pre\u2011existing disease waiting period remains in force**. |\n| **Guideline\u202f4** \u2013 *individual_health_standard.txt* (Section\u202f5 \u2013 Exclusions) | No direct exclusion, but the policy\u2019s **medical necessity clause** (implicit in standard health policies) excludes care that is not medically required. |\n\n- Because the condition is flagged as **Pre\u2011Existing (PED)** and **no waiver** is present in the Family Floater wording, the claim would be subject to the **standard 24\u2011month specific disease waiting period**. Admission for routine glycaemic control before this period lapses is **not covered**.\n\n#### 4. Evidence sufficiency & clinical uncertainty  \n- **Clinical documentation**: Only the primary diagnosis is supplied; **no supporting investigations** (e.g., recent HbA1c, fasting glucose, renal function) or details of prior therapy failures are provided.  \n- **Uncertainty**: Minimal \u2013 the lack of acute indication makes the necessity of admission highly doubtful.  \n\n#### 5. Contra\u2011indications / Red flags  \n- No contraindications to the proposed procedure are identified, but the **procedure itself is not indicated** for the stated diagnosis.\n\n#### 6. Overall assessment  \n- The admission **does not meet medical necessity** criteria for an inpatient stay or a surgical/medical procedure in uncomplicated Type\u202f2 diabetes.  \n- Policy provisions **do not waive the pre\u2011existing disease waiting period**, further limiting eligibility.\n\n**Recommendation:** The request should be **denied** on clinical grounds, with a suggestion to pursue outpatient diabetes management and to re\u2011submit only if an acute metabolic complication arises after the waiting period.\n\n---",
+    "model_provider": "Groq / OpenAI-Compatible",
+    "model_name": "openai/gpt-oss-120b",
+    "execution_mode": "LIVE_WITH_FALLBACK",
+    "adjudication_result": {
+      "request_id": "1ceaa976-e867-4399-8d3e-2a2c79c4c693",
+      "recommendation": "RECOMMEND_DENY",
+      "confidence_score": 0.9,
+      "total_claimed": "41789.00",
+      "total_approved": "0",
+      "total_deducted": "41789.00",
+      "deductions": [
+        {
+          "category": "ped_exclusion",
+          "line_item": null,
+          "original_amount": "41789.00",
+          "allowed_amount": "0",
+          "deducted_amount": "41789.00",
+          "clause_citation": "POLICY WORDING: GROUP HEALTH INSURANCE (CORPORATE)\nPolicy Type: Group\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Corporate Shield\nUIN: SYNTH-GRP-HLT-003/V1/2024 SECTION 1 \u2014 GROUP POLICY PROVISIONS\n1.1 This policy is issued to the Employer (Master Policyholder) for the benefit\nof eligible employees and their declared dependents. 1.2 Waiver of Initial Waiting Period: The initial 30-day waiting period\nis waived for all covered members from the date of joining the group scheme. 1.3 W",
+          "source_document": "policy_wordings/group_corporate_plan.txt",
+          "explanation": "Diagnosis 'Type 2 diabetes mellitus without complications admitted for glycemic control' is flagged as pre-existing. The applicable IRDAI 2024 36-month (3-year) PED waiting period has not yet elapsed (844 days elapsed) (expires on 2027-06-23). Note: Pre-existing disease waiting period is distinct from the 60-month statutory moratorium on contestability."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": false,
+      "reasoning_trace": "Policy POL-540925 is ACTIVE. Inception date: 2024-06-23. Days since inception: 844.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (844 days elapsed).\nDiagnosis flagged as pre-existing. IRDAI 2024 36-month (3-year) PED waiting period NOT elapsed (844 days elapsed).",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 7.500002539018169e-07,
+      "retrieve_clauses": 0.0106289159998596,
+      "call_policy_api": 0.00013041600004726206,
+      "call_hospital_api": 2.708000010898104e-06,
+      "apply_rules_engine": 0.0003600000000005821,
+      "llm_reasoning": 3.271770750000087,
+      "join_tracks": 1.207999957841821e-06,
+      "citation_guard": 0.000589042000228801,
+      "consensus_arbiter": 9.082999895326793e-06,
+      "escalation_gate": 2.4916999791457783e-05,
+      "format_recommendation": 6.833000043116044e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "b64bc5b2-953c-45e3-9ddd-a05cea01cfb8",
+    "extracted_request": {
+      "request_id": "b64bc5b2-953c-45e3-9ddd-a05cea01cfb8",
+      "submitted_at": "2026-10-10",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-10-10",
+      "patient": {
+        "patient_id": "56f242ef-063d-4009-bbea-031a016d13a3",
+        "full_name": "Anil Patel",
+        "age": 59,
+        "gender": "male",
+        "policy_number": "POL-621234"
+      },
+      "policy": {
+        "policy_number": "POL-621234",
+        "plan_type": "group",
+        "sum_insured": "1000000",
+        "policy_start_date": "2025-08-29",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00",
+        "product_uin": null,
+        "product_version": "2024.1",
+        "ped_waiting_period_months": null,
+        "continuity_credit_months": 0,
+        "portability_history": [],
+        "base_sum_insured": null,
+        "enhanced_sum_insured": null,
+        "enhancement_date": null,
+        "enhancements": [],
+        "specific_disease_schedules": [],
+        "endorsements": []
+      },
+      "hospital": {
+        "hospital_id": "9df3b3bf-1daa-4c63-ad5d-f750f95a2348",
+        "name": "Columbia Asia Hospital, Kochi",
+        "city": "Kochi",
+        "network_tier": "non_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "K80.20",
+        "description": "Calculus of gallbladder without cholecystitis without obstruction (Gallstones)",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-47562",
+        "description": "Laparoscopic cholecystectomy",
+        "admission_type": "planned"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "23726.20",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "17794.65",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "29657.75",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "9490.48",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "8304.17",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "11863.10",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "11863.10",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "5931.55",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "118631.00"
+      }
+    },
+    "pipeline_status": "escalated",
+    "recommendation": "RECOMMEND_DENY",
+    "confidence": 0.9,
+    "consensus_status": "DIVERGED",
+    "discrepancy_report": {
+      "rules_recommendation": "DENY",
+      "llm_recommendation": "QUERY",
+      "rules_confidence": 0.9,
+      "llm_confidence": 0.68,
+      "reason": "Label divergence: Track 1 (rules) produced 'RECOMMEND_DENY' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'"
+    },
+    "rules_recommendation": "RECOMMEND_DENY",
+    "llm_recommendation": "RECOMMEND_QUERY",
+    "needs_escalation": true,
+    "escalation_triggers": [
+      "Consensus Discrepancy: Label divergence: Track 1 (rules) produced 'RECOMMEND_DENY' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'",
+      "Non-network hospital"
+    ],
+    "reasoning": "### RECOMMENDATION \u2014 requires human sign\u2011off  \n\n#### 1. Clinical indication vs. planned procedure  \n\n| Element | Assessment |\n|---------|------------|\n| **Primary diagnosis** \u2013 *Calculus of gallbladder without cholecystitis, without obstruction (K80.20)* | The ICD\u201110 code denotes the presence of gallstones **without** active inflammation or biliary obstruction.  In isolation, this represents an **asymptomatic** or minimally symptomatic state. |\n| **Standard therapeutic algorithm** (e.g., ACG, NICE) | \u2022 **Symptomatic** gallstones (biliary colic, cholecystitis, pancreatitis, obstructive jaundice) \u2192 **Elective laparoscopic cholecystectomy** is the recommended definitive treatment. <br>\u2022 **Asymptomatic** gallstones \u2192 Observation is preferred; surgery is reserved for high\u2011risk sub\u2011groups (e.g., porcelain gallbladder, large stones >3\u202fcm, planned bariatric surgery). |\n| **Evidence supplied** | No documentation of symptoms (pain, episodes of biliary colic), laboratory abnormalities, or imaging findings beyond the presence of stones. No prior attempts at medical management (e.g., ursodeoxycholic acid) are mentioned. |\n| **Conclusion** | The **diagnosis alone does not unequivocally justify** a surgical admission. Clinical necessity hinges on the presence of **symptomatic disease** or high\u2011risk features, which are **not provided**. |\n\n#### 2. Admission type  \n\n- **Planned (elective) admission** is appropriate for a **symptomatic** gallstone disease requiring surgery.  \n- For an **asymptomatic** patient, the procedure would typically be performed as a **day\u2011care** (same\u2011day discharge) case, not requiring an inpatient stay or ICU allocation. The current cost estimate includes ICU charges, suggesting an **inpatient** level of care that may be excessive without clinical justification.\n\n#### 3. Policy\u2011level considerations  \n\n| Guideline | Relevance |\n|-----------|-----------|\n| **Guideline\u202f1** \u2013 *Specific Disease Waiting Period* (policy_wordings/individual_health_standard.txt::chunk_0001) | Lists cholelithiasis (K80) as a disease subject to a 24\u2011month waiting period. |\n| **Guideline\u202f3** \u2013 *Group policy waiver* (policy_wordings/group_corporate_plan.txt::chunk_0000) | States that **the 24\u2011month specific disease waiting period is waived for group plans**. The patient\u2019s plan is a **Group** plan, so the waiting\u2011period restriction does **not** block coverage. |\n| **Guideline\u202f2** \u2013 *Endorsement waiver* (policy_wordings/endorsement_waiting_period_waiver.txt::chunk_0000) | Reinforces that a waiver may apply, but the group\u2011plan clause already provides the waiver. |\n| **Guideline\u202f5** \u2013 *Exclusions* (policy_wordings/individual_health_standard.txt::chunk_0002) | No exclusion relevant to cholecystectomy; procedure is not cosmetic, traumatic, etc. |\n\n**Policy compliance**: From a contractual standpoint, the procedure is **eligible** under the group plan (waiting\u2011period waiver). The only remaining gate\u2011keeper is **clinical necessity**.\n\n#### 4. Clinical uncertainty & contraindications  \n\n- **Uncertainty**: Absence of symptom documentation, lack of recent abdominal ultrasound report, and no mention of comorbidities that would make surgery high\u2011risk.  \n- **Contraindications**: None identified in the supplied data (e.g., severe cardiopulmonary disease, uncontrolled coagulopathy).  \n\n#### 5. Recommendation  \n\nGiven the **lack of documented symptomatic disease** or high\u2011risk features, the **clinical necessity of an inpatient laparoscopic cholecystectomy cannot be confirmed** at this stage. Additional clinical information is required to determine whether the patient meets standard indications for surgery and whether a **day\u2011care** admission would be sufficient.\n\n**Suggested next step**: Request clarification on the following:\n- Presence and frequency of biliary colic or related symptoms.  \n- Results of recent abdominal ultrasound (stone size, gallbladder wall thickness, presence of sludge).  \n- Any prior episodes of cholecystitis, pancreatitis, or obstructive jaundice.  \n- Planned postoperative care plan (need for ICU).  \n\n---  \n\n**Clinical decision**: **QUERY** \u2013 seek further clinical details before authorisation.  \n\n---",
+    "model_provider": "Groq / OpenAI-Compatible",
+    "model_name": "openai/gpt-oss-120b",
+    "execution_mode": "LIVE_WITH_FALLBACK",
+    "adjudication_result": {
+      "request_id": "b64bc5b2-953c-45e3-9ddd-a05cea01cfb8",
+      "recommendation": "RECOMMEND_DENY",
+      "confidence_score": 0.9,
+      "total_claimed": "118631.00",
+      "total_approved": "0",
+      "total_deducted": "118631.00",
+      "deductions": [
+        {
+          "category": "waiting_period",
+          "line_item": null,
+          "original_amount": "118631.00",
+          "allowed_amount": "0",
+          "deducted_amount": "118631.00",
+          "clause_citation": "3.2 Specific Disease Waiting Period: Claims arising from the following diseases\nand treatments shall be admissible only after completion of 24 continuous months\n(2 years) from the date of commencement of the first policy period:\n    a) Cataract (ICD-10: H25, H26)\n    b) Hernia of all types (ICD-10: K40-K46)\n    c) Benign Prostatic Hypertrophy (ICD-10: N40)\n    d) Cholelithiasis / Gallstones (ICD-10: K80)\n    e) Kidney Stones / Urolithiasis (ICD-10: N20, N21)\n    f) Joint Replacement Surgery (ICD",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Diagnosis 'Calculus of gallbladder without cholecystitis without obstruction (Gallstones)' (ICD-10: K80.20) is subject to a 24-month specific disease waiting period which has not yet elapsed."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": false,
+      "reasoning_trace": "Policy POL-621234 is ACTIVE. Inception date: 2025-08-29. Days since inception: 407.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (407 days elapsed).\nDiagnosis K80.20 (Calculus of gallbladder without cholecystitis without obstruction (Gallstones)) is subject to 24-month specific disease waiting period. Required period NOT elapsed.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 1.249999968422344e-06,
+      "retrieve_clauses": 0.1318442500000856,
+      "call_policy_api": 0.00034762499990392826,
+      "call_hospital_api": 9.04200032891822e-06,
+      "apply_rules_engine": 0.000956833000145707,
+      "llm_reasoning": 3.4513462919999256,
+      "join_tracks": 6.250002115848474e-07,
+      "citation_guard": 0.0005957499997748528,
+      "consensus_arbiter": 0.0001828340000429307,
+      "escalation_gate": 9.158400007436285e-05,
+      "format_recommendation": 1.3666999620909337e-05
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "81c2b5ae-05b1-46a9-aec4-00ecac15c3e7",
+    "extracted_request": {
+      "request_id": "81c2b5ae-05b1-46a9-aec4-00ecac15c3e7",
+      "submitted_at": "2026-08-29",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-09-02",
+      "patient": {
+        "patient_id": "33eae3ef-97e7-4f2f-a2da-721a04156d8d",
+        "full_name": "Ananya Rao",
+        "age": 22,
+        "gender": "female",
+        "policy_number": "MISMATCH-6281"
+      },
+      "policy": {
+        "policy_number": "MISMATCH-6281",
+        "plan_type": "individual",
+        "sum_insured": "1500000",
+        "policy_start_date": "2024-11-03",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00",
+        "product_uin": null,
+        "product_version": "2024.1",
+        "ped_waiting_period_months": null,
+        "continuity_credit_months": 0,
+        "portability_history": [],
+        "base_sum_insured": null,
+        "enhanced_sum_insured": null,
+        "enhancement_date": null,
+        "enhancements": [],
+        "specific_disease_schedules": [],
+        "endorsements": []
+      },
+      "hospital": {
+        "hospital_id": "404cc7a3-3eaa-4e46-ac9d-780b195b3158",
+        "name": "Fortis Hospital, Chandigarh",
+        "city": "Chandigarh",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "K80.20",
+        "description": "Calculus of gallbladder without cholecystitis without obstruction (Gallstones)",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-47562",
+        "description": "Laparoscopic cholecystectomy",
+        "admission_type": "planned"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "19495.00",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "14621.25",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "24368.75",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "7798.00",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "6823.25",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "9747.50",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "9747.50",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "4873.75",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "97475.00"
+      }
+    },
+    "pipeline_status": "escalated",
+    "recommendation": "RECOMMEND_DENY",
+    "confidence": 0.9,
+    "consensus_status": "DIVERGED",
+    "discrepancy_report": {
+      "rules_recommendation": "DENY",
+      "llm_recommendation": "QUERY",
+      "rules_confidence": 0.9,
+      "llm_confidence": 0.68,
+      "reason": "Label divergence: Track 1 (rules) produced 'RECOMMEND_DENY' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'"
+    },
+    "rules_recommendation": "RECOMMEND_DENY",
+    "llm_recommendation": "RECOMMEND_QUERY",
+    "needs_escalation": true,
+    "escalation_triggers": [
+      "Consensus Discrepancy: Label divergence: Track 1 (rules) produced 'RECOMMEND_DENY' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'"
+    ],
+    "reasoning": "### RECOMMENDATION \u2014 requires human sign\u2011off  \n\n#### 1. Medical necessity & diagnostic indication concordance  \n- **Primary diagnosis**: *Calculus of gallbladder without cholecystitis and without obstruction* (ICD\u201110\u202fK80.20).  \n- **Planned procedure**: Laparoscopic cholecystectomy (CPT\u201147562).  \n\n| Consideration | Assessment |\n|---------------|------------|\n| **Symptom status** | The claim does **not** document any biliary colic, recurrent pain, pancreatitis, cholangitis, or obstruction. In the absence of symptoms, most clinical guidelines consider elective cholecystectomy **elective and not medically necessary** for isolated asymptomatic gallstones. |\n| **Standard treatment algorithm** | Consensus statements (e.g., Tokyo Guidelines, ACG) recommend surgery **only** for: <br>\u2022 Symptomatic gallstones (biliary colic, dyspepsia attributable to stones) <br>\u2022 Complications (cholecystitis, pancreatitis, choledocholithiasis, gallstone ileus) <br>\u2022 High\u2011risk patients (e.g., porcelain gallbladder). None of these are documented. |\n| **Conclusion** | Based on the information provided, the clinical indication for surgery is **uncertain**; the diagnosis alone does not automatically justify an inpatient laparoscopic cholecystectomy. Additional documentation of symptomatology, frequency of attacks, or complication risk is required. |\n\n#### 2. Admission type appropriateness  \n- **Planned admission** is listed as \u201cplanned\u201d (presumably inpatient).  \n- For **symptomatic** gallstone disease, laparoscopic cholecystectomy is often performed as a **day\u2011care** or short\u2011stay admission, not requiring ICU level care. The estimated ICU charge further suggests an over\u2011allocation of resources.  \n- **Recommendation**: If surgery is deemed necessary, a **day\u2011care** or **short\u2011stay** admission would be more appropriate, pending clinical confirmation.\n\n#### 3. Policy compliance (waiting period)  \n- The **individual health standard policy** imposes a **24\u2011month specific disease waiting period for cholelithiasis/gallstones** (see **Guideline\u202f1**, clause\u202f3.2\u202f[d] \u2013 *\u201cCholelithiasis / Gallstones (ICD\u201110: K80)\u201d*).  \n- No waiver endorsement (Guideline\u202f2) is attached to this individual plan. Therefore, the claim is **subject to the waiting period**.  \n- Without evidence that the policy has been in force for \u2265\u202f24\u202fmonths, the claim fails the **policy\u2011level eligibility** criterion.\n\n#### 4. Evidence sufficiency & clinical uncertainty  \n- The claim provides **no**: <br>\u2022 Symptom diary or pain scores <br>\u2022 Prior trial of medical therapy (e.g., ursodeoxycholic acid) <br>\u2022 Imaging reports confirming stone size, number, or risk features.  \n- Consequently, the **clinical evidence package is insufficient** to establish necessity.  \n\n#### 5. Contra\u2011indications / red flags  \n- No documented contraindications (e.g., severe cardiopulmonary disease) are present, but the **absence of documented need** is the primary barrier.  \n\n#### 6. Overall clinical judgment  \n- **Medical necessity**: **Not established** based on current data.  \n- **Policy eligibility**: **Not met** due to the 24\u2011month specific disease waiting period.  \n\n**Suggested next step**: Request additional clinical documentation (symptom history, imaging, duration of disease) and verify policy inception date to confirm waiting\u2011period compliance.\n\n---  \n\n**Recommendation**: **QUERY** \u2013 seek further clinical details and policy\u2011age verification before any authorisation decision.  \n\n---",
+    "model_provider": "Groq / OpenAI-Compatible",
+    "model_name": "openai/gpt-oss-120b",
+    "execution_mode": "LIVE_WITH_FALLBACK",
+    "adjudication_result": {
+      "request_id": "81c2b5ae-05b1-46a9-aec4-00ecac15c3e7",
+      "recommendation": "RECOMMEND_DENY",
+      "confidence_score": 0.9,
+      "total_claimed": "97475.00",
+      "total_approved": "0",
+      "total_deducted": "97475.00",
+      "deductions": [
+        {
+          "category": "waiting_period",
+          "line_item": null,
+          "original_amount": "97475.00",
+          "allowed_amount": "0",
+          "deducted_amount": "97475.00",
+          "clause_citation": "3.2 Specific Disease Waiting Period: Claims arising from the following diseases\nand treatments shall be admissible only after completion of 24 continuous months\n(2 years) from the date of commencement of the first policy period:\n    a) Cataract (ICD-10: H25, H26)\n    b) Hernia of all types (ICD-10: K40-K46)\n    c) Benign Prostatic Hypertrophy (ICD-10: N40)\n    d) Cholelithiasis / Gallstones (ICD-10: K80)\n    e) Kidney Stones / Urolithiasis (ICD-10: N20, N21)\n    f) Joint Replacement Surgery (ICD",
+          "source_document": "policy_wordings/individual_health_standard.txt",
+          "explanation": "Diagnosis 'Calculus of gallbladder without cholecystitis without obstruction (Gallstones)' (ICD-10: K80.20) is subject to a 24-month specific disease waiting period which has not yet elapsed."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": false,
+      "reasoning_trace": "Policy MISMATCH-6281 is ACTIVE. Inception date: 2024-11-03. Days since inception: 668.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (668 days elapsed).\nDiagnosis K80.20 (Calculus of gallbladder without cholecystitis without obstruction (Gallstones)) is subject to 24-month specific disease waiting period. Required period NOT elapsed.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 8.340000476891873e-07,
+      "retrieve_clauses": 0.009909332999995968,
+      "call_policy_api": 0.00010783400000491383,
+      "call_hospital_api": 3.375000005689799e-06,
+      "apply_rules_engine": 0.00034191700001429126,
+      "llm_reasoning": 3.8686989999999923,
+      "join_tracks": 1.2919999790028669e-06,
+      "citation_guard": 0.0006967919999851802,
+      "consensus_arbiter": 0.00025083399998493405,
+      "escalation_gate": 0.00010933299995485868,
+      "format_recommendation": 6.5000000404324965e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "4f97abc0-64dd-42c4-b55e-69f3643ea8a3",
+    "extracted_request": {
+      "request_id": "4f97abc0-64dd-42c4-b55e-69f3643ea8a3",
+      "submitted_at": "2026-10-12",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-10-13",
+      "patient": {
+        "patient_id": "630ba23b-b9de-4704-b36d-a4d2fabdfad8",
+        "full_name": "Manoj Singh",
+        "age": 75,
+        "gender": "male",
+        "policy_number": "POL-257977"
+      },
+      "policy": {
+        "policy_number": "POL-257977",
+        "plan_type": "group",
+        "sum_insured": "300000",
+        "policy_start_date": "2025-05-16",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00",
+        "product_uin": null,
+        "product_version": "2024.1",
+        "ped_waiting_period_months": null,
+        "continuity_credit_months": 0,
+        "portability_history": [],
+        "base_sum_insured": null,
+        "enhanced_sum_insured": null,
+        "enhancement_date": null,
+        "enhancements": [],
+        "specific_disease_schedules": [],
+        "endorsements": []
+      },
+      "hospital": {
+        "hospital_id": "b8547b5f-101d-486b-8af6-cc878d0d4861",
+        "name": "Global Hospital Hospital, Kolkata",
+        "city": "Kolkata",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "M17.11",
+        "description": "Primary osteoarthritis, right knee",
+        "is_pre_existing": true
+      },
+      "procedure": {
+        "procedure_code": "CPT-27447",
+        "description": "Total knee arthroplasty (TKA), right side",
+        "admission_type": "planned"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "72459.80",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "54344.85",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "90574.75",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "28983.92",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "25360.93",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "36229.90",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "36229.90",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "18114.95",
+            "category": "consumables"
+          },
+          {
+            "item": "Miscellaneous Adjustment Charges",
+            "amount": "5000.00",
+            "category": "other"
+          }
+        ],
+        "total_amount": "367299.00"
+      }
+    },
+    "pipeline_status": "escalated",
+    "recommendation": "RECOMMEND_DENY",
+    "confidence": 0.9,
+    "consensus_status": "DIVERGED",
+    "discrepancy_report": {
+      "rules_recommendation": "DENY",
+      "llm_recommendation": "QUERY",
+      "rules_confidence": 0.9,
+      "llm_confidence": 0.78,
+      "reason": "Label divergence: Track 1 (rules) produced 'RECOMMEND_DENY' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'"
+    },
+    "rules_recommendation": "RECOMMEND_DENY",
+    "llm_recommendation": "RECOMMEND_QUERY",
+    "needs_escalation": true,
+    "escalation_triggers": [
+      "Consensus Discrepancy: Label divergence: Track 1 (rules) produced 'RECOMMEND_DENY' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'",
+      "PED-flagged diagnosis"
+    ],
+    "reasoning": "### RECOMMENDATION \u2014 requires human sign\u2011off\n\n#### 1. Medical necessity & diagnostic indication\n- **Primary diagnosis:** Primary osteoarthritis, right knee (ICD\u201110\u202fM17.11).  \n- **Planned procedure:** Total knee arthroplasty (TKA), right side (CPT\u202f27447).  \n- **Clinical rationale:**  \n  - TKA is the standard of care for end\u2011stage knee OA when pain and functional limitation persist despite exhaustive conservative measures (analgesics, physiotherapy, intra\u2011articular injections).  \n  - Age\u202f75\u202fyears is not a contraindication; outcomes in this age group are well\u2011documented and comparable to younger cohorts when comorbidities are optimized.  \n- **Conclusion:** The diagnosis **clinically supports** the proposed TKA; the admission is medically necessary.\n\n#### 2. Admission type\n- **Planned (elective) inpatient admission** is appropriate for a primary TKA, which typically requires pre\u2011operative optimisation, intra\u2011operative anesthesia, and post\u2011operative monitoring (including possible ICU/step\u2011down care).  \n- No indication for day\u2011care or emergency admission is present.\n\n#### 3. Policy compliance \u2013 Waiting periods & exclusions\n| Policy element | Guideline reference | Interpretation |\n|----------------|--------------------|----------------|\n| **Initial waiting period** \u2013 waived for group plans | Guideline\u202f1 (group policy provisions) & Guideline\u202f3 (waiting period matrix) | No barrier. |\n| **Specific disease waiting period** \u2013 waived for knee\u2011related procedures | Guideline\u202f2 (endorsement waiver) | Not applicable; specific disease waiting period is already waived. |\n| **Pre\u2011Existing Disease (PED) waiting period** \u2013 12\u202fmonths for group plans | Guideline\u202f3 (waiting period matrix) \u2013 \u201cPre\u2011Existing Disease (PED)\u202f12\u202fmo**\u201d | The patient is flagged as PED. Evidence of \u226512\u202fmonths continuous coverage is **not provided** in the request. |\n| **Exclusions** \u2013 cosmetic, war, etc. | Guideline\u202f5 (exclusions) | TKA for OA is not an excluded service. |\n| **Procedure sub\u2011limit** \u2013 Rs\u202f1,50,000 per knee | Guideline\u202f4 (disease\u2011specific sub\u2011limits) | Estimated cost exceeds the sub\u2011limit, but financial limits are outside the clinical adjudication scope. |\n\n#### 4. Evidence & investigations\n- The request does **not** include supporting radiographs, functional scores (e.g., WOMAC, KOOS), or documentation of failed conservative therapy.  \n- While the clinical indication is plausible, **sufficient objective evidence** to confirm that non\u2011surgical management has been exhausted is **missing**.\n\n#### 5. Clinical uncertainties / contraindications\n- No documented contraindications (e.g., active infection, severe uncontrolled comorbidities).  \n- Uncertainty remains regarding:\n  1. **PED waiting period compliance** \u2013 need confirmation of \u226512\u202fmonths continuous eligibility.  \n  2. **Adequacy of pre\u2011operative documentation** \u2013 radiographic severity, functional limitation, and prior conservative treatment details.\n\n#### 6. Recommendation\nGiven the clear medical necessity but the **policy\u2011related uncertainty** (PED waiting period) and **incomplete clinical documentation**, the prudent step is to **query** the submitting provider/benefit administrator for:\n\n1. Confirmation that the patient has satisfied the 12\u2011month PED waiting period for the group plan (Guideline\u202f3).  \n2. Provision of recent imaging and a summary of conservative treatments attempted.\n\n---\n\n**Overall clinical judgment:** The procedure is clinically indicated, but policy compliance cannot be verified with the current data.\n\n---",
+    "model_provider": "Groq / OpenAI-Compatible",
+    "model_name": "openai/gpt-oss-120b",
+    "execution_mode": "LIVE_WITH_FALLBACK",
+    "adjudication_result": {
+      "request_id": "4f97abc0-64dd-42c4-b55e-69f3643ea8a3",
+      "recommendation": "RECOMMEND_DENY",
+      "confidence_score": 0.9,
+      "total_claimed": "367299.00",
+      "total_approved": "0",
+      "total_deducted": "367299.00",
+      "deductions": [
+        {
+          "category": "waiting_period",
+          "line_item": null,
+          "original_amount": "367299.00",
+          "allowed_amount": "0",
+          "deducted_amount": "367299.00",
+          "clause_citation": "POLICY WORDING: GROUP HEALTH INSURANCE (CORPORATE)\nPolicy Type: Group\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Corporate Shield\nUIN: SYNTH-GRP-HLT-003/V1/2024 SECTION 1 \u2014 GROUP POLICY PROVISIONS\n1.1 This policy is issued to the Employer (Master Policyholder) for the benefit\nof eligible employees and their declared dependents. 1.2 Waiver of Initial Waiting Period: The initial 30-day waiting period\nis waived for all covered members from the date of joining the group scheme. 1.3 W",
+          "source_document": "policy_wordings/group_corporate_plan.txt",
+          "explanation": "Diagnosis 'Primary osteoarthritis, right knee' (ICD-10: M17.11) is subject to a 24-month specific disease waiting period which has not yet elapsed."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": false,
+      "reasoning_trace": "Policy POL-257977 is ACTIVE. Inception date: 2025-05-16. Days since inception: 515.\nClaimed amount \u20b9367,299.00 exceeds remaining sum insured \u20b9300,000.00.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (515 days elapsed).\nDiagnosis M17.11 (Primary osteoarthritis, right knee) is subject to 24-month specific disease waiting period. Required period NOT elapsed.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 9.169999657387962e-07,
+      "retrieve_clauses": 0.013807250000013482,
+      "call_policy_api": 0.00012995800000226154,
+      "call_hospital_api": 3.582999966056377e-06,
+      "apply_rules_engine": 0.00033720800001901807,
+      "llm_reasoning": 3.1708598330000086,
+      "join_tracks": 7.166000045799592e-06,
+      "citation_guard": 0.0005844590000378957,
+      "consensus_arbiter": 0.00017758299998149596,
+      "escalation_gate": 9.945900001184782e-05,
+      "format_recommendation": 7.0830000140631455e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "d5a97db2-b530-4806-b8f7-7354cd4629fe",
+    "extracted_request": {
+      "request_id": "d5a97db2-b530-4806-b8f7-7354cd4629fe",
+      "submitted_at": "2026-09-30",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-09-30",
+      "patient": {
+        "patient_id": "888e749e-c3b0-4826-8cc7-c872beae69aa",
+        "full_name": "Ramesh Reddy",
+        "age": 68,
+        "gender": "male",
+        "policy_number": "POL-637838"
+      },
+      "policy": {
+        "policy_number": "POL-637838",
+        "plan_type": "individual",
+        "sum_insured": "500000",
+        "policy_start_date": "2023-05-09",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00",
+        "product_uin": null,
+        "product_version": "2024.1",
+        "ped_waiting_period_months": null,
+        "continuity_credit_months": 0,
+        "portability_history": [],
+        "base_sum_insured": null,
+        "enhanced_sum_insured": null,
+        "enhancement_date": null,
+        "enhancements": [],
+        "specific_disease_schedules": [],
+        "endorsements": []
+      },
+      "hospital": {
+        "hospital_id": "f200c2a5-66c7-42fb-a5c9-651b296e6d41",
+        "name": "Apollo Hospital, Delhi",
+        "city": "Delhi",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "K35.80",
+        "description": "Acute appendicitis without perforation or gangrene",
+        "is_pre_existing": false
+      },
+      "procedure": {
+        "procedure_code": "CPT-44970",
+        "description": "Laparoscopic appendectomy",
+        "admission_type": "emergency"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "21912.60",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "16434.45",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "27390.75",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "8765.04",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "7669.41",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "10956.30",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "10956.30",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "5478.15",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "109563.00"
+      }
+    },
+    "pipeline_status": "completed",
+    "recommendation": "RECOMMEND_AUTHORISE",
+    "confidence": 0.8,
+    "consensus_status": "AGREED",
+    "discrepancy_report": null,
+    "rules_recommendation": "RECOMMEND_AUTHORISE",
+    "llm_recommendation": "RECOMMEND_AUTHORISE",
+    "needs_escalation": false,
+    "escalation_triggers": [],
+    "reasoning": "### RECOMMENDATION \u2014 requires human sign-off\n\n#### 1. Clinical Necessity Assessment\n- **Clinical Verdict**: **AUTHORISE**\n- **Clinical Confidence**: **90%**\n- **Summary**: Clinical necessity validated: Laparoscopic appendectomy is medically indicated for Acute appendicitis without perforation or gangrene.\n\n#### 2. Diagnostic & Procedure Concordance\n- **Patient Profile**: Age 68 \u2022 male (Policy: `POL-637838`)\n- **Primary Diagnosis**: **Acute appendicitis without perforation or gangrene** (ICD-10 Code: `K35.80`)\n- **Proposed Procedure**: **Laparoscopic appendectomy** (Procedure Code: `CPT-44970`)\n- **Admission Type**: `Admissiontype.emergency`\n- **Pre-Existing Flag**: No\n\n#### 3. Medical Indication Rationale\nDiagnostic indication concordance is established between the primary diagnosis of **Acute appendicitis without perforation or gangrene** (K35.80) and the planned procedure **Laparoscopic appendectomy** (CPT-44970). The admission type (**Admissiontype.emergency**) is clinically appropriate for acute management and postoperative monitoring.\n\n#### 4. Clinical Guidelines & Reference Alignment\n- **policy_wordings/individual_health_standard.txt::chunk_0002** (policy_wordings/individual_health_standard.txt): Concordant with standard IRDAI clinical treatment protocols.\n- **policy_wordings/individual_health_standard.txt::chunk_0001** (policy_wordings/individual_health_standard.txt): Concordant with standard IRDAI clinical treatment protocols.\n- **policy_wordings/critical_illness_plan.txt::chunk_0000** (policy_wordings/critical_illness_plan.txt): Concordant with standard IRDAI clinical treatment protocols.\n\n---\n*Track 2 Autonomous Clinical Necessity Evaluation Engine*\n\n[Fallback Used: APIConnectionError: Connection error.]",
+    "model_provider": "Groq / OpenAI-Compatible",
+    "model_name": "openai/gpt-oss-120b",
+    "execution_mode": "LIVE_WITH_FALLBACK",
+    "adjudication_result": {
+      "request_id": "d5a97db2-b530-4806-b8f7-7354cd4629fe",
+      "recommendation": "RECOMMEND_AUTHORISE",
+      "confidence_score": 0.8,
+      "total_claimed": "109563.00",
+      "total_approved": "109563.00",
+      "total_deducted": "0",
+      "deductions": [],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": true,
+      "reasoning_trace": "Policy POL-637838 is ACTIVE. Inception date: 2023-05-09. Days since inception: 1240.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (1240 days elapsed).\nStatutory Non-Disclosure Moratorium (IRDAI 2024 Schedule III, 60 continuous calendar months):\n  \u2022 Base Sum Insured (SI: \u20b9500,000.00, Claim Allocation: \u20b9109,563.00): PENDING (anniversary date: 2028-05-09)\nAll applicable waiting periods: CLEAR.\nExclusion checks: No non-payable or excluded items found.\nRoom rent and sub-limit checks: No capping applied.\nCo-pay: 0% \u2014 no co-pay applicable.\nCo-pay and deductible checks: No deductions applied.",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 1.0830000292116893e-06,
+      "retrieve_clauses": 0.012651000000005297,
+      "call_policy_api": 0.00015274999998382555,
+      "call_hospital_api": 3.1250000347426976e-06,
+      "apply_rules_engine": 0.00032450000003336754,
+      "llm_reasoning": 7.374511374999997,
+      "join_tracks": 1.3330000001587905e-06,
+      "citation_guard": 0.000641666999968038,
+      "consensus_arbiter": 6.708000000799075e-06,
+      "escalation_gate": 2.625000001899025e-05,
+      "format_recommendation": 9.582999950907833e-06
+    }
+  },
+  {
+    "status": "success",
+    "request_id": "50115fac-7073-4d62-9d68-5ffcd5779013",
+    "extracted_request": {
+      "request_id": "50115fac-7073-4d62-9d68-5ffcd5779013",
+      "submitted_at": "2026-10-11",
+      "source_format": "pdf",
+      "status": "pending",
+      "admission_date": "2026-10-15",
+      "patient": {
+        "patient_id": "a16f5255-cb80-45c9-ac71-38742aba9157",
+        "full_name": "Rajesh Shah",
+        "age": 37,
+        "gender": "male",
+        "policy_number": "POL-540925"
+      },
+      "policy": {
+        "policy_number": "POL-540925",
+        "plan_type": "family_floater",
+        "sum_insured": "500000",
+        "policy_start_date": "2024-06-23",
+        "waiting_period_months": 0,
+        "sub_limits": {
+          "limits": {}
+        },
+        "co_pay_pct": "0.00",
+        "product_uin": null,
+        "product_version": "2024.1",
+        "ped_waiting_period_months": null,
+        "continuity_credit_months": 0,
+        "portability_history": [],
+        "base_sum_insured": null,
+        "enhanced_sum_insured": null,
+        "enhancement_date": null,
+        "enhancements": [],
+        "specific_disease_schedules": [],
+        "endorsements": []
+      },
+      "hospital": {
+        "hospital_id": "601b1fa9-b74b-4b08-b833-8d7fca8e9cb6",
+        "name": "Medanta Hospital, Hyderabad",
+        "city": "Hyderabad",
+        "network_tier": "cashless_network",
+        "category": "multi_specialty"
+      },
+      "diagnosis": {
+        "icd10_code": "E11.9",
+        "description": "Type 2 diabetes mellitus without complications admitted for glycemic control",
+        "is_pre_existing": true
+      },
+      "procedure": {
+        "procedure_code": "PROC-MED-E11",
+        "description": "Surgical / Medical Procedure",
+        "admission_type": "planned"
+      },
+      "cost_estimate": {
+        "line_items": [
+          {
+            "item": "Estimated Room Rent",
+            "amount": "8357.80",
+            "category": "room_rent"
+          },
+          {
+            "item": "Estimated Icu Charges",
+            "amount": "6268.35",
+            "category": "icu_charges"
+          },
+          {
+            "item": "Estimated Surgeon Fee",
+            "amount": "10447.25",
+            "category": "surgeon_fee"
+          },
+          {
+            "item": "Estimated Anaesthesia Fee",
+            "amount": "3343.12",
+            "category": "anaesthesia_fee"
+          },
+          {
+            "item": "Estimated Consultation Fee",
+            "amount": "2925.23",
+            "category": "consultation_fee"
+          },
+          {
+            "item": "Estimated Diagnostic",
+            "amount": "4178.90",
+            "category": "diagnostic"
+          },
+          {
+            "item": "Estimated Pharmacy",
+            "amount": "4178.90",
+            "category": "pharmacy"
+          },
+          {
+            "item": "Estimated Consumables",
+            "amount": "2089.45",
+            "category": "consumables"
+          }
+        ],
+        "total_amount": "41789.00"
+      }
+    },
+    "pipeline_status": "escalated",
+    "recommendation": "RECOMMEND_DENY",
+    "confidence": 0.9,
+    "consensus_status": "DIVERGED",
+    "discrepancy_report": {
+      "rules_recommendation": "DENY",
+      "llm_recommendation": "QUERY",
+      "rules_confidence": 0.9,
+      "llm_confidence": 0.62,
+      "reason": "Label divergence: Track 1 (rules) produced 'RECOMMEND_DENY' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'"
+    },
+    "rules_recommendation": "RECOMMEND_DENY",
+    "llm_recommendation": "RECOMMEND_QUERY",
+    "needs_escalation": true,
+    "escalation_triggers": [
+      "Consensus Discrepancy: Label divergence: Track 1 (rules) produced 'RECOMMEND_DENY' while Track 2 (clinical LLM) produced 'RECOMMEND_QUERY'",
+      "PED-flagged diagnosis"
+    ],
+    "reasoning": "### RECOMMENDATION \u2014 requires human sign\u2011off  \n\n#### 1. Clinical Context  \n- **Patient:** 37\u2011year\u2011old male  \n- **Primary Diagnosis:** Type\u202f2 diabetes mellitus without complications (ICD\u201110\u202fE11.9)  \n- **Proposed Admission:** Planned inpatient admission for \u201cglycemic control\u201d with a **Surgical / Medical Procedure** (code\u202fPROC\u2011MED\u2011E11).  \n\n#### 2. Assessment of Medical Necessity  \n\n| Criterion | Findings | Interpretation |\n|-----------|----------|----------------|\n| **Diagnosis\u2011Procedure Concordance** | Diabetes\u202fE11.9 *without* documented acute metabolic decompensation (e.g., DKA, HHS, severe hyperglycaemia) or diabetic complications. | The listed procedure (PROC\u2011MED\u2011E11) is not a recognized standard intervention for uncomplicated Type\u202f2 diabetes. No surgical indication exists. |\n| **Standard of Care for Uncomplicated Type\u202f2 Diabetes** | Management is typically **out\u2011patient**: lifestyle modification, oral hypoglycaemic agents, possible insulin titration, and regular monitoring. Inpatient care is reserved for **acute metabolic crises** or **significant comorbidities**. | Admission solely for \u201cglycemic control\u201d lacks clinical justification per accepted diabetes guidelines (e.g., ADA, Endocrine Society). |\n| **Evidence Provided** | No laboratory data (HbA1c, fasting glucose), no record of recent hypoglycaemic/hyperglycaemic events, no imaging or specialist consultation notes. | Insufficient objective evidence to substantiate the need for inpatient or procedural intervention. |\n| **Policy Provisions** | \u2022 Family Floater plan wording (Guideline\u202f2) defines the sum\u2011insured but does **not** list diabetes management as an excluded or automatically covered inpatient service. <br>\u2022 Exclusions (Guideline\u202f4) do not apply (no cosmetic, self\u2011inflicted, etc.). | Absence of a specific policy clause **supporting** admission for routine diabetes control means the claim must satisfy the generic \u201cmedical necessity\u201d test, which is not met here. |\n| **Pre\u2011Existing Disease (PED) Flag** | Yes \u2013 the condition is pre\u2011existing. Most policies impose a **waiting period** for pre\u2011existing illnesses unless waived. No waiver clause is present in the family\u2011floater wording (Guideline\u202f2). | Likely a waiting\u2011period restriction applies, further weakening the claim. |\n\n#### 3. Admission Type Appropriateness  \n- **Planned Inpatient Admission** \u2013 Not justified for uncomplicated diabetes. A **day\u2011care** or **out\u2011patient** approach would be clinically appropriate if any intervention were needed.  \n\n#### 4. Compliance with Clinical Guidelines / Policy  \n- No specific clinical guideline excerpt is available in the retrieved documents that endorses inpatient admission for uncomplicated Type\u202f2 diabetes.  \n- The policy excerpts (Guidelines\u202f1\u20115) do not contain provisions that override the standard medical\u2011necessity requirement for this indication.  \n\n#### 5. Overall Determination  \n- **Medical necessity is not established** based on the diagnosis, lack of acute complications, and absence of supporting clinical data.  \n- The claim **does not meet** the generic necessity criteria required by the family\u2011floater plan and is further constrained by the pre\u2011existing disease flag.  \n\n**Recommendation:** Request additional clinical documentation (e.g., recent HbA1c, evidence of acute metabolic decompensation, specialist recommendation) before any authorisation can be considered.\n\n---  \n\n**Conclusion:** The current submission does not demonstrate sufficient clinical justification for the proposed inpatient admission and procedure.",
+    "model_provider": "Groq / OpenAI-Compatible",
+    "model_name": "openai/gpt-oss-120b",
+    "execution_mode": "LIVE_WITH_FALLBACK",
+    "adjudication_result": {
+      "request_id": "50115fac-7073-4d62-9d68-5ffcd5779013",
+      "recommendation": "RECOMMEND_DENY",
+      "confidence_score": 0.9,
+      "total_claimed": "41789.00",
+      "total_approved": "0",
+      "total_deducted": "41789.00",
+      "deductions": [
+        {
+          "category": "ped_exclusion",
+          "line_item": null,
+          "original_amount": "41789.00",
+          "allowed_amount": "0",
+          "deducted_amount": "41789.00",
+          "clause_citation": "POLICY WORDING: GROUP HEALTH INSURANCE (CORPORATE)\nPolicy Type: Group\nInsurer: Synthetic Insurance Co. Ltd. Product: HealthGuard Corporate Shield\nUIN: SYNTH-GRP-HLT-003/V1/2024 SECTION 1 \u2014 GROUP POLICY PROVISIONS\n1.1 This policy is issued to the Employer (Master Policyholder) for the benefit\nof eligible employees and their declared dependents. 1.2 Waiver of Initial Waiting Period: The initial 30-day waiting period\nis waived for all covered members from the date of joining the group scheme. 1.3 W",
+          "source_document": "policy_wordings/group_corporate_plan.txt",
+          "explanation": "Diagnosis 'Type 2 diabetes mellitus without complications admitted for glycemic control' is flagged as pre-existing. The applicable IRDAI 2024 36-month (3-year) PED waiting period has not yet elapsed (844 days elapsed) (expires on 2027-06-23). Note: Pre-existing disease waiting period is distinct from the 60-month statutory moratorium on contestability."
+        }
+      ],
+      "missing_info": [],
+      "policy_status": "ACTIVE",
+      "waiting_period_clear": false,
+      "reasoning_trace": "Policy POL-540925 is ACTIVE. Inception date: 2024-06-23. Days since inception: 844.\nPolicy validity check: PASSED.\nInitial 30-day waiting period: CLEAR (844 days elapsed).\nDiagnosis flagged as pre-existing. IRDAI 2024 36-month (3-year) PED waiting period NOT elapsed (844 days elapsed).",
+      "escalation_triggers": []
+    },
+    "latencies": {
+      "validate_intake": 9.17000022582215e-07,
+      "retrieve_clauses": 0.009501250000027994,
+      "call_policy_api": 0.00012437499998441126,
+      "call_hospital_api": 2.957999981845205e-06,
+      "apply_rules_engine": 0.00032933299996784626,
+      "llm_reasoning": 3.3514220000000137,
+      "join_tracks": 9.579999868947198e-07,
+      "citation_guard": 0.0006348329999923408,
+      "consensus_arbiter": 0.00024929099998871607,
+      "escalation_gate": 9.662500002605157e-05,
+      "format_recommendation": 6.5419999941696005e-06
     }
   }
 ]

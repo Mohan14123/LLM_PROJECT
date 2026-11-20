@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-207",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-207",
+  "policy_id": "POL-032",
+  "policy_version": "1.0",
+  "description": "Empty patient full_name string",
+  "expected_schema_valid": false,
+  "expected_error_substring": "String should have at least 1 character",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "f3eacf32-f841-4412-8457-47b8eeeb47ba",
+    "submitted_at": "2027-08-04",
+    "admission_date": "2027-08-04",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "08383c33-3682-41ff-ba00-5602506ade0d",
+      "full_name": "",
+      "age": 36,
+      "gender": "female",
+      "policy_number": "POL-032"
+    },
+    "policy": {
+      "policy_number": "POL-032",
+      "plan_type": "individual",
+      "sum_insured": "1500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-032-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "c4126c59-4716-45c4-8048-149c0818397b",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "135000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 4 days)",
+          "amount": "48000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

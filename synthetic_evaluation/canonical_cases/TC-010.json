@@ -1,0 +1,101 @@
+{
+  "test_case_id": "TC-010",
+  "category": "happy_path",
+  "scenario_id": "SCN-010",
+  "policy_id": "POL-010",
+  "policy_version": "1.0",
+  "description": "Happy path: Closed fracture of shaft of right tibia due to road traffic collision at Fortis Memorial Research Institute",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-010-01",
+    "RULE-POL-010-02",
+    "RULE-POL-010-03"
+  ],
+  "payload": {
+    "request_id": "29f91868-2c42-441c-8ca5-e37daa10f432",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "476bdb8e-8f55-441b-b4a9-5d88227fc917",
+      "full_name": "Geeta Nair",
+      "age": 46,
+      "gender": "male",
+      "policy_number": "POL-010"
+    },
+    "policy": {
+      "policy_number": "POL-010",
+      "plan_type": "group",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "80000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-010-2024",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "1ee91d0d-c7d4-484c-99ce-9ea0d3f2d597",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+      "icd10_code": "S82.201A",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "135000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

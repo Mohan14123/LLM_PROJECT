@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: ef7e1b8c-aebb-4902-aa38-e5e158b40b82
+Submission Date: 2024-05-03
+Admission Date: 2024-05-03
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Priya Joshi
+Age: 39
+Gender: male
+Policy / Member Number: POL-005
+
+POLICY DETAILS
+--------------
+Policy Number: POL-005
+Plan Type: group
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-04-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Manipal Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Chennai, State: None
+ICD-10 Code: M17.11
+Primary Diagnosis: Primary unilateral osteoarthritis, right knee grade 4
+Pre-Existing Disease Flag: False
+Planned Procedure: Total knee replacement (TKR) unilateral right with cruciate retaining implant
+Procedure Code: PROC-ORTHO-TKR-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 4 days): INR 26000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 84000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 48000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 36000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 24000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 48000.00
+------------------------
+Total Estimated Amount: INR 266000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

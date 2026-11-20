@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-263",
+  "category": "ocr_stress",
+  "scenario_id": "SCN-263",
+  "policy_id": "POL-018",
+  "policy_version": "1.0",
+  "ocr_distortion": "rotation_skew",
+  "description": "OCR degradation stress test: rotation_skew",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "OCR_EXTRACTION_ROBUSTNESS"
+  ],
+  "payload": {
+    "request_id": "35a12ddf-e54e-4e9e-8cae-1bf6f5966e88",
+    "submitted_at": "2028-01-05",
+    "admission_date": "2028-01-05",
+    "source_format": "scanned_image",
+    "status": "pending",
+    "patient": {
+      "patient_id": "7fcd490f-e520-4539-9053-b602a1d8616c",
+      "full_name": "Lakshmi Sharma",
+      "age": 28,
+      "gender": "female",
+      "policy_number": "POL-018"
+    },
+    "policy": {
+      "policy_number": "POL-018",
+      "plan_type": "family_floater",
+      "sum_insured": "2000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-018-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "f2799592-347c-4139-922b-ece0dd499f07",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+      "icd10_code": "S82.201A",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "163000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 4 days)",
+          "amount": "48000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

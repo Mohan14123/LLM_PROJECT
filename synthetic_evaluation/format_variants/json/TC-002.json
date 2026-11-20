@@ -1,0 +1,85 @@
+{
+  "request_id": "931323cd-2d6f-4059-b56d-9286a2800006",
+  "submitted_at": "2026-09-13",
+  "admission_date": "2026-09-13",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "284368d1-6eeb-4e14-bb51-4f9016404834",
+    "full_name": "Vikram Gupta",
+    "age": 56,
+    "gender": "male",
+    "policy_number": "POL-002"
+  },
+  "policy": {
+    "policy_number": "POL-002",
+    "plan_type": "family_floater",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2023-06-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "50000.00",
+        "Joint Replacement": "250000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "VANG-HLT-FF-2024-V02",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "07d3b8d2-d956-42d1-b562-43851bb2ea65",
+    "name": "Fortis Memorial Research Institute",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Calculus of gallbladder without cholecystitis without obstruction",
+    "icd10_code": "K80.20",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Laparoscopic cholecystectomy",
+    "procedure_code": "PROC-SURG-LAP-02",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "115000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 5 days)",
+        "amount": "20000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "33250.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "19000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "14250.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "9500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "19000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

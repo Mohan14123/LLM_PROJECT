@@ -1,0 +1,54 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: fe64841b-536b-428e-8a27-cef096a47c85
+Submission Date: 2027-10-13
+Admission Date: 2027-10-13
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Arjun Joshi
+Age: 69
+Gender: female
+Policy / Member Number: POL-013
+
+POLICY DETAILS
+--------------
+Policy Number: POL-013
+Plan Type: individual
+Sum Insured: INR 300000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 5.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Sunshine Community Nursing Home
+Network Status: non_network
+Facility Category: None
+City: Lucknow, State: None
+ICD-10 Code: N18.6
+Primary Diagnosis: End stage renal disease on maintenance hemodialysis
+Pre-Existing Disease Flag: True
+Planned Procedure: Hemodialysis single session via AV fistula
+Procedure Code: PROC-MED-HEMO-01
+Admission Type: day_care
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 1 days): INR 4000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 1575.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 900.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 675.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 450.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 900.00
+  [diagnostic    ] Specialist Consultation Add-on #7            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #8            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #9            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #10           : INR 2500.00
+------------------------
+Total Estimated Amount: INR 18500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Hypertension under medical control.
+==================================================

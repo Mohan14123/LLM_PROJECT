@@ -1,0 +1,106 @@
+{
+  "request_id": "dd61c734-92bd-4c6a-9d9a-3dd3667dc26d",
+  "submitted_at": "2024-01-09",
+  "admission_date": "2024-01-09",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "35e3c114-f01e-40cc-b982-c7f241c40648",
+    "full_name": "Shweta Patel",
+    "age": 75,
+    "gender": "female",
+    "policy_number": "POL-010"
+  },
+  "policy": {
+    "policy_number": "POL-010",
+    "plan_type": "group",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 0,
+    "ped_waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "Maternity": "80000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "PARA-HLT-010-2024",
+    "product_version": "2024.1",
+    "endorsements": [
+      "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+    ]
+  },
+  "hospital": {
+    "hospital_id": "1892c7f4-57a6-497d-afac-425ea4f5942b",
+    "name": "Sunshine Community Nursing Home",
+    "city": "Lucknow",
+    "network_tier": "non_network",
+    "category": "private"
+  },
+  "diagnosis": {
+    "description": "Calculus of ureter with moderate hydronephrosis",
+    "icd10_code": "N20.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+    "procedure_code": "PROC-URO-LITH-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "82000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 5 days)",
+        "amount": "20000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "18200.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "10400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "7800.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "5200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "10400.00",
+        "category": "other"
+      },
+      {
+        "item": "Specialist Consultation Add-on #7",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #8",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #9",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #10",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

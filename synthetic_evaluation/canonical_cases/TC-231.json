@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-231",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-231",
+  "policy_id": "POL-021",
+  "policy_version": "1.0",
+  "description": "Referential integrity conflict: patient policy number does not match policy",
+  "expected_schema_valid": false,
+  "expected_error_substring": "patient.policy_number ('POL-CONFLICT-999') does not match policy.policy_number",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "ee6e78b6-3081-49c9-bb7a-65271fd7b07f",
+    "submitted_at": "2024-11-20",
+    "admission_date": "2024-11-20",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "bb30925b-1199-4d84-8b28-480f861c7d5e",
+      "full_name": "Vijay Joshi",
+      "age": 28,
+      "gender": "female",
+      "policy_number": "POL-CONFLICT-999"
+    },
+    "policy": {
+      "policy_number": "POL-021",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "5.00",
+      "product_uin": "RELI-HLT-021-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "a456edbb-8bcc-4322-80bf-20e92e576caa",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Encounter for cosmetic aesthetic rhinoplasty",
+      "icd10_code": "Z41.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Elective cosmetic rhinoplasty and septal reshaping",
+      "procedure_code": "PROC-COSM-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "180000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 5 days)",
+          "amount": "60000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "42000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "24000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "18000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "12000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "24000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

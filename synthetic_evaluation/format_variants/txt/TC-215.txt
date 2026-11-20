@@ -1,0 +1,44 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 9ced7b55-68f3-47d8-bbfe-048c4cad12a6
+Submission Date: 2026-06-29
+Admission Date: 2026-06-29
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Rohan Reddy
+Age: 73
+Gender: male
+Policy / Member Number: POL-005
+
+POLICY DETAILS
+--------------
+Policy Number: POL-005
+Plan Type: group
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-04-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Lifeline Day Care Surgery Centre
+Network Status: cashless_network
+Facility Category: None
+City: Pune, State: None
+ICD-10 Code: I21.09
+Primary Diagnosis: Acute anterior myocardial infarction (STEMI)
+Pre-Existing Disease Flag: True
+Planned Procedure: Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent
+Procedure Code: PROC-CARD-PTCA-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+------------------------
+Total Estimated Amount: INR 309000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Hypertension under medical control.
+==================================================

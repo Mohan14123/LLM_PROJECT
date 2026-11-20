@@ -1,0 +1,100 @@
+{
+  "test_case_id": "TC-079",
+  "category": "happy_path",
+  "scenario_id": "SCN-079",
+  "policy_id": "POL-009",
+  "policy_version": "1.0",
+  "description": "Happy path: Calculus of gallbladder without cholecystitis without obstruction at Lifeline Day Care Surgery Centre",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-009-01",
+    "RULE-POL-009-02",
+    "RULE-POL-009-03"
+  ],
+  "payload": {
+    "request_id": "6bdb49bb-5bb5-4415-94d2-b5fb6b8da0a8",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "71166f39-f626-4c81-b7d1-d53b2de27b18",
+      "full_name": "Rajesh Nair",
+      "age": 68,
+      "gender": "male",
+      "policy_number": "POL-009"
+    },
+    "policy": {
+      "policy_number": "POL-009",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cardiac": "150000.00",
+          "Cataract": "30000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "VANG-HLT-009-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "905aa206-eb18-49b6-8ef8-12e081de6733",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "131000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

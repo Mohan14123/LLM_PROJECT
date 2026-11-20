@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-273",
+  "category": "ocr_stress",
+  "scenario_id": "SCN-273",
+  "policy_id": "POL-028",
+  "policy_version": "1.0",
+  "ocr_distortion": "rotation_skew",
+  "description": "OCR degradation stress test: rotation_skew",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "OCR_EXTRACTION_ROBUSTNESS"
+  ],
+  "payload": {
+    "request_id": "fa7827e4-3d24-4598-b861-570662606bdb",
+    "submitted_at": "2025-01-05",
+    "admission_date": "2025-01-05",
+    "source_format": "scanned_image",
+    "status": "pending",
+    "patient": {
+      "patient_id": "c9d2d466-ee95-4b28-b038-1bd9b507d046",
+      "full_name": "Aarti Gupta",
+      "age": 69,
+      "gender": "male",
+      "policy_number": "POL-028"
+    },
+    "policy": {
+      "policy_number": "POL-028",
+      "plan_type": "individual",
+      "sum_insured": "2000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "TITA-HLT-028-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "8623ed7d-137f-4260-8ad2-4e5dd280c8ac",
+      "name": "Apollo Multispeciality Hospital",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "123000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

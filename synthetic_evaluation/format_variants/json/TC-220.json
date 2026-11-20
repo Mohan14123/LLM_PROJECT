@@ -1,0 +1,86 @@
+{
+  "request_id": "f2254499-2697-4402-a0e1-fcb361ac605d",
+  "submitted_at": "2024-01-25",
+  "admission_date": "2024-01-25",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "7633b1c4-c4e5-4fae-a29a-29777bb1ee35",
+    "full_name": "Divya Deshmukh",
+    "age": 58,
+    "gender": "male",
+    "policy_number": "POL-010"
+  },
+  "policy": {
+    "policy_number": "POL-010",
+    "plan_type": "group",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 0,
+    "ped_waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "Maternity": "80000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "PARA-HLT-010-2024",
+    "product_version": "2024.1",
+    "endorsements": [
+      "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+    ]
+  },
+  "hospital": {
+    "hospital_id": "b2bc9748-e2a3-47b6-b7bd-3a483b02ffa0",
+    "name": "Manipal Hospital",
+    "city": "Chennai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Encounter for cosmetic aesthetic rhinoplasty",
+    "icd10_code": "Z41.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Elective cosmetic rhinoplasty and septal reshaping",
+    "procedure_code": "PROC-COSM-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "999999.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Single Private A/C Room, 2 days)",
+        "amount": "13000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "42000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "24000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "12000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "24000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

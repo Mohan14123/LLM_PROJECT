@@ -1,0 +1,119 @@
+{
+  "test_case_id": "TC-118",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-118",
+  "policy_id": "POL-013",
+  "policy_version": "1.0",
+  "description": "Extended 10-line-item billing reconciliation",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-013-01",
+    "RULE-POL-013-02",
+    "RULE-POL-013-03"
+  ],
+  "payload": {
+    "request_id": "fe64841b-536b-428e-8a27-cef096a47c85",
+    "submitted_at": "2027-10-13",
+    "admission_date": "2027-10-13",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "d81fe2d2-9ea6-4bba-9133-ae8dd6599fe1",
+      "full_name": "Arjun Joshi",
+      "age": 69,
+      "gender": "female",
+      "policy_number": "POL-013"
+    },
+    "policy": {
+      "policy_number": "POL-013",
+      "plan_type": "individual",
+      "sum_insured": "300000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Appendicitis": "40000.00"
+        }
+      },
+      "co_pay_pct": "5.00",
+      "product_uin": "RELI-HLT-013-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "ccde1327-7a79-4445-bfef-9875c95fdbf2",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "18500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 1 days)",
+          "amount": "4000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        },
+        {
+          "item": "Specialist Consultation Add-on #7",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #8",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #9",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #10",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

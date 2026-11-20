@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-286",
+  "category": "missing_and_ambiguous",
+  "scenario_id": "SCN-286",
+  "policy_id": "POL-006",
+  "policy_version": "1.0",
+  "description": "Missing clinical examination notes and history",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "RECOMMEND_QUERY",
+  "rules_tested": [
+    "CLINICAL_AMBIGUITY_GATE"
+  ],
+  "payload": {
+    "request_id": "10396daa-7897-43e8-a91c-7c487887a92e",
+    "submitted_at": "2027-05-05",
+    "admission_date": "2027-05-05",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "3ceccaca-f00e-47ff-90cf-6bf06f4e7dd8",
+      "full_name": "Geeta Mehta",
+      "age": 26,
+      "gender": "female",
+      "policy_number": "POL-006"
+    },
+    "policy": {
+      "policy_number": "POL-006",
+      "plan_type": "individual",
+      "sum_insured": "200000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "20000.00",
+          "Hernia": "30000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "NATI-HLT-006-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "a73804ab-1375-4e32-abbe-cead155ea80c",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Encounter for cosmetic aesthetic rhinoplasty",
+      "icd10_code": "Z41.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Elective cosmetic rhinoplasty and septal reshaping",
+      "procedure_code": "PROC-COSM-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "136000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 4 days)",
+          "amount": "16000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "42000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "24000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "18000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "12000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "24000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": ""
+  }
+}

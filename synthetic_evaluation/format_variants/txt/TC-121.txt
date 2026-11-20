@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 4b17291c-1c27-4bd7-98fc-c03f427ce358
+Submission Date: 2028-01-29
+Admission Date: 2028-01-29
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Aarti Shah
+Age: 59
+Gender: female
+Policy / Member Number: POL-016
+
+POLICY DETAILS
+--------------
+Policy Number: POL-016
+Plan Type: individual
+Sum Insured: INR 100000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Apollo Multispeciality Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Bengaluru, State: None
+ICD-10 Code: Z41.1
+Primary Diagnosis: Encounter for cosmetic aesthetic rhinoplasty
+Pre-Existing Disease Flag: False
+Planned Procedure: Elective cosmetic rhinoplasty and septal reshaping
+Procedure Code: PROC-COSM-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Twin Sharing, 4 days): INR 350000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 42000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 24000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 18000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 12000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 24000.00
+------------------------
+Total Estimated Amount: INR 470000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

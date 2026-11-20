@@ -1,0 +1,102 @@
+{
+  "test_case_id": "TC-075",
+  "category": "happy_path",
+  "scenario_id": "SCN-075",
+  "policy_id": "POL-005",
+  "policy_version": "1.0",
+  "description": "Happy path: Pneumonia, unspecified organism with acute respiratory distress at Max Super Speciality Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL005-01",
+    "RULE-POL005-02"
+  ],
+  "payload": {
+    "request_id": "52fd00b2-3689-4172-b7b7-231ba4ce335e",
+    "submitted_at": "2027-07-15",
+    "admission_date": "2027-07-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "f310212f-0afe-4b18-8180-ee984eabd653",
+      "full_name": "Suresh Banerjee",
+      "age": 46,
+      "gender": "male",
+      "policy_number": "POL-005"
+    },
+    "policy": {
+      "policy_number": "POL-005",
+      "plan_type": "group",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-04-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity Normal": "50000.00",
+          "Maternity Caesarean": "75000.00",
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "TITAN-GRP-MED-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "d79e12e8-559a-4695-a4b9-f4ebf02d6a9c",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "135000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 4 days)",
+          "amount": "48000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

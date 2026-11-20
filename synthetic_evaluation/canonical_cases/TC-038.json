@@ -1,0 +1,101 @@
+{
+  "test_case_id": "TC-038",
+  "category": "happy_path",
+  "scenario_id": "SCN-038",
+  "policy_id": "POL-003",
+  "policy_version": "1.0",
+  "description": "Happy path: Unspecified acute appendicitis with localized peritonitis at Sunshine Community Nursing Home",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL003-01",
+    "RULE-POL003-02"
+  ],
+  "payload": {
+    "request_id": "1a304b0c-4079-4f3a-b1be-1298342647d1",
+    "submitted_at": "2026-04-15",
+    "admission_date": "2026-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "c72d7739-e4ae-4b83-b72b-4c758f771ab1",
+      "full_name": "Karthik Nair",
+      "age": 63,
+      "gender": "male",
+      "policy_number": "POL-003"
+    },
+    "policy": {
+      "policy_number": "POL-003",
+      "plan_type": "individual",
+      "sum_insured": "300000.00",
+      "policy_start_date": "2023-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "25000.00",
+          "Cardiac Stent Surgery": "120000.00",
+          "Knee Replacement": "100000.00",
+          "Cancer Chemotherapy": "80000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "PARA-HLT-SNR-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "3f0598e9-1ea5-47b9-bbb2-0b603009d9b8",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "cashless_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "86000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 2 days)",
+          "amount": "8000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

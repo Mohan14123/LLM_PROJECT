@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-046",
+  "category": "happy_path",
+  "scenario_id": "SCN-046",
+  "policy_id": "POL-011",
+  "policy_version": "1.0",
+  "description": "Happy path: Calculus of gallbladder without cholecystitis without obstruction at Sunshine Community Nursing Home",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-011-01",
+    "RULE-POL-011-02",
+    "RULE-POL-011-03"
+  ],
+  "payload": {
+    "request_id": "ff14df14-4c6b-4377-b313-1e3ee0416c87",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "5fc01ab6-d11b-4b81-8427-1090f08a1cb2",
+      "full_name": "Sanjay Nair",
+      "age": 24,
+      "gender": "male",
+      "policy_number": "POL-011"
+    },
+    "policy": {
+      "policy_number": "POL-011",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 12,
+      "sub_limits": {
+        "limits": {
+          "Dialysis": "50000.00"
+        }
+      },
+      "co_pay_pct": "15.00",
+      "product_uin": "ZENI-HLT-011-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "c99531eb-b1fe-4983-9eb2-36215976273e",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "cashless_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "103000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 2 days)",
+          "amount": "8000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

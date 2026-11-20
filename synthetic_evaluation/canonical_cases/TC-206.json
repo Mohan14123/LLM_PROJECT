@@ -1,0 +1,67 @@
+{
+  "test_case_id": "TC-206",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-206",
+  "policy_id": "POL-031",
+  "policy_version": "1.0",
+  "description": "Empty cost estimate line items list",
+  "expected_schema_valid": false,
+  "expected_error_substring": "List should have at least 1 item",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "0fa6a59c-0b21-4168-b7c4-9c32749e8650",
+    "submitted_at": "2028-02-02",
+    "admission_date": "2028-02-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "7c7603b6-fa6e-43a7-84f6-61c51e4a6840",
+      "full_name": "Vijay Gupta",
+      "age": 63,
+      "gender": "male",
+      "policy_number": "POL-031"
+    },
+    "policy": {
+      "policy_number": "POL-031",
+      "plan_type": "family_floater",
+      "sum_insured": "800000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Tonsillectomy": "30000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "METR-HLT-031-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "b54aa0ac-2571-4a20-9c9d-ab2d6726a8fc",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "8500.00",
+      "line_items": []
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

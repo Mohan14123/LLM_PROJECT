@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 4992f645-2574-4b13-b5da-16e1d39b7f10
+Submission Date: 2027-05-20
+Admission Date: 2027-05-20
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Geeta Singh
+Age: 72
+Gender: female
+Policy / Member Number: POL-022
+
+POLICY DETAILS
+--------------
+Policy Number: POL-022
+Plan Type: family_floater
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 5.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Fortis Memorial Research Institute
+Network Status: cashless_network
+Facility Category: None
+City: Gurugram, State: None
+ICD-10 Code: N18.6
+Primary Diagnosis: End stage renal disease on maintenance hemodialysis
+Pre-Existing Disease Flag: True
+Planned Procedure: Hemodialysis single session via AV fistula
+Procedure Code: PROC-MED-HEMO-01
+Admission Type: day_care
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 1 days): INR 12500.75
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 15000.25
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 900.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 675.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 450.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 900.00
+------------------------
+Total Estimated Amount: INR 30426.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Hypertension under medical control.
+==================================================

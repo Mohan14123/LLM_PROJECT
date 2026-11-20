@@ -1,0 +1,101 @@
+{
+  "test_case_id": "TC-096",
+  "category": "happy_path",
+  "scenario_id": "SCN-096",
+  "policy_id": "POL-026",
+  "policy_version": "1.0",
+  "description": "Happy path: End stage renal disease on maintenance hemodialysis at Care & Cure Rural Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-026-01",
+    "RULE-POL-026-02",
+    "RULE-POL-026-03"
+  ],
+  "payload": {
+    "request_id": "efb012d8-2c6d-425d-af53-f09eb362b90b",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "0c217a1f-aaf1-4167-8566-f49ff4a87eb5",
+      "full_name": "Kavita Sharma",
+      "age": 59,
+      "gender": "male",
+      "policy_number": "POL-026"
+    },
+    "policy": {
+      "policy_number": "POL-026",
+      "plan_type": "group",
+      "sum_insured": "750000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "70000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-026-2024",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "08a0d56b-a5af-4a21-8e96-ac33c2fe0de1",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "cashless_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "11000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 1 days)",
+          "amount": "6500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

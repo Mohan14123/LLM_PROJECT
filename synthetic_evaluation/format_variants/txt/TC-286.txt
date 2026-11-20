@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 10396daa-7897-43e8-a91c-7c487887a92e
+Submission Date: 2027-05-05
+Admission Date: 2027-05-05
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Geeta Mehta
+Age: 26
+Gender: female
+Policy / Member Number: POL-006
+
+POLICY DETAILS
+--------------
+Policy Number: POL-006
+Plan Type: individual
+Sum Insured: INR 200000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 10.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Sunshine Community Nursing Home
+Network Status: non_network
+Facility Category: None
+City: Lucknow, State: None
+ICD-10 Code: Z41.1
+Primary Diagnosis: Encounter for cosmetic aesthetic rhinoplasty
+Pre-Existing Disease Flag: False
+Planned Procedure: Elective cosmetic rhinoplasty and septal reshaping
+Procedure Code: PROC-COSM-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 4 days): INR 16000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 42000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 24000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 18000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 12000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 24000.00
+------------------------
+Total Estimated Amount: INR 136000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+
+==================================================

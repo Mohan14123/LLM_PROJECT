@@ -1,0 +1,52 @@
+================================================================================
+PARAMOUNT ASSURANCE CO.
+CERTIFICATE OF INSURANCE & POLICY SCHEDULE: PARAMOUNT TIER-1 CORPORATE GOLD
+UIN: PARA-HLT-026-2024 | Version: 2024.1
+================================================================================
+
+SECTION 1: POLICY SCHEDULE & ENTITLEMENT DETAILS
+--------------------------------------------------------------------------------
+Policy Identifier      : POL-026
+Insurance Product Name : Paramount Tier-1 Corporate Gold
+Underwriting Insurer   : Paramount Assurance Co.
+Plan Category / Type   : GROUP
+Policy Inception Date  : 2024-01-01
+Policy Expiry Date     : 2024-12-31
+Annual Sum Insured     : INR 750000.00
+Available Sum Insured  : INR 750000.00
+
+SECTION 2: ROOM RENT & INTENSIVE CARE UNIT (ICU) RESTRICTIONS
+--------------------------------------------------------------------------------
+Room Rent Limit Type   : actuals
+Daily Room Rent Cap    : INR No Cap / Actuals
+Proportional Deduction : Not Applicable
+ICU Daily Limit        : INR No Cap / Actuals
+
+SECTION 3: MANDATORY WAITING PERIOD SCHEDULE
+--------------------------------------------------------------------------------
+Initial Waiting Period : 0 Days (Waived for Accidental Injury)
+Specific Disease Period: 0 Months
+Pre-Existing Disease   : 0 Months of Continuous Coverage
+Statutory Moratorium   : 60 Months
+
+SECTION 4: CO-PAYMENT & ANNUAL DEDUCTIBLE PROVISIONS
+--------------------------------------------------------------------------------
+Mandatory Co-Payment   : 0.00%
+Deductible Amount      : INR 0.00 (none)
+
+SECTION 5: SPECIFIC PROCEDURE & DISEASE SUB-LIMIT SCHEDULE
+--------------------------------------------------------------------------------
+  * Maternity                 : INR 70000.00     (per_admission)
+
+SECTION 6: PERMANENT & STATUTORY EXCLUSIONS
+--------------------------------------------------------------------------------
+  [X] Aesthetic, cosmetic or plastic surgery
+  [X] Self-inflicted injury or suicide attempts
+  [X] Unproven or investigational procedures
+
+SECTION 7: NETWORK HOSPITALIZATION & PRE-AUTH GUIDELINES
+--------------------------------------------------------------------------------
+Empanelled Network Hospitals for Cashless Facilities.
+Pre-Authorisation Mandate: Planned admissions require submission 48 hours prior;
+Emergency hospitalizations require intimation within 24 hours of admission.
+================================================================================

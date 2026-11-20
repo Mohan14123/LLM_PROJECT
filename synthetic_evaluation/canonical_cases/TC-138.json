@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-138",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-138",
+  "policy_id": "POL-033",
+  "policy_version": "1.0",
+  "description": "Paise decimal precision calculations",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-033-01",
+    "RULE-POL-033-02",
+    "RULE-POL-033-03"
+  ],
+  "payload": {
+    "request_id": "cee2c83d-2f34-4c45-b5c7-420094b43090",
+    "submitted_at": "2027-01-25",
+    "admission_date": "2027-01-25",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "dcf93555-99c5-49cc-8734-d9d60a133985",
+      "full_name": "Kavita Shah",
+      "age": 60,
+      "gender": "female",
+      "policy_number": "POL-033"
+    },
+    "policy": {
+      "policy_number": "POL-033",
+      "plan_type": "individual",
+      "sum_insured": "2500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-033-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "0b45e590-5fea-4692-a142-e0ce8b975f37",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Acute anterior myocardial infarction (STEMI)",
+      "icd10_code": "I21.09",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+      "procedure_code": "PROC-CARD-PTCA-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "212751.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "12500.75",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "15000.25",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "57000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "42750.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "28500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "57000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

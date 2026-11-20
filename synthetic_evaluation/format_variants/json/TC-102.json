@@ -1,0 +1,102 @@
+{
+  "request_id": "8c17229b-3aa8-4b4a-b633-10d95c8e9c4a",
+  "submitted_at": "2027-03-10",
+  "admission_date": "2027-03-10",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "a89b5cc5-1a4f-41f0-8366-495568d25bc0",
+    "full_name": "Suresh Sharma",
+    "age": 37,
+    "gender": "male",
+    "policy_number": "POL-032"
+  },
+  "policy": {
+    "policy_number": "POL-032",
+    "plan_type": "individual",
+    "sum_insured": "1500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "APEX-HLT-032-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "fc0017ad-2354-428f-b9c5-6f8294b3ef17",
+    "name": "Sunshine Community Nursing Home",
+    "city": "Lucknow",
+    "network_tier": "non_network",
+    "category": "private"
+  },
+  "diagnosis": {
+    "description": "Unilateral inguinal hernia, without obstruction or gangrene",
+    "icd10_code": "K40.90",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair",
+    "procedure_code": "PROC-SURG-HER-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "98000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 5 days)",
+        "amount": "20000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "23800.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "13600.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "10200.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "6800.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "13600.00",
+        "category": "other"
+      },
+      {
+        "item": "Specialist Consultation Add-on #7",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #8",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #9",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #10",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

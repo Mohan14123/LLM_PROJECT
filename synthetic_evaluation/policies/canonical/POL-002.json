@@ -1,0 +1,98 @@
+{
+  "policy_id": "POL-002",
+  "policy_version": "1.0",
+  "policy_name": "Vanguard Family Floater Health Security",
+  "insurer_name": "Vanguard Health Insurance Ltd.",
+  "policy_type": "family_floater",
+  "product_uin": "VANG-HLT-FF-2024-V02",
+  "product_version": "2024.1",
+  "policyholder_eligibility": {
+    "min_entry_age": 18,
+    "max_entry_age": 65,
+    "dependent_child_age_limit": 25,
+    "renewable_for_life": true
+  },
+  "policy_start_date": "2023-06-01",
+  "policy_expiry_date": "2024-05-31",
+  "sum_insured": {
+    "amount": "1000000.00",
+    "currency": "INR"
+  },
+  "available_sum_insured": {
+    "amount": "1000000.00",
+    "currency": "INR"
+  },
+  "room_rent_limits": {
+    "type": "category_based",
+    "allowed_category": "Single Private A/C Room",
+    "daily_cap_inr": null,
+    "clause_reference": "Section 3.2",
+    "proportional_deduction_applies": false
+  },
+  "icu_limits": {
+    "type": "actuals",
+    "daily_cap_inr": null,
+    "clause_reference": "Section 3.3"
+  },
+  "disease_sublimits": {
+    "Cataract": {
+      "cap_inr": "50000.00",
+      "per": "per_eye",
+      "clause": "Clause 5.1"
+    },
+    "Joint Replacement": {
+      "cap_inr": "250000.00",
+      "per": "per_joint",
+      "clause": "Clause 5.2"
+    }
+  },
+  "waiting_periods": {
+    "initial_days": 30,
+    "initial_accident_exempt": true,
+    "specific_disease_months": 24,
+    "ped_months": 36,
+    "statutory_moratorium_months": 60
+  },
+  "co_payment": {
+    "mandatory_pct": "0.00",
+    "senior_citizen_pct": "0.00",
+    "clause": "Section 4.0"
+  },
+  "deductible": {
+    "amount": "0.00",
+    "currency": "INR",
+    "type": "none"
+  },
+  "restoration_benefit": {
+    "is_available": true,
+    "percentage": 100.0,
+    "unrelated_illness_only": false
+  },
+  "exclusions": {
+    "permanent": [
+      "Cosmetic surgery",
+      "Stem cell therapy",
+      "Rest cure / recuperation"
+    ],
+    "conditional": [
+      "Maternity covered up to \u20b950,000 after 24 months continuous coverage"
+    ]
+  },
+  "network_hospital_conditions": "Cashless at all registered cashless hospitals nationwide.",
+  "rules": [
+    {
+      "rule_id": "RULE-POL002-01",
+      "rule_type": "room_rent_category",
+      "clause_reference": "Section 3.2",
+      "condition": "Eligible for Single Private A/C room with no proportional deduction.",
+      "expected_interpretation": "full_coverage_single_private"
+    },
+    {
+      "rule_id": "RULE-POL002-02",
+      "rule_type": "restoration_benefit",
+      "clause_reference": "Section 6.1",
+      "condition": "100% instant recharge of sum insured upon complete or partial exhaustion.",
+      "expected_interpretation": "reinstate_sum_insured"
+    }
+  ]
+}

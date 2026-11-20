@@ -1,0 +1,82 @@
+{
+  "request_id": "12dec6c4-2052-4823-9a8a-fae8083f2f8b",
+  "submitted_at": "2025-03-30",
+  "admission_date": "2025-03-30",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "f01292ef-0243-41f4-ba1e-4fd921e59c3e",
+    "full_name": "Aarav Verma",
+    "age": 69,
+    "gender": "male",
+    "policy_number": "POL-035"
+  },
+  "policy": {
+    "policy_number": "POL-035",
+    "plan_type": "individual",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "20.00",
+    "product_uin": "ZENI-HLT-035-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "464bdc81-229e-4f1c-842a-5086134f2a8e",
+    "name": "Lifeline Day Care Surgery Centre",
+    "city": "Pune",
+    "network_tier": "cashless_network",
+    "category": "day_care_center"
+  },
+  "diagnosis": {
+    "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+    "icd10_code": "S82.201A",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+    "procedure_code": "PROC-ORTHO-ORIF-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "163000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 4 days)",
+        "amount": "48000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "40250.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "23000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "17250.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "11500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "23000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

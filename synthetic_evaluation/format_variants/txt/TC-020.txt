@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: f8ae8b0b-02c6-4d01-a500-e88d0f14f33c
+Submission Date: 2027-04-15
+Admission Date: 2027-04-15
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Priya Banerjee
+Age: 46
+Gender: male
+Policy / Member Number: POL-020
+
+POLICY DETAILS
+--------------
+Policy Number: POL-020
+Plan Type: family_floater
+Sum Insured: INR 600000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 10.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Manipal Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Chennai, State: None
+ICD-10 Code: J18.9
+Primary Diagnosis: Pneumonia, unspecified organism with acute respiratory distress
+Pre-Existing Disease Flag: False
+Planned Procedure: Inpatient medical management with intravenous antibiotics and oxygen therapy
+Procedure Code: PROC-MED-CON-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 5 days): INR 32500.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 30450.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 17400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 13050.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 8700.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 17400.00
+------------------------
+Total Estimated Amount: INR 119500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

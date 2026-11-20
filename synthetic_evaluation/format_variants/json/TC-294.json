@@ -1,0 +1,85 @@
+{
+  "request_id": "bcbc2fe7-18cb-410f-a539-627404a9c41b",
+  "submitted_at": "2024-10-16",
+  "admission_date": "2024-10-16",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "f83b4158-842b-4d32-b519-202a1d703431",
+    "full_name": "Geeta Kumar",
+    "age": 66,
+    "gender": "male",
+    "policy_number": "POL-014"
+  },
+  "policy": {
+    "policy_number": "POL-014",
+    "plan_type": "individual",
+    "sum_insured": "600000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Maternity": "60000.00",
+        "Hysterectomy": "70000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "NATI-HLT-014-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "fa5faa41-037a-4b56-b18d-9e38f8123b32",
+    "name": "Sunshine Community Nursing Home",
+    "city": "Lucknow",
+    "network_tier": "non_network",
+    "category": "private"
+  },
+  "diagnosis": {
+    "description": "End stage renal disease on maintenance hemodialysis",
+    "icd10_code": "N18.6",
+    "is_pre_existing": true
+  },
+  "procedure": {
+    "description": "Hemodialysis single session via AV fistula",
+    "procedure_code": "PROC-MED-HEMO-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "8500.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 1 days)",
+        "amount": "4000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "1575.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "900.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "675.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "450.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "900.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": ""
+}

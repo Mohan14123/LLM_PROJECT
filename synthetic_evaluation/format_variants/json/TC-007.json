@@ -1,0 +1,85 @@
+{
+  "request_id": "e15fd740-c73b-4fcc-ac76-dcd73ce0dd8c",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "fe55859e-124d-4d7d-9ab5-6a054bf0c713",
+    "full_name": "Meena Reddy",
+    "age": 68,
+    "gender": "male",
+    "policy_number": "POL-007"
+  },
+  "policy": {
+    "policy_number": "POL-007",
+    "plan_type": "family_floater",
+    "sum_insured": "750000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "45000.00",
+        "Knee Replacement": "175000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "METR-HLT-007-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "3a3d9039-d0e4-4cdc-ae0c-8f3db3e059a4",
+    "name": "Lifeline Day Care Surgery Centre",
+    "city": "Pune",
+    "network_tier": "cashless_network",
+    "category": "day_care_center"
+  },
+  "diagnosis": {
+    "description": "Calculus of ureter with moderate hydronephrosis",
+    "icd10_code": "N20.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+    "procedure_code": "PROC-URO-LITH-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "76000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+        "amount": "24000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "18200.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "10400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "7800.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "5200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "10400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

@@ -1,0 +1,44 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: f0444254-3847-4477-a8b7-59b74c24d73e
+Submission Date: 2024-08-11
+Admission Date: 2024-08-11
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Divya Shah
+Age: 41
+Gender: male
+Policy / Member Number: POL-014
+
+POLICY DETAILS
+--------------
+Policy Number: POL-014
+Plan Type: individual
+Sum Insured: INR 600000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Care & Cure Rural Hospital
+Network Status: non_network
+Facility Category: None
+City: Ahmedabad, State: None
+ICD-10 Code: M17.11
+Primary Diagnosis: Primary unilateral osteoarthritis, right knee grade 4
+Pre-Existing Disease Flag: False
+Planned Procedure: Total knee replacement (TKR) unilateral right with cruciate retaining implant
+Procedure Code: PROC-ORTHO-TKR-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+------------------------
+Total Estimated Amount: INR 259500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

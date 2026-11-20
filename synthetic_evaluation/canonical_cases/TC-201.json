@@ -1,0 +1,100 @@
+{
+  "test_case_id": "TC-201",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-201",
+  "policy_id": "POL-026",
+  "policy_version": "1.0",
+  "description": "Malformed non-ISO admission date format",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be a valid date or date-time",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "f0b82e54-f222-48c9-b65e-8b5f01460c85",
+    "submitted_at": "2028-01-12",
+    "admission_date": "31-02-2024",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "d48d4108-642b-4139-b375-086c67e611f9",
+      "full_name": "Arjun Nair",
+      "age": 24,
+      "gender": "male",
+      "policy_number": "POL-026"
+    },
+    "policy": {
+      "policy_number": "POL-026",
+      "plan_type": "group",
+      "sum_insured": "750000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "70000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-026-2024",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "959602e6-3397-492b-a1f4-74be00f4cb4a",
+      "name": "Apollo Multispeciality Hospital",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unilateral inguinal hernia, without obstruction or gangrene",
+      "icd10_code": "K40.90",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair",
+      "procedure_code": "PROC-SURG-HER-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "116000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 4 days)",
+          "amount": "48000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "23800.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "13600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "10200.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "6800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "13600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

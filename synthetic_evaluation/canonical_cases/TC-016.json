@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-016",
+  "category": "happy_path",
+  "scenario_id": "SCN-016",
+  "policy_id": "POL-016",
+  "policy_version": "1.0",
+  "description": "Happy path: Unspecified acute appendicitis with localized peritonitis at Care & Cure Rural Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-016-01",
+    "RULE-POL-016-02",
+    "RULE-POL-016-03"
+  ],
+  "payload": {
+    "request_id": "f54f8512-48a3-4a02-afb7-700c813cbfe7",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "2aee4ac0-b176-426c-ac9a-1054a29c0e31",
+      "full_name": "Sneha Kulkarni",
+      "age": 63,
+      "gender": "male",
+      "policy_number": "POL-016"
+    },
+    "policy": {
+      "policy_number": "POL-016",
+      "plan_type": "individual",
+      "sum_insured": "100000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "15000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-016-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "7000faaa-191e-4c8a-9694-d95b9a68bd6f",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "cashless_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "97500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 3 days)",
+          "amount": "19500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

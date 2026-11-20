@@ -1,0 +1,84 @@
+{
+  "request_id": "8a3d186b-3768-4334-b6ce-bed37bcafd5b",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "a3ad6188-268a-4e71-ad8e-16cdcd2dd69a",
+    "full_name": "Aarti Shah",
+    "age": 70,
+    "gender": "female",
+    "policy_number": "POL-016"
+  },
+  "policy": {
+    "policy_number": "POL-016",
+    "plan_type": "individual",
+    "sum_insured": "100000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "15000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "APEX-HLT-016-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "9bf3e2d2-c44e-4ffe-a487-0b179d2a39b1",
+    "name": "Sunshine Community Nursing Home",
+    "city": "Lucknow",
+    "network_tier": "cashless_network",
+    "category": "private"
+  },
+  "diagnosis": {
+    "description": "Pneumonia, unspecified organism with acute respiratory distress",
+    "icd10_code": "J18.9",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+    "procedure_code": "PROC-MED-CON-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "103000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 4 days)",
+        "amount": "16000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "30450.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "17400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "13050.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "8700.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "17400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

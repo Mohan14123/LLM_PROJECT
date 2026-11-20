@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 5574a3cf-4d52-4fe8-b9ae-3a60d7f6d8ca
+Submission Date: 2027-08-23
+Admission Date: 2027-08-23
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Neha Shah
+Age: 25
+Gender: male
+Policy / Member Number: POL-032
+
+POLICY DETAILS
+--------------
+Policy Number: POL-032
+Plan Type: individual
+Sum Insured: INR 1500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Fortis Memorial Research Institute
+Network Status: cashless_network
+Facility Category: None
+City: Gurugram, State: None
+ICD-10 Code: Z41.1
+Primary Diagnosis: Encounter for cosmetic aesthetic rhinoplasty
+Pre-Existing Disease Flag: False
+Planned Procedure: Elective cosmetic rhinoplasty and septal reshaping
+Procedure Code: PROC-COSM-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 2 days): INR 8000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 42000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 24000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 18000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 12000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 24000.00
+------------------------
+Total Estimated Amount: INR 128500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

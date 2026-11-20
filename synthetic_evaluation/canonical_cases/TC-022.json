@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-022",
+  "category": "happy_path",
+  "scenario_id": "SCN-022",
+  "policy_id": "POL-022",
+  "policy_version": "1.0",
+  "description": "Happy path: Encounter for cosmetic aesthetic rhinoplasty at Sunshine Community Nursing Home",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-022-01",
+    "RULE-POL-022-02",
+    "RULE-POL-022-03"
+  ],
+  "payload": {
+    "request_id": "72c06950-e2f1-4bb8-9a01-bb8d8325e0e5",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "0cdc8264-d1f5-4826-a81e-63084105a5db",
+      "full_name": "Manoj Deshmukh",
+      "age": 49,
+      "gender": "female",
+      "policy_number": "POL-022"
+    },
+    "policy": {
+      "policy_number": "POL-022",
+      "plan_type": "family_floater",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "5.00",
+      "product_uin": "NATI-HLT-022-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "aeb0007a-5627-4edb-a1aa-65af481f72fa",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "cashless_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Encounter for cosmetic aesthetic rhinoplasty",
+      "icd10_code": "Z41.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Elective cosmetic rhinoplasty and septal reshaping",
+      "procedure_code": "PROC-COSM-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "140000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "42000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "24000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "18000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "12000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "24000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

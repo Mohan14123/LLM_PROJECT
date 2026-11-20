@@ -1,0 +1,82 @@
+{
+  "request_id": "5d0f11e4-c56c-48ea-88b8-a18d05246904",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "7ab02040-ec8c-4a24-8a7a-a4a896bf055c",
+    "full_name": "Manoj Kulkarni",
+    "age": 75,
+    "gender": "male",
+    "policy_number": "POL-032"
+  },
+  "policy": {
+    "policy_number": "POL-032",
+    "plan_type": "individual",
+    "sum_insured": "1500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "APEX-HLT-032-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "8759aed4-cd68-4dc6-a678-6b07c569eef8",
+    "name": "Max Super Speciality Hospital",
+    "city": "New Delhi",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Senile nuclear cataract, bilateral grade 3",
+    "icd10_code": "H25.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+    "procedure_code": "PROC-CAT-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "54000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 1 days)",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "14700.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "8400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "6300.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "4200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "8400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

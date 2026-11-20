@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: cd020903-d8fd-4390-9424-276da4f2a25d
+Submission Date: 2027-04-17
+Admission Date: 2027-04-17
+Source Format: scanned_image
+
+PATIENT DETAILS
+---------------
+Full Name: Arjun Banerjee
+Age: 74
+Gender: male
+Policy / Member Number: POL-013
+
+POLICY DETAILS
+--------------
+Policy Number: POL-013
+Plan Type: individual
+Sum Insured: INR 300000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 5.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Fortis Memorial Research Institute
+Network Status: cashless_network
+Facility Category: None
+City: Gurugram, State: None
+ICD-10 Code: K35.80
+Primary Diagnosis: Unspecified acute appendicitis with localized peritonitis
+Pre-Existing Disease Flag: False
+Planned Procedure: Emergency laparoscopic appendectomy
+Procedure Code: PROC-SURG-APP-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 3 days): INR 12000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 27300.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 15600.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 11700.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 7800.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 15600.00
+------------------------
+Total Estimated Amount: INR 90000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

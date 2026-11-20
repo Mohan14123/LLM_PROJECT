@@ -1,0 +1,84 @@
+{
+  "request_id": "b9de9104-60ca-4d84-a00e-f12f068f87ab",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "e6f968c6-0657-41f2-aee7-8ba5a9ffc29f",
+    "full_name": "Priya Shah",
+    "age": 34,
+    "gender": "male",
+    "policy_number": "POL-034"
+  },
+  "policy": {
+    "policy_number": "POL-034",
+    "plan_type": "individual",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "40000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "PARA-HLT-034-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "625df15f-90d8-4f95-998c-571688f8df7c",
+    "name": "Fortis Memorial Research Institute",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Senile nuclear cataract, bilateral grade 3",
+    "icd10_code": "H25.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+    "procedure_code": "PROC-CAT-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "46000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 1 days)",
+        "amount": "4000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "14700.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "8400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "6300.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "4200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "8400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

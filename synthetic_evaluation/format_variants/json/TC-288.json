@@ -1,0 +1,82 @@
+{
+  "request_id": "f8209a1f-a079-4b8c-8003-e3471cf8327c",
+  "submitted_at": "2027-03-16",
+  "admission_date": "2027-03-16",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "d23376ca-47b5-4f8e-810f-690d052facca",
+    "full_name": "Meena Mehta",
+    "age": 58,
+    "gender": "male",
+    "policy_number": "POL-008"
+  },
+  "policy": {
+    "policy_number": "POL-008",
+    "plan_type": "individual",
+    "sum_insured": "2500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "APEX-HLT-008-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "dfc4797c-b333-437f-a388-2a2e2958a8f5",
+    "name": "Care & Cure Rural Hospital",
+    "city": "Ahmedabad",
+    "network_tier": "non_network",
+    "category": "trust"
+  },
+  "diagnosis": {
+    "description": "Unspecified abdominal pain, etiology under investigation",
+    "icd10_code": "R10.9",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Laparoscopic cholecystectomy",
+    "procedure_code": "PROC-SURG-LAP-02",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "121000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+        "amount": "26000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "33250.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "19000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "14250.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "9500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "19000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

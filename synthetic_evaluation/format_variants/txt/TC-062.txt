@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: b05e3496-6869-413d-99d2-8ce1cd31e653
+Submission Date: 2027-04-15
+Admission Date: 2027-04-15
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Priya Kumar
+Age: 23
+Gender: male
+Policy / Member Number: POL-027
+
+POLICY DETAILS
+--------------
+Policy Number: POL-027
+Plan Type: individual
+Sum Insured: INR 800000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Sunshine Community Nursing Home
+Network Status: cashless_network
+Facility Category: None
+City: Lucknow, State: None
+ICD-10 Code: N20.1
+Primary Diagnosis: Calculus of ureter with moderate hydronephrosis
+Pre-Existing Disease Flag: False
+Planned Procedure: Ureteroscopic lithotripsy (URSL) with DJ stenting
+Procedure Code: PROC-URO-LITH-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 4 days): INR 16000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 18200.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 10400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 7800.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 5200.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 10400.00
+------------------------
+Total Estimated Amount: INR 68000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

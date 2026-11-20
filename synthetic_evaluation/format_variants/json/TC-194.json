@@ -1,0 +1,84 @@
+{
+  "request_id": "7d285287-7bb4-492b-a476-e7253e872154",
+  "submitted_at": "2027-10-21",
+  "admission_date": "2027-10-21",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "11010c80-f44b-4c6b-a636-c9123459c767",
+    "full_name": "Priya Deshmukh",
+    "age": 30,
+    "gender": "female",
+    "policy_number": "POL-019"
+  },
+  "policy": {
+    "policy_number": "POL-019",
+    "plan_type": "COMMUNITY_POOL",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 48,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "35000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "ZENI-HLT-019-2024",
+    "product_version": "pre_2024.legacy",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "bd04a527-47c6-47f1-bc5b-474e40382b02",
+    "name": "Fortis Memorial Research Institute",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Calculus of ureter with moderate hydronephrosis",
+    "icd10_code": "N20.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+    "procedure_code": "PROC-URO-LITH-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "64000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 3 days)",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "18200.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "10400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "7800.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "5200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "10400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

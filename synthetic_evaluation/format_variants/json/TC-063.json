@@ -1,0 +1,82 @@
+{
+  "request_id": "cceaab57-cbe5-4693-a1d2-0c4f3f4c5fd8",
+  "submitted_at": "2027-04-15",
+  "admission_date": "2027-04-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "5510b058-8f42-48e4-a1ca-7377ed2ad397",
+    "full_name": "Rekha Banerjee",
+    "age": 69,
+    "gender": "male",
+    "policy_number": "POL-028"
+  },
+  "policy": {
+    "policy_number": "POL-028",
+    "plan_type": "individual",
+    "sum_insured": "2000000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 0,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "TITA-HLT-028-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "6ff54414-44c5-4b59-8741-91d0f48b6268",
+    "name": "Lifeline Day Care Surgery Centre",
+    "city": "Pune",
+    "network_tier": "cashless_network",
+    "category": "day_care_center"
+  },
+  "diagnosis": {
+    "description": "End stage renal disease on maintenance hemodialysis",
+    "icd10_code": "N18.6",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Hemodialysis single session via AV fistula",
+    "procedure_code": "PROC-MED-HEMO-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "16500.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 1 days)",
+        "amount": "12000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "1575.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "900.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "675.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "450.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "900.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+}

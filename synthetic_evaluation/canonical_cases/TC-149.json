@@ -1,0 +1,100 @@
+{
+  "test_case_id": "TC-149",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-149",
+  "policy_id": "POL-009",
+  "policy_version": "1.0",
+  "description": "Non-network hospital pre-auth trigger",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "ESCALATE",
+  "rules_tested": [
+    "RULE-POL-009-01",
+    "RULE-POL-009-02",
+    "RULE-POL-009-03"
+  ],
+  "payload": {
+    "request_id": "9dd62949-14d0-4d50-85ff-d407f5b01b09",
+    "submitted_at": "2027-10-14",
+    "admission_date": "2027-10-14",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "9eaf6e4b-ea3f-4d28-a4de-ca8406fe32d9",
+      "full_name": "Aarav Nair",
+      "age": 70,
+      "gender": "male",
+      "policy_number": "POL-009"
+    },
+    "policy": {
+      "policy_number": "POL-009",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cardiac": "150000.00",
+          "Cataract": "30000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "VANG-HLT-009-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "e7f719c5-8f50-499c-adb4-2d1e316cecf6",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "non_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Acute anterior myocardial infarction (STEMI)",
+      "icd10_code": "I21.09",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+      "procedure_code": "PROC-CARD-PTCA-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "309000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "99750.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "57000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "42750.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "28500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "57000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

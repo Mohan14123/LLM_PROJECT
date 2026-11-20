@@ -1,0 +1,53 @@
+{
+  "request_id": "0cf3bd80-cda0-4e9b-a18e-e3ef7783e2a0",
+  "submitted_at": "2027-07-22",
+  "admission_date": "2027-07-22",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "be90efe6-5115-4370-ad0c-4422ec5fd176",
+    "full_name": "Pooja Nair",
+    "age": 30,
+    "gender": "male",
+    "policy_number": "POL-013"
+  },
+  "policy": {
+    "policy_number": "POL-013",
+    "plan_type": "individual",
+    "sum_insured": "300000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Appendicitis": "40000.00"
+      }
+    },
+    "co_pay_pct": "5.00",
+    "product_uin": "RELI-HLT-013-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "5f155f13-bcbb-49dc-a324-77882bb7d1d6",
+    "name": "Manipal Hospital",
+    "city": "Chennai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Senile nuclear cataract, bilateral grade 3",
+    "icd10_code": "H25.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+    "procedure_code": "PROC-CAT-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "48500.00",
+    "line_items": []
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

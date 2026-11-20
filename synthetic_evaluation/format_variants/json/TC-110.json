@@ -1,0 +1,108 @@
+{
+  "request_id": "2d70c43b-b5e9-4fe5-a5fd-4538437b6983",
+  "submitted_at": "2024-04-24",
+  "admission_date": "2024-04-24",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "19eeeab1-9d00-4154-9a1a-616536e4d3e1",
+    "full_name": "Priya Shah",
+    "age": 74,
+    "gender": "female",
+    "policy_number": "POL-005"
+  },
+  "policy": {
+    "policy_number": "POL-005",
+    "plan_type": "group",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-04-01",
+    "waiting_period_months": 0,
+    "ped_waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "Maternity Normal": "50000.00",
+        "Maternity Caesarean": "75000.00",
+        "Cataract": "40000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "TITAN-GRP-MED-2024-V01",
+    "product_version": "2024.1",
+    "endorsements": [
+      "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+    ]
+  },
+  "hospital": {
+    "hospital_id": "04be2f2f-dcae-4511-a04b-c992017950c9",
+    "name": "Sunshine Community Nursing Home",
+    "city": "Lucknow",
+    "network_tier": "non_network",
+    "category": "private"
+  },
+  "diagnosis": {
+    "description": "Encounter for cosmetic aesthetic rhinoplasty",
+    "icd10_code": "Z41.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Elective cosmetic rhinoplasty and septal reshaping",
+    "procedure_code": "PROC-COSM-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "146000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 4 days)",
+        "amount": "16000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "42000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "24000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "18000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "12000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "24000.00",
+        "category": "other"
+      },
+      {
+        "item": "Specialist Consultation Add-on #7",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #8",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #9",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Specialist Consultation Add-on #10",
+        "amount": "2500.00",
+        "category": "diagnostic"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

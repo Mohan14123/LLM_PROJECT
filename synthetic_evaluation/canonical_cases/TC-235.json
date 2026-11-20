@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-235",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-235",
+  "policy_id": "POL-025",
+  "policy_version": "1.0",
+  "description": "Temporal coverage conflict: admission date precedes policy inception",
+  "expected_schema_valid": false,
+  "expected_error_substring": "is before policy.policy_start_date",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "396a5984-2f41-4845-aa2a-30887ea99671",
+    "submitted_at": "2025-11-09",
+    "admission_date": "2023-11-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "602c9c62-05b5-417d-92d6-f7d7cf199341",
+      "full_name": "Pooja Singh",
+      "age": 33,
+      "gender": "female",
+      "policy_number": "POL-025"
+    },
+    "policy": {
+      "policy_number": "POL-025",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "25000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "VANG-HLT-025-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "833e6029-7f3c-4001-8365-f89ad46defce",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "M17.11",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "264000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "84000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "48000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "36000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "24000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "48000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

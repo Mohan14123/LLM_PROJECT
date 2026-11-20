@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 6f74e344-ff46-4cd2-9263-1577bc83f6e4
+Submission Date: 2027-04-15
+Admission Date: 2027-04-15
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Ananya Nair
+Age: 61
+Gender: male
+Policy / Member Number: POL-010
+
+POLICY DETAILS
+--------------
+Policy Number: POL-010
+Plan Type: group
+Sum Insured: INR 1000000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Care & Cure Rural Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Ahmedabad, State: None
+ICD-10 Code: K40.90
+Primary Diagnosis: Unilateral inguinal hernia, without obstruction or gangrene
+Pre-Existing Disease Flag: False
+Planned Procedure: Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair
+Procedure Code: PROC-SURG-HER-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 5 days): INR 32500.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 23800.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 13600.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 10200.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 6800.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 13600.00
+------------------------
+Total Estimated Amount: INR 100500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

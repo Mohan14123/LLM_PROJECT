@@ -1,0 +1,100 @@
+{
+  "test_case_id": "TC-100",
+  "category": "happy_path",
+  "scenario_id": "SCN-100",
+  "policy_id": "POL-030",
+  "policy_version": "1.0",
+  "description": "Happy path: Senile nuclear cataract, bilateral grade 3 at Manipal Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-030-01",
+    "RULE-POL-030-02",
+    "RULE-POL-030-03"
+  ],
+  "payload": {
+    "request_id": "8c1a00ed-d65b-4f9e-997e-383f3c13ae71",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "d7be5dde-61f5-4915-9555-45536e6e0a98",
+      "full_name": "Rajesh Shah",
+      "age": 56,
+      "gender": "female",
+      "policy_number": "POL-030"
+    },
+    "policy": {
+      "policy_number": "POL-030",
+      "plan_type": "individual",
+      "sum_insured": "250000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "30000.00",
+          "Tympanoplasty": "35000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "NATI-HLT-030-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "cc009f17-bfad-4186-9a4d-529eee072fdc",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "48500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 1 days)",
+          "amount": "6500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

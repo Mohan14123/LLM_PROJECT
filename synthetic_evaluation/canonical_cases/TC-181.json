@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-181",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-181",
+  "policy_id": "POL-006",
+  "policy_version": "1.0",
+  "description": "Invalid Gender enum",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be 'male', 'female', 'other' or 'prefer_not_to_say'",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "1d86e3bb-5458-42c5-902f-f78a78bc9829",
+    "submitted_at": "2027-03-04",
+    "admission_date": "2027-03-04",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "3a933173-a221-4582-b771-6c7829f66204",
+      "full_name": "Sneha Rao",
+      "age": 43,
+      "gender": "NON_BINARY_UNREGISTERED",
+      "policy_number": "POL-006"
+    },
+    "policy": {
+      "policy_number": "POL-006",
+      "plan_type": "individual",
+      "sum_insured": "200000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "20000.00",
+          "Hernia": "30000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "NATI-HLT-006-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "12c9a9d3-db4f-46b8-89cb-fc7f7f2b62ce",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "138000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 5 days)",
+          "amount": "60000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

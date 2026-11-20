@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-136",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-136",
+  "policy_id": "POL-031",
+  "policy_version": "1.0",
+  "description": "Cost exceeds disease sub-limit cap; test sub-limit reduction",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-031-01",
+    "RULE-POL-031-02",
+    "RULE-POL-031-03"
+  ],
+  "payload": {
+    "request_id": "ace8e995-5b83-41d2-8663-66b7ef1cbe3c",
+    "submitted_at": "2027-10-23",
+    "admission_date": "2027-10-23",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "ede1fe41-014a-4393-831d-74c50a665a4f",
+      "full_name": "Sunita Rao",
+      "age": 74,
+      "gender": "male",
+      "policy_number": "POL-031"
+    },
+    "policy": {
+      "policy_number": "POL-031",
+      "plan_type": "family_floater",
+      "sum_insured": "800000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Tonsillectomy": "30000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "METR-HLT-031-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "817404c7-adc3-45e4-9ae4-455b1ad810b4",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "M17.11",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "295000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+          "amount": "55000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "84000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "48000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "36000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "24000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "48000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

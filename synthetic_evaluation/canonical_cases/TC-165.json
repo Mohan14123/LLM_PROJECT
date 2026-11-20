@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-165",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-165",
+  "policy_id": "POL-025",
+  "policy_version": "1.0",
+  "description": "Non-network hospital pre-auth trigger",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "ESCALATE",
+  "rules_tested": [
+    "RULE-POL-025-01",
+    "RULE-POL-025-02",
+    "RULE-POL-025-03"
+  ],
+  "payload": {
+    "request_id": "03accbf6-57d5-44d1-b6e9-e15ce42049ec",
+    "submitted_at": "2025-10-08",
+    "admission_date": "2025-10-08",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "d68a93be-01dd-40f5-92cd-b1eada0c02d1",
+      "full_name": "Manoj Rao",
+      "age": 69,
+      "gender": "male",
+      "policy_number": "POL-025"
+    },
+    "policy": {
+      "policy_number": "POL-025",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "25000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "VANG-HLT-025-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "3ae0d7c1-b3ab-4aa0-887a-a46d7d3ae144",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "non_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Encounter for cosmetic aesthetic rhinoplasty",
+      "icd10_code": "Z41.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Elective cosmetic rhinoplasty and septal reshaping",
+      "procedure_code": "PROC-COSM-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "180000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 5 days)",
+          "amount": "60000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "42000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "24000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "18000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "12000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "24000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

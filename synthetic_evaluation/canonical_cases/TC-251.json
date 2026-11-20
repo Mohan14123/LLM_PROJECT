@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-251",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-251",
+  "policy_id": "POL-006",
+  "policy_version": "1.0",
+  "description": "Financial cross-field contradiction between line items and total",
+  "expected_schema_valid": false,
+  "expected_error_substring": "exceeds the +/- 1 INR reconciliation tolerance",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "e24e9705-ea65-4eb9-b81a-10f3cb2c2013",
+    "submitted_at": "2027-09-10",
+    "admission_date": "2027-09-10",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "a4fca51f-7732-4a71-844b-85c7b9b40ed6",
+      "full_name": "Sunita Iyer",
+      "age": 71,
+      "gender": "female",
+      "policy_number": "POL-006"
+    },
+    "policy": {
+      "policy_number": "POL-006",
+      "plan_type": "individual",
+      "sum_insured": "200000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "20000.00",
+          "Hernia": "30000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "NATI-HLT-006-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "090d9122-96b6-4325-8512-f6829667afdf",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "123500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

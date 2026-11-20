@@ -1,0 +1,44 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 0fa6a59c-0b21-4168-b7c4-9c32749e8650
+Submission Date: 2028-02-02
+Admission Date: 2028-02-02
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Vijay Gupta
+Age: 63
+Gender: male
+Policy / Member Number: POL-031
+
+POLICY DETAILS
+--------------
+Policy Number: POL-031
+Plan Type: family_floater
+Sum Insured: INR 800000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Sunshine Community Nursing Home
+Network Status: non_network
+Facility Category: None
+City: Lucknow, State: None
+ICD-10 Code: N18.6
+Primary Diagnosis: End stage renal disease on maintenance hemodialysis
+Pre-Existing Disease Flag: True
+Planned Procedure: Hemodialysis single session via AV fistula
+Procedure Code: PROC-MED-HEMO-01
+Admission Type: day_care
+
+ESTIMATED COST BREAKDOWN
+------------------------
+------------------------
+Total Estimated Amount: INR 8500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Hypertension under medical control.
+==================================================

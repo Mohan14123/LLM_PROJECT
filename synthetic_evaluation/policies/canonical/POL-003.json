@@ -1,0 +1,104 @@
+{
+  "policy_id": "POL-003",
+  "policy_version": "1.0",
+  "policy_name": "Paramount Senior Citizen Silver Care",
+  "insurer_name": "Paramount Assurance Co.",
+  "policy_type": "individual",
+  "product_uin": "PARA-HLT-SNR-2024-V01",
+  "product_version": "2024.1",
+  "policyholder_eligibility": {
+    "min_entry_age": 60,
+    "max_entry_age": 85,
+    "renewable_for_life": true
+  },
+  "policy_start_date": "2023-01-01",
+  "policy_expiry_date": "2023-12-31",
+  "sum_insured": {
+    "amount": "300000.00",
+    "currency": "INR"
+  },
+  "available_sum_insured": {
+    "amount": "300000.00",
+    "currency": "INR"
+  },
+  "room_rent_limits": {
+    "type": "fixed_daily_amount",
+    "daily_cap_inr": "3000.00",
+    "clause_reference": "Section 2.1",
+    "proportional_deduction_applies": true
+  },
+  "icu_limits": {
+    "type": "fixed_daily_amount",
+    "daily_cap_inr": "6000.00",
+    "clause_reference": "Section 2.2"
+  },
+  "disease_sublimits": {
+    "Cataract": {
+      "cap_inr": "25000.00",
+      "per": "per_eye",
+      "clause": "Section 4.1"
+    },
+    "Cardiac Stent Surgery": {
+      "cap_inr": "120000.00",
+      "per": "per_admission",
+      "clause": "Section 4.2"
+    },
+    "Knee Replacement": {
+      "cap_inr": "100000.00",
+      "per": "per_knee",
+      "clause": "Section 4.3"
+    },
+    "Cancer Chemotherapy": {
+      "cap_inr": "80000.00",
+      "per": "per_cycle",
+      "clause": "Section 4.4"
+    }
+  },
+  "waiting_periods": {
+    "initial_days": 30,
+    "initial_accident_exempt": true,
+    "specific_disease_months": 12,
+    "ped_months": 24,
+    "statutory_moratorium_months": 60
+  },
+  "co_payment": {
+    "mandatory_pct": "20.00",
+    "senior_citizen_pct": "20.00",
+    "clause": "Section 5.1"
+  },
+  "deductible": {
+    "amount": "0.00",
+    "currency": "INR",
+    "type": "none"
+  },
+  "restoration_benefit": {
+    "is_available": false
+  },
+  "exclusions": {
+    "permanent": [
+      "Cosmetic treatments",
+      "Experimental therapies",
+      "Non-allopathic alternative medicine"
+    ],
+    "conditional": [
+      "Pre-existing cardiac disease covered after 24m"
+    ]
+  },
+  "network_hospital_conditions": "Network empanelled facilities only for cashless pre-auth.",
+  "rules": [
+    {
+      "rule_id": "RULE-POL003-01",
+      "rule_type": "mandatory_copay",
+      "clause_reference": "Section 5.1",
+      "condition": "Mandatory 20% co-payment applies on all admissible claims.",
+      "expected_interpretation": "deduct_20pct_copay"
+    },
+    {
+      "rule_id": "RULE-POL003-02",
+      "rule_type": "ped_reduced_waiting",
+      "clause_reference": "Section 3.2",
+      "condition": "Special 24-month reduced PED waiting period for senior citizens.",
+      "expected_interpretation": "ped_cleared_after_24m"
+    }
+  ]
+}

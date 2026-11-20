@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-052",
+  "category": "happy_path",
+  "scenario_id": "SCN-052",
+  "policy_id": "POL-017",
+  "policy_version": "1.0",
+  "description": "Happy path: End stage renal disease on maintenance hemodialysis at Manipal Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-017-01",
+    "RULE-POL-017-02",
+    "RULE-POL-017-03"
+  ],
+  "payload": {
+    "request_id": "68983143-c4c6-42cf-844e-3491f28dfbe6",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "a9bd41d2-fff1-4dc7-94bb-5ba10185367c",
+      "full_name": "Priya Sharma",
+      "age": 57,
+      "gender": "male",
+      "policy_number": "POL-017"
+    },
+    "policy": {
+      "policy_number": "POL-017",
+      "plan_type": "individual",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-017-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "f70d2f68-7e63-4274-aa17-ef7074a1a2e5",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "11000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 1 days)",
+          "amount": "6500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

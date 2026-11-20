@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-129",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-129",
+  "policy_id": "POL-024",
+  "policy_version": "1.0",
+  "description": "High financial claim amount within high sum insured",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-024-01",
+    "RULE-POL-024-02",
+    "RULE-POL-024-03"
+  ],
+  "payload": {
+    "request_id": "7e138034-faa0-4685-b957-71e85c49cf9f",
+    "submitted_at": "2027-02-04",
+    "admission_date": "2027-02-04",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "c141dfbf-6091-4ea3-a9ee-6f8186749deb",
+      "full_name": "Geeta Banerjee",
+      "age": 61,
+      "gender": "female",
+      "policy_number": "POL-024"
+    },
+    "policy": {
+      "policy_number": "POL-024",
+      "plan_type": "individual",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-024-2024",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "2d0097f0-d47e-4e59-937c-d44424619653",
+      "name": "Apollo Multispeciality Hospital",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "354500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 1 days)",
+          "amount": "350000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

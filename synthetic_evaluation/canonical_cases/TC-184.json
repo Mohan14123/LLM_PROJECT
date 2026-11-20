@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-184",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-184",
+  "policy_id": "POL-009",
+  "policy_version": "1.0",
+  "description": "Cost estimate reconciliation discrepancy > 1 INR",
+  "expected_schema_valid": false,
+  "expected_error_substring": "exceeds the +/- 1 INR reconciliation tolerance",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "d99d877f-cd13-4566-9e29-292bbe816b59",
+    "submitted_at": "2027-07-14",
+    "admission_date": "2027-07-14",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "5045be7d-6d0d-421b-9a3b-93b457056f74",
+      "full_name": "Anita Reddy",
+      "age": 81,
+      "gender": "male",
+      "policy_number": "POL-009"
+    },
+    "policy": {
+      "policy_number": "POL-009",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cardiac": "150000.00",
+          "Cataract": "30000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "VANG-HLT-009-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "08d9d635-9db6-450d-82cd-2e8a7981580a",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "999999.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 1 days)",
+          "amount": "6500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

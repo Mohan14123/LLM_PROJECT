@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-092",
+  "category": "happy_path",
+  "scenario_id": "SCN-092",
+  "policy_id": "POL-022",
+  "policy_version": "1.0",
+  "description": "Happy path: Primary unilateral osteoarthritis, right knee grade 4 at Manipal Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-022-01",
+    "RULE-POL-022-02",
+    "RULE-POL-022-03"
+  ],
+  "payload": {
+    "request_id": "0259e8b2-7e32-424d-b508-26d686420917",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "6954b9c2-419e-4c16-8632-1073ba2bf6fd",
+      "full_name": "Sanjay Kulkarni",
+      "age": 44,
+      "gender": "female",
+      "policy_number": "POL-022"
+    },
+    "policy": {
+      "policy_number": "POL-022",
+      "plan_type": "family_floater",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "5.00",
+      "product_uin": "NATI-HLT-022-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "a05fb19e-6922-40c5-b7db-f768c02decda",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "M17.11",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "272500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 5 days)",
+          "amount": "32500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "84000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "48000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "36000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "24000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "48000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

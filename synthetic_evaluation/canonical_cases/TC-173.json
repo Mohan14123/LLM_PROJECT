@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-173",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-173",
+  "policy_id": "POL-033",
+  "policy_version": "1.0",
+  "description": "Non-network hospital pre-auth trigger",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "ESCALATE",
+  "rules_tested": [
+    "RULE-POL-033-01",
+    "RULE-POL-033-02",
+    "RULE-POL-033-03"
+  ],
+  "payload": {
+    "request_id": "a7443f29-5342-4368-9b8d-ffe03c0ccdb7",
+    "submitted_at": "2027-07-07",
+    "admission_date": "2027-07-07",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "c17fcca7-8caa-4d84-9c36-7ffdb5ebc35f",
+      "full_name": "Sneha Gupta",
+      "age": 58,
+      "gender": "female",
+      "policy_number": "POL-033"
+    },
+    "policy": {
+      "policy_number": "POL-033",
+      "plan_type": "individual",
+      "sum_insured": "2500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-033-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "3e908df6-9877-4a65-b20e-6d4cad3db42d",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "non_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "16500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 1 days)",
+          "amount": "12000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-186",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-186",
+  "policy_id": "POL-011",
+  "policy_version": "1.0",
+  "description": "Missing mandatory diagnosis ICD-10 code",
+  "expected_schema_valid": false,
+  "expected_error_substring": "String should have at least 1 character",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "89699d64-63ae-453e-8a82-dfdcb2e6ce8c",
+    "submitted_at": "2027-12-29",
+    "admission_date": "2027-12-29",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "cc462df9-ea8b-4e66-a9db-6f2cab2373ab",
+      "full_name": "Lakshmi Patel",
+      "age": 51,
+      "gender": "male",
+      "policy_number": "POL-011"
+    },
+    "policy": {
+      "policy_number": "POL-011",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 12,
+      "sub_limits": {
+        "limits": {
+          "Dialysis": "50000.00"
+        }
+      },
+      "co_pay_pct": "15.00",
+      "product_uin": "ZENI-HLT-011-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "2f703206-feae-4d6f-80c9-159534be2a2f",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+      "icd10_code": "",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "131000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 4 days)",
+          "amount": "16000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

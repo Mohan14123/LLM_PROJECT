@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-105",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-105",
+  "policy_id": "POL-035",
+  "policy_version": "1.0",
+  "description": "High financial claim amount within high sum insured",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-035-01",
+    "RULE-POL-035-02",
+    "RULE-POL-035-03"
+  ],
+  "payload": {
+    "request_id": "25ebbb9d-0d25-444c-ad3f-5a33e8778873",
+    "submitted_at": "2025-02-07",
+    "admission_date": "2025-02-07",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "d6e11d63-a2c9-4d8d-998a-cf55fa0d8197",
+      "full_name": "Aarav Rao",
+      "age": 46,
+      "gender": "male",
+      "policy_number": "POL-035"
+    },
+    "policy": {
+      "policy_number": "POL-035",
+      "plan_type": "individual",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZENI-HLT-035-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "6cbc435f-d080-4aba-acea-a229bee92673",
+      "name": "Apollo Multispeciality Hospital",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Acute anterior myocardial infarction (STEMI)",
+      "icd10_code": "I21.09",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+      "procedure_code": "PROC-CARD-PTCA-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "635000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 3 days)",
+          "amount": "350000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "99750.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "57000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "42750.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "28500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "57000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 377f136c-5827-438a-9bda-29b4341646e2
+Submission Date: 2026-09-13
+Admission Date: 2026-09-13
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Shweta Patel
+Age: 43
+Gender: male
+Policy / Member Number: POL-002
+
+POLICY DETAILS
+--------------
+Policy Number: POL-002
+Plan Type: family_floater
+Sum Insured: INR 1000000.00
+Policy Inception Date: 2023-06-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Care & Cure Rural Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Ahmedabad, State: None
+ICD-10 Code: I21.09
+Primary Diagnosis: Acute anterior myocardial infarction (STEMI)
+Pre-Existing Disease Flag: False
+Planned Procedure: Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent
+Procedure Code: PROC-CARD-PTCA-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 4 days): INR 26000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 99750.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 57000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 42750.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 28500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 57000.00
+------------------------
+Total Estimated Amount: INR 311000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Hypertension under medical control.
+==================================================

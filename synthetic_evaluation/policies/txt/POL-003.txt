@@ -1,0 +1,55 @@
+================================================================================
+PARAMOUNT ASSURANCE CO.
+CERTIFICATE OF INSURANCE & POLICY SCHEDULE: PARAMOUNT SENIOR CITIZEN SILVER CARE
+UIN: PARA-HLT-SNR-2024-V01 | Version: 2024.1
+================================================================================
+
+SECTION 1: POLICY SCHEDULE & ENTITLEMENT DETAILS
+--------------------------------------------------------------------------------
+Policy Identifier      : POL-003
+Insurance Product Name : Paramount Senior Citizen Silver Care
+Underwriting Insurer   : Paramount Assurance Co.
+Plan Category / Type   : INDIVIDUAL
+Policy Inception Date  : 2023-01-01
+Policy Expiry Date     : 2023-12-31
+Annual Sum Insured     : INR 300000.00
+Available Sum Insured  : INR 300000.00
+
+SECTION 2: ROOM RENT & INTENSIVE CARE UNIT (ICU) RESTRICTIONS
+--------------------------------------------------------------------------------
+Room Rent Limit Type   : fixed_daily_amount
+Daily Room Rent Cap    : INR 3000.00
+Proportional Deduction : Applicable under Clause 3.1.A
+ICU Daily Limit        : INR 6000.00
+
+SECTION 3: MANDATORY WAITING PERIOD SCHEDULE
+--------------------------------------------------------------------------------
+Initial Waiting Period : 30 Days (Waived for Accidental Injury)
+Specific Disease Period: 12 Months
+Pre-Existing Disease   : 24 Months of Continuous Coverage
+Statutory Moratorium   : 60 Months
+
+SECTION 4: CO-PAYMENT & ANNUAL DEDUCTIBLE PROVISIONS
+--------------------------------------------------------------------------------
+Mandatory Co-Payment   : 20.00%
+Deductible Amount      : INR 0.00 (none)
+
+SECTION 5: SPECIFIC PROCEDURE & DISEASE SUB-LIMIT SCHEDULE
+--------------------------------------------------------------------------------
+  * Cataract                  : INR 25000.00     (per_eye)
+  * Cardiac Stent Surgery     : INR 120000.00    (per_admission)
+  * Knee Replacement          : INR 100000.00    (per_knee)
+  * Cancer Chemotherapy       : INR 80000.00     (per_cycle)
+
+SECTION 6: PERMANENT & STATUTORY EXCLUSIONS
+--------------------------------------------------------------------------------
+  [X] Cosmetic treatments
+  [X] Experimental therapies
+  [X] Non-allopathic alternative medicine
+
+SECTION 7: NETWORK HOSPITALIZATION & PRE-AUTH GUIDELINES
+--------------------------------------------------------------------------------
+Network empanelled facilities only for cashless pre-auth.
+Pre-Authorisation Mandate: Planned admissions require submission 48 hours prior;
+Emergency hospitalizations require intimation within 24 hours of admission.
+================================================================================

@@ -1,0 +1,92 @@
+{
+  "policy_id": "POL-005",
+  "policy_version": "1.0",
+  "policy_name": "Titan Corporate Group Mediclaim",
+  "insurer_name": "Titan Insurance Co. Ltd.",
+  "policy_type": "group",
+  "product_uin": "TITAN-GRP-MED-2024-V01",
+  "product_version": "2024.1",
+  "policyholder_eligibility": {
+    "employee_status": "Active Full-time Employee and Dependents"
+  },
+  "policy_start_date": "2024-04-01",
+  "policy_expiry_date": "2025-03-31",
+  "sum_insured": {
+    "amount": "500000.00",
+    "currency": "INR"
+  },
+  "available_sum_insured": {
+    "amount": "500000.00",
+    "currency": "INR"
+  },
+  "room_rent_limits": {
+    "type": "percentage_of_sum_insured",
+    "percentage": 1.5,
+    "daily_cap_inr": "7500.00",
+    "proportional_deduction_applies": true,
+    "clause_reference": "Endorsement Schedule A"
+  },
+  "icu_limits": {
+    "type": "actuals",
+    "daily_cap_inr": null
+  },
+  "disease_sublimits": {
+    "Maternity Normal": {
+      "cap_inr": "50000.00",
+      "per": "per_delivery",
+      "clause": "Maternity Endorsement"
+    },
+    "Maternity Caesarean": {
+      "cap_inr": "75000.00",
+      "per": "per_delivery",
+      "clause": "Maternity Endorsement"
+    },
+    "Cataract": {
+      "cap_inr": "40000.00",
+      "per": "per_eye",
+      "clause": "Schedule C"
+    }
+  },
+  "waiting_periods": {
+    "initial_days": 0,
+    "initial_accident_exempt": true,
+    "specific_disease_months": 0,
+    "ped_months": 0,
+    "statutory_moratorium_months": 60,
+    "waiver_endorsement": "WAITING_PERIOD_WAIVER_ATTACHED"
+  },
+  "co_payment": {
+    "mandatory_pct": "0.00"
+  },
+  "deductible": {
+    "amount": "0.00",
+    "type": "none"
+  },
+  "restoration_benefit": {
+    "is_available": true,
+    "percentage": 100.0
+  },
+  "exclusions": {
+    "permanent": [
+      "Cosmetic treatments"
+    ],
+    "conditional": []
+  },
+  "network_hospital_conditions": "Preferred Provider Network (PPN) with Cashless Everywhere endorsement.",
+  "rules": [
+    {
+      "rule_id": "RULE-POL005-01",
+      "rule_type": "waiting_period_waiver",
+      "clause_reference": "Endorsement W-01",
+      "condition": "All initial, specific disease, and pre-existing disease waiting periods waived from Day 1.",
+      "expected_interpretation": "zero_waiting_period"
+    },
+    {
+      "rule_id": "RULE-POL005-02",
+      "rule_type": "maternity_benefit",
+      "clause_reference": "Endorsement M-02",
+      "condition": "Maternity covered from Day 1 up to \u20b950,000 for normal and \u20b975,000 for C-section.",
+      "expected_interpretation": "maternity_covered_with_sublimit"
+    }
+  ]
+}

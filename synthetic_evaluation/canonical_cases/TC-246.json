@@ -1,0 +1,101 @@
+{
+  "test_case_id": "TC-246",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-246",
+  "policy_id": "POL-001",
+  "policy_version": "1.0",
+  "description": "Referential integrity conflict: patient policy number does not match policy",
+  "expected_schema_valid": false,
+  "expected_error_substring": "patient.policy_number ('POL-CONFLICT-999') does not match policy.policy_number",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "2eb6515e-5718-4bae-ac32-6a17cb8ced62",
+    "submitted_at": "2027-10-17",
+    "admission_date": "2027-10-17",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "ab001f53-6d74-473f-8943-008d9863a9d0",
+      "full_name": "Manoj Deshmukh",
+      "age": 28,
+      "gender": "female",
+      "policy_number": "POL-CONFLICT-999"
+    },
+    "policy": {
+      "policy_number": "POL-001",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00",
+          "Hernia": "50000.00",
+          "Knee Replacement": "150000.00",
+          "Kidney Stone / Lithotripsy": "45000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-IND-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "21090715-89db-4b44-9de9-fd85ed5f1208",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "M17.11",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "260000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "84000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "48000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "36000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "24000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "48000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

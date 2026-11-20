@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-019",
+  "category": "happy_path",
+  "scenario_id": "SCN-019",
+  "policy_id": "POL-019",
+  "policy_version": "1.0",
+  "description": "Happy path: End stage renal disease on maintenance hemodialysis at Max Super Speciality Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-019-01",
+    "RULE-POL-019-02",
+    "RULE-POL-019-03"
+  ],
+  "payload": {
+    "request_id": "1ffde5e9-9682-4baa-a6b9-b7b70a80ceae",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "4e01c190-12d6-4345-9ebc-481d8fad7459",
+      "full_name": "Rohan Verma",
+      "age": 31,
+      "gender": "male",
+      "policy_number": "POL-019"
+    },
+    "policy": {
+      "policy_number": "POL-019",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 48,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "35000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZENI-HLT-019-2024",
+      "product_version": "pre_2024.legacy",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "db264f36-0d24-4832-bbda-dd6902a40819",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "16500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 1 days)",
+          "amount": "12000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

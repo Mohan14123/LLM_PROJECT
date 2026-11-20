@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-095",
+  "category": "happy_path",
+  "scenario_id": "SCN-095",
+  "policy_id": "POL-025",
+  "policy_version": "1.0",
+  "description": "Happy path: Calculus of ureter with moderate hydronephrosis at Lifeline Day Care Surgery Centre",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-025-01",
+    "RULE-POL-025-02",
+    "RULE-POL-025-03"
+  ],
+  "payload": {
+    "request_id": "108251a4-4b8d-41f8-bc85-58869772a0f0",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "7892320e-77ec-440f-a17f-a0a7c611eeea",
+      "full_name": "Anita Kulkarni",
+      "age": 75,
+      "gender": "male",
+      "policy_number": "POL-025"
+    },
+    "policy": {
+      "policy_number": "POL-025",
+      "plan_type": "individual",
+      "sum_insured": "400000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "25000.00"
+        }
+      },
+      "co_pay_pct": "10.00",
+      "product_uin": "VANG-HLT-025-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "615edd83-0a8f-464e-a5e1-72367ac31a61",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Calculus of ureter with moderate hydronephrosis",
+      "icd10_code": "N20.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+      "procedure_code": "PROC-URO-LITH-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "88000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "18200.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "10400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "7800.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "5200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "10400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

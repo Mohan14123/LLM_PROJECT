@@ -1,0 +1,52 @@
+================================================================================
+RELIANT HEALTH UNDERWRITERS
+CERTIFICATE OF INSURANCE & POLICY SCHEDULE: RELIANT YOUTH STARTER HEALTH
+UIN: RELI-HLT-013-2024 | Version: 2024.1
+================================================================================
+
+SECTION 1: POLICY SCHEDULE & ENTITLEMENT DETAILS
+--------------------------------------------------------------------------------
+Policy Identifier      : POL-013
+Insurance Product Name : Reliant Youth Starter Health
+Underwriting Insurer   : Reliant Health Underwriters
+Plan Category / Type   : INDIVIDUAL
+Policy Inception Date  : 2024-01-01
+Policy Expiry Date     : 2024-12-31
+Annual Sum Insured     : INR 300000.00
+Available Sum Insured  : INR 300000.00
+
+SECTION 2: ROOM RENT & INTENSIVE CARE UNIT (ICU) RESTRICTIONS
+--------------------------------------------------------------------------------
+Room Rent Limit Type   : percentage_of_sum_insured
+Daily Room Rent Cap    : INR 3000.00
+Proportional Deduction : Applicable under Clause 3.1.A
+ICU Daily Limit        : INR 6000.00
+
+SECTION 3: MANDATORY WAITING PERIOD SCHEDULE
+--------------------------------------------------------------------------------
+Initial Waiting Period : 30 Days (Waived for Accidental Injury)
+Specific Disease Period: 24 Months
+Pre-Existing Disease   : 36 Months of Continuous Coverage
+Statutory Moratorium   : 60 Months
+
+SECTION 4: CO-PAYMENT & ANNUAL DEDUCTIBLE PROVISIONS
+--------------------------------------------------------------------------------
+Mandatory Co-Payment   : 5.00%
+Deductible Amount      : INR 0.00 (none)
+
+SECTION 5: SPECIFIC PROCEDURE & DISEASE SUB-LIMIT SCHEDULE
+--------------------------------------------------------------------------------
+  * Appendicitis              : INR 40000.00     (per_admission)
+
+SECTION 6: PERMANENT & STATUTORY EXCLUSIONS
+--------------------------------------------------------------------------------
+  [X] Aesthetic, cosmetic or plastic surgery
+  [X] Self-inflicted injury or suicide attempts
+  [X] Unproven or investigational procedures
+
+SECTION 7: NETWORK HOSPITALIZATION & PRE-AUTH GUIDELINES
+--------------------------------------------------------------------------------
+Empanelled Network Hospitals for Cashless Facilities.
+Pre-Authorisation Mandate: Planned admissions require submission 48 hours prior;
+Emergency hospitalizations require intimation within 24 hours of admission.
+================================================================================

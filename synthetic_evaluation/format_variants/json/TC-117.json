@@ -1,0 +1,84 @@
+{
+  "request_id": "37b1a5ff-9ea1-4674-bd7a-ff1f82b8e3b7",
+  "submitted_at": "2027-07-12",
+  "admission_date": "2027-07-12",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "455c64b6-5116-4a0e-9bb8-a6b6d744495e",
+    "full_name": "Deepak Nair",
+    "age": 59,
+    "gender": "female",
+    "policy_number": "POL-012"
+  },
+  "policy": {
+    "policy_number": "POL-012",
+    "plan_type": "individual",
+    "sum_insured": "1500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {
+        "Chemotherapy": "100000.00"
+      }
+    },
+    "co_pay_pct": "10.00",
+    "product_uin": "TITA-HLT-012-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "73c9c71c-7099-4235-abf7-918762b67862",
+    "name": "Narayana Health City",
+    "city": "Bengaluru",
+    "network_tier": "non_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Calculus of ureter with moderate hydronephrosis",
+    "icd10_code": "N20.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+    "procedure_code": "PROC-URO-LITH-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "112000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 5 days)",
+        "amount": "60000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "18200.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "10400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "7800.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "5200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "10400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-127",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-127",
+  "policy_id": "POL-022",
+  "policy_version": "1.0",
+  "description": "Mandatory 20% co-payment computation",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-022-01",
+    "RULE-POL-022-02",
+    "RULE-POL-022-03"
+  ],
+  "payload": {
+    "request_id": "64941b6f-d103-4e13-8ac1-ce0a11bf29de",
+    "submitted_at": "2027-03-06",
+    "admission_date": "2027-03-06",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "84fb5792-bbde-4677-ae7a-adff10d641c8",
+      "full_name": "Vikram Rao",
+      "age": 37,
+      "gender": "female",
+      "policy_number": "POL-022"
+    },
+    "policy": {
+      "policy_number": "POL-022",
+      "plan_type": "family_floater",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "NATI-HLT-022-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "16ac0462-0cda-4851-9589-6c3bb9e9b243",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Acute anterior myocardial infarction (STEMI)",
+      "icd10_code": "I21.09",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+      "procedure_code": "PROC-CARD-PTCA-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "345000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 5 days)",
+          "amount": "60000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "99750.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "57000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "42750.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "28500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "57000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

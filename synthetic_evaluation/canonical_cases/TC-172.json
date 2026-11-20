@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-172",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-172",
+  "policy_id": "POL-032",
+  "policy_version": "1.0",
+  "description": "Admission exactly after 30-day initial waiting period expires",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-032-01",
+    "RULE-POL-032-02",
+    "RULE-POL-032-03"
+  ],
+  "payload": {
+    "request_id": "40f79f13-d661-4b1b-84ff-571613d943fa",
+    "submitted_at": "2024-02-02",
+    "admission_date": "2024-02-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "ea2e597e-bd8b-467f-afa0-c986ebd24cf0",
+      "full_name": "Shweta Reddy",
+      "age": 41,
+      "gender": "female",
+      "policy_number": "POL-032"
+    },
+    "policy": {
+      "policy_number": "POL-032",
+      "plan_type": "individual",
+      "sum_insured": "1500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-032-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "c38aa882-e618-41c7-a409-a1e7a40399b9",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of ureter with moderate hydronephrosis",
+      "icd10_code": "N20.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+      "procedure_code": "PROC-URO-LITH-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "84500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 5 days)",
+          "amount": "32500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "18200.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "10400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "7800.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "5200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "10400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

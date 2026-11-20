@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-162",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-162",
+  "policy_id": "POL-022",
+  "policy_version": "1.0",
+  "description": "Paise decimal precision calculations",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-022-01",
+    "RULE-POL-022-02",
+    "RULE-POL-022-03"
+  ],
+  "payload": {
+    "request_id": "4992f645-2574-4b13-b5da-16e1d39b7f10",
+    "submitted_at": "2027-05-20",
+    "admission_date": "2027-05-20",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "edc8e11a-738d-4383-80d5-9b3c4e216a61",
+      "full_name": "Geeta Singh",
+      "age": 72,
+      "gender": "female",
+      "policy_number": "POL-022"
+    },
+    "policy": {
+      "policy_number": "POL-022",
+      "plan_type": "family_floater",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "5.00",
+      "product_uin": "NATI-HLT-022-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "0a27f609-9f59-49cd-9290-8331f8dbf836",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "30426.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 1 days)",
+          "amount": "12500.75",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "15000.25",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

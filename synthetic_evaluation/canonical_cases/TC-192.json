@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-192",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-192",
+  "policy_id": "POL-017",
+  "policy_version": "1.0",
+  "description": "Malformed non-ISO admission date format",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be a valid date or date-time",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "336fd5d7-9783-47c2-a994-238c90fc1fbd",
+    "submitted_at": "2027-04-12",
+    "admission_date": "31-02-2024",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "9ffd80f0-a609-4d45-a18a-f46c26934e12",
+      "full_name": "Sanjay Joshi",
+      "age": 39,
+      "gender": "female",
+      "policy_number": "POL-017"
+    },
+    "policy": {
+      "policy_number": "POL-017",
+      "plan_type": "individual",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-017-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "61861fa6-b613-4c72-9f93-1452bb7f6641",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "91000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 2 days)",
+          "amount": "13000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

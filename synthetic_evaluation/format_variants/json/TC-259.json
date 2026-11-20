@@ -1,0 +1,85 @@
+{
+  "request_id": "6d9b09ce-a9ee-45f9-b3b7-a4a87af499a2",
+  "submitted_at": "2024-09-09",
+  "admission_date": "2024-09-09",
+  "source_format": "scanned_image",
+  "status": "pending",
+  "patient": {
+    "patient_id": "2e82ffdf-af8e-4330-8d38-2b756b2c28b6",
+    "full_name": "Ananya Shah",
+    "age": 57,
+    "gender": "male",
+    "policy_number": "POL-014"
+  },
+  "policy": {
+    "policy_number": "POL-014",
+    "plan_type": "individual",
+    "sum_insured": "600000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Maternity": "60000.00",
+        "Hysterectomy": "70000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "NATI-HLT-014-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "a96d0038-6129-45ba-acdd-5392996e54ca",
+    "name": "Max Super Speciality Hospital",
+    "city": "New Delhi",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Acute anterior myocardial infarction (STEMI)",
+    "icd10_code": "I21.09",
+    "is_pre_existing": true
+  },
+  "procedure": {
+    "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+    "procedure_code": "PROC-CARD-PTCA-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "309000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 2 days)",
+        "amount": "24000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "99750.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "57000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "42750.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "28500.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "57000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+}

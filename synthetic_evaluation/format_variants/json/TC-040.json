@@ -1,0 +1,88 @@
+{
+  "request_id": "000fc555-5c28-4017-ae6f-9aeafc9b35fa",
+  "submitted_at": "2027-07-15",
+  "admission_date": "2027-07-15",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "6f79c8e9-7099-43b3-9e9e-2dc19f1d32c0",
+    "full_name": "Sneha Shah",
+    "age": 47,
+    "gender": "female",
+    "policy_number": "POL-005"
+  },
+  "policy": {
+    "policy_number": "POL-005",
+    "plan_type": "group",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-04-01",
+    "waiting_period_months": 0,
+    "ped_waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "Maternity Normal": "50000.00",
+        "Maternity Caesarean": "75000.00",
+        "Cataract": "40000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "TITAN-GRP-MED-2024-V01",
+    "product_version": "2024.1",
+    "endorsements": [
+      "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+    ]
+  },
+  "hospital": {
+    "hospital_id": "b1b24188-6036-4e52-9283-0a5cc37fc61e",
+    "name": "Care & Cure Rural Hospital",
+    "city": "Ahmedabad",
+    "network_tier": "cashless_network",
+    "category": "trust"
+  },
+  "diagnosis": {
+    "description": "Calculus of ureter with moderate hydronephrosis",
+    "icd10_code": "N20.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+    "procedure_code": "PROC-URO-LITH-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "71500.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Single Private A/C Room, 3 days)",
+        "amount": "19500.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "18200.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "10400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "7800.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "5200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "10400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

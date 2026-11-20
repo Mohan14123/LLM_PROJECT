@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-177",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-177",
+  "policy_id": "POL-002",
+  "policy_version": "1.0",
+  "description": "High financial claim amount within high sum insured",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL002-01",
+    "RULE-POL002-02"
+  ],
+  "payload": {
+    "request_id": "d7ce9ab3-d681-48fb-9e3a-2061a7a9c1a2",
+    "submitted_at": "2027-05-01",
+    "admission_date": "2027-05-01",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "c121fe55-25cb-4921-9b06-d049692c566e",
+      "full_name": "Amit Singh",
+      "age": 62,
+      "gender": "male",
+      "policy_number": "POL-002"
+    },
+    "policy": {
+      "policy_number": "POL-002",
+      "plan_type": "family_floater",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2023-06-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "50000.00",
+          "Joint Replacement": "250000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-FF-2024-V02",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "83d53692-e26e-47a8-af26-ea3aa6e74f35",
+      "name": "Apollo Multispeciality Hospital",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "392000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 1 days)",
+          "amount": "350000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

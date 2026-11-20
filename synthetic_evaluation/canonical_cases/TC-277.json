@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-277",
+  "category": "ocr_stress",
+  "scenario_id": "SCN-277",
+  "policy_id": "POL-032",
+  "policy_version": "1.0",
+  "ocr_distortion": "downsample_low_res",
+  "description": "OCR degradation stress test: downsample_low_res",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "OCR_EXTRACTION_ROBUSTNESS"
+  ],
+  "payload": {
+    "request_id": "52d0e1df-9c82-47b4-b36f-dcba045d2212",
+    "submitted_at": "2027-09-04",
+    "admission_date": "2027-09-04",
+    "source_format": "scanned_image",
+    "status": "pending",
+    "patient": {
+      "patient_id": "92e35896-17a4-4314-add3-ad3be9093ca6",
+      "full_name": "Arjun Kulkarni",
+      "age": 56,
+      "gender": "male",
+      "policy_number": "POL-032"
+    },
+    "policy": {
+      "policy_number": "POL-032",
+      "plan_type": "individual",
+      "sum_insured": "1500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-032-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "7f6581e9-8b1b-42b4-99fc-278edcfbe57a",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "143000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 4 days)",
+          "amount": "48000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

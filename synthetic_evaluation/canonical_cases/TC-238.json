@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-238",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-238",
+  "policy_id": "POL-028",
+  "policy_version": "1.0",
+  "description": "Temporal coverage conflict: admission date precedes policy inception",
+  "expected_schema_valid": false,
+  "expected_error_substring": "is before policy.policy_start_date",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "332ccf26-63e2-41d1-9435-afacd3fb0659",
+    "submitted_at": "2024-12-06",
+    "admission_date": "2023-11-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "fd18b42e-55ba-4ab1-8164-2e9cd1d17142",
+      "full_name": "Rajesh Shah",
+      "age": 41,
+      "gender": "female",
+      "policy_number": "POL-028"
+    },
+    "policy": {
+      "policy_number": "POL-028",
+      "plan_type": "individual",
+      "sum_insured": "2000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "TITA-HLT-028-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "436aa119-6654-4221-bc55-155328585946",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Calculus of ureter with moderate hydronephrosis",
+      "icd10_code": "N20.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+      "procedure_code": "PROC-URO-LITH-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "60000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 2 days)",
+          "amount": "8000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "18200.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "10400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "7800.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "5200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "10400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

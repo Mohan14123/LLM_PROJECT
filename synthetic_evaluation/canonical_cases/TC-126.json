@@ -1,0 +1,119 @@
+{
+  "test_case_id": "TC-126",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-126",
+  "policy_id": "POL-021",
+  "policy_version": "1.0",
+  "description": "Extended 10-line-item billing reconciliation",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-021-01",
+    "RULE-POL-021-02",
+    "RULE-POL-021-03"
+  ],
+  "payload": {
+    "request_id": "d492d6f8-b0d2-420b-882d-52f5c5bdb28d",
+    "submitted_at": "2025-05-10",
+    "admission_date": "2025-05-10",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "771ea940-df66-4e47-a6a9-c14bde326b8b",
+      "full_name": "Sunil Patel",
+      "age": 26,
+      "gender": "female",
+      "policy_number": "POL-021"
+    },
+    "policy": {
+      "policy_number": "POL-021",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "5.00",
+      "product_uin": "RELI-HLT-021-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "7871f987-6781-4e77-b30b-b21d817bc0be",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "96000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 2 days)",
+          "amount": "8000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        },
+        {
+          "item": "Specialist Consultation Add-on #7",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #8",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #9",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #10",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

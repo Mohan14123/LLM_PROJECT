@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-107",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-107",
+  "policy_id": "POL-002",
+  "policy_version": "1.0",
+  "description": "Long patient name boundary string",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL002-01",
+    "RULE-POL002-02"
+  ],
+  "payload": {
+    "request_id": "0a9e2d70-a472-4e99-af90-2179da96aaeb",
+    "submitted_at": "2027-05-09",
+    "admission_date": "2027-05-09",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "177afc88-0b08-461b-97ba-5bf01f06fd1d",
+      "full_name": "Dr. Venkata Satyanarayana Ramakrishna Murthy-Venkateshwaran",
+      "age": 49,
+      "gender": "female",
+      "policy_number": "POL-002"
+    },
+    "policy": {
+      "policy_number": "POL-002",
+      "plan_type": "family_floater",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2023-06-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "50000.00",
+          "Joint Replacement": "250000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-FF-2024-V02",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "238e3343-38c0-4119-89f5-f7633537a576",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "End stage renal disease on maintenance hemodialysis",
+      "icd10_code": "N18.6",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Hemodialysis single session via AV fistula",
+      "procedure_code": "PROC-MED-HEMO-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "16500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 1 days)",
+          "amount": "12000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "1575.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "900.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "675.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "450.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "900.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-137",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-137",
+  "policy_id": "POL-032",
+  "policy_version": "1.0",
+  "description": "High financial claim amount within high sum insured",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-032-01",
+    "RULE-POL-032-02",
+    "RULE-POL-032-03"
+  ],
+  "payload": {
+    "request_id": "8ec44d8a-2703-4a09-b7f5-e2e4523ecaee",
+    "submitted_at": "2027-07-30",
+    "admission_date": "2027-07-30",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "229c542d-947e-4b18-be95-d2e082498016",
+      "full_name": "Pooja Mehta",
+      "age": 66,
+      "gender": "male",
+      "policy_number": "POL-032"
+    },
+    "policy": {
+      "policy_number": "POL-032",
+      "plan_type": "individual",
+      "sum_insured": "1500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-032-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "409a93a9-7a8a-49c3-9395-4cb4edb84e04",
+      "name": "Apollo Multispeciality Hospital",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "428000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 4 days)",
+          "amount": "350000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

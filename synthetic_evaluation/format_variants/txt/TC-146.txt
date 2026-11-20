@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: b68c961c-4e36-45a4-a264-d94c4a7d90f9
+Submission Date: 2027-09-27
+Admission Date: 2027-09-27
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Geeta Mehta
+Age: 34
+Gender: female
+Policy / Member Number: POL-006
+
+POLICY DETAILS
+--------------
+Policy Number: POL-006
+Plan Type: individual
+Sum Insured: INR 200000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 10.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Fortis Memorial Research Institute
+Network Status: cashless_network
+Facility Category: None
+City: Gurugram, State: None
+ICD-10 Code: K40.90
+Primary Diagnosis: Unilateral inguinal hernia, without obstruction or gangrene
+Pre-Existing Disease Flag: False
+Planned Procedure: Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair
+Procedure Code: PROC-SURG-HER-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 4 days): INR 12500.75
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 15000.25
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 13600.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 10200.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 6800.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 13600.00
+------------------------
+Total Estimated Amount: INR 71701.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

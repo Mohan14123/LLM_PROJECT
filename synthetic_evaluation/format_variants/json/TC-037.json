@@ -1,0 +1,85 @@
+{
+  "request_id": "f8934fcf-2f3c-4145-90f3-568e57e1131d",
+  "submitted_at": "2026-09-13",
+  "admission_date": "2026-09-13",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "c7b73c81-c0f6-4495-b4ee-93e07a53c0fe",
+    "full_name": "Suresh Iyer",
+    "age": 30,
+    "gender": "male",
+    "policy_number": "POL-002"
+  },
+  "policy": {
+    "policy_number": "POL-002",
+    "plan_type": "family_floater",
+    "sum_insured": "1000000.00",
+    "policy_start_date": "2023-06-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "50000.00",
+        "Joint Replacement": "250000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "VANG-HLT-FF-2024-V02",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "12253bc7-a6a7-4b39-8eec-6e351dfb0e39",
+    "name": "Narayana Health City",
+    "city": "Bengaluru",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Primary unilateral osteoarthritis, right knee grade 4",
+    "icd10_code": "M17.11",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+    "procedure_code": "PROC-ORTHO-TKR-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "276000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Twin Sharing, 3 days)",
+        "amount": "36000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "84000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "48000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "36000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "24000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "48000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

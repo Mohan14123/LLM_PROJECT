@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-011",
+  "category": "happy_path",
+  "scenario_id": "SCN-011",
+  "policy_id": "POL-011",
+  "policy_version": "1.0",
+  "description": "Happy path: Encounter for cosmetic aesthetic rhinoplasty at Max Super Speciality Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-011-01",
+    "RULE-POL-011-02",
+    "RULE-POL-011-03"
+  ],
+  "payload": {
+    "request_id": "50317fa5-1361-48c6-af77-9f182419beb5",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "4268692f-5343-4d24-97fe-84221814b3b3",
+      "full_name": "Sunil Joshi",
+      "age": 44,
+      "gender": "female",
+      "policy_number": "POL-011"
+    },
+    "policy": {
+      "policy_number": "POL-011",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 12,
+      "sub_limits": {
+        "limits": {
+          "Dialysis": "50000.00"
+        }
+      },
+      "co_pay_pct": "15.00",
+      "product_uin": "ZENI-HLT-011-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "696f6e1b-46b6-4813-ad47-fa5f051adb0a",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Encounter for cosmetic aesthetic rhinoplasty",
+      "icd10_code": "Z41.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Elective cosmetic rhinoplasty and septal reshaping",
+      "procedure_code": "PROC-COSM-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "168000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 4 days)",
+          "amount": "48000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "42000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "24000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "18000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "12000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "24000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

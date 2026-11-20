@@ -1,0 +1,44 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 66a3f90c-4279-4a49-97a3-83ff4c323cec
+Submission Date: 2027-12-09
+Admission Date: 2027-12-09
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Vikram Reddy
+Age: 29
+Gender: male
+Policy / Member Number: POL-022
+
+POLICY DETAILS
+--------------
+Policy Number: POL-022
+Plan Type: family_floater
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 5.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Narayana Health City
+Network Status: cashless_network
+Facility Category: None
+City: Bengaluru, State: None
+ICD-10 Code: S82.201A
+Primary Diagnosis: Closed fracture of shaft of right tibia due to road traffic collision
+Pre-Existing Disease Flag: False
+Planned Procedure: Open reduction and internal fixation (ORIF) with interlocking intramedullary nail
+Procedure Code: PROC-ORTHO-ORIF-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+------------------------
+Total Estimated Amount: INR 139000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

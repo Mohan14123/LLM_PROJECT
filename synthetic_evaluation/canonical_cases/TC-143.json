@@ -1,0 +1,101 @@
+{
+  "test_case_id": "TC-143",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-143",
+  "policy_id": "POL-003",
+  "policy_version": "1.0",
+  "description": "Mandatory 20% co-payment computation",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL003-01",
+    "RULE-POL003-02"
+  ],
+  "payload": {
+    "request_id": "6e2f20a8-6e0e-4933-9174-ab594e79d865",
+    "submitted_at": "2026-08-03",
+    "admission_date": "2026-08-03",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "dc87e78c-d9e5-4180-89d6-8b80725082ba",
+      "full_name": "Anil Gupta",
+      "age": 71,
+      "gender": "male",
+      "policy_number": "POL-003"
+    },
+    "policy": {
+      "policy_number": "POL-003",
+      "plan_type": "individual",
+      "sum_insured": "300000.00",
+      "policy_start_date": "2023-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "25000.00",
+          "Cardiac Stent Surgery": "120000.00",
+          "Knee Replacement": "100000.00",
+          "Cancer Chemotherapy": "80000.00"
+        }
+      },
+      "co_pay_pct": "20.00",
+      "product_uin": "PARA-HLT-SNR-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "780094a6-113e-4484-aa7c-10c2685a32a0",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Encounter for cosmetic aesthetic rhinoplasty",
+      "icd10_code": "Z41.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Elective cosmetic rhinoplasty and septal reshaping",
+      "procedure_code": "PROC-COSM-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "180000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 5 days)",
+          "amount": "60000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "42000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "24000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "18000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "12000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "24000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

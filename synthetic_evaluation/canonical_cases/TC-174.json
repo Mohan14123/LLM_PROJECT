@@ -1,0 +1,119 @@
+{
+  "test_case_id": "TC-174",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-174",
+  "policy_id": "POL-034",
+  "policy_version": "1.0",
+  "description": "Extended 10-line-item billing reconciliation",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-034-01",
+    "RULE-POL-034-02",
+    "RULE-POL-034-03"
+  ],
+  "payload": {
+    "request_id": "0b630e5c-e51c-4d92-9b0b-1f3cbaa241c2",
+    "submitted_at": "2027-12-08",
+    "admission_date": "2027-12-08",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "9d8931ae-c986-4b01-85c6-59f7b0a5035e",
+      "full_name": "Divya Rao",
+      "age": 75,
+      "gender": "female",
+      "policy_number": "POL-034"
+    },
+    "policy": {
+      "policy_number": "POL-034",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "PARA-HLT-034-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "679ac3b3-ac89-435d-aaf2-bc83f2143450",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "117000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        },
+        {
+          "item": "Specialist Consultation Add-on #7",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #8",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #9",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #10",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 7ba7ca1a-e4d8-4e38-9f77-41e44235f88b
+Submission Date: 2027-06-14
+Admission Date: 2027-06-14
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Karthik Kulkarni
+Age: 28
+Gender: NON_BINARY_UNREGISTERED
+Policy / Member Number: POL-033
+
+POLICY DETAILS
+--------------
+Policy Number: POL-033
+Plan Type: individual
+Sum Insured: INR 2500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Care & Cure Rural Hospital
+Network Status: non_network
+Facility Category: None
+City: Ahmedabad, State: None
+ICD-10 Code: S82.201A
+Primary Diagnosis: Closed fracture of shaft of right tibia due to road traffic collision
+Pre-Existing Disease Flag: False
+Planned Procedure: Open reduction and internal fixation (ORIF) with interlocking intramedullary nail
+Procedure Code: PROC-ORTHO-ORIF-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 5 days): INR 32500.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 40250.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 23000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 17250.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 11500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 23000.00
+------------------------
+Total Estimated Amount: INR 147500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

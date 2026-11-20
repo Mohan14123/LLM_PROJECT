@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-048",
+  "category": "happy_path",
+  "scenario_id": "SCN-048",
+  "policy_id": "POL-013",
+  "policy_version": "1.0",
+  "description": "Happy path: Primary unilateral osteoarthritis, right knee grade 4 at Care & Cure Rural Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-013-01",
+    "RULE-POL-013-02",
+    "RULE-POL-013-03"
+  ],
+  "payload": {
+    "request_id": "636e54e2-85f3-4812-9de1-dccaecf630be",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "9911d05a-bfd7-48e3-9f32-25cf4cc2c1ed",
+      "full_name": "Amit Kulkarni",
+      "age": 63,
+      "gender": "female",
+      "policy_number": "POL-013"
+    },
+    "policy": {
+      "policy_number": "POL-013",
+      "plan_type": "individual",
+      "sum_insured": "300000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Appendicitis": "40000.00"
+        }
+      },
+      "co_pay_pct": "5.00",
+      "product_uin": "RELI-HLT-013-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "6eae42ec-284f-4fda-a984-2bfb102aa49c",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "cashless_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "M17.11",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "272500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 5 days)",
+          "amount": "32500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "84000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "48000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "36000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "24000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "48000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

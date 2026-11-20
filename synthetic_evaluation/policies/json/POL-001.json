@@ -1,0 +1,126 @@
+{
+  "policy_id": "POL-001",
+  "policy_version": "1.0",
+  "policy_name": "Apex Comprehensive Health Shield",
+  "insurer_name": "Apex General Insurance Corp.",
+  "policy_type": "individual",
+  "product_uin": "APEX-HLT-IND-2024-V01",
+  "product_version": "2024.1",
+  "policyholder_eligibility": {
+    "min_entry_age": 18,
+    "max_entry_age": 65,
+    "renewable_for_life": true,
+    "residency": "Indian Resident"
+  },
+  "policy_start_date": "2024-01-01",
+  "policy_expiry_date": "2024-12-31",
+  "sum_insured": {
+    "amount": "500000.00",
+    "currency": "INR"
+  },
+  "available_sum_insured": {
+    "amount": "500000.00",
+    "currency": "INR"
+  },
+  "room_rent_limits": {
+    "type": "percentage_of_sum_insured",
+    "percentage": 1.0,
+    "daily_cap_inr": "5000.00",
+    "clause_reference": "Section 3.1.A",
+    "proportional_deduction_applies": true
+  },
+  "icu_limits": {
+    "type": "percentage_of_sum_insured",
+    "percentage": 2.0,
+    "daily_cap_inr": "10000.00",
+    "clause_reference": "Section 3.1.B"
+  },
+  "disease_sublimits": {
+    "Cataract": {
+      "cap_inr": "40000.00",
+      "per": "per_eye",
+      "clause": "Schedule B, Item 1"
+    },
+    "Hernia": {
+      "cap_inr": "50000.00",
+      "per": "per_admission",
+      "clause": "Schedule B, Item 2"
+    },
+    "Knee Replacement": {
+      "cap_inr": "150000.00",
+      "per": "per_knee",
+      "clause": "Schedule B, Item 3"
+    },
+    "Kidney Stone / Lithotripsy": {
+      "cap_inr": "45000.00",
+      "per": "per_admission",
+      "clause": "Schedule B, Item 4"
+    }
+  },
+  "waiting_periods": {
+    "initial_days": 30,
+    "initial_accident_exempt": true,
+    "specific_disease_months": 24,
+    "ped_months": 36,
+    "statutory_moratorium_months": 60
+  },
+  "co_payment": {
+    "mandatory_pct": "0.00",
+    "senior_citizen_pct": "10.00",
+    "zone_differential_pct": "0.00",
+    "clause": "Section 4.1"
+  },
+  "deductible": {
+    "amount": "0.00",
+    "currency": "INR",
+    "type": "none"
+  },
+  "restoration_benefit": {
+    "is_available": true,
+    "percentage": 100.0,
+    "unrelated_illness_only": true
+  },
+  "exclusions": {
+    "permanent": [
+      "Cosmetic, plastic or aesthetic treatments",
+      "Experimental and unproven pharmacological treatments",
+      "Self-inflicted injuries or intentional suicide attempts",
+      "Active participation in hazardous sports or adventure activities"
+    ],
+    "conditional": [
+      "Maternity expenses excluded unless corporate endorsement attached",
+      "Robotic surgery restricted to pre-authorised tertiary centers"
+    ]
+  },
+  "network_hospital_conditions": "Full cashless settlement applicable at all Tier-1 and Tier-2 empanelled network hospitals.",
+  "rules": [
+    {
+      "rule_id": "RULE-POL001-01",
+      "rule_type": "room_rent_limit",
+      "clause_reference": "Section 3.1.A",
+      "condition": "Room rent is capped at 1% of Sum Insured (\u20b95,000/day). If higher category selected, proportionate tariff deduction applies.",
+      "expected_interpretation": "proportionate_deduction"
+    },
+    {
+      "rule_id": "RULE-POL001-02",
+      "rule_type": "sub_limit_cataract",
+      "clause_reference": "Schedule B, Item 1",
+      "condition": "Cataract surgery payable up to \u20b940,000 per eye.",
+      "expected_interpretation": "capped_at_sublimit"
+    },
+    {
+      "rule_id": "RULE-POL001-03",
+      "rule_type": "specific_disease_waiting_period",
+      "clause_reference": "Section 2.2",
+      "condition": "24-month waiting period for listed surgeries (Hernia, Cataract, Cholelithiasis, Joint Replacement).",
+      "expected_interpretation": "deny_if_tenure_under_24m"
+    },
+    {
+      "rule_id": "RULE-POL001-04",
+      "rule_type": "ped_waiting_period",
+      "clause_reference": "Section 2.3",
+      "condition": "Pre-existing diseases covered only after 36 months of continuous coverage.",
+      "expected_interpretation": "deny_if_ped_under_36m"
+    }
+  ]
+}

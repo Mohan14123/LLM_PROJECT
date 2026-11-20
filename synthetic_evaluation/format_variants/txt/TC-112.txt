@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: fdf91fff-0cc8-4846-b05c-9c12fbc040d1
+Submission Date: 2025-01-29
+Admission Date: 2025-01-29
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Lakshmi Mehta
+Age: 64
+Gender: male
+Policy / Member Number: POL-007
+
+POLICY DETAILS
+--------------
+Policy Number: POL-007
+Plan Type: family_floater
+Sum Insured: INR 750000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Care & Cure Rural Hospital
+Network Status: non_network
+Facility Category: None
+City: Ahmedabad, State: None
+ICD-10 Code: K80.20
+Primary Diagnosis: Calculus of gallbladder without cholecystitis without obstruction
+Pre-Existing Disease Flag: False
+Planned Procedure: Laparoscopic cholecystectomy
+Procedure Code: PROC-SURG-LAP-02
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 4 days): INR 55000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 33250.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 19000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 14250.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 9500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 19000.00
+------------------------
+Total Estimated Amount: INR 150000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

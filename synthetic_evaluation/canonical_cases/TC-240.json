@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-240",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-240",
+  "policy_id": "POL-030",
+  "policy_version": "1.0",
+  "description": "Referential integrity conflict: patient policy number does not match policy",
+  "expected_schema_valid": false,
+  "expected_error_substring": "patient.policy_number ('POL-CONFLICT-999') does not match policy.policy_number",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "5ba139f2-4a78-4855-983c-85416908f7bd",
+    "submitted_at": "2024-01-25",
+    "admission_date": "2024-01-25",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "21cb224c-aca2-4e1f-b549-b2acf9726512",
+      "full_name": "Meena Rao",
+      "age": 27,
+      "gender": "female",
+      "policy_number": "POL-CONFLICT-999"
+    },
+    "policy": {
+      "policy_number": "POL-030",
+      "plan_type": "individual",
+      "sum_insured": "250000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 24,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "30000.00",
+          "Tympanoplasty": "35000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "NATI-HLT-030-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "ac4bd351-42a3-4ad1-9ca7-77c205830089",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Pneumonia, unspecified organism with acute respiratory distress",
+      "icd10_code": "J18.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+      "procedure_code": "PROC-MED-CON-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "119500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 5 days)",
+          "amount": "32500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "30450.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "17400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "13050.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "8700.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "17400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

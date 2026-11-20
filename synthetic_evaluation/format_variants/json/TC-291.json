@@ -1,0 +1,84 @@
+{
+  "request_id": "398ab41e-9bc1-42c5-a382-883e9665b666",
+  "submitted_at": "2027-12-26",
+  "admission_date": "2027-12-26",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "4c96c7c0-8795-4dd4-a1f4-68ebcd62b297",
+    "full_name": "Karthik Iyer",
+    "age": 40,
+    "gender": "male",
+    "policy_number": "POL-011"
+  },
+  "policy": {
+    "policy_number": "POL-011",
+    "plan_type": "individual",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 12,
+    "sub_limits": {
+      "limits": {
+        "Dialysis": "50000.00"
+      }
+    },
+    "co_pay_pct": "15.00",
+    "product_uin": "ZENI-HLT-011-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "67a8efb7-599b-47e2-bc85-1e95d65efc32",
+    "name": "Max Super Speciality Hospital",
+    "city": "New Delhi",
+    "network_tier": "non_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Unspecified acute appendicitis with localized peritonitis",
+    "icd10_code": "K35.80",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Emergency laparoscopic appendectomy",
+    "procedure_code": "PROC-SURG-APP-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "138000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 5 days)",
+        "amount": "60000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "27300.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "15600.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "11700.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "7800.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "15600.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Unclear whether emergency life-saving or elective observation"
+}

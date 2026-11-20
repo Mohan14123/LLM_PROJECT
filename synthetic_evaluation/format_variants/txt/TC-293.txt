@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 135a365a-d1bc-4483-94a8-defc01e271c4
+Submission Date: 2027-02-07
+Admission Date: 2027-02-07
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Priya Deshmukh
+Age: 67
+Gender: male
+Policy / Member Number: POL-013
+
+POLICY DETAILS
+--------------
+Policy Number: POL-013
+Plan Type: individual
+Sum Insured: INR 300000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 5.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Narayana Health City
+Network Status: cashless_network
+Facility Category: None
+City: Bengaluru, State: None
+ICD-10 Code: N20.1
+Primary Diagnosis: Calculus of ureter with moderate hydronephrosis
+Pre-Existing Disease Flag: False
+Planned Procedure: Diagnostic laparoscopy and possible therapeutic intervention
+Procedure Code: PROC-URO-LITH-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Twin Sharing, 4 days): INR 48000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 18200.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 10400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 7800.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 5200.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 10400.00
+------------------------
+Total Estimated Amount: INR 100000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

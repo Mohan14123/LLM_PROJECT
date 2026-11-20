@@ -1,0 +1,87 @@
+{
+  "request_id": "d52797f3-d7c0-4ab9-9079-f41b53d4cfa8",
+  "submitted_at": "2023-02-02",
+  "admission_date": "2023-02-02",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "10a30969-e0bb-4c2f-9a89-ee313732d062",
+    "full_name": "Rajesh Deshmukh",
+    "age": 74,
+    "gender": "female",
+    "policy_number": "POL-003"
+  },
+  "policy": {
+    "policy_number": "POL-003",
+    "plan_type": "individual",
+    "sum_insured": "300000.00",
+    "policy_start_date": "2023-01-01",
+    "waiting_period_months": 12,
+    "ped_waiting_period_months": 24,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "25000.00",
+        "Cardiac Stent Surgery": "120000.00",
+        "Knee Replacement": "100000.00",
+        "Cancer Chemotherapy": "80000.00"
+      }
+    },
+    "co_pay_pct": "20.00",
+    "product_uin": "PARA-HLT-SNR-2024-V01",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "53ef83e1-11f2-4b39-a40b-5a120f2d65e8",
+    "name": "Manipal Hospital",
+    "city": "Chennai",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Pneumonia, unspecified organism with acute respiratory distress",
+    "icd10_code": "J18.9",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+    "procedure_code": "PROC-MED-CON-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "100000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Single Private A/C Room, 2 days)",
+        "amount": "13000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "30450.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "17400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "13050.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "8700.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "17400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

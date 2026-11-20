@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: ff14df14-4c6b-4377-b313-1e3ee0416c87
+Submission Date: 2027-04-15
+Admission Date: 2027-04-15
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Sanjay Nair
+Age: 24
+Gender: male
+Policy / Member Number: POL-011
+
+POLICY DETAILS
+--------------
+Policy Number: POL-011
+Plan Type: individual
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 15.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Sunshine Community Nursing Home
+Network Status: cashless_network
+Facility Category: None
+City: Lucknow, State: None
+ICD-10 Code: K80.20
+Primary Diagnosis: Calculus of gallbladder without cholecystitis without obstruction
+Pre-Existing Disease Flag: False
+Planned Procedure: Laparoscopic cholecystectomy
+Procedure Code: PROC-SURG-LAP-02
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 2 days): INR 8000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 33250.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 19000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 14250.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 9500.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 19000.00
+------------------------
+Total Estimated Amount: INR 103000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

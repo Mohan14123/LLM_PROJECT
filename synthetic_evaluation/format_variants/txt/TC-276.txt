@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 2671a885-7e59-40c6-ae2f-21edcc7508bd
+Submission Date: 2027-06-15
+Admission Date: 2027-06-15
+Source Format: scanned_image
+
+PATIENT DETAILS
+---------------
+Full Name: Suresh Verma
+Age: 24
+Gender: male
+Policy / Member Number: POL-031
+
+POLICY DETAILS
+--------------
+Policy Number: POL-031
+Plan Type: family_floater
+Sum Insured: INR 800000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Manipal Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Chennai, State: None
+ICD-10 Code: H25.1
+Primary Diagnosis: Senile nuclear cataract, bilateral grade 3
+Pre-Existing Disease Flag: False
+Planned Procedure: Phacoemulsification with foldable intraocular lens (IOL) implantation
+Procedure Code: PROC-CAT-01
+Admission Type: day_care
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 1 days): INR 6500.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 14700.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 8400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 6300.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 4200.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 8400.00
+------------------------
+Total Estimated Amount: INR 48500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

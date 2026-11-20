@@ -1,0 +1,82 @@
+{
+  "request_id": "670d27e0-b06f-40f2-9067-16875098cb05",
+  "submitted_at": "2027-08-02",
+  "admission_date": "2027-08-02",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "72927cfe-d5c9-4db7-8fd0-341da6be8bbc",
+    "full_name": "Vijay Shah",
+    "age": 71,
+    "gender": "male",
+    "policy_number": "POL-018"
+  },
+  "policy": {
+    "policy_number": "POL-018",
+    "plan_type": "family_floater",
+    "sum_insured": "2000000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "PARA-HLT-018-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "88d21b67-96b8-407b-9aac-d3ba1947b400",
+    "name": "Fortis Memorial Research Institute",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Senile nuclear cataract, bilateral grade 3",
+    "icd10_code": "H25.1",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+    "procedure_code": "PROC-CAT-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "46000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 1 days)",
+        "amount": "4000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "14700.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "8400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "6300.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "4200.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "8400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": ""
+}

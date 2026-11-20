@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 000fc555-5c28-4017-ae6f-9aeafc9b35fa
+Submission Date: 2027-07-15
+Admission Date: 2027-07-15
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Sneha Shah
+Age: 47
+Gender: female
+Policy / Member Number: POL-005
+
+POLICY DETAILS
+--------------
+Policy Number: POL-005
+Plan Type: group
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-04-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Care & Cure Rural Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Ahmedabad, State: None
+ICD-10 Code: N20.1
+Primary Diagnosis: Calculus of ureter with moderate hydronephrosis
+Pre-Existing Disease Flag: False
+Planned Procedure: Ureteroscopic lithotripsy (URSL) with DJ stenting
+Procedure Code: PROC-URO-LITH-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 3 days): INR 19500.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 18200.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 10400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 7800.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 5200.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 10400.00
+------------------------
+Total Estimated Amount: INR 71500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

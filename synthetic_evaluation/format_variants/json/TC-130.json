@@ -1,0 +1,84 @@
+{
+  "request_id": "2b850daf-b16c-4b5f-8de1-e7417c04c765",
+  "submitted_at": "2024-01-26",
+  "admission_date": "2024-01-26",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "b4da6ecc-d017-4ece-96f2-1d22e7b761b9",
+    "full_name": "Aarti Gupta",
+    "age": 35,
+    "gender": "male",
+    "policy_number": "POL-025"
+  },
+  "policy": {
+    "policy_number": "POL-025",
+    "plan_type": "individual",
+    "sum_insured": "400000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {
+        "Cataract": "25000.00"
+      }
+    },
+    "co_pay_pct": "10.00",
+    "product_uin": "VANG-HLT-025-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "513d580e-16b4-46ba-a834-1c0fd2e3edc1",
+    "name": "Fortis Memorial Research Institute",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "Pneumonia, unspecified organism with acute respiratory distress",
+    "icd10_code": "J18.9",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Inpatient medical management with intravenous antibiotics and oxygen therapy",
+    "procedure_code": "PROC-MED-CON-01",
+    "admission_type": "emergency"
+  },
+  "cost_estimate": {
+    "total_amount": "84051.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 3 days)",
+        "amount": "12500.75",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "15000.25",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "17400.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "13050.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "8700.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "17400.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: 06333020-0377-4809-9957-ccaf94f92d8f
+Submission Date: 2027-12-22
+Admission Date: 2027-12-22
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Anita Reddy
+Age: 31
+Gender: female
+Policy / Member Number: POL-034
+
+POLICY DETAILS
+--------------
+Policy Number: POL-034
+Plan Type: individual
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Apollo Multispeciality Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Bengaluru, State: None
+ICD-10 Code: Z41.1
+Primary Diagnosis: Encounter for cosmetic aesthetic rhinoplasty
+Pre-Existing Disease Flag: False
+Planned Procedure: Elective cosmetic rhinoplasty and septal reshaping
+Procedure Code: PROC-COSM-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Twin Sharing, 5 days): INR 60000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 42000.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 24000.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 18000.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 12000.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 24000.00
+------------------------
+Total Estimated Amount: INR -45000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-072",
+  "category": "happy_path",
+  "scenario_id": "SCN-072",
+  "policy_id": "POL-002",
+  "policy_version": "1.0",
+  "description": "Happy path: Acute anterior myocardial infarction (STEMI) at Care & Cure Rural Hospital",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL002-01",
+    "RULE-POL002-02"
+  ],
+  "payload": {
+    "request_id": "377f136c-5827-438a-9bda-29b4341646e2",
+    "submitted_at": "2026-09-13",
+    "admission_date": "2026-09-13",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "8d5314c7-442e-42a2-81e2-fddc8f1ad6c2",
+      "full_name": "Shweta Patel",
+      "age": 43,
+      "gender": "male",
+      "policy_number": "POL-002"
+    },
+    "policy": {
+      "policy_number": "POL-002",
+      "plan_type": "family_floater",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2023-06-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "50000.00",
+          "Joint Replacement": "250000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-FF-2024-V02",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "2fd1d07b-021c-4588-9f24-e689639fd7ef",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "cashless_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Acute anterior myocardial infarction (STEMI)",
+      "icd10_code": "I21.09",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+      "procedure_code": "PROC-CARD-PTCA-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "311000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+          "amount": "26000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "99750.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "57000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "42750.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "28500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "57000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

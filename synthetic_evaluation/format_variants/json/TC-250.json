@@ -1,0 +1,88 @@
+{
+  "request_id": "27ef7437-ab46-4f63-bf3f-3788fc7741b9",
+  "submitted_at": "2024-04-17",
+  "admission_date": "2024-02-01",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "83d2acd6-9c68-4944-ae0f-4e7472201591",
+    "full_name": "Anita Banerjee",
+    "age": 23,
+    "gender": "male",
+    "policy_number": "POL-005"
+  },
+  "policy": {
+    "policy_number": "POL-005",
+    "plan_type": "group",
+    "sum_insured": "500000.00",
+    "policy_start_date": "2024-04-01",
+    "waiting_period_months": 0,
+    "ped_waiting_period_months": 0,
+    "sub_limits": {
+      "limits": {
+        "Maternity Normal": "50000.00",
+        "Maternity Caesarean": "75000.00",
+        "Cataract": "40000.00"
+      }
+    },
+    "co_pay_pct": "0.00",
+    "product_uin": "TITAN-GRP-MED-2024-V01",
+    "product_version": "2024.1",
+    "endorsements": [
+      "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+    ]
+  },
+  "hospital": {
+    "hospital_id": "b752e9c8-4c34-4c38-bcca-8f78d8e78370",
+    "name": "Fortis Memorial Research Institute",
+    "city": "Gurugram",
+    "network_tier": "cashless_network",
+    "category": "multi_specialty"
+  },
+  "diagnosis": {
+    "description": "End stage renal disease on maintenance hemodialysis",
+    "icd10_code": "N18.6",
+    "is_pre_existing": true
+  },
+  "procedure": {
+    "description": "Hemodialysis single session via AV fistula",
+    "procedure_code": "PROC-MED-HEMO-01",
+    "admission_type": "day_care"
+  },
+  "cost_estimate": {
+    "total_amount": "8500.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (General Ward, 1 days)",
+        "amount": "4000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "1575.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "900.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "675.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "450.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "900.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+}

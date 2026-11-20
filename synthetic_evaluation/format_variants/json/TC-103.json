@@ -1,0 +1,82 @@
+{
+  "request_id": "7c6bc58e-13b9-4cf5-9561-fdd95cf97111",
+  "submitted_at": "2028-02-01",
+  "admission_date": "2028-02-01",
+  "source_format": "json",
+  "status": "pending",
+  "patient": {
+    "patient_id": "4f88fad5-4d78-44d7-8be9-5ee8a76fcac8",
+    "full_name": "Pooja Iyer",
+    "age": 38,
+    "gender": "female",
+    "policy_number": "POL-033"
+  },
+  "policy": {
+    "policy_number": "POL-033",
+    "plan_type": "individual",
+    "sum_insured": "2500000.00",
+    "policy_start_date": "2024-01-01",
+    "waiting_period_months": 24,
+    "ped_waiting_period_months": 36,
+    "sub_limits": {
+      "limits": {}
+    },
+    "co_pay_pct": "20.00",
+    "product_uin": "VANG-HLT-033-2024",
+    "product_version": "2024.1",
+    "endorsements": []
+  },
+  "hospital": {
+    "hospital_id": "a7d4663e-bb18-4ffe-aa53-78efa35eb2d8",
+    "name": "Lifeline Day Care Surgery Centre",
+    "city": "Pune",
+    "network_tier": "cashless_network",
+    "category": "day_care_center"
+  },
+  "diagnosis": {
+    "description": "Primary unilateral osteoarthritis, right knee grade 4",
+    "icd10_code": "M17.11",
+    "is_pre_existing": false
+  },
+  "procedure": {
+    "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+    "procedure_code": "PROC-ORTHO-TKR-01",
+    "admission_type": "planned"
+  },
+  "cost_estimate": {
+    "total_amount": "288000.00",
+    "line_items": [
+      {
+        "item": "Room & Nursing Charges (Deluxe Suite, 4 days)",
+        "amount": "48000.00",
+        "category": "room_rent"
+      },
+      {
+        "item": "Professional Surgeon & Anesthetist Consultation",
+        "amount": "84000.00",
+        "category": "surgeon_fee"
+      },
+      {
+        "item": "Operation Theatre & Equipment Consumables",
+        "amount": "48000.00",
+        "category": "consumables"
+      },
+      {
+        "item": "Inpatient Pharmacy & Surgical Implants",
+        "amount": "36000.00",
+        "category": "pharmacy"
+      },
+      {
+        "item": "Pre-operative Diagnostic Investigations & Pathology",
+        "amount": "24000.00",
+        "category": "diagnostic"
+      },
+      {
+        "item": "Miscellaneous Consumables & Monitoring",
+        "amount": "48000.00",
+        "category": "other"
+      }
+    ]
+  },
+  "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+}

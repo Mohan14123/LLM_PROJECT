@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-116",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-116",
+  "policy_id": "POL-011",
+  "policy_version": "1.0",
+  "description": "Admission exactly after 30-day initial waiting period expires",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-011-01",
+    "RULE-POL-011-02",
+    "RULE-POL-011-03"
+  ],
+  "payload": {
+    "request_id": "bfdbe4e8-49a2-41a3-955d-c79b4b4089bc",
+    "submitted_at": "2024-02-02",
+    "admission_date": "2024-02-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "423c8337-c695-48f4-9edc-c1fafe55a7eb",
+      "full_name": "Vijay Shah",
+      "age": 23,
+      "gender": "female",
+      "policy_number": "POL-011"
+    },
+    "policy": {
+      "policy_number": "POL-011",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 12,
+      "ped_waiting_period_months": 12,
+      "sub_limits": {
+        "limits": {
+          "Dialysis": "50000.00"
+        }
+      },
+      "co_pay_pct": "15.00",
+      "product_uin": "ZENI-HLT-011-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "959532e1-f040-4964-9d92-4ea7520d6002",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Acute anterior myocardial infarction (STEMI)",
+      "icd10_code": "I21.09",
+      "is_pre_existing": true
+    },
+    "procedure": {
+      "description": "Primary percutaneous transluminal coronary angioplasty (PTCA) with drug-eluting stent",
+      "procedure_code": "PROC-CARD-PTCA-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "311000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+          "amount": "26000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "99750.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "57000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "42750.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "28500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "57000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Hypertension under medical control."
+  }
+}

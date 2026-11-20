@@ -1,0 +1,102 @@
+{
+  "test_case_id": "TC-145",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-145",
+  "policy_id": "POL-005",
+  "policy_version": "1.0",
+  "description": "High financial claim amount within high sum insured",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL005-01",
+    "RULE-POL005-02"
+  ],
+  "payload": {
+    "request_id": "96a2d7c0-c08e-49aa-a5be-e798e961bf91",
+    "submitted_at": "2026-06-16",
+    "admission_date": "2026-06-16",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "784714e5-5bd4-4cf1-b7a7-3024e41b2dde",
+      "full_name": "Rajesh Deshmukh",
+      "age": 29,
+      "gender": "female",
+      "policy_number": "POL-005"
+    },
+    "policy": {
+      "policy_number": "POL-005",
+      "plan_type": "group",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-04-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity Normal": "50000.00",
+          "Maternity Caesarean": "75000.00",
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "TITAN-GRP-MED-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "506fbc15-1012-4cc7-8d79-8da520521224",
+      "name": "Apollo Multispeciality Hospital",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "445000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 2 days)",
+          "amount": "350000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

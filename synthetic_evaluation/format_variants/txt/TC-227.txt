@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: a6ec83b9-790a-4a48-850d-2d41983439e0
+Submission Date: 2027-09-18
+Admission Date: 2027-09-18
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Vikram Kulkarni
+Age: 36
+Gender: male
+Policy / Member Number: POL-017
+
+POLICY DETAILS
+--------------
+Policy Number: POL-017
+Plan Type: individual
+Sum Insured: INR 1000000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Max Super Speciality Hospital
+Network Status: cashless_network
+Facility Category: None
+City: New Delhi, State: None
+ICD-10 Code: N20.1
+Primary Diagnosis: Calculus of ureter with moderate hydronephrosis
+Pre-Existing Disease Flag: False
+Planned Procedure: Ureteroscopic lithotripsy (URSL) with DJ stenting
+Procedure Code: PROC-URO-LITH-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Deluxe Suite, 4 days): INR 48000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 18200.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 10400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 7800.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 5200.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 10400.00
+------------------------
+Total Estimated Amount: INR 100500.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

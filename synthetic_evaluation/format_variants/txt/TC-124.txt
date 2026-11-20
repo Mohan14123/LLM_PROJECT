@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: c5cfc20e-5699-4b3c-91ed-51b51ea8fc99
+Submission Date: 2024-02-02
+Admission Date: 2024-02-02
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Vikram Shah
+Age: 22
+Gender: female
+Policy / Member Number: POL-019
+
+POLICY DETAILS
+--------------
+Policy Number: POL-019
+Plan Type: individual
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Manipal Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Chennai, State: None
+ICD-10 Code: K40.90
+Primary Diagnosis: Unilateral inguinal hernia, without obstruction or gangrene
+Pre-Existing Disease Flag: False
+Planned Procedure: Laparoscopic total extraperitoneal (TEP) hernioplasty with mesh repair
+Procedure Code: PROC-SURG-HER-01
+Admission Type: planned
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 4 days): INR 26000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 23800.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 13600.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 10200.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 6800.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 13600.00
+------------------------
+Total Estimated Amount: INR 94000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

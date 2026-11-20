@@ -1,0 +1,54 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: e73fc113-411e-4041-970c-ba209f4bf032
+Submission Date: 2027-06-07
+Admission Date: 2027-06-07
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Rohan Gupta
+Age: 66
+Gender: female
+Policy / Member Number: POL-026
+
+POLICY DETAILS
+--------------
+Policy Number: POL-026
+Plan Type: group
+Sum Insured: INR 750000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 0.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Sunshine Community Nursing Home
+Network Status: non_network
+Facility Category: None
+City: Lucknow, State: None
+ICD-10 Code: H25.1
+Primary Diagnosis: Senile nuclear cataract, bilateral grade 3
+Pre-Existing Disease Flag: False
+Planned Procedure: Phacoemulsification with foldable intraocular lens (IOL) implantation
+Procedure Code: PROC-CAT-01
+Admission Type: day_care
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (General Ward, 1 days): INR 4000.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 14700.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 8400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 6300.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 4200.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 8400.00
+  [diagnostic    ] Specialist Consultation Add-on #7            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #8            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #9            : INR 2500.00
+  [diagnostic    ] Specialist Consultation Add-on #10           : INR 2500.00
+------------------------
+Total Estimated Amount: INR 56000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

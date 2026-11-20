@@ -1,0 +1,52 @@
+================================================================================
+TITAN INSURANCE CO. LTD.
+CERTIFICATE OF INSURANCE & POLICY SCHEDULE: TITAN CORPORATE GROUP MEDICLAIM
+UIN: TITAN-GRP-MED-2024-V01 | Version: 2024.1
+================================================================================
+
+SECTION 1: POLICY SCHEDULE & ENTITLEMENT DETAILS
+--------------------------------------------------------------------------------
+Policy Identifier      : POL-005
+Insurance Product Name : Titan Corporate Group Mediclaim
+Underwriting Insurer   : Titan Insurance Co. Ltd.
+Plan Category / Type   : GROUP
+Policy Inception Date  : 2024-04-01
+Policy Expiry Date     : 2025-03-31
+Annual Sum Insured     : INR 500000.00
+Available Sum Insured  : INR 500000.00
+
+SECTION 2: ROOM RENT & INTENSIVE CARE UNIT (ICU) RESTRICTIONS
+--------------------------------------------------------------------------------
+Room Rent Limit Type   : percentage_of_sum_insured
+Daily Room Rent Cap    : INR 7500.00
+Proportional Deduction : Applicable under Clause 3.1.A
+ICU Daily Limit        : INR No Cap / Actuals
+
+SECTION 3: MANDATORY WAITING PERIOD SCHEDULE
+--------------------------------------------------------------------------------
+Initial Waiting Period : 0 Days (Waived for Accidental Injury)
+Specific Disease Period: 0 Months
+Pre-Existing Disease   : 0 Months of Continuous Coverage
+Statutory Moratorium   : 60 Months
+
+SECTION 4: CO-PAYMENT & ANNUAL DEDUCTIBLE PROVISIONS
+--------------------------------------------------------------------------------
+Mandatory Co-Payment   : 0.00%
+Deductible Amount      : INR 0.00 (none)
+
+SECTION 5: SPECIFIC PROCEDURE & DISEASE SUB-LIMIT SCHEDULE
+--------------------------------------------------------------------------------
+  * Maternity Normal          : INR 50000.00     (per_delivery)
+  * Maternity Caesarean       : INR 75000.00     (per_delivery)
+  * Cataract                  : INR 40000.00     (per_eye)
+
+SECTION 6: PERMANENT & STATUTORY EXCLUSIONS
+--------------------------------------------------------------------------------
+  [X] Cosmetic treatments
+
+SECTION 7: NETWORK HOSPITALIZATION & PRE-AUTH GUIDELINES
+--------------------------------------------------------------------------------
+Preferred Provider Network (PPN) with Cashless Everywhere endorsement.
+Pre-Authorisation Mandate: Planned admissions require submission 48 hours prior;
+Emergency hospitalizations require intimation within 24 hours of admission.
+================================================================================

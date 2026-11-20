@@ -1,0 +1,97 @@
+{
+  "test_case_id": "TC-296",
+  "category": "missing_and_ambiguous",
+  "scenario_id": "SCN-296",
+  "policy_id": "POL-016",
+  "policy_version": "1.0",
+  "description": "Ambiguous symptom-only diagnostic code (R10.9) lacking definitive etiology",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "RECOMMEND_QUERY",
+  "rules_tested": [
+    "CLINICAL_AMBIGUITY_GATE"
+  ],
+  "payload": {
+    "request_id": "c5bc9b84-21d9-4045-a97a-bef9918d8749",
+    "submitted_at": "2027-07-12",
+    "admission_date": "2027-07-12",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "3690b7a6-bbcb-4207-8523-5913308f27e4",
+      "full_name": "Sneha Sharma",
+      "age": 58,
+      "gender": "female",
+      "policy_number": "POL-016"
+    },
+    "policy": {
+      "policy_number": "POL-016",
+      "plan_type": "individual",
+      "sum_insured": "100000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "15000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-016-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "337ed118-c7ce-4b29-a099-944c4b1b7160",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Unspecified abdominal pain, etiology under investigation",
+      "icd10_code": "R10.9",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "147500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 5 days)",
+          "amount": "32500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

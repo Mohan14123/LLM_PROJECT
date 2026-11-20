@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-232",
+  "category": "cross_field_conflicts",
+  "scenario_id": "SCN-232",
+  "policy_id": "POL-022",
+  "policy_version": "1.0",
+  "description": "Temporal coverage conflict: admission date precedes policy inception",
+  "expected_schema_valid": false,
+  "expected_error_substring": "is before policy.policy_start_date",
+  "expected_policy_outcome": "REJECT_CROSS_FIELD_CONFLICT",
+  "rules_tested": [
+    "CROSS_FIELD_INTEGRITY"
+  ],
+  "payload": {
+    "request_id": "9e9b6a0d-ead7-4284-b3f9-d9badcba5325",
+    "submitted_at": "2028-01-21",
+    "admission_date": "2023-11-02",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "ec7881a6-8e34-4b30-8da2-61b5f967533c",
+      "full_name": "Deepak Patel",
+      "age": 41,
+      "gender": "female",
+      "policy_number": "POL-022"
+    },
+    "policy": {
+      "policy_number": "POL-022",
+      "plan_type": "family_floater",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "5.00",
+      "product_uin": "NATI-HLT-022-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "078d2169-8d35-42c2-b6d0-15ea19a89d55",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "48500.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 1 days)",
+          "amount": "6500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

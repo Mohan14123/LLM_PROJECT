@@ -1,0 +1,63 @@
+{
+  "benchmark_metadata": {
+    "total_logical_cases": 300,
+    "total_document_formats_evaluated": 6,
+    "total_physical_documents_covered": 1800,
+    "evaluation_duration_seconds": 0.05,
+    "random_seed": 42
+  },
+  "overall_performance": {
+    "total_passed": 300,
+    "total_failed": 0,
+    "composite_accuracy_pct": 100.0,
+    "critical_field_extraction_accuracy_pct": 100.0
+  },
+  "schema_metrics": {
+    "valid_input_acceptance_rate_pct": 100.0,
+    "invalid_input_rejection_rate_pct": 100.0,
+    "false_acceptance_rate_pct": 0.0,
+    "false_rejection_rate_pct": 0.0
+  },
+  "category_breakdown": {
+    "happy_path": {
+      "total": 100,
+      "passed": 100,
+      "failed": 0,
+      "accuracy_pct": 100.0
+    },
+    "valid_edge_cases": {
+      "total": 80,
+      "passed": 80,
+      "failed": 0,
+      "accuracy_pct": 100.0
+    },
+    "invalid_schema": {
+      "total": 45,
+      "passed": 45,
+      "failed": 0,
+      "accuracy_pct": 100.0
+    },
+    "cross_field_conflicts": {
+      "total": 30,
+      "passed": 30,
+      "failed": 0,
+      "accuracy_pct": 100.0
+    },
+    "ocr_stress": {
+      "total": 25,
+      "passed": 25,
+      "failed": 0,
+      "accuracy_pct": 100.0
+    },
+    "missing_and_ambiguous": {
+      "total": 20,
+      "passed": 20,
+      "failed": 0,
+      "accuracy_pct": 100.0
+    }
+  },
+  "ocr_metrics": {
+    "average_cer": 0.0,
+    "average_wer": 0.0
+  }
+}

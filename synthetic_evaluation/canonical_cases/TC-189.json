@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-189",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-189",
+  "policy_id": "POL-014",
+  "policy_version": "1.0",
+  "description": "Empty patient full_name string",
+  "expected_schema_valid": false,
+  "expected_error_substring": "String should have at least 1 character",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "a39973a9-c1af-4978-b8c0-b01c32f0f886",
+    "submitted_at": "2024-10-06",
+    "admission_date": "2024-10-06",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "1a794012-1eb3-4928-b2b6-d624dacec5d4",
+      "full_name": "",
+      "age": 68,
+      "gender": "male",
+      "policy_number": "POL-014"
+    },
+    "policy": {
+      "policy_number": "POL-014",
+      "plan_type": "individual",
+      "sum_insured": "600000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Maternity": "60000.00",
+          "Hysterectomy": "70000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "NATI-HLT-014-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "c34caca6-c01e-45a8-84da-49d1f983f129",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "155000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 5 days)",
+          "amount": "60000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

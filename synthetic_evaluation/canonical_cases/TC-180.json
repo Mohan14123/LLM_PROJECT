@@ -1,0 +1,102 @@
+{
+  "test_case_id": "TC-180",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-180",
+  "policy_id": "POL-005",
+  "policy_version": "1.0",
+  "description": "Admission exactly after 30-day initial waiting period expires",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL005-01",
+    "RULE-POL005-02"
+  ],
+  "payload": {
+    "request_id": "ef7e1b8c-aebb-4902-aa38-e5e158b40b82",
+    "submitted_at": "2024-05-03",
+    "admission_date": "2024-05-03",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "cb3b2623-b8d3-4988-b6f9-bf5a644a2c74",
+      "full_name": "Priya Joshi",
+      "age": 39,
+      "gender": "male",
+      "policy_number": "POL-005"
+    },
+    "policy": {
+      "policy_number": "POL-005",
+      "plan_type": "group",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-04-01",
+      "waiting_period_months": 0,
+      "ped_waiting_period_months": 0,
+      "sub_limits": {
+        "limits": {
+          "Maternity Normal": "50000.00",
+          "Maternity Caesarean": "75000.00",
+          "Cataract": "40000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "TITAN-GRP-MED-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": [
+        "WAITING_PERIOD_WAIVER_SCHEDULE_01"
+      ]
+    },
+    "hospital": {
+      "hospital_id": "ce231ffd-f7fe-4c63-a5b4-ffc6627fd556",
+      "name": "Manipal Hospital",
+      "city": "Chennai",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Primary unilateral osteoarthritis, right knee grade 4",
+      "icd10_code": "M17.11",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Total knee replacement (TKR) unilateral right with cruciate retaining implant",
+      "procedure_code": "PROC-ORTHO-TKR-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "266000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 4 days)",
+          "amount": "26000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "84000.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "48000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "36000.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "24000.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "48000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

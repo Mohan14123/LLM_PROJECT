@@ -1,0 +1,50 @@
+A1 CASHLESS HEALTH INSURANCE PRE-AUTHORISATION FORM
+--------------------------------------------------
+Request ID: f9ceaf82-b190-4c6d-80d2-ebfce503635a
+Submission Date: 2024-07-20
+Admission Date: 2024-07-20
+Source Format: json
+
+PATIENT DETAILS
+---------------
+Full Name: Rohan Singh
+Age: 60
+Gender: male
+Policy / Member Number: POL-021
+
+POLICY DETAILS
+--------------
+Policy Number: POL-021
+Plan Type: individual
+Sum Insured: INR 500000.00
+Policy Inception Date: 2024-01-01
+Co-Payment Percentage: 5.00%
+
+HOSPITAL & CLINICAL DETAILS
+---------------------------
+Hospital Name: Manipal Hospital
+Network Status: cashless_network
+Facility Category: None
+City: Chennai, State: None
+ICD-10 Code: J18.9
+Primary Diagnosis: Pneumonia, unspecified organism with acute respiratory distress
+Pre-Existing Disease Flag: False
+Planned Procedure: Inpatient medical management with intravenous antibiotics and oxygen therapy
+Procedure Code: PROC-MED-CON-01
+Admission Type: emergency
+
+ESTIMATED COST BREAKDOWN
+------------------------
+  [room_rent     ] Room & Nursing Charges (Single Private A/C Room, 4 days): INR -1500.00
+  [surgeon_fee   ] Professional Surgeon & Anesthetist Consultation: INR 30450.00
+  [consumables   ] Operation Theatre & Equipment Consumables    : INR 17400.00
+  [pharmacy      ] Inpatient Pharmacy & Surgical Implants       : INR 13050.00
+  [diagnostic    ] Pre-operative Diagnostic Investigations & Pathology: INR 8700.00
+  [other         ] Miscellaneous Consumables & Monitoring       : INR 17400.00
+------------------------
+Total Estimated Amount: INR 113000.00
+
+TREATING PHYSICIAN CLINICAL NOTES
+---------------------------------
+Admitted for elective/emergency management. Medical history: Nil significant medical history.
+==================================================

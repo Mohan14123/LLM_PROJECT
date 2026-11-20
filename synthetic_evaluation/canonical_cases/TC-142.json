@@ -1,0 +1,119 @@
+{
+  "test_case_id": "TC-142",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-142",
+  "policy_id": "POL-002",
+  "policy_version": "1.0",
+  "description": "Extended 10-line-item billing reconciliation",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL002-01",
+    "RULE-POL002-02"
+  ],
+  "payload": {
+    "request_id": "504851d7-c6ac-4d04-ac7a-02809395e807",
+    "submitted_at": "2026-11-30",
+    "admission_date": "2026-11-30",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "e4754796-54ce-468e-90d5-492fd750f300",
+      "full_name": "Sunil Shah",
+      "age": 52,
+      "gender": "male",
+      "policy_number": "POL-002"
+    },
+    "policy": {
+      "policy_number": "POL-002",
+      "plan_type": "family_floater",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2023-06-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "50000.00",
+          "Joint Replacement": "250000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-FF-2024-V02",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "1231f2c9-cf79-45d2-9ec2-f3539143cef9",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Closed fracture of shaft of right tibia due to road traffic collision",
+      "icd10_code": "S82.201A",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Open reduction and internal fixation (ORIF) with interlocking intramedullary nail",
+      "procedure_code": "PROC-ORTHO-ORIF-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "145000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "40250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "23000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "17250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "11500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "23000.00",
+          "category": "other"
+        },
+        {
+          "item": "Specialist Consultation Add-on #7",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #8",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #9",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Specialist Consultation Add-on #10",
+          "amount": "2500.00",
+          "category": "diagnostic"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

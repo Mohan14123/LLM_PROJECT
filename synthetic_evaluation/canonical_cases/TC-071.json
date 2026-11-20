@@ -1,0 +1,103 @@
+{
+  "test_case_id": "TC-071",
+  "category": "happy_path",
+  "scenario_id": "SCN-071",
+  "policy_id": "POL-001",
+  "policy_version": "1.0",
+  "description": "Happy path: Unspecified acute appendicitis with localized peritonitis at Lifeline Day Care Surgery Centre",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL001-01",
+    "RULE-POL001-02",
+    "RULE-POL001-03",
+    "RULE-POL001-04"
+  ],
+  "payload": {
+    "request_id": "bba0a486-a191-448a-830a-95cdbd321464",
+    "submitted_at": "2027-04-15",
+    "admission_date": "2027-04-15",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "bd752516-f245-4078-a39f-6d56fe336096",
+      "full_name": "Vijay Banerjee",
+      "age": 73,
+      "gender": "female",
+      "policy_number": "POL-001"
+    },
+    "policy": {
+      "policy_number": "POL-001",
+      "plan_type": "individual",
+      "sum_insured": "500000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "40000.00",
+          "Hernia": "50000.00",
+          "Knee Replacement": "150000.00",
+          "Kidney Stone / Lithotripsy": "45000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "APEX-HLT-IND-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "4a4ee135-6575-4339-973a-a7c037ee29bf",
+      "name": "Lifeline Day Care Surgery Centre",
+      "city": "Pune",
+      "network_tier": "cashless_network",
+      "category": "day_care_center"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "114000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 3 days)",
+          "amount": "36000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

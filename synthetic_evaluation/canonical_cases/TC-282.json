@@ -1,0 +1,98 @@
+{
+  "test_case_id": "TC-282",
+  "category": "missing_and_ambiguous",
+  "scenario_id": "SCN-282",
+  "policy_id": "POL-002",
+  "policy_version": "1.0",
+  "description": "Missing clinical examination notes and history",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "RECOMMEND_QUERY",
+  "rules_tested": [
+    "CLINICAL_AMBIGUITY_GATE"
+  ],
+  "payload": {
+    "request_id": "5e4cb0fa-d667-4cd4-bc8a-1ac4d3c3f395",
+    "submitted_at": "2026-11-08",
+    "admission_date": "2026-11-08",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "8bc1cf78-a7f6-4581-b4f2-7cae008e0605",
+      "full_name": "Pooja Patel",
+      "age": 40,
+      "gender": "female",
+      "policy_number": "POL-002"
+    },
+    "policy": {
+      "policy_number": "POL-002",
+      "plan_type": "family_floater",
+      "sum_insured": "1000000.00",
+      "policy_start_date": "2023-06-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Cataract": "50000.00",
+          "Joint Replacement": "250000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "VANG-HLT-FF-2024-V02",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "8ff307aa-4c6c-4a27-ad9e-1110b5458d72",
+      "name": "Fortis Memorial Research Institute",
+      "city": "Gurugram",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of ureter with moderate hydronephrosis",
+      "icd10_code": "N20.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Ureteroscopic lithotripsy (URSL) with DJ stenting",
+      "procedure_code": "PROC-URO-LITH-01",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "72000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 5 days)",
+          "amount": "20000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "18200.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "10400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "7800.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "5200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "10400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": ""
+  }
+}

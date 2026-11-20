@@ -1,0 +1,95 @@
+{
+  "test_case_id": "TC-144",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-144",
+  "policy_id": "POL-004",
+  "policy_version": "1.0",
+  "description": "Cost exceeds disease sub-limit cap; test sub-limit reduction",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL004-01"
+  ],
+  "payload": {
+    "request_id": "73ab610f-6abd-4926-b799-0bee3478c600",
+    "submitted_at": "2027-01-23",
+    "admission_date": "2027-01-23",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "ebb67291-1f6e-4210-bfc0-e95f36dfd6e3",
+      "full_name": "Anita Kulkarni",
+      "age": 57,
+      "gender": "male",
+      "policy_number": "POL-004"
+    },
+    "policy": {
+      "policy_number": "POL-004",
+      "plan_type": "individual",
+      "sum_insured": "5000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZEN-HLT-TOP-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "fe7655b6-af3b-47d5-8fa4-f7d2660a6777",
+      "name": "Care & Cure Rural Hospital",
+      "city": "Ahmedabad",
+      "network_tier": "non_network",
+      "category": "trust"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "97000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Single Private A/C Room, 1 days)",
+          "amount": "55000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

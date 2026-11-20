@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-155",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-155",
+  "policy_id": "POL-015",
+  "policy_version": "1.0",
+  "description": "Long patient name boundary string",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "AUTHORISE",
+  "rules_tested": [
+    "RULE-POL-015-01",
+    "RULE-POL-015-02",
+    "RULE-POL-015-03"
+  ],
+  "payload": {
+    "request_id": "85a2bc54-3b5e-44d0-ae8b-a04d230fab1b",
+    "submitted_at": "2026-06-19",
+    "admission_date": "2026-06-19",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "1d3e8325-a05e-4ebd-9f2e-233e24569797",
+      "full_name": "Dr. Venkata Satyanarayana Ramakrishna Murthy-Venkateshwaran",
+      "age": 75,
+      "gender": "male",
+      "policy_number": "POL-015"
+    },
+    "policy": {
+      "policy_number": "POL-015",
+      "plan_type": "family_floater",
+      "sum_insured": "1200000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Joint Replacement": "200000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "METR-HLT-015-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "127a8dac-e924-4b10-a9a0-fb99109df06b",
+      "name": "Max Super Speciality Hospital",
+      "city": "New Delhi",
+      "network_tier": "cashless_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Senile nuclear cataract, bilateral grade 3",
+      "icd10_code": "H25.1",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Phacoemulsification with foldable intraocular lens (IOL) implantation",
+      "procedure_code": "PROC-CAT-01",
+      "admission_type": "day_care"
+    },
+    "cost_estimate": {
+      "total_amount": "54000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Deluxe Suite, 1 days)",
+          "amount": "12000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "14700.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "8400.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "6300.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "4200.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "8400.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

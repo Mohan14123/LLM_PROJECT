@@ -1,0 +1,98 @@
+{
+  "policy_id": "POL-013",
+  "policy_version": "1.0",
+  "policy_name": "Reliant Youth Starter Health",
+  "insurer_name": "Reliant Health Underwriters",
+  "policy_type": "individual",
+  "product_uin": "RELI-HLT-013-2024",
+  "product_version": "2024.1",
+  "policyholder_eligibility": {
+    "min_entry_age": 18,
+    "max_entry_age": 65,
+    "renewable_for_life": true
+  },
+  "policy_start_date": "2024-01-01",
+  "policy_expiry_date": "2024-12-31",
+  "sum_insured": {
+    "amount": "300000.00",
+    "currency": "INR"
+  },
+  "available_sum_insured": {
+    "amount": "300000.00",
+    "currency": "INR"
+  },
+  "room_rent_limits": {
+    "type": "percentage_of_sum_insured",
+    "percentage": 1.0,
+    "daily_cap_inr": "3000.00",
+    "proportional_deduction_applies": true,
+    "clause_reference": "Section 3.1"
+  },
+  "icu_limits": {
+    "type": "percentage_of_sum_insured",
+    "percentage": 2.0,
+    "daily_cap_inr": "6000.00"
+  },
+  "disease_sublimits": {
+    "Appendicitis": {
+      "cap_inr": "40000.00",
+      "per": "per_admission",
+      "clause": "Section 4 Sub-Limits Schedule Item (Appendicitis)"
+    }
+  },
+  "waiting_periods": {
+    "initial_days": 30,
+    "initial_accident_exempt": true,
+    "specific_disease_months": 24,
+    "ped_months": 36,
+    "statutory_moratorium_months": 60,
+    "waiver_endorsement": null
+  },
+  "co_payment": {
+    "mandatory_pct": "5.00",
+    "clause": "Section 5.1 (5.00% Co-Payment)"
+  },
+  "deductible": {
+    "amount": "0.00",
+    "currency": "INR",
+    "type": "none"
+  },
+  "restoration_benefit": {
+    "is_available": false,
+    "percentage": 100.0
+  },
+  "exclusions": {
+    "permanent": [
+      "Aesthetic, cosmetic or plastic surgery",
+      "Self-inflicted injury or suicide attempts",
+      "Unproven or investigational procedures"
+    ],
+    "conditional": [
+      "Maternity expenses excluded unless corporate waiver applies"
+    ]
+  },
+  "network_hospital_conditions": "Empanelled Network Hospitals for Cashless Facilities.",
+  "rules": [
+    {
+      "rule_id": "RULE-POL-013-01",
+      "rule_type": "room_rent_limit",
+      "clause_reference": "Section 3.1",
+      "condition": "Room rent limit: 3000.00/day",
+      "expected_interpretation": "proportionate_deduction"
+    },
+    {
+      "rule_id": "RULE-POL-013-02",
+      "rule_type": "ped_waiting_period",
+      "clause_reference": "Section 2.3",
+      "condition": "Pre-existing diseases subject to 36-month waiting period.",
+      "expected_interpretation": "deny_if_ped_under_36m"
+    },
+    {
+      "rule_id": "RULE-POL-013-03",
+      "rule_type": "co_payment_check",
+      "clause_reference": "Section 5.1",
+      "condition": "5.00% co-payment applies to all eligible expenses.",
+      "expected_interpretation": "deduct_5.00pct"
+    }
+  ]
+}

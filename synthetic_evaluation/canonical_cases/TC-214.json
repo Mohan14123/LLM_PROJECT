@@ -1,0 +1,96 @@
+{
+  "test_case_id": "TC-214",
+  "category": "invalid_schema",
+  "scenario_id": "SCN-214",
+  "policy_id": "POL-004",
+  "policy_version": "1.0",
+  "description": "Negative line-item amount",
+  "expected_schema_valid": false,
+  "expected_error_substring": "Input should be greater than or equal to 0",
+  "expected_policy_outcome": "REJECT_INVALID_SCHEMA",
+  "rules_tested": [
+    "SCHEMA_VALIDATION_GATE"
+  ],
+  "payload": {
+    "request_id": "4b5acecf-b180-46aa-b37a-910b2c01b02e",
+    "submitted_at": "2027-07-03",
+    "admission_date": "2027-07-03",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "45017638-a587-468a-8e60-c9d03ae9414d",
+      "full_name": "Anita Shah",
+      "age": 28,
+      "gender": "female",
+      "policy_number": "POL-004"
+    },
+    "policy": {
+      "policy_number": "POL-004",
+      "plan_type": "individual",
+      "sum_insured": "5000000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {}
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "ZEN-HLT-TOP-2024-V01",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "06c0cbe6-7681-4652-a5aa-6f4d8781e04a",
+      "name": "Sunshine Community Nursing Home",
+      "city": "Lucknow",
+      "network_tier": "non_network",
+      "category": "private"
+    },
+    "diagnosis": {
+      "description": "Unspecified acute appendicitis with localized peritonitis",
+      "icd10_code": "K35.80",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Emergency laparoscopic appendectomy",
+      "procedure_code": "PROC-SURG-APP-01",
+      "admission_type": "emergency"
+    },
+    "cost_estimate": {
+      "total_amount": "94000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (General Ward, 4 days)",
+          "amount": "-1500.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "27300.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "15600.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "11700.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "7800.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "15600.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}

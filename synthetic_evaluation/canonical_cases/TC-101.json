@@ -1,0 +1,99 @@
+{
+  "test_case_id": "TC-101",
+  "category": "valid_edge_cases",
+  "scenario_id": "SCN-101",
+  "policy_id": "POL-031",
+  "policy_version": "1.0",
+  "description": "Non-network hospital pre-auth trigger",
+  "expected_schema_valid": true,
+  "expected_policy_outcome": "ESCALATE",
+  "rules_tested": [
+    "RULE-POL-031-01",
+    "RULE-POL-031-02",
+    "RULE-POL-031-03"
+  ],
+  "payload": {
+    "request_id": "c2e77f8e-9e43-4add-9ccf-148b0a79ba6f",
+    "submitted_at": "2027-01-25",
+    "admission_date": "2027-01-25",
+    "source_format": "json",
+    "status": "pending",
+    "patient": {
+      "patient_id": "40a664b2-3b6e-4fae-a310-a8a87870daf9",
+      "full_name": "Lakshmi Patel",
+      "age": 63,
+      "gender": "male",
+      "policy_number": "POL-031"
+    },
+    "policy": {
+      "policy_number": "POL-031",
+      "plan_type": "family_floater",
+      "sum_insured": "800000.00",
+      "policy_start_date": "2024-01-01",
+      "waiting_period_months": 24,
+      "ped_waiting_period_months": 36,
+      "sub_limits": {
+        "limits": {
+          "Tonsillectomy": "30000.00"
+        }
+      },
+      "co_pay_pct": "0.00",
+      "product_uin": "METR-HLT-031-2024",
+      "product_version": "2024.1",
+      "endorsements": []
+    },
+    "hospital": {
+      "hospital_id": "00da6af6-84a1-40f8-8496-b972cb20d188",
+      "name": "Narayana Health City",
+      "city": "Bengaluru",
+      "network_tier": "non_network",
+      "category": "multi_specialty"
+    },
+    "diagnosis": {
+      "description": "Calculus of gallbladder without cholecystitis without obstruction",
+      "icd10_code": "K80.20",
+      "is_pre_existing": false
+    },
+    "procedure": {
+      "description": "Laparoscopic cholecystectomy",
+      "procedure_code": "PROC-SURG-LAP-02",
+      "admission_type": "planned"
+    },
+    "cost_estimate": {
+      "total_amount": "119000.00",
+      "line_items": [
+        {
+          "item": "Room & Nursing Charges (Twin Sharing, 2 days)",
+          "amount": "24000.00",
+          "category": "room_rent"
+        },
+        {
+          "item": "Professional Surgeon & Anesthetist Consultation",
+          "amount": "33250.00",
+          "category": "surgeon_fee"
+        },
+        {
+          "item": "Operation Theatre & Equipment Consumables",
+          "amount": "19000.00",
+          "category": "consumables"
+        },
+        {
+          "item": "Inpatient Pharmacy & Surgical Implants",
+          "amount": "14250.00",
+          "category": "pharmacy"
+        },
+        {
+          "item": "Pre-operative Diagnostic Investigations & Pathology",
+          "amount": "9500.00",
+          "category": "diagnostic"
+        },
+        {
+          "item": "Miscellaneous Consumables & Monitoring",
+          "amount": "19000.00",
+          "category": "other"
+        }
+      ]
+    },
+    "clinical_notes": "Admitted for elective/emergency management. Medical history: Nil significant medical history."
+  }
+}
